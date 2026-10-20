@@ -1,0 +1,191 @@
+U.skip	跳过
+U.enter	进入世界
+U.heroEyebrow	你是其中之一
+U.heroSub	地球上出生过的总人数。PRB 估算值，按今天的出生率继续累加，每秒都在增长。
+U.bornSince	你打开此页面后出生的人
+U.diedSince	你打开此页面后离世的人
+U.calTitle	地球之年的最后一小时
+U.calNote	如果把地球 45.4 亿年的历史压缩成一年，人类的全部故事都发生在 12 月 31 日的夜里。
+U.calPre	人属在同一天的 18:36 出现
+U.calSap	智人出现
+U.calCh1	本游戏第 1 章（12 万至 5 万年前）
+U.calAgri	农业开始
+U.calWrite	苏美尔人开始书写
+U.calNow	今天
+U.chapters	选择章节
+U.carMode	职业（第 3 章）
+U.carRandom	顺其自然
+U.chapter	第
+U.soon	即将推出
+U.ch1t	多种人类
+U.ch1d	几种人类共同生活在世界上。冰期即将来临，多巴火山即将喷发。你会生为哪一种人？
+U.ch2t	农业革命
+U.ch2d	尝试驯养野生动物、播下最早的种子、建立村落。畜群既是食物，也是劳力、财富和地位。八片土地，从黎凡特到鬼洞。
+U.ch3t	青铜时代：苏美尔
+U.ch3d	最早的城市、最早的文字、最早的合金，还有啤酒
+U.chMamT	猛犸猎人
+U.chMamD	冰期的顶峰。猛犸草原横跨大陆；人们发明了骨针、弓箭和投矛器，然后走过陆桥到达美洲。
+U.calCh2	第 2 章，猛犸猎人（4.5 万至 1.2 万年前）
+U.chPick	已选择
+U.tools	知识与技艺：
+U.noTools	还没有新工具。选择“练习技能”来学习。
+U.learned	你从族群里的人那里学会了制作{t}
+U.firstInvent	你是族群里第一个会制作{t}的人
+U.mamCount	猎获猛犸 {n} 头
+U.dogT	一只驯服的狼
+U.hutT	猛犸骨屋
+U.src9	第 3 章：各地最早放牧和耕种的年代是根据考古和 DNA 推算的，仍有争议。借牲畜、婚姻礼物和流言是参照后来的社会模拟的，游戏把许多代的驯化过程压缩进一生。
+U.src6	第 2 章：人类何时到达美洲以及若干工具的年代仍有争议。游戏采用大多数证据支持的范围。
+U.chPacT	太平洋航海者
+U.chPacD	驾驶双体独木舟从一座岛航向另一座岛，凭星辰、涌浪和飞鸟导航，一路抵达夏威夷、拉帕努伊和奥特亚罗瓦。
+U.calPac	太平洋航海者（3500 至 700 年前）
+U.chJT	走出非洲：一代代旅人
+U.chJD	约 7 万年前从东非出发。每次死去，你都会作为几代之后的后裔继续，并选择这一脉走向何方：欧洲、亚洲、萨胡尔，或穿越白令陆桥前往美洲。
+U.journeys	跨越世代的旅程
+U.linTag	以你的后代继续
+U.kGen	血脉
+U.genFirst	这一脉的第一人
+U.genN	这一脉的第 ~{n} 代
+U.linTitle	你的旅人血脉
+U.linStat	第 ~{g} 代 · 已经历 {l} 次人生 · 约走过 {k} 公里
+U.linGo	以到达{r}的后代继续
+U.linStay	以留在{r}的后代继续
+U.linEnd	这一脉已经走到本章的尽头。
+U.linNoKids	 你没有活到成年的孩子，所以这一脉经由你兄弟姐妹的孙辈延续。
+U.linShare	 · 一脉旅人的第 ~{g} 代，约走过 {k} 公里
+U.linPick	你的后代将去往何处？
+U.bOut	离开非洲
+U.bSah	到达萨胡尔
+U.bEur	到达欧洲
+U.bEas	到达东亚
+U.bAme	到达美洲
+U.bSoc	到达东波利尼西亚
+U.bHaw	到达夏威夷
+U.bRap	到达拉帕努伊
+U.bNzl	到达奥特亚罗瓦
+U.bKum	到达南美洲
+U.funeralT	你的葬礼
+U.skSv	生存
+U.skCr	手艺
+U.skSo	交往
+U.skTr	远行
+U.skKn	学识
+U.invT	随身之物：
+U.noInv	还什么都没有
+U.frT	其他族群的朋友：{n}
+U.sickT	生病：{d}
+U.kTal	天赋
+U.needSk	需要{s} {n}
+U.shaped	花时间最多的事：{a} · 最强技能：{s} · 其他族群的朋友：{f}
+U.yrs	{n} 年
+U.src7	太平洋章节：抵达各岛的年代采用大多数放射性碳测年研究接受的范围。岛民相对世界人口的“X 分之一”只是粗略估计。
+U.src8	旅人血脉：每代约按 27 年计算；距离按地区之间的直线距离测量。
+U.drawMode	你如何被抽中
+U.modeWeighted	按人口比例
+U.modeChoose	我来选物种
+U.pace	一生的长度（如果活到老年）
+U.paceShort	短 · 约 4 分钟
+U.paceMid	普通 · 约 7 分钟
+U.paceLong	长 · 约 14 分钟
+U.legendQ	奇幻元素
+U.legOn	包含传说
+U.legOff	只要写实
+U.beBorn	出生
+U.warn	这里的人生可能很早就结束：这个时代将近一半的孩子活不到成年。疾病和失去只会简短讲述，不涉及细节。
+U.pastLives	过往人生
+U.noPast	还没有完成的人生。完成的人生会保存在这个浏览器里。
+U.rolling	正在抽取你将成为谁
+U.begin	开始这一生
+U.redraw	重新抽取
+U.kSpecies	物种
+U.kPlace	出生地
+U.kWhen	时间
+U.kClimate	气候
+U.kSex	性别
+U.kName	称呼
+U.kOdds	概率
+U.sexF	女
+U.sexM	男
+U.nameNote	没有人知道这个时代的人如何给彼此起名。这只是游戏对你的称呼。
+U.oddsPct	当时人类的 {p}%
+U.oneIn	{n} 分之一
+U.estimate	比例是估计值，科学家仍在争论。
+U.age	年龄
+U.yearsAgo	约 {n} 年前
+U.earthClock	地球时钟
+U.dec31	12 月 31 日
+U.health	健康
+U.food	食物
+U.bond	情谊
+U.skill	技能
+U.prestige	声望
+U.focusLabel	这一年你要把时间花在什么上？
+U.baby	你还很小。族群里的大人照顾着你。
+U.pause	暂停
+U.resume	继续
+U.auto	自动
+U.fForage	寻找食物
+U.fLearn	练习技能
+U.fBand	陪伴族群
+U.fRest	休息养伤
+U.cForage	帮忙采集
+U.cLearn	看大人做事
+U.cBand	和别人玩
+U.cRest	休息
+U.decision	抉择 · {a} 岁
+U.legendEye	传说 · {a} 岁
+U.fact	来自证据：
+U.myth	传说：
+U.reflect	停一停 · {a} 岁
+U.reflectPh	写一句话，或跳过
+U.cont	继续生活
+U.lifeEnded	这一生结束了
+U.dLine	{sp} · {a} 岁 · {c}
+U.path	足迹：{p}
+U.clockLine	这 {n} 年在地球时钟上只占 {s} 秒
+U.milestones	这一生的足迹
+U.noMs	这一生太短，没有留下里程碑。
+U.finalMsg	给这个人的话
+U.finalPh	写下任何想对他们说的话，它会和这一生一起保存。
+U.copy	复制分享文字
+U.copied	已复制
+U.copyFail	请选中上面的文字并复制
+U.again	再次出生
+U.home	首页
+U.cardHint	如果设备允许，长按图片即可保存
+U.shareTpl	我约 {y} 年前生于{pl}，是一名{sp}（{o}），成为{ti}，活了 {a} 年。在地球时钟上，这一生只持续了 {s} 秒 · Sapiens in Time
+U.cardAge	{a} 岁
+U.kids	{n} 个孩子
+U.kidsAlive	{n} 个活到成年
+U.sources	来源与局限
+U.src1	曾经出生过的人数：人口资料局（PRB，2022）估计约公元前 19 万年以来共约 1170 亿人。2022 年年中之后，游戏每年加上约 1.32 亿新生儿。
+U.src2	各物种所占比例，以及各群体何时生活在何地，是游戏根据多项研究做出的估计，其中几点仍有争议。
+U.src3	死亡率参照已研究过的狩猎采集社会的模式，例如 Gurven 与 Kaplan（2007）。人生事件是模型，不是真实人物的故事。
+U.src4	地球时钟：把地球 45.4 亿年压缩成一个日历年。人类的一年约等于 0.007 秒。
+U.src5	标有 ✦ 的事件是游戏编造的传说，没有任何证据。选择“只要写实”即可关闭。
+U.moved	迁往{r}
+U.bandMoved	食物吃光了。你的族群带着你迁往{r}
+I.0	把地球 45.4 亿年的历史压缩成一天。
+I.1	智人只出现在最后 5.7 秒。
+I.2	从那时起，大约已有 1170 亿人出生。
+I.3	你是其中之一。
+T000	{0}的早期饲养者
+T001	族群里第一个会制作{0}的人
+T002	你从{0}中康复了
+T003	你患上了{0}
+T004	你从他们那里换来一头{0}
+T005	你空着手去拜访另一个族群，却交到了一位来自{0}的朋友
+T006	{0}和{1}
+T007	你用{0}换来了食物
+T008	你用{0}换来了食物，还交到一位来自{1}的新朋友
+T009	你用{0}换来了食物，与来自{1}的朋友更亲近了
+T010	路上你遇到了{0}，成了朋友
+T011	饥荒的年份，你在{0}的朋友送来了肉干
+T012	你吃掉了存下的{0}
+T013	接受“{0}”
+T014	以{0}之名为人所知
+T015	航向{0}
+T016	步行前往{0}
+T017	发现并定居{0}
+T018	你的 {0} 头牲畜分给了你的孩子们。
+T019	{0}还没来得及归还你的牲畜就去世了，但他们的孩子仍在讲述你的慷慨

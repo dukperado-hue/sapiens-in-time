@@ -1,0 +1,191 @@
+U.skip	SALTAR
+U.enter	Entrar al mundo
+U.heroEyebrow	Eres 1 de
+U.heroSub	Personas que han nacido en la Tierra. Estimación del PRB, prolongada con la natalidad actual. Crece cada segundo.
+U.bornSince	Nacidos desde que abriste esta página
+U.diedSince	Muertos desde que abriste esta página
+U.calTitle	La última hora del año de la Tierra
+U.calNote	Si los 4.540 millones de años de la Tierra fueran un año del calendario, toda la historia humana ocurriría la noche del 31 de diciembre.
+U.calPre	El género Homo comienza a las 18:36 del mismo día
+U.calSap	Aparece Homo sapiens
+U.calCh1	Capítulo 1 de este juego (hace 120.000–50.000 años)
+U.calAgri	Empieza la agricultura
+U.calWrite	Los sumerios empiezan a escribir
+U.calNow	Hoy
+U.chapters	Elige un capítulo
+U.carMode	Oficio (capítulo 3)
+U.carRandom	Que decida la vida
+U.chapter	Capítulo
+U.soon	Pronto
+U.ch1t	Muchas clases de humanos
+U.ch1d	Varias especies humanas comparten el mundo. Se acerca una glaciación y el Toba está a punto de entrar en erupción. ¿Quién serás al nacer?
+U.ch2t	La revolución agrícola
+U.ch2d	Domestica animales salvajes, siembra los primeros campos y funda aldeas. Un rebaño es comida, trabajo, riqueza y posición, en ocho tierras desde el Levante hasta la Cueva de los Espíritus.
+U.ch3t	La Edad del Bronce: Sumer
+U.ch3d	Las primeras ciudades, la primera escritura, las primeras aleaciones y la cerveza
+U.chMamT	Cazadores de mamuts
+U.chMamD	El apogeo de la Edad de Hielo. La estepa del mamut cruza continentes; la gente inventa agujas, arcos y lanzadores de dardos, y cruza un puente de tierra hacia América.
+U.calCh2	Capítulo 2, cazadores de mamuts (hace 45.000–12.000 años)
+U.chPick	ELEGIDO
+U.tools	Saberes:
+U.noTools	Aún no hay herramientas nuevas. Elige «Practicar habilidades» para aprender.
+U.learned	Aprendes a hacer {t} de otros del grupo
+U.firstInvent	Eres la primera persona de tu grupo en hacer {t}
+U.mamCount	{n} mamuts cazados
+U.dogT	un lobo domesticado
+U.hutT	una casa de huesos de mamut
+U.src9	Capítulo 3: las fechas del primer pastoreo y la primera agricultura en cada región son estimaciones de la arqueología y el ADN, y siguen en debate. Los préstamos de animales, los regalos de boda y los rumores están simulados a partir de sociedades posteriores, y el juego comprime muchas generaciones de domesticación en una sola vida.
+U.src6	Capítulo 2: cuándo llegaron los humanos a América y la edad de varias herramientas siguen en debate. El juego usa los intervalos que respalda la mayoría de las pruebas.
+U.chPacT	Navegantes del Pacífico
+U.chPacD	Navega en canoas de doble casco de isla en isla, guiándote por las estrellas, el oleaje y las aves, hasta Hawái, Rapa Nui y Aotearoa.
+U.calPac	Navegantes del Pacífico (hace 3.500–700 años)
+U.chJT	Fuera de África: un linaje de viajeros
+U.chJD	Empieza en África oriental hace unos 70.000 años. Cada vez que mueras, sigues como descendiente generaciones después y eliges adónde va el linaje: Europa, Asia, Sahul o, cruzando Beringia, América.
+U.journeys	Viajes a través de generaciones
+U.linTag	Sigue como tus descendientes
+U.kGen	Linaje
+U.genFirst	La primera persona del linaje
+U.genN	Generación ~{n} del linaje
+U.linTitle	Tu linaje de viajeros
+U.linStat	Generación ~{g} · {l} vidas jugadas · unos {k} km recorridos
+U.linGo	Sigue como descendientes que llegan a {r}
+U.linStay	Sigue como descendientes que se quedan en {r}
+U.linEnd	Este linaje ha llegado al final del capítulo.
+U.linNoKids	 No dejaste hijos que llegaran a adultos, así que el linaje continúa a través de los nietos de tus hermanos.
+U.linShare	 · generación ~{g} de un linaje que ha recorrido unos {k} km
+U.linPick	¿Adónde irán tus descendientes?
+U.bOut	Salió de África
+U.bSah	Llegó a Sahul
+U.bEur	Llegó a Europa
+U.bEas	Llegó a Asia oriental
+U.bAme	Llegó a América
+U.bSoc	Llegó a la Polinesia oriental
+U.bHaw	Llegó a Hawái
+U.bRap	Llegó a Rapa Nui
+U.bNzl	Llegó a Aotearoa
+U.bKum	Llegó a Sudamérica
+U.funeralT	Tu funeral
+U.skSv	Supervivencia
+U.skCr	Oficio
+U.skSo	Trato
+U.skTr	Viaje
+U.skKn	Saber
+U.invT	Pertenencias:
+U.noInv	Nada todavía
+U.frT	Amigos en otros grupos: {n}
+U.sickT	Enfermedad: {d}
+U.kTal	Don
+U.needSk	Requiere {s} {n}
+U.shaped	Más años dedicados a: {a} · Habilidad más fuerte: {s} · Amigos en otros grupos: {f}
+U.yrs	{n} años
+U.src7	Capítulo del Pacífico: las fechas de llegada siguen los intervalos que aceptan la mayoría de los estudios de radiocarbono. El «1 de X» de los isleños frente a la población mundial es una estimación aproximada.
+U.src8	Linaje de viajeros: se calcula que cada generación dura unos 27 años; la distancia se mide en línea recta entre regiones.
+U.drawMode	Cómo te toca nacer
+U.modeWeighted	Según la población
+U.modeChoose	Elijo la especie
+U.pace	Duración de una vida (si llega a la vejez)
+U.paceShort	Corta · ~4 min
+U.paceMid	Normal · ~7 min
+U.paceLong	Larga · ~14 min
+U.legendQ	Lo fantástico
+U.legOn	Incluir leyendas
+U.legOff	Solo realista
+U.beBorn	Nacer
+U.warn	Aquí una vida puede terminar muy pronto: casi la mitad de los niños de esta época no llegaba a adulta. La enfermedad y la pérdida se cuentan brevemente, sin detalles.
+U.pastLives	Vidas pasadas
+U.noPast	Aún no has terminado ninguna vida. Las vidas que termines se guardan en este navegador.
+U.rolling	Se decide quién serás
+U.begin	Empezar esta vida
+U.redraw	Volver a sortear
+U.kSpecies	Especie
+U.kPlace	Nacimiento en
+U.kWhen	Cuándo
+U.kClimate	Clima
+U.kSex	Sexo
+U.kName	Te llaman
+U.kOdds	Probabilidad
+U.sexF	Mujer
+U.sexM	Hombre
+U.nameNote	Nadie sabe cómo se llamaban entre sí las personas de esta época. Es solo como te llama el juego.
+U.oddsPct	{p} % de los humanos de entonces
+U.oneIn	1 de cada {n}
+U.estimate	Las proporciones son estimaciones. Los científicos aún discuten sobre ellas.
+U.age	Edad
+U.yearsAgo	hace unos {n} años
+U.earthClock	Reloj de la Tierra
+U.dec31	31 dic.
+U.health	Salud
+U.food	Comida
+U.bond	Lazos
+U.skill	Habilidad
+U.prestige	Prestigio
+U.focusLabel	¿A qué dedicarás este año?
+U.baby	Aún eres pequeño. Los adultos del grupo te cuidan.
+U.pause	PAUSA
+U.resume	SEGUIR
+U.auto	AUTO
+U.fForage	Buscar comida
+U.fLearn	Practicar habilidades
+U.fBand	Estar con el grupo
+U.fRest	Descansar y sanar
+U.cForage	Ayudar a recolectar
+U.cLearn	Mirar a los adultos
+U.cBand	Jugar con otros
+U.cRest	Descansar
+U.decision	Decisión · edad {a}
+U.legendEye	Leyenda · edad {a}
+U.fact	Según las pruebas:
+U.myth	Leyenda:
+U.reflect	Una pausa · edad {a}
+U.reflectPh	Escribe una línea, o sáltalo
+U.cont	Seguir viviendo
+U.lifeEnded	Esta vida ha terminado
+U.dLine	{sp} · edad {a} · {c}
+U.path	Camino: {p}
+U.clockLine	Estos {n} años duraron {s} segundos en el reloj de la Tierra
+U.milestones	El camino de esta vida
+U.noMs	Esta vida fue demasiado corta para dejar hitos.
+U.finalMsg	Un mensaje para esta persona
+U.finalPh	Escríbele lo que quieras. Se guarda con esta vida.
+U.copy	Copiar texto para compartir
+U.copied	Copiado
+U.copyFail	Selecciona el texto de arriba y cópialo
+U.again	Volver a nacer
+U.home	Inicio
+U.cardHint	Mantén pulsada la imagen para guardarla, si tu dispositivo lo permite
+U.shareTpl	Nací como {sp} en {pl} hace unos {y} años ({o}), llegué a ser {ti} y viví {a} años. En el reloj de la Tierra esta vida duró {s} segundos · Sapiens in Time
+U.cardAge	Edad {a}
+U.kids	{n} hijos
+U.kidsAlive	{n} llegaron a adultos
+U.sources	Fuentes y límites
+U.src1	Personas nacidas en total: el Population Reference Bureau (2022) estima unos 117.000 millones desde aproximadamente el 190.000 a. C. Desde mediados de 2022 el juego suma unos 132 millones de nacimientos al año.
+U.src2	Las proporciones de especies, y cuándo vivió cada grupo en cada región, son estimaciones propias del juego basadas en varios estudios. Algunos puntos siguen en debate.
+U.src3	Las tasas de mortalidad siguen patrones de sociedades cazadoras-recolectoras estudiadas, como Gurven y Kaplan (2007). Los sucesos de la vida son un modelo, no la historia de una persona real.
+U.src4	Reloj de la Tierra: los 4.540 millones de años de la Tierra comprimidos en un año del calendario. Un año humano dura unos 0,007 segundos.
+U.src5	Los sucesos marcados con ✦ son leyendas inventadas por el juego, sin ninguna prueba. Desactívalas con «Solo realista».
+U.moved	Se mudó a {r}
+U.bandMoved	Se acabó la comida. Tu grupo te llevó a {r}
+I.0	Comprime los 4.540 millones de años de la Tierra en un solo día.
+I.1	Homo sapiens aparece solo en los últimos 5,7 segundos.
+I.2	Desde entonces han nacido unos 117.000 millones de personas.
+I.3	Tú eres una de ellas.
+T000	una de las primeras personas en criar {0}
+T001	La primera persona del grupo en hacer {0}
+T002	Te recuperas de {0}
+T003	Enfermas de {0}
+T004	Consigues a cambio uno de sus animales: {0}
+T005	Visitas otro grupo con las manos vacías, pero haces un amigo de {0}
+T006	{0} y {1}
+T007	Cambias {0} por comida
+T008	Cambias {0} por comida y haces un amigo de {1}
+T009	Cambias {0} por comida y te acercas más a tu amigo de {1}
+T010	En el camino conoces a {0} y os hacéis amigos
+T011	En el año del hambre, tu amigo de {0} te envía carne seca
+T012	Te comes {0} que habías guardado
+T013	Aceptar «{0}»
+T014	Conocido como {0}
+T015	Navegar hacia {0}
+T016	Caminar hacia {0}
+T017	Descubrió y pobló {0}
+T018	Tus {0} animales se reparten entre tus hijos.
+T019	{0} murió antes de devolverte los animales, pero sus hijos aún hablan de tu bondad
