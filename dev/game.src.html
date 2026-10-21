@@ -2390,7 +2390,7 @@ async function decide(d){
   log(X(d.t.th+' — '+res.th,d.t.en+' — '+res.en),pn||note,d.lg?'lg':'big');
 }
 async function reflect(age){
-  const r=await modal({eye:t('reflect',{a:age}),title:L((S.ch===4&&REFLECT4[age])||(S.ch===6&&REFLECT6[age])||(S.ch===8&&REFLECT8[age])||REFLECT[age]),text:'',input:t('reflectPh'),opts:[{l:t('cont'),primary:1}]});
+  const r=await modal({eye:t('reflect',{a:age}),title:L((S.ch===4&&REFLECT4[age])||(S.ch===6&&REFLECT6[age])||(S.ch===8&&age===50&&era8(S.ya)==='late'&&REFL8L)||(S.ch===8&&REFLECT8[age])||REFLECT[age]),text:'',input:t('reflectPh'),opts:[{l:t('cont'),primary:1}]});
   if(r.v)S.notes[age]=r.v;
 }
 
@@ -4086,7 +4086,7 @@ function epi8(S){const e=era8(S.ya0);let s=L(EPI8[e]);
   const rs=Object.keys(S.relig||{});
   if(rs.length){const sep=lang==='th'?' ':/^(zh|ja)$/.test(lang)?'、':', ';s+=L(X(' ตลอดชีวิตคุณเห็น {0} นักวิชาการทุกวันนี้ยังเถียงกันว่าสิ่งเหล่านี้หมายความว่าอะไร',' In your life you saw {0}. Scholars today still argue about what they meant.')).replace('{0}',rs.map(k=>L(RELIG8[k])).join(sep))}
   for(const k of ['rhino','elephant','tiger','gharial'])if(S.saw&&S.saw[k])s+=L(SAW8[k]);
-  return s+L(EPI8T)}
+  if(['m2','late'].includes(era8(S.ya0))||S.left8||S.adapt8)s+=L(LESSON8)+(S.adapt8>0?L(X(' คุณเองก็เป็นหนึ่งในคนที่ปรับตัว',' You yourself were one of those who adapted.')):'');return s+L(EPI8T)}
 function fun8Note(S){return X('ชาวสินธุมักฝังศพนอนหงาย หันหัวไปทางเหนือ พร้อมหม้อใส่อาหารและเครื่องดื่ม และเครื่องประดับ เช่น กำไลเปลือกหอยและลูกปัด สุสานเรียบง่ายเมื่อเทียบกับอียิปต์หรือเมโสโปเตเมีย ไม่พบสุสานหลวงที่หรูหรา ในยุคตอนปลายที่สุสาน H ของฮารัปปา บางครั้งกระดูกถูกเก็บในโถเขียนลาย หม้อบางใบวาดรูปนกยูงแบกคนตัวเล็กๆ นักวิชาการบางคนอ่านว่าเป็นการเดินทางของวิญญาณ',
  'Indus people usually buried their dead lying on their backs with the head to the north, with pots of food and drink and ornaments such as shell bangles and beads. Graves were simple compared with Egypt or Mesopotamia, and no lavish royal tombs have been found. Late on, in Harappa’s Cemetery H, bones were sometimes placed in painted urns; some show peacocks carrying tiny figures, which some scholars read as the soul’s journey.')}
 function fun8Opts(S,o,done,lead){
@@ -4165,6 +4165,17 @@ function drawAct8(ctx,o,act,gy,now,P){const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.
 
 DEC.push(...DEC_IN8,...DEC_CAR8);EV.push(...EV8);
 let chosenCar8=store.get('sit.car8','');if(chosenCar8&&!CAREERS8[chosenCar8])chosenCar8='';
+/* ---------- v0.13b: collapse from natural change, a lesson ---------- */
+DEC.push({id:'a8_crops',deck:'adult',w:6,ch:8,a:[18,65],cond:S=>(era8(S.ya)==='late'||(era8(S.ya)==='m2'&&S.ya<=4225))&&S.field,t:X('ฝนที่เปลี่ยนไป','The rains that changed'),
+ x:X('สามปีแล้วที่แม่น้ำไม่ล้นตลิ่ง ข้าวสาลีหน้าหนาวขึ้นไม่เต็มนา คนแปลกหน้าจากทางตะวันออกบอกว่าพวกเขาปลูกข้าวฟ่างกับข้าวเจ้าตอนฝนหน้าร้อนแทน','For three years the river has not spilled over its banks, and the winter wheat comes up thin. A stranger from the east says his people now sow millet and rice in the summer rains instead.'),
+ n:X('งานวิจัยเมล็ดพืชจากแหล่งโบราณคดีพบว่า เมื่อมรสุมอ่อนลง ชาวบ้านสินธุหลายแห่งหันไปปลูกพืชหน้าฝนที่ทนแล้งกว่า เช่น ข้าวฟ่าง และข้าว มากขึ้น หมู่บ้านเล็กที่ปรับตัวอยู่รอด ส่วนเมืองใหญ่ที่ต้องพึ่งข้าวส่วนเกินและการค้าทางไกลค่อยๆ ร้าง','Studies of seeds from excavated sites suggest that as the monsoon weakened, many Indus villagers grew more summer crops that cope better with drought, such as millets and rice. Small villages that adapted survived, while the great cities, which depended on surplus grain and long-distance trade, slowly emptied.'),
+ o:[opt(X('ลองปลูกข้าวฟ่างตามคนแปลกหน้า','Try millet as the stranger says'),S=>{S.adapt8=1;fx({f:6,kn:3});return X('ปีแรกพ่อบ่นว่าข้าวฟ่างเป็นอาหารนก ปีที่สองทั้งบ้านรอดเพราะมัน','The first year your father grumbles that millet is bird food. The second year it is what keeps the house alive.')}),
+  opt(X('ยึดข้าวสาลีแบบที่ปู่ย่าตายายทำมา','Keep to the wheat your grandparents grew'),S=>{S.adapt8=-1;fx({f:-8,h:-2});return X('ฝนปีนี้ก็ไม่มาอีก ยุ้งข้าวว่างก่อนฤดูใหม่จะมาถึง','The rains fail again, and the granary is empty before the new season comes.')}),
+  opt(X('ย้ายไปใกล้แม่น้ำที่ยังมีน้ำ','Move closer to a river that still runs'),S=>{S.adapt8=1;S.left8=1;fx({f:2,b:-3});return X('คุณทิ้งบ้านที่ปู่สร้าง แต่ที่ใหม่ยังมีน้ำ','You leave the house your grandfather built, but the new place still has water.')})]});
+const LESSON8=X(' เมืองสินธุไม่ได้ล่มในวันเดียว มรสุมอ่อนลงและแม่น้ำย้ายทางช้าๆ ตลอดหลายร้อยปี ช้าจนในชีวิตเดียวแทบไม่มีใครเห็น "การล่มสลาย" เห็นแค่ฝนที่น้อยลงทีละนิด บ่อที่แห้งไปทีละบ่อ คนที่ปรับตัว เปลี่ยนพืช ย้ายถิ่น แยกเป็นหมู่บ้านเล็ก อยู่รอดและเป็นบรรพบุรุษของคนเอเชียใต้ทุกวันนี้ สิ่งที่หายไปคือระบบใหญ่ที่สร้างไว้สำหรับโลกแบบเดิม: เมือง ตราประทับ และตัวอักษร นักวิชาการยังเถียงกันว่าธรรมชาติมีส่วนมากแค่ไหน แต่บทเรียนนี้ยังใช้ได้กับโลกที่อากาศกำลังเปลี่ยนในวันนี้',
+ ' The Indus cities did not fall in a day. The monsoon weakened and the rivers shifted slowly over centuries, so slowly that hardly anyone saw a "collapse" within one life, only a little less rain, one more dry well. Those who adapted, changing crops, moving, splitting into small villages, survived and became ancestors of South Asians today. What vanished was the great system built for the old world: the cities, the seals and the writing. Scholars still argue how much nature was to blame, but the lesson still holds for a world whose climate is changing today.');
+const REFL8L=X('ฝนน้อยลงทุกปี บ่อแห้งไปทีละบ่อ ถ้าคุณรู้ว่าโลกกำลังเปลี่ยนช้าๆ ไปตลอดชีวิตลูกหลาน คุณจะสอนอะไรเขา','Each year a little less rain, one more dry well. If you knew the world would keep slowly changing through your grandchildren’s lives, what would you teach them?');
+
 
 function fig(ctx,x,y,o){const R=(a,b,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(a|0,b|0,w|0,h|0)};x|=0;y|=0;
   const h=o.h||6,c=o.c||'#1e140e',hd=o.elder?'#cfc6b8':c,f=o.f||0,p=o.pose||'stand';
