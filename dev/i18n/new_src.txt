@@ -1,13 +1,362 @@
-S3576	 In your life you saw {0}. Scholars today still argue about what they meant.
-S3577	 You yourself were one of those who adapted.
-S3578	The rains that changed
-S3579	For three years the river has not spilled over its banks, and the winter wheat comes up thin. A stranger from the east says his people now sow millet and rice in the summer rains instead.
-S3580	Studies of seeds from excavated sites suggest that as the monsoon weakened, many Indus villagers grew more summer crops that cope better with drought, such as millets and rice. Small villages that adapted survived, while the great cities, which depended on surplus grain and long-distance trade, slowly emptied.
-S3581	Try millet as the stranger says
-S3582	The first year your father grumbles that millet is bird food. The second year it is what keeps the house alive.
-S3583	Keep to the wheat your grandparents grew
-S3584	The rains fail again, and the granary is empty before the new season comes.
-S3585	Move closer to a river that still runs
-S3586	You leave the house your grandfather built, but the new place still has water.
-S3587	 The Indus cities did not fall in a day. The monsoon weakened and the rivers shifted slowly over centuries, so slowly that hardly anyone saw a "collapse" within one life, only a little less rain, one more dry well. Those who adapted, changing crops, moving, splitting into small villages, survived and became ancestors of South Asians today. What vanished was the great system built for the old world: the cities, the seals and the writing. Scholars still argue how much nature was to blame, but the lesson still holds for a world whose climate is changing today.
-S3588	Each year a little less rain, one more dry well. If you knew the world would keep slowly changing through your grandchildren’s lives, what would you teach them?
+S3589	One of your children falls ill and dies. The family lays the little body in a clay jar and buries it beneath the floor.
+S3590	the age of the Minoan palaces on Crete
+S3591	the age of the Mycenaean palaces, when trade around the sea was at its height
+S3592	the Bronze Age collapse, when palaces and cities fell one after another
+S3593	the Greek Dark Age, after the palaces fell
+S3594	Knossos, the greatest palace on Crete
+S3595	Akrotiri, the harbour town on the island of Thera
+S3596	Mycenae, the hilltop citadel on the Greek mainland
+S3597	Pylos, the palace by the sea in western Greece
+S3598	Ugarit, the trading port on the Syrian coast
+S3599	Enkomi, the copper town on Cyprus
+S3600	a farming village by the Aegean Sea
+S3601	barley, wheat, olives and grapes
+S3602	Knossos was the largest Minoan palace, with hundreds of rooms around a central court and no fortress walls. Arthur Evans excavated it from 1900 and named the culture “Minoan” after King Minos of Greek legend. We do not know what the Cretans called themselves.
+S3603	Akrotiri on Thera (Santorini) was a harbour town with houses of two or three storeys and brightly painted walls. The island’s volcano erupted and buried it in ash. Unlike Pompeii, no bodies have been found, so the people probably escaped first.
+S3604	Mycenae was a hilltop citadel with walls of such huge stones that later Greeks believed the giant Cyclopes had built them. Heinrich Schliemann excavated it in 1876 and found a gold mask he called the “Mask of Agamemnon”, but it is centuries older than any possible Trojan War.
+S3605	Pylos was a palace in western Greece. When it burned around 1180 BCE, the fire baked more than a thousand clay tablets in its archive hard, so they survived. They tell us how the palace counted sheep, handed out rations, and what it feared in its last year.
+S3606	Ugarit was one of the busiest ports of the eastern Mediterranean, with merchants from Egypt, the Hittite lands, Cyprus and Greece, and a new cuneiform alphabet of only 30 letters, one of the world’s first alphabets. It was destroyed around 1190 BCE and never rebuilt, until a farmer ploughing his field broke into a tomb in 1928.
+S3607	Cyprus was the great copper source of the age, probably the land called “Alashiya” in letters of the time. Copper was cast into ingots shaped like an ox-hide, weighing about 20–30 kilograms, and shipped all over the sea, since bronze needed copper mixed with tin at about ten to one.
+S3608	Most people of this age did not live in palaces but in villages of farmers and shepherds, growing barley, olives and grapes and sending part of their harvest to the palace. These villages were what carried on after the palaces fell.
+S3609	The Minoans’ Linear A script still cannot be read. The Mycenaeans’ Linear B was deciphered in 1952 and records thousands of ordinary people’s names, but mostly as entries in palace accounts. So in this game you have only a nickname.
+S3610	a farmer with a great olive grove
+S3611	the elder the whole village listens to
+S3612	a shepherd boy
+S3613	a shepherd of the palace flocks
+S3614	keeper of thousands of sheep
+S3615	Throw pots painted with octopuses on the wheel
+S3616	a painter of sea creatures on great jars
+S3617	the potter whose jars are shipped to Egypt
+S3618	Bronze-smith
+S3619	Melt copper and tin into bronze
+S3620	a bronze-smith
+S3621	a caster of swords and spearheads
+S3622	master bronze-smith of the palace
+S3623	Spin wool and weave cloth
+S3624	a dyer of shellfish purple
+S3625	head of the palace weaving rooms
+S3626	Write palace accounts on clay tablets
+S3627	a scribe’s pupil
+S3628	the scribe who counts the palace sheep
+S3629	keeper of the palace archive
+S3630	Sailor and trader
+S3631	Sail and trade across the sea
+S3632	a sailor
+S3633	a ship’s master who knows every harbour
+S3634	a merchant with ships of his own
+S3635	Perfumed-oil maker
+S3636	Boil olive oil with rose and herbs
+S3637	a child who gathers rose petals
+S3638	a perfumed-oil maker
+S3639	the palace’s oil-boiler
+S3640	the one whose oils reach the Egyptian court
+S3641	Priestess or priest
+S3642	a priestess or priest
+S3643	a key-bearer of the shrine
+S3644	the high priestess whom the whole palace respects
+S3645	Warrior
+S3646	Train with chariot and spear
+S3647	a boy who tends the horses
+S3648	a warrior
+S3649	a chariot driver
+S3650	leader of the palace war band
+S3651	Fisher
+S3652	a child who catches octopus in the shallows
+S3653	a fisher
+S3654	the fisher who sails farthest out
+S3655	owner of many fishing boats
+S3656	Linear B tablets show that the Mycenaean palaces organised work in great detail, with dozens of named trades: bronze-smiths, oil-boilers, weavers, grinders, counters of sheep. The palace handed out raw materials and food rations. Of the Minoan age we know far less, because their script still cannot be read.
+S3657	a palace family close to the king (the wanax)
+S3658	a family of common people with land of their own
+S3659	palace workers paid in rations of grain and figs
+S3660	slaves (do-e-ro) of the palace or a shrine
+S3661	Linear B tablets at Pylos list hundreds of women and their children by task, such as grinding grain and spinning, with rations of grain and figs. Many are named after lands across the sea to the east and may have been captives or slaves. The tablets use do-e-ro for slave and wa-na-ka (wanax) for king.
+S3662	woollen cloth
+S3663	perfumed oil
+S3664	The winter rains are thin this year, and the barley comes up patchy.
+S3665	The rains come on time, and the olive trees are heavy with fruit.
+S3666	Around the Aegean most rain falls in winter and summers are dry, so farmers grew barley, olives and vines, which cope with drought. Tree rings in Anatolia and falling Dead Sea levels suggest a severe dry spell around 1200 BCE, though how severe and how long is still debated.
+S3667	There is no palace left to keep accounts for, and no one needs a scribe. You write your name in the dirt and rub it out.
+S3668	After the palaces fell, Linear B vanished from Greece entirely. The Greeks had no writing for some 400 years, until they adopted the Phoenician letters around 800 BCE, which became the Greek alphabet still used today.
+S3669	Wrote your first clay tablet
+S3670	For days the ground shakes hard, and the whole town takes to the boats and flees to Crete. A few days later the volcano at the heart of Thera explodes. The sky goes dark at noon and ash falls on the sea like snow. The town you were born in disappears under metres of dust.
+S3671	The eruption of Thera was one of the largest in human history. Its date is still argued over: radiocarbon points to around 1600 BCE or a little earlier, while comparing pottery with Egypt points to around 1500 BCE. No bodies have been found at Akrotiri; most scholars think the townspeople were warned by earthquakes and left first.
+S3672	Escaped the eruption of Thera
+S3673	The northern sky turns black and a boom rolls across the sea. Grey ash falls on the fields, and a great wave smashes the boats on the north coast.
+S3674	Ash from Thera has been found on Crete and as far as Anatolia, and tsunami deposits on Crete’s north coast. But the Minoans did not collapse at once: their palaces went on for decades, perhaps a century.
+S3675	Many palaces on Crete are burned. Knossos survives, but the people in the palace now speak a new tongue from the mainland, and the scribes begin to write a new script.
+S3676	Around 1450 BCE most Minoan palaces were destroyed. Knossos seems to have come under Mycenaeans from the mainland, and Linear B, used to write an early form of Greek, replaced Linear A. The cause is still debated: invasion, earthquakes or conflict within.
+S3677	Builders haul stones bigger than a house to make the citadel gate, and above it carve two lions facing a column.
+S3678	The Lion Gate of Mycenae was built around 1250 BCE, one of the oldest large sculptures in Europe. Around the same time several Greek citadels thickened their walls and secured water inside them, as if preparing for something.
+S3679	Survived the day the city burned
+S3680	Smoke rises from the harbour. Dozens of strange ships are drawn up on the beach. People run for the hills, and that night the whole city burns.
+S3681	Ugarit was destroyed around 1190 BCE. Arrowheads lie scattered in its streets, and no one ever rebuilt the city.
+S3682	Fire sweeps through the palace in the night. The roof falls into the oil stores and the flames roar higher. By morning only blackened walls are left.
+S3683	The palace of Pylos burned around 1180 BCE and was never rebuilt. The fire that destroyed it baked the clay tablets in its archive as hard as tile, so the palace’s last year of accounts survives.
+S3684	Fire takes many houses inside the citadel. No one knows who set it: some say enemies, some say the townspeople themselves.
+S3685	Mycenae was damaged by an earthquake around 1250 BCE and burned around 1190 BCE. Who or what caused it is unknown. People lived on there for a while, but there was no palace any more.
+S3686	The palace of Knossos empties room by room. The stores are bare and no ships come from the mainland. Many families move high into the mountains, where no enemy can reach them.
+S3687	At this time many Cretans moved to high mountain villages that were easy to defend, such as Karphi at more than 1,100 metres. Archaeologists call them “refuge settlements”.
+S3688	The palace scribes no longer come for the harvest. Word comes that the palace has burned. For the first time the village keeps all its grain, but there is no one to trade with either.
+S3689	When the palaces fell, the system of collecting produce and handing it back went with them. Villages that fed themselves carried on, but the craftsmen, scribes and merchants who depended on the palace lost their work overnight.
+S3690	Sailors fleeing from the south say the pharaoh of Egypt has beaten the “Sea Peoples” at the mouth of the Nile and carved the battle on a temple wall.
+S3691	Ramesses III carved his battle against the “Sea Peoples” on his temple at Medinet Habu around 1177 BCE. The name “Sea Peoples” was coined by modern scholars. They were probably many groups: pirates, mercenaries and whole families fleeing drought and war. One group, the Peleset, were probably the Philistines of the Bible.
+S3692	No one builds big stone houses any more. There are fewer people in the village every year, and the pots are plainer; no one paints them as finely as in your grandparents’ day.
+S3693	After the palaces fell, Greece’s population probably dropped sharply. Villages became smaller and farther apart, and long-distance trade almost stopped. Yet in this time iron began to spread: iron ore was easier to find than tin, so it did not depend on trade routes across the sea.
+S3694	You help carry oil jars onto the ships and are paid in barley and figs.
+S3695	There were no coins yet. Palaces gathered produce and handed it back as rations, while sea trade was weighed in copper, silver or gold. A ship that sank off Uluburun in Turkey around 1300 BCE carried about 10 tons of copper and about 1 ton of tin, enough for some 11 tons of bronze, along with glass ingots, ivory and jewellery from many lands.
+S3696	a child of the palace
+S3697	a child of the Aegean
+S3698	one of the few who can write
+S3699	a member of the palace
+S3700	a farmer and fisher
+S3701	a palace worker
+S3702	a palace slave
+S3703	Learn to write clay tablets with a scribe
+S3704	Bring offerings to the mountain-top shrine
+S3705	Help your mother leave clay figures at the shrine
+S3706	Plough for barley and tend the olive grove
+S3707	Pick up fallen olives under the trees
+S3708	Drive the sheep and goats up the hills
+S3709	Look after the lambs
+S3710	Take the boat out for fish and octopus
+S3711	Catch octopus in the shallows
+S3712	Build stone walls and mend the house
+S3713	Trade at the harbour
+S3714	Listen to the singer’s tales of heroes
+S3715	Listen to grandmother’s tale of the monster in the labyrinth
+S3716	Leaping the bull
+S3717	In the great court of the palace, a young athlete grabs the horns of a charging bull and somersaults over its back to land on the far side. The crowd roars.
+S3718	A wall painting at Knossos shows people leaping over a bull’s back. Scholars still argue whether this was a sport, a ritual or an imagined scene, and whether it could really be done. Later Greeks told of the Minotaur, half man and half bull, in a labyrinth beneath Knossos ✦, a legend written down nearly a thousand years after the Minoans.
+S3719	Practise leaping a calf at home
+S3720	The calf tosses its head and you land with a broken arm, but the village talks about it for years.
+S3721	You clear it once, and then the calf chases you all round the yard.
+S3722	Ask why it has to be a bull
+S3723	Grandmother says the bull is the strength of the earth, which makes the ground shake when it is angry.
+S3724	The saffron crocus
+S3725	In autumn the village girls climb the rocky slopes to pick the red threads from saffron flowers one by one into little baskets.
+S3726	A wall painting at Akrotiri shows girls gathering saffron. Saffron dyed cloth and may have been used as medicine. The paintings of Thera survived because volcanic ash buried them.
+S3727	Pick until the basket is full
+S3728	Your fingers are stained orange for days.
+S3729	Chase the wild goats on the slope
+S3730	A wild goat with long curved horns bounds from rock to rock far faster than you.
+S3731	The Mistress of the Labyrinth
+S3732	Your mother takes a jar of honey to the palace as an offering. A scribe writes on a clay tablet: “to the Mistress of the Labyrinth”.
+S3733	A Linear B tablet from Knossos records an offering of honey to “da-pu-ri-to-jo po-ti-ni-ja”, usually read as “the Mistress of the Labyrinth”. The word labyrinth may come from labrys, the double axe that was a sacred Minoan symbol, but this is debated.
+S3734	Ask where the labyrinth is
+S3735	The scribe laughs and waves at the palace around you, with its hundreds of rooms.
+S3736	Sneak a taste of the honey
+S3737	Your mother catches you, but does not tell the scribe.
+S3738	The boar’s-tusk helmet
+S3739	Your uncle is sewing rows of boar tusks onto a leather cap. He says it takes the tusks of some forty boars to make a single helmet.
+S3740	Boar’s-tusk helmets have been found in many Mycenaean tombs, and Homer describes one in the Iliad, composed some 500 years later. Some memories of this age were passed down in song for centuries.
+S3741	Ask to go on the boar hunt
+S3742	A boar charges and gashes your leg.
+S3743	You come back with a pair of tusks, and your uncle sews them on the front of the helmet.
+S3744	Try the helmet on
+S3745	It is so heavy you can hardly lift your head.
+S3746	The scribe’s pupil
+S3747	A palace scribe needs a pupil. He says you must learn nearly a hundred signs, each one a syllable, and write fast before the clay dries.
+S3748	Linear A, the Minoan script, survives on more than a thousand tablets and objects, but it still cannot be read because we do not know the language.
+S3749	Linear B has about 90 syllable signs plus pictures for goods. In 1952 Michael Ventris, an English architect, showed it was an early form of Greek, building on the work of Alice Kober. The tablets were not meant to last; they survived because the fires that burned the palaces baked them hard.
+S3750	By the end of the first year you can count the sheep for him.
+S3751	Keep helping at home
+S3752	Your family is glad of the help.
+S3753	The wide sea
+S3754	A ship’s master needs young hands to row and bail. The ship will go to Cyprus and Egypt and be back before the winter winds.
+S3755	Ships of this age used both sail and oars, mostly hugged the coast, and went to sea only in the calmer summer months. Sea trade tied Egypt, the Hittites, Cyprus, Ugarit, Crete and Greece together, so tightly that some historians call it “the first globalisation”.
+S3756	Go with the ship
+S3757	A storm drives the ship onto rocks. You swim ashore but lose everything you had.
+S3758	You see the pyramids from afar and come home with blue glass beads.
+S3759	You listen to the sailors’ tales when they return.
+S3760	The wedding
+S3761	The two families talk of marrying you to the child of a shepherd from the next village.
+S3762	We know little about marriage in this age directly: the tablets are palace accounts, not private letters. Most of what we know comes from family tombs used for generations.
+S3763	The wedding has honey bread and wine, and a singer tells stories late into the night.
+S3764	Ask to wait a year
+S3765	Both families grumble, but agree to wait.
+S3766	The shaking ground
+S3767	The ground shakes every month. Walls crack all over town and the wells smell of sulphur. Some old people say it is time to move to Crete.
+S3768	At Akrotiri there are signs that people were repairing earthquake damage and had stacked belongings in the streets before the town was buried. Many scholars think only a few years passed between the great earthquake and the eruption.
+S3769	Move to Crete now
+S3770	Left Thera before the eruption
+S3771	You load the whole house onto a boat. The neighbours laugh. A year later they row after you with nothing in their hands.
+S3772	Stay and repair the house
+S3773	You replaster the wall and paint lilies on it.
+S3774	The palace sheep
+S3775	A palace scribe comes to count the sheep. He says this year you must hand over the wool he has written down, and if you fall short your name will be written as “still owing”.
+S3776	The Knossos tablets record tens of thousands of sheep with each shepherd and the wool each was due to deliver. When someone fell short, the scribe wrote o-pe-ro, “owing” or “lacking”.
+S3777	Deliver it all, even if your family is left short
+S3778	Your name is written as complete, and no one asks anything more.
+S3779	Hide some sheep up in the hills
+S3780	The palace herdsmen find the hidden sheep, and you are written down as owing for two more years.
+S3781	Your family has wool enough to weave for the winter.
+S3782	The rations
+S3783	Every month the women of the palace grinding room line up for rations of wheat and figs; children get half. This year the scribe says the palace is short of grain.
+S3784	Give part of your share to your children
+S3785	You grow thinner, but your children still run and play.
+S3786	Ask the scribe for more
+S3787	The scribe writes down one more child under your name and says nothing.
+S3788	The scribe says the numbers on the tablet cannot be changed.
+S3789	The copper ship
+S3790	A big ship is loaded with hundreds of ox-hide copper ingots, tin, blue glass ingots, ivory and oil jars. It will sail west along the Anatolian coast, and the master needs one more hand.
+S3791	In 1982 a Turkish sponge diver found the wreck at Uluburun, from about 1300 BCE, with nearly 500 copper ingots, tin, glass, ivory, amber and goods from Egypt, Cyprus and Greece. We do not know where it came from or was going, or whether the crew survived.
+S3792	Sign on
+S3793	Survived the sinking of a ship carrying ten tons of copper
+S3794	The wind drives the ship onto an underwater reef and it goes down with everything. You cling to an oil jar and drift ashore, but many of your shipmates are never seen again.
+S3795	The voyage goes well, and your share is one blue glass ingot.
+S3796	Stay ashore
+S3797	That year there is news of a big ship that never came home. You never learn whether it was that one.
+S3798	No tin
+S3799	The ships that used to bring tin no longer come. The scribe lists you among the smiths “without allotment”; this year half the smiths have nothing to work.
+S3800	The Pylos tablets list hundreds of bronze-smiths and the bronze each was given; some are marked a-ta-ra-si-jo, “without allotment”. Tin came from very far away, perhaps as far as Central Asia. When trade faltered, the smiths had nothing to work.
+S3801	Melt down old bronze
+S3802	You buy broken knives and old bronze pots from every house and melt them into spearheads for the palace.
+S3803	Try working iron like the strangers do
+S3804	Worked iron for the first time
+S3805	Iron is harder than you thought and needs a fierce fire, but the ore can be found in the hills nearby.
+S3806	Wait for the tin ships
+S3807	The ships do not come.
+S3808	A matter of life or death
+S3809	A letter arrives from the Hittite king ordering Ugarit to send a great ship of grain, for his land is starving: “It is a matter of life or death!”
+S3810	Clay letters from Ugarit show that decades before the collapse the Hittite kingdom was short of food and asked Egypt and Ugarit for grain. One letter from the Hittite king calls a grain shipment “a matter of life or death”.
+S3811	Help load the grain
+S3812	The city’s granaries run low, but the ship sails as ordered.
+S3813	Hide your family’s grain
+S3814	You bury a jar of grain under the floor, against worse days.
+S3815	The coast-watchers
+S3816	The palace orders men to watch the coast day and night, and calls up thirty rowers to go to Pleuron. No one says what they are afraid of.
+S3817	Tablets from Pylos’s last year record rowers sent to Pleuron and lists of men usually read as “thus the watchers are guarding the coast”. Many scholars think the palace knew danger was coming, but not from whom.
+S3818	Go and watch the coast
+S3819	You stare at the sea every night until you see ships’ lights even in your dreams.
+S3820	Take your family up into the hills
+S3821	You leave the house behind. The neighbours call you a coward.
+S3822	Strangers from the sea
+S3823	Several boats run up on the beach, with men, women, children and ox-carts. They speak a tongue no one understands, are thin as sticks, and say with their hands that their homes were burned.
+S3824	Egyptian carvings show some “Sea Peoples” travelling with families and ox-carts, not only warriors. Many were probably refugees from drought and war. People called invaders in one place may have been fleeing from another.
+S3825	Let them settle at the edge of the village
+S3826	A year later they teach you a new way to make pots, and your children pick up words of their tongue.
+S3827	Drive them away
+S3828	The boats sail on down the coast. You wonder what the next village will do.
+S3829	Trade grain for their tools
+S3830	You get an iron knife, sharper than any you have owned.
+S3831	The ruined palace
+S3832	Your grandchildren play hide-and-seek in the burned palace and ask who could have built walls of such huge stones.
+S3833	Later Greeks saw the gigantic walls of Mycenae and Tiryns and believed the Cyclopes had built them; archaeologists still call such walls “Cyclopean” ✦. Tales of a war at Troy were sung on until they became Homer’s epics centuries later.
+S3834	Tell them ordinary people like their grandparents built it
+S3835	They do not believe you; ordinary people could never lift such stones, they say.
+S3836	Tell them of heroes and giants
+S3837	They listen until dark and tell it to their friends the next day. The story grows every time.
+S3838	Signs no one uses
+S3839	There is no palace left to keep accounts for. A grandchild asks what the scratches on the old clay tablet in the house are.
+S3840	After the palaces fell, Linear B disappeared from Greece, which had no writing for some 400 years. Writing in this age was tied to palace accounts; when the palaces went, so did writing.
+S3841	Teach the signs you remember
+S3842	The child learns three or four and forgets them, for there is nothing to write.
+S3843	Sing the old stories instead
+S3844	A song lasts longer than a tablet.
+S3845	A letter to the king of Alashiya
+S3846	King Ammurapi calls you in the middle of the night to write a letter to the king of Cyprus. He speaks slowly: “My father, behold, the enemy’s ships came; my cities were burned … my troops and chariots are in the Hittite land, and all my ships are in the land of Lukka, so the country is abandoned to itself.”
+S3847	The letter of Ammurapi, the last king of Ugarit, was found in the city’s ruins, one of the last voices of a Bronze Age world falling apart. We do not know whether it was ever sent. Soon afterwards the city was destroyed. You are a scribe the game made up, but the words come from the real tablet.
+S3848	Write every word as the king speaks
+S3849	Wrote one of the last letters of Ugarit
+S3850	The clay is not yet dry when someone outside shouts that there is fire at the harbour.
+S3851	Write it, then flee with your family at once
+S3852	You leave the tablet on the table and lead your family into the hills before dawn. You never go back.
+S3853	Rose-scented oil
+S3854	The palace orders dozens of jars of perfumed oil, scented with rose and with sage, to send across the sea as gifts and to offer to the gods.
+S3855	Pylos tablets record olive oil scented with rose and with sage, and the oil-boilers who made it for the palace. Perfumed oil was an important export, shipped in stirrup jars found all over the eastern Mediterranean.
+S3856	Boil it slowly by the old recipe
+S3857	The smell of roses fills the palace; even the guards stop to sniff.
+S3858	Mix in cheap oil to make more
+S3859	The scribe weighs the jars and writes your oil down as short.
+S3860	No one notices, and you earn a little extra.
+S3861	Purple from shellfish
+S3862	The fishermen bring heaps of sea snails. You must crack the shells for a tiny gland and ferment it into purple dye. The stench makes the whole village complain.
+S3863	Heaps of crushed murex shells on Crete suggest the Minoans were making purple dye from shellfish by about 1800 BCE. It took thousands of snails to dye one cloth, so purple became the colour of power for thousands of years.
+S3864	Keep at it despite the smell
+S3865	The first cloth comes out deep purple, worth ten times a plain one.
+S3866	Dye with saffron instead
+S3867	The golden cloth is just as lovely, and no one complains.
+S3868	The chariot wheels
+S3869	A scribe counts the chariot wheels in the store. Many pairs are useless. Your commander says that if war comes, half the chariots will never leave the gates.
+S3870	Tablets from Knossos and Pylos count chariots, wheels and armour in detail, including wheels marked “unserviceable”. Chariots were costly elite weapons across the Near East. Some argue that new foot soldiers with javelins and long swords made chariots less decisive late in the age, but this is debated.
+S3871	Mend the wheels yourself
+S3872	You work until your hands blister and bring five more chariots back into service.
+S3873	Train to fight on foot instead
+S3874	Your friends laugh to see you practising the javelin like a commoner.
+S3875	In winter the whole family beats the olive branches so the fruit drops onto cloths spread below, and the children chase the ones that roll away.
+S3876	Olives gave food, lamp oil, medicine and perfume. The great jars taller than a man, called pithoi, in the storerooms of Knossos held vast amounts of oil, grain and wine.
+S3877	A pod of dolphins leaps beside your father’s boat. You count twelve before they vanish.
+S3878	Dolphins and fish were favourite Minoan designs on pots and walls. The famous dolphin painting at Knossos was largely restored in Evans’s time from only a few fragments.
+S3879	You catch an octopus in a rock pool. It squirts ink until you are black from head to toe.
+S3880	Octopuses with tentacles spreading all around the jar are a hallmark of the Minoan pottery called “Marine Style”.
+S3881	An earthquake in the night. Pots crash down all over the house and everyone runs out to sleep in the yard until morning.
+S3882	Crete and Greece lie on active faults, and earthquakes are common. Several Minoan palaces were rebuilt after great quakes. Today most scholars do not think earthquakes alone brought down the Bronze Age.
+S3883	All day carts haul oil jars down to the harbour, jars with little handles shaped like stirrups.
+S3884	A wild billy goat with long curved horns stands still on the cliff, looking down at your goats.
+S3885	The Cretan wild goat, or kri-kri, still lives in Crete’s mountains today as a protected animal, and appears on many Minoan seals.
+S3886	A seal basks on the rocks outside a sea cave. The fishermen say it steals fish from their nets.
+S3887	The Mediterranean monk seal was once found all over this sea. Today it is one of the rarest seals in the world, with only a few hundred left, mostly in Greece and Turkey.
+S3888	The whole village climbs the mountain at night, lights a great fire, and throws little clay figures of people, cattle and arms and legs into it.
+S3889	Thousands of little clay figures of people, animals and body parts have been found on Cretan mountain tops, which archaeologists call peak sanctuaries. The body parts may have been prayers for healing, but we do not know whom the Minoans worshipped, because we cannot read their writing.
+S3890	In a sacred underground store stands a figure of a woman holding up a snake in each hand, wearing a skirt of many flounces.
+S3891	Faience figures of women holding snakes were found at Knossos, from about 1600 BCE. Scholars call them “snake goddesses” but do not know whether they show goddesses or priestesses. Tellingly, some similar figures in foreign museums have turned out to be 20th-century forgeries.
+S3892	At the door of the shrine a double axe is carved into the pillar, and stone horns stand in a row along the roof.
+S3893	The double axe (labrys) and the “horns of consecration” are common symbols in Minoan holy places. Both are probably linked to bulls and sacrifice, but their real meaning is interpretation.
+S3894	Workers are building a great tomb for the royal family. Inside is a stone dome as tall as a four-storey house, reached by a long passage cut into the hill.
+S3895	The domed tomb later Greeks called the “Treasury of Atreus” was built around 1250 BCE. Its dome, about 13 metres high, was the largest in the world for over a thousand years. The name comes from legend ✦; we do not know who was buried there.
+S3896	A scribe recites letters in a row, one sound at a time, thirty in all, and the pupils press wedges into clay for each sound they hear.
+S3897	Ugarit used a new cuneiform alphabet of only 30 letters, around 1400 BCE. Tablets listing the letters in order have been found, and the order is similar to the one later used in many alphabets. A system of a few dozen signs was far easier for ordinary people to learn than cuneiform with its hundreds.
+S3898	At a palace feast a musician plays the lyre and sings to the goddess Nikkal from a clay tablet with both words and numbers showing how to play.
+S3899	A clay tablet from Ugarit, about 1400 BCE, records a Hurrian hymn with instructions for the lyre: the oldest substantially complete melody known. But it can be transcribed in several ways, so any version we hear today is a guess.
+S3900	Smoke from the copper furnaces rises from the hills day and night. The forest round the mines has been cut bare for charcoal.
+S3901	In the market Egyptian, Hittite, Cypriot and Greek traders haggle in their own tongues while interpreters run back and forth.
+S3902	News comes with a boat that another great city has burned. No one knows who did it: some say pirates, some say starving people rose up.
+S3903	Strangers come ashore in the night, take sheep from the pen and vanish out to sea.
+S3904	The village has moved up onto a hill with a long view of the sea, in case strange ships come.
+S3905	A new smith in the village makes knives from ore dug in the hills. No one has to wait for ships from far away any more.
+S3906	Your eyes are so dim that a grandchild must thread the loom for you.
+S3907	You sit on the stone outside the house in the evening and watch the boats come in, as you did as a child.
+S3908	Waves lap softly on the shore rocks.
+S3909	Sheep bleat on the hillside.
+S3910	Cicadas shrill all through the olive grove.
+S3911	A sailing ship passes far out.
+S3912	The sea wind blows the smell of salt into the house.
+S3913	Women grind barley outside the houses.
+S3914	Gulls cry over the harbour.
+S3915	Hearth smoke rises in the evening.
+S3916	Goats clamber over the rocks for leaves.
+S3917	A few generations after you, most Minoan palaces will burn. Mycenaeans from the mainland will rule Knossos and keep accounts in Greek, and the language of your grandparents will slowly fade away.
+S3918	Within a few generations the palaces, ports and kingdoms around the sea will fall one after another: Pylos, Mycenae, Ugarit and the Hittite capital Hattusa. The world you knew will vanish in less than a lifetime.
+S3919	You lived as the old world fell apart. Your descendants will live in small villages with no palaces, no writing, and trade only with their neighbours.
+S3920	In about three hundred years your descendants will borrow letters from the Phoenicians, build a new kind of city called the polis, and sing of the heroes of the palace age your grandparents knew.
+S3921	 Then these palaces were left only as legends: King Minos, the Minotaur, the Trojan War ✦. Until Schliemann dug Mycenae in 1876, Evans dug Knossos in 1900, a farmer’s plough found Ugarit in 1928, and Ventris read Linear B in 1952. The Minoans’ Linear A still cannot be read today.
+S3922	 The seals you saw number only a few hundred in the Mediterranean today.
+S3923	 The Cretan wild goat still lives in Crete’s mountains, under protection.
+S3924	 The Bronze Age did not fall for one reason. Every palace depended on the others across the sea: copper from Cyprus, tin from far away, grain from Egypt. When drought, earthquakes, migrations, pirates and revolts came together, the tightly linked system came apart piece by piece. The richest palaces fell first, because they relied most on distant trade, while villages that fed themselves survived. Scholars still argue which cause mattered most, but the lesson is that the more connected a world is, the richer and the more fragile it becomes.
+S3925	 You wrote some {0} clay tablets. The fire that burned the city baked them hard; in this game {1} survive underground, perhaps among those archaeologists read today.
+S3926	 You wrote some {0} clay tablets, but no fire ever baked them, and rain and damp turned them back into mud.
+S3927	 King Ammurapi’s letter really survives today. In this game, the hand that wrote it was yours.
+S3928	 You yourself were one of those who adapted as the world changed.
+S3929	Minoans often buried their dead together in family or village tombs used for centuries, sometimes in painted clay coffins. Mycenaeans buried families in chambers cut into hillsides, and great people in domed tombs. Broken drinking cups are often found at tomb doors, perhaps from a farewell toast. After the palaces fell, some places began to cremate the dead and put the ashes in jars.
+S3930	Drink a farewell and break the cup at the tomb door
+S3931	The crack of the cup echoes down the tomb passage, and everyone falls silent.
+S3932	Lay the things they loved beside them
+S3933	You lay a comb, a clay lamp and an octopus-painted jar beside the body.
+S3934	Burn the body and keep the ashes in a jar
+S3935	The smoke rises high. You gather the ashes into a jar and bury it near the new house.
+S3936	Your family burns your body and buries the ashes in a clay jar near the hilltop village.
+S3937	min
+S3938	You are buried in the family tomb with a gold ring and stone cups.
+S3939	You are laid in the family’s domed tomb with a bronze sword, a gold cup and an ivory comb.
+S3940	You are buried in a small pit outside the tomb of the family you served, with a single pot.
+S3941	You are laid in a clay coffin painted with octopuses, in the village’s shared tomb.
+S3942	You are laid in the family chamber cut into the hillside, beside your grandparents.
+S3943	Those who reach 50 by the Aegean have seen countless ships from far lands. If one day the ships stopped coming, how would they live?
+S3944	The cities around the sea have fallen one by one. No ships, no tin, no letters. If you had to teach your grandchildren to survive in a world where no one helps anyone, what would you teach them?
+S3945	raiders from the sea
+S3946	The winter rains never come. The wells dry up and the barley dies before it heads.
+S3947	A great earthquake. Stone walls collapse and many roofs fall in.
+S3948	Your tablet, baked hard by the fire. The game’s marks imitate the look of palace accounts; they are not real signs.
+S3949	An unbaked tablet: most like it melted back into mud. The game’s marks are not real signs.
+T174	You trade {0} at the harbour for goods worth {1} units
