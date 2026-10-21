@@ -218,8 +218,10 @@ body.playing::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-ar
 .focus button{background:var(--soot);border:1px solid var(--line);padding:9px 4px;font-size:13px;line-height:1.25;border-radius:2px;min-height:48px}
 .focus button[aria-pressed="true"]{border-color:var(--ochre);background:#2c1810;color:var(--ember)}
 .focus button:disabled{opacity:.45;cursor:default}
-.ctrl{display:flex;gap:6px;align-items:center}
-.ctrl button{background:none;border:1px solid var(--line);padding:6px 10px;font-family:var(--px);font-size:11px;border-radius:2px;color:var(--ash)}
+.ctrl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ctrl button{background:none;border:1px solid var(--line);padding:6px 10px;font-family:var(--px);font-size:12px;border-radius:2px;color:var(--ash);min-height:44px;min-width:40px}
+#log small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+#log small.open{display:block;-webkit-line-clamp:unset}
 .ctrl button[aria-pressed="true"]{color:var(--ember);border-color:var(--ember)}
 .ctrl .sp{flex:1}
 .babynote{grid-column:1/-1;font-size:13px;color:var(--ash);padding:12px;border:1px dashed var(--line);text-align:center}
@@ -424,6 +426,7 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
       <button class="btn btn-ghost" id="copyShare" data-i18n="copy"></button>
       <button class="btn btn-primary" id="again" data-i18n="again"></button>
     </div>
+    <button class="btn btn-ghost" id="sibBtn" data-i18n="sibBtn" hidden></button>
     <button class="btn btn-ghost" id="toHome" data-i18n="home"></button>
   </section>
 </div>
@@ -435,11 +438,10 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
     <div class="focus" id="focus"></div>
     <div class="ctrl">
       <button id="pauseBtn" aria-pressed="false"></button>
-      <button data-sp="1" aria-pressed="true">1×</button>
-      <button data-sp="2">2×</button>
-      <button data-sp="4">4×</button>
-      <button data-sp="8">8×</button>
+      <button id="spdBtn" data-sp="1">1×</button>
+      <button id="skipBtn" data-i18n="skipNext"></button>
       <span class="sp"></span>
+      <button id="quitBtn" data-i18n="quitLife"></button>
       <button id="autoBtn" aria-pressed="false" data-i18n="auto"></button>
       <button id="sndBtn" aria-pressed="true"></button>
     </div>
@@ -475,7 +477,10 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
 const $=s=>document.querySelector(s);
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
              set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const rnd=Math.random;
+let RNDF=Math.random;const rnd=()=>RNDF();
+const QS=typeof URLSearchParams!=='undefined'?new URLSearchParams((typeof location!=='undefined'&&location.search)||''):{get:()=>null,has:()=>false};const CLASSM=QS.get('class')==='1'||QS.has('room');const ROOM=(QS.get('room')||'').replace(/[^0-9A-Za-z]/g,'').slice(0,12);
+const CLASSX=new Set(['a6_drunk','c8_dice']);
+const hash32=t=>{let h=2166136261;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0};
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const pick=a=>a[(rnd()*a.length)|0];
 function weighted(list){let t=0;for(const[,w]of list)t+=w;let r=rnd()*t;for(const[v,w]of list){if((r-=w)<=0)return v}return list[list.length-1][0]}
@@ -490,7 +495,7 @@ heroSub:'จำนวนคนที่เคยเกิดมาบนโล�
 bornSince:'เกิดตั้งแต่คุณเปิดหน้านี้',diedSince:'จากไปตั้งแต่คุณเปิดหน้านี้',
 calTitle:'ชั่วโมงสุดท้ายของปีโลก',calNote:'ถ้าประวัติโลก 4,540 ล้านปีคือ 1 ปีปฏิทิน เรื่องของมนุษย์ทั้งหมดเกิดในคืนวันที่ 31 ธันวาคม',
 calPre:'สกุล Homo เริ่มต้นตั้งแต่ 18:36 น. ของวันเดียวกัน',calSap:'Homo sapiens ปรากฏ',calCh1:'บทที่ 1 ของเกมนี้ (120,000–50,000 ปีก่อน)',calAgri:'เริ่มทำเกษตร',calWrite:'สุเมเรียนเริ่มเขียนหนังสือ',calNow:'วันนี้',
-chapters:'เลือกบท',carMode:'อาชีพ (บทที่ 3)',carRandom:'ตามชีวิต',chapter:'บทที่',soon:'เร็วๆ นี้',
+chapters:'เลือกบท',carMode:'อาชีพ (บทที่ 3)',carRandom:'ตามชีวิต',chapter:'บทที่',skipNext:'ถัดไป »',quitLife:'ออก',quitSure:'แตะอีกครั้งเพื่อออก',sibBtn:'เกิดเป็นน้องในบ้านเดิม',noRefl:'ไม่ต้องถามอีก',autoHint:'อีกครู่จะเลือกให้อัตโนมัติ · แตะเพื่อเลือกเอง',soon:'เร็วๆ นี้',
 ch1t:'มนุษย์หลายสายพันธุ์',ch1d:'โลกยุคนี้มีมนุษย์อยู่พร้อมกันหลายสายพันธุ์ ยุคน้ำแข็งกำลังมา และภูเขาไฟโทบากำลังจะระเบิด คุณจะเกิดเป็นใคร',
 ch2t:'การปฏิวัติเกษตร',ch2d:'ลองจับสัตว์ป่ามาเลี้ยง ปลูกพืช และตั้งหมู่บ้าน ฝูงสัตว์เป็นทั้งอาหาร แรงงาน ความมั่งคั่ง และหน้าตาในสังคม ใน 8 ดินแดน ตั้งแต่เลแวนต์ถึงถ้ำผีแมน',chAeT:'ทะเลอีเจียน: จากวังมิโนอันถึงยุคสำริดล่มสลาย',chAeD:'วังไม่มีกำแพงบนเกาะครีต ภูเขาไฟเธรา บัญชีของวังไมซีเน เรือบรรทุกทองแดง แล้วโลกที่เชื่อมกันทั้งทะเลก็พังลงภายในไม่กี่สิบปี',chInT:'ลุ่มแม่น้ำสินธุ: เมืองที่ถูกลืม',chInD:'เมืองอิฐผังตาราง ท่อระบายน้ำ ตราประทับ และตัวอักษรที่ยังไม่มีใครอ่านออก ลองตามหาร่องรอยความเชื่อโบราณ ที่นักวิชาการยังเถียงกันจนทุกวันนี้',chEgT:'อียิปต์โบราณ: ชีวิตริมแม่น้ำไนล์',chEgD:'น้ำท่วมทุกปีกำหนดชีวิตของคุณ พีระมิด อักษรภาพ กระดาษปาปิรุส ฮิปโป จระเข้ และการชั่งหัวใจ คุณยังมีชีวิตอยู่ตราบที่ยังมีคนเอ่ยชื่อของคุณ',ch3t:'เมโสโปเตเมีย: สุเมเรียนถึงบาบิโลน',ch3d:'เมืองแรก ตัวอักษรแรก สำริด เบียร์ กฎหมายฮัมมูราบี มหากาพย์กิลกาเมช และสวนลอยแห่งบาบิโลน ชื่อของคุณถูกเขียนลงบนแผ่นดินเหนียว',chMamT:'นักล่าแมมมอธ',chMamD:'ยุคน้ำแข็งสูงสุด ทุ่งหญ้าแมมมอธทอดยาวข้ามทวีป มนุษย์ประดิษฐ์เข็ม ธนู และเครื่องพุ่งหอก แล้วเดินข้ามสะพานแผ่นดินไปอเมริกา',calCh2:'บทที่ 2 นักล่าแมมมอธ (45,000–12,000 ปีก่อน)',chPick:'เลือกอยู่',tools:'ความรู้และเครื่องมือ:',noTools:'ยังไม่มีเครื่องมือใหม่ เลือก “ฝึกฝีมือ” เพื่อเรียนรู้',learned:'คุณเรียนวิธีทำ{t}จากคนในกลุ่ม',firstInvent:'คุณเป็นคนแรกในกลุ่มที่ทำ{t}ได้',mamCount:'ล่าแมมมอธได้ {n} ตัว',dogT:'หมาป่าคู่ใจ',hutT:'บ้านกระดูกแมมมอธ',src9:'บทที่ 3: วันที่เริ่มเลี้ยงสัตว์และปลูกพืชในแต่ละแห่งเป็นค่าประมาณจากโบราณคดีและ DNA ซึ่งยังถกเถียงกัน การให้ยืมสัตว์ สินสอด และข่าวลือเป็นการจำลองจากสังคมยุคหลัง เกมย่นการเลี้ยงสัตว์หลายชั่วคนให้อยู่ในชีวิตเดียว',src6:'บทที่ 2: เวลาที่มนุษย์มาถึงอเมริกา และอายุของเครื่องมือหลายชนิดยังถกเถียงกันอยู่ เกมใช้ช่วงเวลาที่หลักฐานส่วนใหญ่รองรับ',
 chPacT:'นักเดินเรือแปซิฟิก',chPacD:'ล่องเรือแคนูสองลำตัวจากเกาะสู่เกาะ นำทางด้วยดาว คลื่น และนก จนถึงฮาวาย ราปานุย และอาโอเทียรัว',calPac:'บทนักเดินเรือแปซิฟิก (3,500–700 ปีก่อน)',
@@ -525,7 +530,7 @@ copy:'คัดลอกข้อความแชร์',copied:'คัดล�
 cardHint:'กดค้างที่ภาพเพื่อบันทึก ถ้าอุปกรณ์รองรับ',
 shareTpl:'ฉันเกิดเป็น{sp} ที่{pl} เมื่อราว {y} ปีก่อน ({o}) ได้เป็น{ti} และมีชีวิตอยู่ {a} ปี บนนาฬิกาโลก ชีวิตนี้ยาวแค่ {s} วินาที · Sapiens in Time',
 cardAge:'อายุ {a} ปี',kids:'ลูก {n} คน',kidsAlive:'รอดถึงวัยผู้ใหญ่ {n} คน',
-sources:'แหล่งข้อมูลและข้อจำกัด',
+sources:'แหล่งข้อมูลและข้อจำกัด',src10:'บท 04 เมโสโปเตเมีย: ประมวลกฎหมายของอูร์-นัมมูและฮัมมูราบี จดหมายของนันนีถึงพ่อค้าเอีย-นาซีร์ (พิพิธภัณฑ์บริติช) และวรรณกรรมสุเมเรียนจากฐานข้อมูล ETCSL (มหาวิทยาลัยออกซฟอร์ด) ชื่อคนสร้างจากรูปแบบชื่อจริง การสะกดอักษรรูปลิ่มเป็นค่าประมาณ',src11:'บท 05 อียิปต์: ปาปิรุสเวสต์คาร์ (พิพิธภัณฑ์อียิปต์ เบอร์ลิน) บันทึกของเมเรอร์จากวาดีเอล-จาร์ฟ งานขุดค้นเมืองคนงานกีซา (Mark Lehner, AERA) และบันทึกของหมู่บ้านช่างเดร์เอล-เมดินา ชื่อและอักษรภาพสร้างจากรูปแบบชื่อจริง',src12:'บท 06 สินธุ: harappa.com (J. M. Kenoyer) พิพิธภัณฑ์เพนน์ Robbins Schug และคณะ (2013, PLOS ONE) เรื่องโรคและความรุนแรงที่ฮารัปปา Shinde และคณะ (2019, Cell) เรื่อง DNA ราคีครหี และ Petrie และคณะ (2017, Current Anthropology) เรื่องพืชกับมรสุม ตัวอักษรในเกมเลียนแบบรูปทรงเท่านั้น',src13:'บท 07 อีเจียน: แผ่นอักษรลีเนียร์บี (Ventris และ Chadwick, Documents in Mycenaean Greek) จดหมายจากอูการิต ซากเรืออูลูบูรุน (Cemal Pulak, INA) Eric H. Cline (1177 B.C.) และ Knapp และ Manning (2016) เรื่องสภาพอากาศกับการล่มสลาย ปีของภูเขาไฟเธรายังถกเถียงกัน',src14:'อัตราตายของเด็กในสังคมก่อนยุคใหม่: Volk และ Atkinson (2013, Evolution and Human Behavior) ส่วนอัตราของไทยวันนี้: UN IGME โหมดห้องเรียน: เติม ?class=1 ต่อท้ายลิงก์ หรือ ?room=รหัส ให้ทั้งห้องเกิดเป็นคนเดียวกัน',
 src1:'จำนวนคนที่เคยเกิด: Population Reference Bureau (2022) ประมาณราว 117,000 ล้านคน นับตั้งแต่ราว 190,000 ปีก่อนคริสตกาล ตัวเลขหลังกลางปี 2022 เกมคำนวณต่อด้วยอัตราเกิดราว 132 ล้านคนต่อปี',
 src2:'สัดส่วนประชากรของแต่ละสายพันธุ์และช่วงเวลาที่แต่ละกลุ่มอยู่ในแต่ละภูมิภาค เป็นค่าที่เกมตั้งขึ้นจากงานวิจัยหลายชิ้น หลายจุดยังถกเถียงกันอยู่',
 src3:'อัตราการตายอิงรูปแบบของสังคมนักล่าและเก็บของป่าที่นักมานุษยวิทยาศึกษา เช่น Gurven & Kaplan (2007) เหตุการณ์ในชีวิตเป็นแบบจำลอง ไม่ใช่เรื่องของบุคคลจริง',
@@ -538,7 +543,7 @@ heroSub:'People ever born on Earth. PRB estimate, carried forward at today’s b
 bornSince:'Born since you opened this page',diedSince:'Died since you opened this page',
 calTitle:'The last hour of Earth’s year',calNote:'If Earth’s 4.54 billion years were one calendar year, the whole human story happens on the night of December 31.',
 calPre:'The genus Homo begins at 18:36 the same day',calSap:'Homo sapiens appears',calCh1:'Chapter 1 of this game (120,000–50,000 years ago)',calAgri:'Farming begins',calWrite:'Sumerians begin writing',calNow:'Today',
-chapters:'Choose a chapter',carMode:'Trade (chapter 3)',carRandom:'Let life decide',chapter:'Chapter',soon:'Soon',
+chapters:'Choose a chapter',carMode:'Trade (chapter 3)',carRandom:'Let life decide',chapter:'Chapter',skipNext:'Next »',quitLife:'Quit',quitSure:'Tap again to quit',sibBtn:'Be born as a younger sibling',noRefl:'Don’t ask again',autoHint:'Auto will choose in a moment · tap to choose yourself',soon:'Soon',
 ch1t:'Many kinds of human',ch1d:'Several human species share the world. An ice age is coming and Toba is about to erupt. Who will you be born as?',
 ch2t:'The farming revolution',ch2d:'Try taming wild animals, sow the first fields and settle villages. A herd is food, labour, wealth and standing, across eight lands from the Levant to Spirit Cave.',chAeT:'The Aegean: from Minoan palaces to the Bronze Age collapse',chAeD:'Palaces without walls on Crete, the eruption of Thera, Mycenaean palace accounts, ships laden with copper, and then a whole connected world around the sea falling apart within a few decades.',chInT:'The Indus: the forgotten cities',chInD:'Grid-planned brick cities, covered drains, seals, and a script no one can read. Look for traces of an ancient faith that scholars still argue about today.',chEgT:'Ancient Egypt: life on the Nile',chEgD:'The yearly flood rules your life. Pyramids, hieroglyphs, papyrus, hippos, crocodiles and the weighing of the heart. You live as long as your name is spoken.',ch3t:'Mesopotamia: from Sumer to Babylon',ch3d:'The first cities, the first writing, bronze, beer, Hammurabi’s laws, the Epic of Gilgamesh and the Hanging Gardens. Your name is written in clay.',chMamT:'Mammoth hunters',chMamD:'The height of the Ice Age. The mammoth steppe spans continents; people invent needles, bows and spear-throwers, then walk a land bridge to America.',calCh2:'Chapter 2, mammoth hunters (45,000–12,000 years ago)',chPick:'SELECTED',tools:'Know-how:',noTools:'No new tools yet. Choose “Practice skills” to learn.',learned:'You learn to make {t} from others in the band',firstInvent:'You are the first in your band to make {t}',mamCount:'{n} mammoths taken',dogT:'a tame wolf',hutT:'a mammoth-bone house',src9:'Chapter 3: dates for the first herding and farming in each region are estimates from archaeology and DNA and still debated. Animal loans, marriage gifts and rumours are simulated from later societies, and the game squeezes many generations of domestication into one life.',src6:'Chapter 2: when people reached the Americas, and the age of several tools, are still debated. The game uses the ranges most evidence supports.',
 chPacT:'Pacific voyagers',chPacD:'Sail double-hulled canoes from island to island, steering by stars, swells and birds, all the way to Hawaiʻi, Rapa Nui and Aotearoa.',calPac:'Pacific voyagers (3,500–700 years ago)',
@@ -549,7 +554,7 @@ linEnd:'This line has reached the end of the chapter.',linNoKids:' You left no c
 bOut:'Left Africa',bSah:'Reached Sahul',bEur:'Reached Europe',bEas:'Reached East Asia',bAme:'Reached the Americas',bSoc:'Reached East Polynesia',bHaw:'Reached Hawaiʻi',bRap:'Reached Rapa Nui',bNzl:'Reached Aotearoa',bKum:'Reached South America',
 funeralT:'Your funeral',skSv:'Survival',skCr:'Craft',skSo:'Social',skTr:'Travel',skKn:'Lore',invT:'Belongings:',noInv:'Nothing yet',frT:'Friends in other bands: {n}',sickT:'Sick: {d}',kTal:'Gift',
 needSk:'Needs {s} {n}',shaped:'Most years spent on: {a} · Strongest skill: {s} · Friends in other bands: {f}',yrs:'{n} yrs',src7:'Pacific chapter: arrival dates follow the ranges most radiocarbon studies accept. The islanders’ “1 in X” against world population is a rough estimate.',
-src8:'Line of travellers: generations assume about 27 years each; distance is measured in straight lines between regions.',
+src10:'Chapter 04, Mesopotamia: the law codes of Ur-Nammu and Hammurabi, Nanni’s letter to the merchant Ea-nasir (British Museum), and Sumerian literature from the ETCSL database (University of Oxford). Names follow real name patterns; cuneiform spellings are approximate.',src11:'Chapter 05, Egypt: the Westcar Papyrus (Egyptian Museum, Berlin), the diary of Merer from Wadi al-Jarf, excavations of the Giza workers’ town (Mark Lehner, AERA), and records of the Deir el-Medina workmen’s village. Names and hieroglyphs follow real name patterns.',src12:'Chapter 06, Indus: harappa.com (J. M. Kenoyer), the Penn Museum, Robbins Schug et al. (2013, PLOS ONE) on disease and violence at Harappa, Shinde et al. (2019, Cell) on Rakhigarhi DNA, and Petrie et al. (2017, Current Anthropology) on crops and the monsoon. The game’s signs only imitate shapes.',src13:'Chapter 07, Aegean: Linear B tablets (Ventris and Chadwick, Documents in Mycenaean Greek), letters from Ugarit, the Uluburun wreck (Cemal Pulak, INA), Eric H. Cline (1177 B.C.), and Knapp and Manning (2016) on climate and the collapse. The date of the Thera eruption is still debated.',src14:'Child deaths in pre-modern societies: Volk and Atkinson (2013, Evolution and Human Behavior); Thailand today: UN IGME. Classroom mode: add ?class=1 to the link, or ?room=CODE so the whole class is born as the same person.',src8:'Line of travellers: generations assume about 27 years each; distance is measured in straight lines between regions.',
 drawMode:'How you are drawn',modeWeighted:'By population share',modeChoose:'I choose the species',
 pace:'Length of one life (if it reaches old age)',paceShort:'Short · ~4 min',paceMid:'Normal · ~7 min',paceLong:'Long · ~14 min',
 legendQ:'The fantastic',legOn:'Include legends',legOff:'Realistic only',snd:'Sound',sndAll:'Music and sound',sndFx:'Sound only',sndOff:'Off',
@@ -600,8 +605,9 @@ function tr(en){if(!TRM||en==null||en==='')return en;const h=TRM.get(en);if(h!=n
   if(h2!=null)out=' '+h2;
   else if(/^[a-z]/.test(en)&&TRM.has(en[0].toUpperCase()+en.slice(1))){out=TRM.get(en[0].toUpperCase()+en.slice(1));if(lang==='es')out=out[0].toLowerCase()+out.slice(1)}
   else if(/ and /.test(en)&&TPL.andT&&(()=>{let i=-1;while((i=en.indexOf(' and ',i+1))>=0){const a=en.slice(0,i),b=en.slice(i+5);if(TRM.has(a)&&TRM.has(b)){out=TPL.andT.replace('{0}',TRM.get(a)).replace('{1}',TRM.get(b));return true}}return false})());
-  else for(const T of TPL){const m=T.re.exec(en);if(!m)continue;
-    out=T.names?T.to.replace(/\{(\w+)\}/g,(_,n)=>{const i=T.names.indexOf(n);return i<0?'{'+n+'}':tr(m[i+1])}):T.to.replace(/\{(\d+)\}/g,(_,i)=>{const j=T.order.indexOf(+i);return j<0?'':tr(m[j+1])});break}
+  else{let pick=null;for(const T of TPL){const m=T.re.exec(en);if(!m)continue;if(!pick)pick=[T,m];if(m.slice(1).every(g=>/^[\d\s.,]*$/.test(g)||TRM.has(g)||TRM.has(g.trim()))){pick=[T,m];break}}
+  if(pick){const [T,m]=pick;
+    out=T.names?T.to.replace(/\{(\w+)\}/g,(_,n)=>{const i=T.names.indexOf(n);return i<0?'{'+n+'}':tr(m[i+1])}):T.to.replace(/\{(\d+)\}/g,(_,i)=>{const j=T.order.indexOf(+i);return j<0?'':tr(m[j+1])});}}
   TRC.set(en,out);return out}
 trInit();
 const t=(k,v)=>{let s=(LANG[lang]&&LANG[lang][k])??LANG.en[k]??LANG.th[k]??k;if(v)for(const x in v)s=s.split('{'+x+'}').join(v[x]);return s};
@@ -610,8 +616,8 @@ const CHSHOW={6:5,8:6,10:7,5:8};const chapLbl=n0=>{const n=CHSHOW[n0]||n0;return
 const fmt=n=>Math.round(n).toLocaleString('en-US');
 
 const INTRO={
-th:[['ถ้าย่อประวัติโลก 4,540 ล้านปี ให้เหลือเพียง 1 วัน',''],['Homo sapiens จะปรากฏแค่ 5.7 วินาทีสุดท้าย','em'],['นับจากนั้น มีมนุษย์เกิดมาแล้วราว 117,000 ล้านคน','dim'],['คุณคือหนึ่งในนั้น','']],
-en:[['Shrink Earth’s 4.54 billion years into a single day.',''],['Homo sapiens appears only in the last 5.7 seconds.','em'],['Since then, about 117 billion people have been born.','dim'],['You are one of them.','']]};
+th:[['ถ้าย่อประวัติโลก 4,540 ล้านปี ให้เหลือ 1 ปีปฏิทิน',''],['Homo sapiens จะปรากฏตอน 23:25 น. ของคืนวันที่ 31 ธันวาคม','em'],['ชีวิตคนหนึ่งคน ยาวราวครึ่งวินาที','dim'],['นับจากนั้น มีมนุษย์เกิดมาแล้วราว 117,000 ล้านคน','dim'],['คุณคือหนึ่งในนั้น','']],
+en:[['Shrink Earth’s 4.54 billion years into one calendar year.',''],['Homo sapiens appears at 11:25 pm on 31 December.','em'],['A whole human life lasts about half a second.','dim'],['Since then, about 117 billion people have been born.','dim'],['You are one of them.','']]};
 
 for(const l in I18N_INTRO)INTRO[l]=INTRO.en.map((x,i)=>[I18N_INTRO[l][i]||x[0],x[1]]);
 /* ================= WORLD DATA ================= */
@@ -1169,7 +1175,7 @@ const DEC=[
  o:[opt(X('ย้ายไปอยู่กลุ่มของเขา','Move to their band'),S=>{S.partner=1;fx({b:-4});ms(X('มีคู่ และย้ายไปอยู่อีกกลุ่ม','Found a partner and joined their band'));return X('คุณเดินจากกลุ่มที่เกิดมา ไปเริ่มชีวิตกับคนแปลกหน้าที่ค่อยๆ กลายเป็นครอบครัว','You leave the band you were born into and start over among strangers who slowly become family.')}),
     opt(X('ชวนเขามาอยู่ด้วยกัน','Ask them to join your band'),S=>{if(rnd()<.65){S.partner=1;fx({b:6});ms(X('มีคู่ที่ย้ายมาอยู่กลุ่มเดียวกัน','Found a partner who joined your band'));return X('เขาตามคุณมา และอยู่กับกลุ่มของคุณ','They come with you and stay.')}fx({b:-3});S.later=1;return X('เขาเลือกอยู่กับกลุ่มเดิม สองกลุ่มแยกกันเมื่อฤดูเปลี่ยน','They choose to stay with their own. The bands part when the season turns.')}),
     opt(X('ยังไม่ผูกพันกับใคร','Not yet'),S=>{S.later=1;return X('สองกลุ่มแยกกันเมื่อฤดูเปลี่ยน','The bands part when the season turns.')})]},
-{id:'partner2',a:[22,38],w:2,cond:S=>!S.partner,t:X('อีกครั้งที่แหล่งน้ำ','At the water again'),
+{id:'partner2',a:[22,38],w:2,cond:S=>!S.partner&&S.done.partner!=null,t:X('อีกครั้งที่แหล่งน้ำ','At the water again'),
  x:X('สองกลุ่มมาพบกันอีกครั้ง คนที่คุณเคยเห็นเมื่อหลายปีก่อนยังจำคุณได้','The bands meet again. Someone you saw years ago still remembers you.'),
  o:[opt(X('อยู่ด้วยกัน','Stay together'),S=>{S.partner=1;fx({b:6});ms(X('มีคู่','Found a partner'));return X('คราวนี้คุณไม่ปล่อยให้ฤดูเปลี่ยนไปเฉยๆ','This time you do not let the season pass.')}),
     opt(X('ปล่อยให้เป็นแบบเดิม','Let it be'),S=>X('คุณช่วยเลี้ยงลูกของพี่น้องในกลุ่มแทน','You help raise your siblings’ children instead.'))]},
@@ -1436,11 +1442,12 @@ const AMB3={
  kuk:[X('นกการเวกร่ายรำอยู่บนกิ่งไม้สูง','A bird of paradise dances on a high branch.'),X('ฝนตกบนภูเขาเกือบทุกบ่าย','Rain falls on the mountains almost every afternoon.')]};
 const EPI3={
  west:X('ภายในไม่กี่พันปี หมู่บ้านแบบของคุณจะกลายเป็นเมือง ทางใต้ลงไปในเมโสโปเตเมีย ลูกหลานของชาวนาจะสร้างเมืองแรกและเขียนตัวอักษรแรก นักวิชาการบางคนเสนอว่าตัวอักษรเริ่มจากเบี้ยดินเผาที่ใช้นับแพะแกะ อีกสายหนึ่งของลูกหลานคุณจะนำข้าวสาลีและแพะไปถึงยุโรป','Within a few thousand years, villages like yours will grow into towns. To the south, in Mesopotamia, farmers’ descendants will build the first cities and write the first script; some scholars think writing began with clay tokens for counting sheep and goats. Another line of your descendants will carry wheat and goats into Europe.'),
- china:X('ข้าวฟ่างและข้าวจากลุ่มน้ำของคุณจะเลี้ยงคนเป็นพันล้านในอนาคต ชาวนาจากแถบนี้จะเดินทางลงใต้ นำข้าวและหมูไปถึงเอเชียตะวันออกเฉียงใต้ รวมทั้งดินแดนที่เป็นไทยวันนี้ ราว 4,000 ปีก่อน','The millet and rice of your rivers will one day feed billions. Farmers from here will move south, carrying rice and pigs into Southeast Asia, including today’s Thailand, about 4,000 years ago.'),
+ yan:X('ข้าวจากลุ่มน้ำแยงซีของคุณจะเลี้ยงคนเป็นพันล้านในอนาคต ชาวนาจากแถบนี้จะเดินทางลงใต้ นำข้าวและหมูไปถึงเอเชียตะวันออกเฉียงใต้ รวมทั้งดินแดนที่เป็นไทยวันนี้ ราว 4,000 ปีก่อน','The rice of your Yangtze lands will one day feed billions. Farmers from here will move south, carrying rice and pigs into Southeast Asia, including today’s Thailand, about 4,000 years ago.'),
+ china:X('ข้าวฟ่างจากลุ่มน้ำของคุณจะเลี้ยงคนเป็นพันล้านในอนาคต ชาวนาจากแถบนี้จะเดินทางลงใต้ นำข้าวและหมูไปถึงเอเชียตะวันออกเฉียงใต้ รวมทั้งดินแดนที่เป็นไทยวันนี้ ราว 4,000 ปีก่อน','The millet of your Yellow River lands, with rice from the Yangtze, will one day feed billions. Farmers from here will move south, carrying rice and pigs into Southeast Asia, including today’s Thailand, about 4,000 years ago.'),
  gsa:X('ราว 5,000 ปีก่อน ฝนเลิกตก ซาฮาราเขียวกลายเป็นทะเลทราย ผู้คนพาวัวอพยพไปยังลุ่มแม่น้ำไนล์และทางใต้ บางคนเชื่อว่าคนเลี้ยงวัวจากซาฮาราเป็นส่วนหนึ่งของรากอารยธรรมอียิปต์','About 5,000 years ago the rains fail and the Green Sahara turns to desert. People drive their cattle to the Nile and to the south; some think Saharan herders were among the roots of Egyptian civilisation.'),
  tha:X('ชาวนาจากทางเหนือจะมาถึงที่นี่ในอีกหลายพันปี พร้อมข้าว หมู และหมา ลูกหลานของนักเก็บของป่าอย่างคุณผสมกับพวกเขา DNA ของคนในเอเชียตะวันออกเฉียงใต้วันนี้จึงมีทั้งสองสาย','Farmers from the north will arrive thousands of years later with rice, pigs and dogs. Descendants of foragers like you will mix with them, and the DNA of Southeast Asians today carries both lines.'),
  kuk:X('ชาวที่ราบสูงนิวกินีทำสวนในหุบเขามาต่อเนื่องเกือบหมื่นปีจนถึงวันนี้ แต่ในท้องถิ่นไม่มีสัตว์ใหญ่ที่เลี้ยงเป็นฝูงได้เลย หมูมาถึงในอีกหลายพันปีต่อมา ภูมิศาสตร์จำกัดทางเลือก ไม่ใช่ความสามารถของคน','New Guinea highlanders have gardened their valleys for nearly ten thousand years, to this day, yet the island had no large animal that could be herded; pigs arrived thousands of years later. Geography limited the choices, not the people.')};
-const epi3=S=>['lev','ana','zag'].includes(S.rg)?EPI3.west:['yel','yan'].includes(S.rg)?EPI3.china:EPI3[S.rg]||EPI3.west;
+const epi3=S=>['lev','ana','zag'].includes(S.rg)?EPI3.west:S.rg==='yan'?EPI3.yan:S.rg==='yel'?EPI3.china:EPI3[S.rg]||EPI3.west;
 
 function v3Year(a){
   if(S.ch!==3&&!civ(S.ch))return;const care=S.focus==='herd';
@@ -1495,7 +1502,8 @@ const TAME_DEC={id:'tame_pick',t:X('ลองเลี้ยงสัตว์�
 const PNAMES=[X('ตาเหยี่ยว','Hawk-Eye'),X('มือหิน','Stone-Hand'),X('เสียงขลุ่ย','Flute-Voice'),X('ผู้ตามลม','Wind-Follower'),X('หัวเราะดัง','Loud-Laugh'),X('เท้าเร็ว','Quick-Foot'),X('ผมแดง','Red-Hair'),X('ฟันหัก','Broken-Tooth'),X('ผู้ปั้นดิน','Clay-Shaper'),X('ลูกนกกระสา','Heron-Child'),X('น้ำนิ่ง','Still-Water'),X('ผู้นับดาว','Star-Counter'),X('ไหล่กว้าง','Broad-Shoulder'),X('คนเงียบ','The Quiet One'),X('ผู้เกิดหลังพายุ','Storm-Born'),X('แผลเป็นยาว','Long-Scar'),X('ตาเศร้า','Sad-Eyes'),X('ผู้ร้องเพลงตอนเช้า','Morning-Singer'),X('มือเย็น','Cool-Hands'),X('ผู้หัวเราะทีหลัง','Last-to-Laugh')];
 const PK={sib:X('พี่น้อง','sibling'),friend:X('เพื่อนสนิท','close friend'),rival:X('คู่แข่ง','rival'),mentor:X('ครู','teacher'),neighbor:X('เพื่อนบ้าน','neighbour'),partner:X('คู่ชีวิต','partner')};
 const PX=(p,th,en)=>X(th.split('{p}').join(p.n.th),en.split('{p}').join(p.n.en));
-function mkP(k,age){const used=S.ppl.map(p=>p.n.th);const pool=PNAMES.filter(n=>!used.includes(n.th));const n=S.ch===6?nm4X(genName6(S,k==='partner'?(S.sex==='f'?'m':'f'):(rnd()<.5?'m':'f'),era6(S.ya))):S.ch===4?nm4X(genName4(S,k==='partner'?(S.sex==='f'?'m':'f'):(rnd()<.5?'m':'f'),era4(S.ya))):pick(pool.length?pool:PNAMES);
+function mkP(k,age){const used=S.ppl.map(p=>p.n.th).concat([S.name&&S.name.th,S.nm6&&S.nm6.fa&&S.nm6.fa.th,S.nm4&&S.nm4.fa&&S.nm4.fa.th].filter(Boolean),(S.kids||[]).map(x=>x.n&&x.n.th));const pool=PNAMES.filter(n=>!used.includes(n.th)&&!(S.ya>42000&&['Flute-Voice','Clay-Shaper'].includes(n.en)));
+  const g=()=>{const sx=k==='partner'?(S.sex==='f'?'m':'f'):(rnd()<.5?'m':'f');return S.ch===6?nm4X(genName6(S,sx,era6(S.ya))):S.ch===4?nm4X(genName4(S,sx,era4(S.ya))):null};let n=g();for(let i=0;n&&i<10&&used.includes(n.th);i++)n=g();if(!n)n=pick(pool.length?pool:PNAMES);
   const p={n,k,tr:{rival:20,sib:65,friend:60,mentor:62,neighbor:45,partner:72}[k],age:age==null?S.age:age,dead:0};S.ppl.push(p);return p}
 const pp=k=>S.ppl.find(p=>p.k===k&&!p.dead&&p.age>=0);
 const trW=v=>v>=75?X('ไว้ใจมาก','deep trust'):v>=50?X('ไว้ใจ','trust'):v>=30?X('ห่างเหิน','distant'):X('ไม่ลงรอยกัน','at odds');
@@ -1631,7 +1639,7 @@ const DEC7=[
 {id:'h_dog',a:[8,60],w:.35,ch:3,rg:['lev','ana','zag','yel','yan','gsa'],cond:S=>!S.dog,t:X('ลูกหมาในหมู่บ้าน','Puppies in the village'),
  x:X('หมาของเพื่อนบ้านออกลูกห้าตัว ตัวหนึ่งเดินตามคุณกลับบ้านทุกวัน','The neighbours’ dog has five puppies. One follows you home every day.'),
  n:X('หมาถูกเลี้ยงจากหมาป่าตั้งแต่ก่อนมีเกษตรกรรมหลายพันปี ที่ไอน์ มัลลาฮา ในเลแวนต์ หญิงคนหนึ่งถูกฝังโดยวางมือบนลูกหมาเมื่อราว 12,000 ปีก่อน หมาช่วยเฝ้าฝูงสัตว์จากหมาป่า','Dogs were bred from wolves thousands of years before farming. At Ain Mallaha in the Levant, about 12,000 years ago, a woman was buried with her hand resting on a puppy. Dogs guard herds from wolves.'),
- o:[opt(X('รับมาเลี้ยง','Take it in'),S=>{S.dog=1;fx({b:3});return X('มันโตขึ้นและเห่าทุกครั้งที่มีอะไรเข้าใกล้คอก','It grows up and barks whenever anything nears the pen.')}),opt(X('ไม่รับ','Leave it'),S=>X('มันไปตามเด็กคนอื่นแทน','It follows another child instead.'))]},
+ o:[opt(X('รับมาเลี้ยง','Take it in'),S=>{S.dog=1;fx({b:3});return herdTot()>0?X('มันโตขึ้นและเห่าทุกครั้งที่มีอะไรเข้าใกล้คอก','It grows up and barks whenever anything nears the pen.'):X('มันโตขึ้นและเห่าทุกครั้งที่มีอะไรเข้าใกล้ที่พัก','It grows up and barks whenever anything nears the camp.')}),opt(X('ไม่รับ','Leave it'),S=>X('มันไปตามเด็กคนอื่นแทน','It follows another child instead.'))]},
 {id:'h_milk',a:[14,70],w:2.4,ch:3,cond:S=>S.ya<=9000&&MILKERS.some(k=>S.herd[k]>0)&&!S.milk,t:X('นม','Milk'),
  x:X('แม่แพะมีนมเหลือมากหลังลูกหย่านม คุณลองรีดนมมันใส่ภาชนะ','A nanny goat has milk to spare after weaning, so you try milking her into a bowl.'),
  n:X('คราบไขมันนมในหม้อดินเผาจากอานาโตเลียตะวันตกเฉียงเหนือมีอายุราว 8,500 ปี ผู้ใหญ่ยุคนั้นแทบทุกคนย่อยน้ำตาลในนมไม่ได้ การทำนมเปรี้ยวหรือเนยแข็งช่วยลดน้ำตาลนั้น ความสามารถย่อยนมตอนโตแพร่หลายในอีกหลายพันปีต่อมา','Milk fats in pots from northwest Anatolia are about 8,500 years old. Almost no adults then could digest milk sugar; souring it or making cheese reduces that sugar. Adult milk digestion spread thousands of years later.'),
@@ -2211,15 +2219,15 @@ sea:X('ทะเลที่พัดเรือแคนูไม่กลั�
 };
 for(const k in DIS)CAUSE['d_'+k]=X('ป่วยด้วย'+DIS[k].n.th,DIS[k].n.en);
 const EPI={
-sap:X('อีกหลายหมื่นปีข้างหน้า สายพันธุ์ของคุณจะกระจายไปทั่วโลกและกลายเป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ คนทั้ง 8,000 ล้านคนในวันนี้สืบเชื้อสายจากประชากรรุ่นคุณ','Over the next tens of thousands of years your species will spread across the world and become the only human species left. All 8 billion people alive today descend from populations of your time.'),
+sap:X('อีกหลายหมื่นปีข้างหน้า สายพันธุ์ของคุณจะกระจายไปทั่วโลกและกลายเป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ คนทั้ง 8,000 ล้านคนในวันนี้สืบเชื้อสายจากชาวแอฟริกาในยุคเดียวกับคุณ แต่กลุ่มที่ออกจากแอฟริการุ่นแรกๆ อาจไม่ได้มีลูกหลานเหลือถึงทุกวันนี้ ข้อนี้ยังถกเถียงกัน','Over the next tens of thousands of years your species will spread across the world and become the only human species left. All 8 billion people alive today descend from Africans of your time, though the earliest groups to leave Africa may have left no descendants today; this is still debated.'),
 nea:X('นีแอนเดอร์ทัลจะหายไปราว 40,000 ปีก่อน แต่ไม่หายหมด คนที่มีบรรพบุรุษนอกแอฟริกาในวันนี้มี DNA นีแอนเดอร์ทัลอยู่ราว 1–2%','Neanderthals will vanish about 40,000 years ago, but not completely. People with ancestry outside Africa carry about 1–2% Neanderthal DNA today.'),
 den:X('เดนิโซแวนแทบไม่ทิ้งกระดูกไว้ แต่ทิ้ง DNA ไว้ในคนปัจจุบัน โดยเฉพาะชาวปาปัวและเมลานีเซียที่มีอยู่หลายเปอร์เซ็นต์ และยีนที่ช่วยชาวทิเบตบนที่สูงก็สืบมาจากพวกเขา','Denisovans left almost no bones, but they left DNA in living people, several percent in Papuans and Melanesians, and the gene that helps Tibetans at altitude came from them.'),
 ere:X('คุณเป็นหนึ่งในรุ่นสุดท้ายของสายพันธุ์ที่อยู่มาเกือบ 2 ล้านปี ไม่นานหลังรุ่นของคุณ ร่องรอยของโฮโม อีเร็กตัสก็หายไปจากหลักฐาน','You are among the last of a species that lasted almost 2 million years. Soon after your generation, Homo erectus disappears from the record.'),
 flo:X('ลูกหลานของคุณจะอยู่บนเกาะนี้ต่อไปอีกหลายหมื่นปี ร่องรอยสุดท้ายหายไปราว 50,000 ปีก่อน ใกล้ช่วงที่เซเปียนส์มาถึงภูมิภาคนี้','Your descendants will live on this island for tens of thousands of years more. The last traces vanish about 50,000 years ago, around when sapiens reach the region.'),
 luz:X('โลกรู้จักสายพันธุ์ของคุณจากฟันและกระดูกไม่กี่ชิ้นในถ้ำคาลเลา และเพิ่งตั้งชื่อให้ในปี 2019','The world knows your species from a few teeth and bones in Callao Cave, and only named it in 2019.'),
 };
-const EPI2={sap:X('ไม่กี่พันปีหลังจากนั้น น้ำแข็งละลาย ทะเลกลืนสะพานแผ่นดินเบริงเจีย และแมมมอธหายไปจากแผ่นดินใหญ่ ลูกหลานของคุณจะเริ่มเก็บเมล็ดพืชมาปลูก ส่วนฝูงแมมมอธฝูงสุดท้ายบนเกาะแรงเกลอยู่ได้จนราว 4,000 ปีก่อน ตอนที่พีระมิดของอียิปต์สร้างเสร็จแล้ว','A few thousand years later the ice melts, the sea swallows the Beringia land bridge, and mammoths vanish from the mainland. Your descendants will start planting seeds. The last mammoths, on Wrangel Island, survive until about 4,000 years ago, after Egypt’s pyramids were already built.')};
-const EPI5={sap:X('ภายในไม่กี่ศตวรรษ ลูกหลานของนักเดินเรือรุ่นคุณตั้งถิ่นฐานทั่วสามเหลี่ยมโพลินีเซีย ตั้งแต่ฮาวาย ราปานุย ถึงอาโอเทียรัว บนผืนทะเลที่กว้างกว่าทวีปใดๆ ด้วยเรือแคนูและความรู้เรื่องดาว โดยไม่มีแผนที่หรือเข็มทิศ ในปี 1976 เรือโฮคูเลอาแล่นจากฮาวายถึงตาฮีติด้วยการนำทางแบบดั้งเดิม และพิสูจน์ให้โลกเห็นว่าทำได้จริง','Within a few centuries, the descendants of voyagers like you settled the whole Polynesian Triangle, from Hawaiʻi and Rapa Nui to Aotearoa, across an ocean wider than any continent, by canoe and star knowledge, without maps or compass. In 1976 the canoe Hōkūleʻa sailed from Hawaiʻi to Tahiti by traditional wayfinding and proved it could be done.')};
+const EPI2={sap:X('หลังยุคของคุณ อีกหลายพันถึงหลายหมื่นปี น้ำแข็งจะละลาย ทะเลกลืนสะพานแผ่นดินเบริงเจีย และแมมมอธหายไปจากแผ่นดินใหญ่ ผู้คนจะเริ่มเก็บเมล็ดพืชมาปลูก ส่วนฝูงแมมมอธฝูงสุดท้ายบนเกาะแรงเกลอยู่ได้จนราว 4,000 ปีก่อน ตอนที่พีระมิดของอียิปต์สร้างเสร็จแล้ว','Thousands or tens of thousands of years after your time, the ice melts, the sea swallows the Beringia land bridge, and mammoths vanish from the mainland. People will start planting seeds. The last mammoths, on Wrangel Island, survive until about 4,000 years ago, after Egypt’s pyramids were already built.')};
+const EPI5={sap:X('ในหลายร้อยปีหลังจากคุณ บางที่นานถึงสองพันปี ลูกหลานของนักเดินเรือแบบคุณจะตั้งถิ่นฐานทั่วสามเหลี่ยมโพลินีเซีย ตั้งแต่ฮาวาย ราปานุย ถึงอาโอเทียรัว บนผืนทะเลที่กว้างกว่าทวีปใดๆ ด้วยเรือแคนูและความรู้เรื่องดาว โดยไม่มีแผนที่หรือเข็มทิศ ในปี 1976 เรือโฮคูเลอาแล่นจากฮาวายถึงตาฮีติด้วยการนำทางแบบดั้งเดิม และพิสูจน์ให้โลกเห็นว่าทำได้จริง','In the centuries after you, in some places up to two thousand years later, the descendants of voyagers like you settled the whole Polynesian Triangle, from Hawaiʻi and Rapa Nui to Aotearoa, across an ocean wider than any continent, by canoe and star knowledge, without maps or compass. In 1976 the canoe Hōkūleʻa sailed from Hawaiʻi to Tahiti by traditional wayfinding and proved it could be done.')};
 const MIXED=X(' คุณมีลูกกับคนต่างสายพันธุ์ เรื่องแบบนี้เกิดขึ้นจริง: เด็กหญิงจากถ้ำเดนิโซวาที่นักวิจัยเรียกว่า "เดนนี่" มีแม่เป็นนีแอนเดอร์ทัลและพ่อเป็นเดนิโซแวน',' You had a child with another kind of human. This really happened: a girl from Denisova Cave, nicknamed “Denny”, had a Neanderthal mother and a Denisovan father.');
 const LEGEND_EPI=X(' ✦ ตำนาน: หลายพันปีหลังจากนั้น ลูกหลานของกลุ่มยังเล่าถึง "{n}" ผู้ที่นำทุกคนผ่านปีที่ยากที่สุด',' ✦ Legend: thousands of years later, the band’s descendants still tell of “{n}”, who led everyone through the hardest years.');
 const REFLECT={5:X('ถ้าคนคนนี้มีความทรงจำแรก มันอาจเป็นอะไร','If this person had a first memory, what might it be?'),
@@ -2239,11 +2247,13 @@ if(!SP[chosenSp])chosenSp='sap';
 function drawYa(sp){const C=CHAPS[chap];let lo=C.new,hi=C.old;if(sp&&sp.id==='ere'){lo=Math.max(lo,108000)}
   for(let i=0;i<80;i++){const ya=Math.round((lo+rnd()*(hi-lo))/100)*100;if(!sp||present(sp,ya))return ya}return hi}
 let chosenCar=store.get('sit.car','');if(chosenCar&&!CAREERS[chosenCar])chosenCar='';
-function newLife(){const cc=chap===10?chosenCar10:chap===8?chosenCar8:chap===6?chosenCar6:chap===4?chosenCar4:chap===3?chosenCar:'';const CS=chap===10?CAREERS10:chap===8?CAREERS8:chap===6?CAREERS6:chap===4?CAREERS4:CAREERS;for(let i=0;i<40;i++){newLife0();if(!cc||!CS[cc]||CS[cc].ok(S))break}
+let roomN=0;
+function newLife(){if(ROOM&&!TEST){RNDF=srng(hash32(ROOM+'|'+chap+'|'+(roomN++)))}else RNDF=Math.random;const cc=chap===10?chosenCar10:chap===8?chosenCar8:chap===6?chosenCar6:chap===4?chosenCar4:chap===3?chosenCar:'';const CS=chap===10?CAREERS10:chap===8?CAREERS8:chap===6?CAREERS6:chap===4?CAREERS4:CAREERS;for(let i=0;i<40;i++){newLife0();if(!cc||!CS[cc]||CS[cc].ok(S))break}
   if(cc&&CS[cc]&&CS[cc].ok(S)){S.car=cc;S.clv=0;S.cxp=0;S.carPre=1;if(cc==='scribe')S.schOK=1}}
 function newLife0(){
   let sp,ya,pw,rg;const C=CHAPS[chap];const cont=C.lin&&LIN&&LIN.next&&LIN.chap===chap?LIN.next:null;
-  if(cont){sp=SP.sap;ya=cont.ya;rg=cont.rg}
+  if(SIB&&SIB.chap===chap&&!cont){sp=SP[SIB.sp]||SP.sap;ya=SIB.ya;rg=SIB.rg}
+  else if(cont){sp=SP.sap;ya=cont.ya;rg=cont.rg}
   else if(chap===9){sp=SP.sap;ya=Math.round((66000+rnd()*6000)/100)*100;rg='eaf'}
   else if(chap===5){sp=SP.sap;ya=Math.round((3000+rnd()*500)/10)*10;rg=ya>3400?'phl':pick(['phl','bis'])}
   else if(chap===4){sp=SP.sap;const e4=pickEra4();ya=Math.round((ERA4[e4].b+rnd()*(ERA4[e4].a-ERA4[e4].b))/5)*5;rg=pickCity4(e4)}
@@ -2259,7 +2269,7 @@ function newLife0(){
   S={sp,rg,R:REGIONS[rg],ya0:ya,ya,pw,sex:rnd()<.5?'f':'m',name:null,age:0,h:72,f:62,b:60,p:0,focus:'gather',sv:3,cr:2,so:4,tr:2,kn:3,inv:{},fr:[],sick:null,actN:{},offer:[],plan:new Set(),yt:'normal',wx:{},dis:null,
      done:{},kids:[],partner:0,mixed:0,later:0,lastBirth:-9,ms:[],log:[],notes:{},seed:(rnd()*1e9)|0,cause:null,inj:0,yr:0,birthYr:0,
      rank:0,role:null,hard:0,luck:0,amulet:0,lowF:0,path:[rg],toba:0,leg:!!legOn,ch:chap===9?(ya>=47000?1:2):chap,chap,tech:cont?Object.assign({},LIN.tech||{}):{},mam:0,hut:0,dog:0,art:0,moves:[],gen:cont?LIN.gen:1,cont:!!cont,spirit:0,doubt:0,hand:null,handKid:0};
-  S.tal=rollTalents();S.vr=pickVar(rg,S.seed);rollYear();init7();S.name=S.ch===4?mkName4(S):S.ch===6?mkName6(S):S.ch===8?mkName8(S):mkName(S);
+  S.tal=rollTalents();S.vr=pickVar(rg,S.seed);rollYear();init7();if(SIB&&SIB.chap===chap&&SIB.cls&&S.cls)S.cls=SIB.cls;S.name=S.ch===4?mkName4(S):S.ch===6?mkName6(S):S.ch===8?mkName8(S):mkName(S);
 }
 function linBlocked(S,r){if(!CHAPS[S.chap].lin)return false;if(S.chap===9&&r==='saf')return true;if(S.chap===5&&PAC.indexOf(r)<PAC.indexOf(S.rg))return true;return S.path.includes(r)||!!(LIN&&LIN.chap===S.chap&&LIN.route.some(x=>x.rg===r))}
 function linStart(){const C=CHAPS[S.chap];if(!C.lin)return;
@@ -2312,7 +2322,7 @@ function pickCause0(a){const c=[];
 const coldMul=()=>(S.tech.needle?.5:1)*(S.hut?.7:1);
 
 const W4=new Set(['p_gossip','p_truth','p_aboutyou','p_rival','p_secret']);
-function okEv(e,a){if(civ(S.ch)&&e.ch!==S.ch&&!W4.has(e.id))return false;if(e.ch&&e.ch!==S.ch)return false;if(e.xch&&e.xch.includes(S.ch))return false;if(e.chap&&e.chap!==S.chap)return false;if(e.a&&(a<e.a[0]||a>e.a[1]))return false;if(e.sp&&!e.sp.includes(S.sp.id))return false;if(e.rg&&!e.rg.includes(S.rg))return false;
+function okEv(e,a){if(CLASSM&&(CLASSX.has(e.id)||/\bdrunk|\bgambl/i.test((e.x&&e.x.en)||'')))return false;if(S.ch===5&&!e.ch&&PALEO5.test([e.x,e.t,e.n].map(v=>v&&v.en||'').join(' ')))return false;if(civ(S.ch)&&e.ch!==S.ch&&!W4.has(e.id))return false;if(e.ch&&e.ch!==S.ch)return false;if(e.xch&&e.xch.includes(S.ch))return false;if(e.chap&&e.chap!==S.chap)return false;if(e.a&&(a<e.a[0]||a>e.a[1]))return false;if(e.sp&&!e.sp.includes(S.sp.id))return false;if(e.rg&&!e.rg.includes(S.rg))return false;
   if(e.cold&&!S.R.cold)return false;if(e.lg&&!S.leg)return false;if(e.cond&&!e.cond(S))return false;return true}
 const canDec=(e,a)=>{const d=S.done[e.id];if(d!=null&&!(e.rep&&a-d>=e.rep))return false;return okEv(e,a)};
 
@@ -2357,12 +2367,12 @@ async function yearStep(){
     const fam=famOf(S.focus);
     if(c.length&&rnd()<(a<5?.7:.8)){const e=weighted(c.map(e=>[e,(e.w||1)*(e.f&&e.f===fam&&a>=5?2.6:1)]));
       S.done['e'+EV.indexOf(e)]=a;if(e.fx)fx(e.fx);if(e.fxF)e.fxF(S);if(e.eg)S.gilg++;if(e.es)S.sinu++;if(e.inj){S.inj=1}
-      const ek='e'+EV.indexOf(e),seenN=S.evN=S.evN||{};let n=typeof e.n==='function'?rn(S.rg):e.n;if(civ(S.ch)&&seenN[ek])n=null;seenN[ek]=1;if(/ดาว/.test(e.x.th))S.scAct={act:'stars',age:a};log(e.x,n,e.lg?'lg':e.c)}
+      const ek='e'+EV.indexOf(e),seenN=S.evN=S.evN||{};let n=typeof e.n==='function'?rn(S.rg):e.n;if(seenN[ek])n=null;seenN[ek]=1;if(/ดาว/.test(e.x.th))S.scAct={act:'stars',age:a};log(e.x,n,e.lg?'lg':e.c)}
     else log(S.ch===10?amb10():S.ch===8?amb8():S.ch===6?amb6():S.ch===4?amb4():pick((S.ch===3&&AMB3[S.rg])||AMB[S.rg]||AMB.lev))
   }
-  if(made&&rnd()<.5)log(X('ทำ'+invName(made)+'ได้เพิ่ม','Made more '+invName(made)),null,'it');
+  if(made&&rnd()<.5)log(X('ทำ'+INV[made].n.th+'ได้เพิ่ม','Made more '+INV[made].n.en),null,'it');
   if(S.inj)S.yr+=.025;
-  if(rnd()<hazard(a)){
+  if(!(S.prot5&&a<5)&&rnd()<hazard(a)){
     if(S.amulet&&a>=5){S.amulet=0;fx({h:30});log(X('คืนนั้นคุณควรจะตาย แต่หินสีดำในมือแตกเป็นสองซีก และคุณตื่นขึ้นมาตอนเช้า','That night you should have died. The black stone in your hand splits in two, and you wake at dawn.'),X('เรื่องนี้แต่งขึ้น','This is made up.'),'lg');ms(X('รอดตายเพราะหินสีดำ ✦','Saved by the black stone ✦'))}
     else{await die();return}
   }
@@ -2375,7 +2385,8 @@ async function yearStep(){
 const ordEn=n=>n+(['th','st','nd','rd'][(n%100-20)%10]||['th','st','nd','rd'][n%100]||'th');
 
 /* ================= MODAL ================= */
-function modal({eye,title,text,note,noteLg,input,opts}){
+let skipTo=0,SIB=null;
+function modal({eye,title,text,note,noteLg,input,opts}){skipTo=0;
   const okI=opts.map((o,i)=>o.lock?-1:i).filter(i=>i>=0);
   if(TEST)return Promise.resolve({i:pick(okI.length?okI:[0]),v:''});
   return new Promise(res=>{
@@ -2386,7 +2397,7 @@ function modal({eye,title,text,note,noteLg,input,opts}){
     opts.forEach((o,i)=>{const b=document.createElement('button');b.textContent=o.l;if(o.primary)b.className='primary';if(o.lock){b.disabled=true;const q=document.createElement('span');q.className='req';q.textContent=o.lock;b.appendChild(q)}
       b.onclick=()=>{$('#modal').hidden=true;res({i,v:mi.value.trim()})};box.appendChild(b)});
     $('#modal').hidden=false;setTimeout(()=>box.firstChild&&box.firstChild.focus(),50);
-    if(auto){setTimeout(()=>{if(!$('#modal').hidden){$('#modal').hidden=true;res({i:pick(okI.length?okI:[0]),v:''})}},Math.max(500,1800/speed))}
+    if(auto){$('#mEye').textContent=(eye||'')+' · '+t('autoHint');setTimeout(()=>{if(!$('#modal').hidden){$('#modal').hidden=true;res({i:pick(okI.length?okI:[0]),v:''})}},input?1500:3200)}
   })}
 const SKN={sv:'skSv',cr:'skCr',so:'skSo',tr:'skTr',kn:'skKn'};
 function lockText(o){if(o.lockF&&o.lockF(S))return L(o.lockT||X('ยังทำไม่ได้','Not possible yet'));if(!o.req)return null;for(const k in o.req)if((S[k]||0)<o.req[k])return t('needSk',{s:t(SKN[k]),n:o.req[k]});return null}
@@ -2400,7 +2411,9 @@ async function decide(d){
   log(X(d.t.th+' — '+res.th,d.t.en+' — '+res.en),pn||note,d.lg?'lg':'big');
 }
 async function reflect(age){
-  const r=await modal({eye:t('reflect',{a:age}),title:L((S.ch===4&&REFLECT4[age])||(S.ch===6&&REFLECT6[age])||(S.ch===8&&age===50&&era8(S.ya)==='late'&&REFL8L)||(S.ch===10&&age===50&&['col','dark'].includes(era10(S.ya))&&REFL10L)||(S.ch===10&&REFLECT10[age])||(S.ch===8&&REFLECT8[age])||REFLECT[age]),text:'',input:t('reflectPh'),opts:[{l:t('cont'),primary:1}]});
+  if(store.get('sit.noRefl',0))return;
+  const r=await modal({eye:t('reflect',{a:age}),title:L((S.ch===4&&REFLECT4[age])||(S.ch===6&&REFLECT6[age])||(S.ch===8&&age===50&&era8(S.ya)==='late'&&REFL8L)||(S.ch===10&&age===50&&['col','dark'].includes(era10(S.ya))&&REFL10L)||(S.ch===10&&REFLECT10[age])||(S.ch===8&&REFLECT8[age])||REFLECT[age]),text:'',input:t('reflectPh'),opts:[{l:t('cont'),primary:1},{l:t('noRefl')}]});
+  if(r.i===1)store.set('sit.noRefl',1);
   if(r.v)S.notes[age]=r.v;
 }
 
@@ -2414,7 +2427,7 @@ async function die(){
   const lives=store.get('sit.lives',[]);
   S.rec={ch:S.ch,chap:S.chap,gen:S.gen,mam:S.mam,sp:S.sp.id,rg:S.path[0],age:S.age,cause:S.cause,name:S.name,sex:S.sex,ya:S.ya0,ti:S.title,kids:S.kids.length,kidsAlive:S.kids.filter(k=>k.dies==null).length,ts:Date.now()};
   lives.unshift(S.rec);store.set('sit.lives',lives.slice(0,30));
-  show('death');renderDeath();
+  show('death');renderDeath();$('#sibBtn').hidden=!(S.age<15&&!CHAPS[S.chap].lin);
 }
 
 /* ================= PIXEL SCENES ================= */
@@ -2452,12 +2465,12 @@ const OUTDOOR=['hunt','track','gather','herb','fish','walk','run','build','herd'
 /* ================= v0.9 CHAPTER 04: MESOPOTAMIA ================= */
 const ERA4={
  uruk:{a:5300,b:4900,w:.14,wp:18,n:X('ยุคอูรุก เมื่อตัวอักษรแรกถือกำเนิด','the Uruk period, when writing was born')},
- ed:{a:4900,b:4335,w:.22,wp:22,n:X('ยุคนครรัฐสุเมเรียน','the age of the Sumerian city-states')},
- akk:{a:4335,b:4155,w:.1,wp:26,n:X('จักรวรรดิอัคคัด จักรวรรดิแรกของโลก','the Akkadian Empire, the first empire')},
- ur3:{a:4112,b:4004,w:.12,wp:28,n:X('ราชวงศ์ที่สามแห่งอูร์','the Third Dynasty of Ur')},
- ob:{a:3900,b:3600,w:.26,wp:32,n:X('ยุคบาบิโลนเก่า สมัยพระเจ้าฮัมมูราบี','the Old Babylonian period, the age of Hammurabi')},
+ ed:{a:4900,b:4360,w:.22,wp:22,n:X('ยุคนครรัฐสุเมเรียน','the age of the Sumerian city-states')},
+ akk:{a:4360,b:4180,w:.1,wp:26,n:X('จักรวรรดิอัคคัด จักรวรรดิแรกของโลก','the Akkadian Empire, the first empire')},
+ ur3:{a:4137,b:4030,w:.12,wp:28,n:X('ราชวงศ์ที่สามแห่งอูร์','the Third Dynasty of Ur')},
+ ob:{a:3920,b:3620,w:.26,wp:32,n:X('ยุคบาบิโลนเก่า','the Old Babylonian period')},
  nb:{a:2630,b:2565,w:.16,wp:100,n:X('จักรวรรดิบาบิโลนใหม่ สมัยพระเจ้าเนบูคัดเนซซาร์','the Neo-Babylonian Empire, the age of Nebuchadnezzar')}};
-const era4=ya=>ya>4900?'uruk':ya>4335?'ed':ya>4112?'akk':ya>4004?'ur3':ya>2700?'ob':'nb';
+const era4=ya=>ya>4900?'uruk':ya>4360?'ed':ya>4137?'akk':ya>4029?'ur3':ya>2700?'ob':'nb';
 const bce=ya=>Math.max(1,Math.round((ya-2025)/10)*10);
 const R4={
  uru:{g:'inanna',pop:{uruk:40,ed:50,akk:40,ur3:40,ob:20,nb:20}},
@@ -2564,7 +2577,7 @@ gardener:{n:X('คนสวน','Gardener'),act:'garden',sk:'sv',ok:S=>true,
 const CARNOTE4=X('ในเมืองเมโสโปเตเมีย อาหารส่วนเกินเลี้ยงคนที่ไม่ได้ทำนาได้ วิหารและวังจ้างช่าง อาลักษณ์ และคนงานจำนวนมาก แล้วจ่ายเป็นข้าวบาร์เลย์ น้ำมัน และขนแกะ ลูกมักทำอาชีพเดียวกับพ่อแม่ แผ่นจารึกรายชื่ออาชีพยุคอูรุกมีอาชีพมากกว่าร้อยชนิด','In Mesopotamian cities, surplus food could feed people who did not farm. Temples and palaces employed craftsmen, scribes and labourers and paid them in barley, oil and wool. Children usually followed their parents’ trade. A list of professions from the Uruk period names more than a hundred.');
 const CARS=()=>S&&S.ch===4?CAREERS4:S&&S.ch===6?CAREERS6:S&&S.ch===8?CAREERS8:S&&S.ch===10?CAREERS10:CAREERS;
 const CLS4={elite:X('ตระกูลสูง ใกล้ชิดวิหารและวัง','a great household, close to the temple and palace'),free:X('ชาวเมืองอิสระ','a free family of the city'),dep:X('คนงานของวิหาร ได้ค่าจ้างเป็นปันส่วนข้าว','temple workers, paid in rations of barley'),slave:X('ทาส','enslaved')};
-const CLSNOTE=X('สังคมเมโสโปเตเมียแบ่งเป็นชั้น กฎหมายของฮัมมูราบีแยกคนอิสระชั้นสูง สามัญชน และทาส โทษสำหรับความผิดเดียวกันจึงไม่เท่ากัน คนจำนวนมากเป็นคนงานของวิหารหรือวังที่ได้ค่าจ้างเป็นปันส่วน ทาสส่วนหนึ่งเป็นเชลยศึก ส่วนหนึ่งตกเป็นทาสเพราะหนี้','Mesopotamian society was layered. Hammurabi’s laws distinguish free citizens, commoners and slaves, and the same offence carried different penalties. Many people worked for a temple or palace in return for rations. Some slaves were war captives; others fell into slavery through debt.');
+const CLSNOTE=X('สังคมเมโสโปเตเมียแบ่งเป็นชั้น ประมวลกฎหมายตั้งแต่ของอูร์-นัมมู (ราว 2100 ปีก่อนคริสตกาล) จนถึงของฮัมมูราบี (ราว 1754 ปีก่อนคริสตกาล) แยกคนอิสระชั้นสูง สามัญชน และทาส โทษสำหรับความผิดเดียวกันจึงไม่เท่ากัน คนจำนวนมากเป็นคนงานของวิหารหรือวังที่ได้ค่าจ้างเป็นปันส่วน ทาสส่วนหนึ่งเป็นเชลยศึก ส่วนหนึ่งตกเป็นทาสเพราะหนี้','Mesopotamian society was layered. Law codes from Ur-Nammu’s (about 2100 BCE) to Hammurabi’s (about 1754 BCE) distinguish free citizens, commoners and slaves, and the same offence carried different penalties. Many people worked for a temple or palace in return for rations. Some slaves were war captives; others fell into slavery through debt.');
 
 function init4(){
   S.era=era4(S.ya0);S.cls=weighted([['elite',.06],['free',.58],['dep',.26],['slave',.1]]);S.settled=1;S.roleNo=1;
@@ -3010,7 +3023,7 @@ const EPI4={
  ur3:X('ราชวงศ์ที่สามแห่งอูร์เป็นยุคสุดท้ายที่ภาษาสุเมเรียนเป็นภาษาของรัฐ จากยุคนี้มีแผ่นบัญชีรอดมาหลายหมื่นแผ่น บางแผ่นบันทึกแม้แต่ปันส่วนรายวันของคนงานธรรมดา','The Third Dynasty of Ur was the last age when Sumerian was the language of the state. Tens of thousands of its account tablets survive, some recording the daily rations of ordinary workers.'),
  ob:X('หลังพระเจ้าฮัมมูราบี บาบิโลนจะถูกปล้นโดยชาวฮิตไทต์ แต่กฎหมายของพระองค์ถูกคัดลอกในโรงเรียนอาลักษณ์ต่อไปอีกนับพันปี และมหากาพย์กิลกาเมชจะถูกเขียนใหม่เป็นฉบับที่เราอ่านกันวันนี้','After Hammurabi, Babylon will be sacked by the Hittites, but his laws will be copied in scribal schools for a thousand years, and the Epic of Gilgamesh will be reworked into the version we read today.'),
  nb:X('ในปี 539 ก่อนคริสตกาล เปอร์เซียยึดบาบิโลน สองร้อยปีต่อมา พระเจ้าอเล็กซานเดอร์มหาราชสิ้นพระชนม์ที่นี่ เมืองค่อยๆ ร้างลง แต่นักดาราศาสตร์บาบิโลนยังเขียนอักษรรูปลิ่มต่อไปจนถึงราว ค.ศ. 75 ซึ่งเป็นแผ่นสุดท้ายที่รู้จัก','In 539 BCE Persia took Babylon; two centuries later Alexander the Great died here. The city slowly emptied, but Babylonian astronomers went on writing cuneiform until about 75 CE, the last tablet known.')};
-const EPI4T=X(' หลังจากนั้นไม่มีใครอ่านอักษรรูปลิ่มออกอีกเกือบสองพันปี จนนักวิชาการถอดความได้ในทศวรรษ 1850 วันนี้มีแผ่นดินเหนียวถูกขุดพบแล้วหลายแสนแผ่น อีกจำนวนมากยังไม่มีใครอ่าน',' Then no one could read cuneiform for nearly two thousand years, until scholars deciphered it in the 1850s. Hundreds of thousands of tablets have been excavated, and many have never been read.');
+const EPI4T=X(' อักษรรูปลิ่มยังถูกใช้ต่อมาอีกราวสองพันปี แผ่นสุดท้ายที่รู้จักเป็นตำราดาราศาสตร์ราว ค.ศ. 75 หลังจากนั้นไม่มีใครอ่านออกอีกเลย จนนักวิชาการถอดความได้ในทศวรรษ 1850 วันนี้มีแผ่นดินเหนียวถูกขุดพบแล้วหลายแสนแผ่น อีกจำนวนมากยังไม่มีใครอ่าน',' Cuneiform went on being written for about two thousand more years; the last known tablet is an astronomical text from about 75 CE. After that no one could read it until scholars deciphered it in the 1850s. Hundreds of thousands of tablets have been excavated, and many have never been read.');
 function epi4(S){const e=era4(S.ya0);let s=L(EPI4[e]);
   if(S.kingT&&S.sex==='f')s+=L(X(' ✦ ตำนาน: บัญชีรายพระนามกษัตริย์บันทึกว่าหญิงเจ้าของร้านเบียร์ผู้หนึ่งได้ครองคีช ไม่มีใครรู้ว่าเป็นคุณหรือเธอคือใคร',' ✦ Legend: the King List records that a woman tavern keeper ruled Kish. No one knows if it was you, or who she was.'));
   else if(S.kingT)s+=L(X(' ✦ ตำนาน: หลายร้อยปีต่อมา ผู้คนเล่าเรื่องคนสวนที่กลายเป็นพระราชา',' ✦ Legend: centuries later, people tell of a gardener who became a king.'));
@@ -3108,7 +3121,7 @@ Object.assign(REGIONS,{
  mem:{n:X('เมมฟิส นครของเทพพทาห์ ตรงที่หุบแม่น้ำไนล์บรรจบสามเหลี่ยมปากแม่น้ำ','Memphis, city of the god Ptah, where the Nile valley meets the Delta'),sc:'egypt',food:2,cold:0,dry:1},
  giz:{n:X('เมืองคนงานที่กีซา ใต้เงาพีระมิดของพระราชา','the workers’ town at Giza, in the shadow of the king’s pyramid'),sc:'egypt',food:2,cold:0,dry:1},
  aby:{n:X('อไบดอส นครศักดิ์สิทธิ์ของเทพโอซิริส','Abydos, holy city of the god Osiris'),sc:'egypt',food:2,cold:0,dry:1},
- the:{n:X('ธีบส์ นครของเทพอามุน','Thebes, city of the god Amun'),sc:'egyc',food:2,cold:0,dry:1},
+ the:{n:X('ธีบส์ เมืองทางใต้ที่ต่อมากลายเป็นนครของเทพอามุน','Thebes, the southern town that later became the city of Amun'),sc:'egyc',food:2,cold:0,dry:1},
  dem:{n:X('เดร์เอล-เมดินา หมู่บ้านช่างผู้สร้างสุสานหลวง','Deir el-Medina, the village of the royal tomb builders'),sc:'egyc',food:1,cold:0,dry:1},
  fay:{n:X('ฟายุม ดินแดนทะเลสาบของเทพจระเข้โซเบค','the Fayum, the lake land of the crocodile god Sobek'),sc:'egypt',food:2,cold:0,dry:1},
  ele:{n:X('เอเลแฟนทีน เกาะชายแดนที่แก่งน้ำตกแห่งแรก','Elephantine, the border island at the First Cataract'),sc:'egyr',food:1,cold:0,dry:1},
@@ -3125,7 +3138,7 @@ const RNOTE6={
  mem:X('ตามตำนาน เมมฟิสถูกสร้างโดยกษัตริย์เมเนสราว 3100 ปีก่อนคริสตกาล ตรงรอยต่อระหว่างหุบแม่น้ำกับสามเหลี่ยมปากแม่น้ำ เป็นเมืองหลวงตลอดราชอาณาจักรเก่า สุสานซักการาของเมืองมีพีระมิดขั้นบันไดของพระเจ้าโจเซอร์ ซึ่งเป็นสิ่งก่อสร้างด้วยหินขนาดใหญ่ชิ้นแรกของโลก','By tradition Memphis was founded by King Menes about 3100 BCE where the valley meets the Delta. It was the capital through the Old Kingdom. Its cemetery at Saqqara holds King Djoser’s Step Pyramid, the world’s first large stone building.'),
  giz:X('พีระมิดสามองค์ที่กีซาสร้างให้พระเจ้าคูฟู คาเฟร และเมนคาวเร ราว 2600–2500 ปีก่อนคริสตกาล นักโบราณคดีขุดพบเมืองของคนงานใกล้ๆ มีโรงอบขนมปัง โรงเบียร์ และกระดูกวัวจำนวนมาก รวมทั้งสุสานของคนงานเอง คนสร้างพีระมิดเป็นคนงานที่จัดเป็นทีมและได้รับอาหาร ไม่ใช่ทาสอย่างที่เคยเชื่อกัน','The three pyramids at Giza were built for Khufu, Khafre and Menkaure about 2600–2500 BCE. Archaeologists have found the workers’ town nearby, with bakeries, breweries and masses of cattle bones, and the workers’ own cemetery. The builders were organised, fed crews, not slaves as was once believed.'),
  aby:X('กษัตริย์องค์แรกๆ ของอียิปต์ถูกฝังที่อไบดอส ต่อมาที่นี่กลายเป็นศูนย์กลางลัทธิบูชาเทพโอซิริส ผู้แสวงบุญทิ้งหม้อถวายไว้นับล้านใบ จนชาวบ้านทุกวันนี้เรียกที่นั่นว่า “อุมม์ เอล-กาอับ” แปลว่า “แม่แห่งหม้อ”','Egypt’s first kings were buried at Abydos, which later became the centre of the cult of Osiris. Pilgrims left offering pots by the million; local people today call the site Umm el-Qa’ab, “mother of pots”.'),
- the:X('ธีบส์ (วาเซต) เป็นนครของเทพอามุน มีวิหารคาร์นัคที่สร้างต่อเติมกันมาเกือบสองพันปี ฝั่งตะวันตกของแม่น้ำเป็นเมืองของคนตาย รวมทั้งหุบผากษัตริย์ในราชอาณาจักรใหม่','Thebes (Waset) was the city of Amun, with the temple of Karnak, added to for nearly two thousand years. Across the river lay the city of the dead, including the Valley of the Kings in the New Kingdom.'),
+ the:X('ธีบส์ (วาเซต) เป็นเมืองเล็กในยุคแรก แล้วกลายเป็นนครของเทพอามุนตั้งแต่ราชอาณาจักรกลาง มีวิหารคาร์นัคที่สร้างต่อเติมกันมาเกือบสองพันปี ฝั่งตะวันตกของแม่น้ำเป็นเมืองของคนตาย รวมทั้งหุบผากษัตริย์ในราชอาณาจักรใหม่','Thebes (Waset) was a small town in early times and became the city of Amun from the Middle Kingdom, with the temple of Karnak, added to for nearly two thousand years. Across the river lay the city of the dead, including the Valley of the Kings in the New Kingdom.'),
  dem:X('เดร์เอล-เมดินาเป็นหมู่บ้านของช่างผู้สร้างและตกแต่งสุสานหลวงในราชอาณาจักรใหม่ มีบ้านราวเจ็ดสิบหลังในกำแพง นักโบราณคดีพบเศษหินและเศษหม้อที่มีตัวหนังสือนับพันชิ้นในหลุมใหญ่หลุมเดียว บันทึกตั้งแต่รายการซักผ้า หนี้ การทะเลาะกัน ไปจนถึงเพลงรัก ผู้ชายที่นี่อ่านออกเขียนได้มากกว่าที่อื่น','Deir el-Medina was the village of the men who cut and decorated the royal tombs in the New Kingdom, with about seventy houses inside its wall. Thousands of inscribed flakes of stone and pottery were found in one great pit, recording laundry lists, debts, quarrels and love songs. Far more of its men could read than elsewhere.'),
  fay:X('ฟายุมเป็นแอ่งทะเลสาบทางตะวันตกของแม่น้ำไนล์ กษัตริย์ราชอาณาจักรกลางระบายน้ำและบุกเบิกที่นาใหม่ที่นี่ เมืองเชเด็ตบูชาเทพจระเข้โซเบค ส่วนเมืองลาฮูนที่อยู่ใกล้ๆ ทิ้งกระดาษปาปิรุสไว้มากมาย รวมทั้งตำราการแพทย์ของผู้หญิงที่เก่าแก่ที่สุดที่รู้จัก','The Fayum is a lake basin west of the Nile. Middle Kingdom kings drained it and opened new fields. The town of Shedet worshipped the crocodile god Sobek, and nearby Lahun left many papyri, including the oldest known medical text about women’s health.'),
  ele:X('เอเลแฟนทีนเป็นเกาะที่แก่งน้ำตกแห่งแรก ชายแดนกับดินแดนนูเบีย ชื่อเดิม “อาบู” แปลว่าช้าง อาจมาจากการค้างาช้าง ที่นี่มีมาตรวัดระดับน้ำไนล์ ซึ่งใช้ทำนายผลผลิตและกำหนดภาษี','Elephantine is an island at the First Cataract, on the border with Nubia. Its old name, Abu, means “elephant”, perhaps from the ivory trade. It had a Nilometer, used to measure the flood, predict the harvest and set taxes.'),
@@ -3152,7 +3165,6 @@ const G6={
 // pre: prefix pattern; s: sexes; e: eras
 const NP6=[
  {pre:0,l:'hotep',th:'โฮเทป',h:'𓊵𓏏𓊪',s:'m',e:['ed','ok','fip','mk','nk'],m:G=>X(G.th+' ทรงพอพระทัย','“'+G.l+' is satisfied”')},
- {pre:0,l:'hotep',th:'โฮเทป',h:'𓊵𓏏𓊪',s:'f',e:['ed','ok'],m:G=>X(G.th+' ทรงพอพระทัย','“'+G.l+' is satisfied”')},
  {pre:0,l:'mose',th:'โมเซ',h:'𓄟𓋴',s:'m',e:['nk'],m:G=>X('ผู้ที่'+G.th+'ให้กำเนิด','“born of '+G.l+'”')},
  {pre:1,l:'Sa',th:'ซา',h:'𓅭',s:'m',e:['fip','mk'],m:G=>X('ลูกชายของ'+G.th,'“son of '+G.l+'”')},
  {pre:1,l:'Sat',th:'ซัต',h:'𓅭𓏏',s:'f',e:['ok','fip','mk'],m:G=>X('ลูกสาวของ'+G.th,'“daughter of '+G.l+'”')},
@@ -3163,7 +3175,7 @@ const NWHOLE6=[
  {s:'m',l:'Nakht',th:'นัคต์',h:'𓈖𓐍𓏏',m:X('“ผู้แข็งแรง”','“the strong one”')},{s:'m',l:'Senbi',th:'เซนบี',h:'𓋴𓈖𓃀',m:X('“ผู้แข็งแรงปลอดภัย”','“healthy one”')},
  {s:'m',l:'Hori',th:'โฮรี',h:'𓅃',m:X('“ผู้เป็นของฮอรัส”','“he of Horus”')},
  {s:'f',l:'Nefret',th:'เนเฟรต',h:'𓄤𓆑𓂋𓏏',m:X('“ผู้งดงาม”','“the beautiful one”')},{s:'f',l:'Henut',th:'เฮนุต',h:'𓎛𓈖𓏏',m:X('“นายหญิง”','“mistress”')},
- {s:'f',l:'Baket',th:'บาเกต',h:'𓅡𓎡𓏏',m:X('“ผู้รับใช้หญิง”','“servant girl”')}];
+ {s:'f',l:'Neithhotep',th:'เนทโฮเทป',h:'𓋋𓊵𓏏𓊪',m:X('“เทพีเนทพอพระทัย”','“Neith is satisfied”')},{s:'f',l:'Baket',th:'บาเกต',h:'𓅡𓎡𓏏',m:X('“ผู้รับใช้หญิง”','“servant girl”')}];
 function gods6(S,e){const city=R6[S.rg]?R6[S.rg].g:'ra';
   if(S.rg==='ama'||(e==='nk'&&S.ya<=3371&&S.ya>=3357&&rnd()<.5))return 'aten';
   const ks=Object.keys(G6).filter(k=>G6[k].e.includes(e));
@@ -3175,7 +3187,7 @@ function genName6(S,sex,e){e=e||era6(S.ya0);
   const p=pick(ps);
   const l=p.pre?p.l+G.l.toLowerCase():G.c+p.l,th=p.pre?p.th+G.th:G.ct+p.th;
   return{l,th,h:G.h+p.h,mean:p.m(G),god:gk}}
-function mkName6(S){const n=genName6(S,S.sex),fa=genName6(S,'m');S.nm6={...n,fa};return X(n.th,n.l)}
+function mkName6(S){const n=genName6(S,S.sex);let fa=genName6(S,'m');for(let i=0;i<8&&fa.l===n.l;i++)fa=genName6(S,'m');S.nm6={...n,fa};return X(n.th,n.l)}
 
 /* ---------- careers ---------- */
 const CAREERS6={
@@ -3287,10 +3299,10 @@ const canWrite6=S=>S.lit>=35||S.ag>=1;
 const NOWRITE6=X('ต้องอ่านเขียนได้ หรือมีของมูลค่าหนึ่งเดเบนไว้จ้างอาลักษณ์','You must read and write, or have a deben’s worth of goods to hire a scribe');
 function doWrite6(S,k){if(S.lit>=35){S.papN++;S.papK[k]=(S.papK[k]||0)+1;return 1}S.ag=Math.max(0,S.ag-1);return 0}
 const wOpt6=(l,run)=>Object.assign(opt(l,run),{lockF:S=>!canWrite6(S),lockT:NOWRITE6});
-const corvee6=(id,deck,a)=>({id,deck,w:4,ch:6,a,rep:6,cond:S=>S.cls!=='elite',t:X('ฤดูน้ำหลาก งานของพระราชา','The flood season: the king’s work'),
+const corvee6=(id,deck,a)=>({id,deck,w:4,ch:6,a,rep:6,cond:S=>S.cls!=='elite'&&S.sex==='m',t:X('ฤดูน้ำหลาก งานของพระราชา','The flood season: the king’s work'),
  xf:S=>{const pyr=era6(S.ya)==='ok'&&['mem','giz','del','aby'].includes(S.rg);return pyr?X('น้ำท่วมทุ่งนาจนมิด ทำนาไม่ได้อีกหลายเดือน เจ้าหน้าที่ของพระราชามาเรียกคนจากทุกหมู่บ้านไปลากหินสร้างพีระมิดที่กีซา','The fields lie under water and no one can farm for months. The king’s officials come to call people from every village to haul stone for the pyramid at Giza.'):X('น้ำท่วมทุ่งนาจนมิด ทำนาไม่ได้อีกหลายเดือน เจ้าหน้าที่มาเรียกคนจากทุกหมู่บ้านไปทำงานให้พระราชา ขุดคลองและสร้างวิหาร','The fields lie under water and no one can farm for months. Officials come to call people from every village to work for the king, digging canals and building temples.')},
- n:X('ในฤดูน้ำหลาก (อาเคต) ราวเดือนกรกฎาคมถึงตุลาคม ทุ่งนาจมน้ำ รัฐจึงเกณฑ์แรงงานไปทำงานก่อสร้าง ทีมคนงานที่กีซามีชื่อเรียกอย่าง “เพื่อนของคูฟู” และ “ขี้เมาของเมนคาวเร” ซึ่งเขียนไว้บนก้อนหิน กระดาษปาปิรุสจากราชอาณาจักรกลางแผ่นหนึ่งบันทึกรายชื่อคนที่หนีงานเกณฑ์ และครอบครัวที่ถูกกักตัวไว้จนกว่าเขาจะกลับมา','In the flood season (Akhet), roughly July to October, the fields were under water and the state called up labour for building. Work gangs at Giza had names like “Friends of Khufu” and “Drunkards of Menkaure”, written on the stones. A Middle Kingdom papyrus lists people who fled their labour duty, and family members held until they returned.'),
- o:[opt(X('ไปทำงานกับทีมของหมู่บ้าน','Go and work with your village gang'),S=>{fx({h:-3,b:4,f:3});if(rnd()<.15){S.inj=1;return X('หินก้อนหนึ่งลื่นทับเท้าคุณ เพื่อนในทีมหามคุณไปหาหมอ ซึ่งพันแผลด้วยผ้าลินินและน้ำผึ้ง','A block slips onto your foot. Your gang carries you to the physician, who binds it with linen and honey.')}return X('งานหนักจนมือพอง แต่ได้กินขนมปัง เบียร์ และบางวันมีเนื้อวัว ตอนกลับบ้าน คุณมีเพื่อนใหม่จากหลายหมู่บ้าน','The work blisters your hands, but there is bread, beer and some days even beef. You come home with friends from many villages.')}),
+ n:X('ในฤดูน้ำหลาก (อาเคต) ราวเดือนกรกฎาคมถึงตุลาคม ทุ่งนาจมน้ำ รัฐจึงเกณฑ์แรงงานไปทำงานก่อสร้าง ทีมคนงานที่สร้างพีระมิดกีซา (ราว 2550 ปีก่อนคริสตกาล) มีชื่อเรียกอย่าง “เพื่อนของคูฟู” และ “ขี้เมาของเมนคาวเร” ซึ่งเขียนไว้บนก้อนหิน กระดาษปาปิรุสจากราชอาณาจักรกลางแผ่นหนึ่งบันทึกรายชื่อคนที่หนีงานเกณฑ์ และครอบครัวที่ถูกกักตัวไว้จนกว่าเขาจะกลับมา','In the flood season (Akhet), roughly July to October, the fields were under water and the state called up labour for building. Work gangs at Giza had names like “Friends of Khufu” and “Drunkards of Menkaure”, written on the stones. A Middle Kingdom papyrus lists people who fled their labour duty, and family members held until they returned.'),
+ o:[opt(X('ไปทำงานกับทีมของหมู่บ้าน','Go and work with your village gang'),S=>{S.corvWent=1;fx({h:-3,b:4,f:3});if(rnd()<.15){S.inj=1;return X('หินก้อนหนึ่งลื่นทับเท้าคุณ เพื่อนในทีมหามคุณไปหาหมอ ซึ่งพันแผลด้วยผ้าลินินและน้ำผึ้ง','A block slips onto your foot. Your gang carries you to the physician, who binds it with linen and honey.')}return X('งานหนักจนมือพอง แต่ได้กินขนมปัง เบียร์ และบางวันมีเนื้อวัว ตอนกลับบ้าน คุณมีเพื่อนใหม่จากหลายหมู่บ้าน','The work blisters your hands, but there is bread, beer and some days even beef. You come home with friends from many villages.')}),
     Object.assign(opt(X('ส่งของขวัญให้เจ้าหน้าที่ ให้คนอื่นไปแทน','Send the official a gift so someone else goes'),S=>{S.ag-=2;fx({p:-1});return X('เจ้าหน้าที่รับของ แล้วขีดชื่อคุณออก มีคนอื่นต้องไปแทน','The official takes the gift and crosses out your name. Someone else goes in your place.')}),{lockF:S=>S.ag<2,lockT:X('ต้องมีของมูลค่า 2 เดเบน','Needs 2 deben in goods')}),
     opt(X('หนีไปซ่อนในบึงปาปิรุส','Run away to hide in the papyrus marshes'),S=>{if(rnd()<.5){fx({b:-8,p:-4});return X('คุณถูกตามจับได้ ระหว่างนั้นครอบครัวของคุณถูกกักตัวไว้แทน','You are tracked down; meanwhile your family has been held in your place.')}fx({b:-3,f:-4});return X('คุณซ่อนตัวกับยุงในบึงจนน้ำลด ไม่มีใครตามมาถึง','You hide with the mosquitoes in the marsh until the water falls. No one comes after you.')})]});
 
@@ -3589,7 +3601,7 @@ E6({a:[12,70],w:1.8,es:1,f:'learn',cond:S=>S.focus==='read'&&S.sinu>=4,x:X('ค�
 /* oral tales (story) */
 E6({a:[6,70],w:1.5,f:'band',cond:S=>S.focus==='story'&&S.lit<50&&era6(S.ya)!=='ed',fxF:S=>{S.swr=1},x:X('คนเล่านิทานเล่าเรื่องกะลาสีเรือแตกที่ติดเกาะ แล้วมีงูยักษ์สีทองที่มีเคราสีลาพิสลาซูลีเลื้อยมาหา','The storyteller tells of a shipwrecked sailor on an island, visited by a giant golden serpent with a beard of lapis lazuli.'),fx:{b:2},once:1}),
 E6({a:[6,70],w:1.5,f:'band',cond:S=>S.focus==='story'&&!!S.swr,x:X('งูยักษ์เล่าให้กะลาสีฟังว่าดาวดวงหนึ่งตกลงมาเผาครอบครัวของมันตายหมด เหลือมันตัวเดียว แล้วส่งกะลาสีกลับบ้านพร้อมของขวัญ','The serpent tells the sailor how a falling star burned its whole family, leaving it alone, and sends him home with gifts.'),fx:{b:2},c:'sad',n:X('“นิทานกะลาสีเรือแตก” เป็นวรรณกรรมจากราชอาณาจักรกลาง และเป็นเรื่องผจญภัยบนเกาะที่เก่าแก่ที่สุดเรื่องหนึ่งของโลก','The Tale of the Shipwrecked Sailor is a Middle Kingdom story, one of the oldest island adventure tales in the world.'),once:1}),
-E6({a:[6,70],w:1.4,f:'band',cond:S=>S.focus==='story',x:X('คนเล่านิทานเล่าเรื่องนักเวทที่ปั้นจระเข้ขี้ผึ้งโยนลงสระ แล้วมันกลายเป็นจระเข้จริงยาวเจ็ดศอก','The storyteller tells of a magician who threw a wax crocodile into a pool, where it became a real one seven cubits long.'),fx:{b:2},n:X('เรื่องนี้มาจากปาปิรุสเวสต์คาร์ ซึ่งรวมนิทานเรื่องนักเวทในราชสำนักของพระเจ้าคูฟู อีกเรื่องหนึ่งเล่าถึงนักเวทที่พับน้ำในทะเลสาบขึ้นมาซ้อนกัน เพื่อหาเครื่องประดับที่หญิงพายเรือทำตกน้ำ','This comes from the Westcar Papyrus, a collection of tales about magicians at King Khufu’s court. Another tells of a magician who folded back the water of a lake to find a pendant a rowing girl had dropped.'),once:1}),
+E6({a:[6,70],w:1.4,f:'band',cond:S=>S.focus==='story'&&['mk','nk'].includes(era6(S.ya)),x:X('คนเล่านิทานเล่าเรื่องนักเวทที่ปั้นจระเข้ขี้ผึ้งโยนลงสระ แล้วมันกลายเป็นจระเข้จริงยาวเจ็ดศอก','The storyteller tells of a magician who threw a wax crocodile into a pool, where it became a real one seven cubits long.'),fx:{b:2},n:X('เรื่องนี้มาจากปาปิรุสเวสต์คาร์ ซึ่งรวมนิทานเรื่องนักเวทในราชสำนักของพระเจ้าคูฟู อีกเรื่องหนึ่งเล่าถึงนักเวทที่พับน้ำในทะเลสาบขึ้นมาซ้อนกัน เพื่อหาเครื่องประดับที่หญิงพายเรือทำตกน้ำ','This comes from the Westcar Papyrus, a collection of tales about magicians at King Khufu’s court. Another tells of a magician who folded back the water of a lake to find a pendant a rowing girl had dropped.'),once:1}),
 ];
 const AMB6=[X('นกช้อนหอยเดินจิกโคลนริมคลอง','Ibises probe the mud along the canal.'),X('ฮิปโปส่งเสียงคำรามต่ำๆ จากแม่น้ำในความมืด','A hippo grunts from the dark river.'),X('จระเข้นอนอ้าปากอาบแดดอยู่บนสันทราย','A crocodile basks open-jawed on a sandbank.'),
  X('เรือใบกางใบเต็มที่ แล่นทวนน้ำขึ้นใต้ตามลมเหนือ','Boats with full sails run south against the current on the north wind.'),X('กลิ่นขนมปังจากเตาอบลอยไปทั่วหมู่บ้าน','The smell of baking bread drifts through the village.'),X('ลาแบกกระสอบข้าวเดินเรียงแถวไปที่ยุ้ง','A line of donkeys carries sacks of grain to the granary.'),
@@ -3601,7 +3613,7 @@ function amb6(){const e=era6(S.ya);const extra=e==='nk'?[X('คันโยก�
 /* ---------- endings ---------- */
 const EPI6={
  ed:X('กษัตริย์ที่รวมอียิปต์จะสืบทอดต่อมาอีกราวสามสิบราชวงศ์ ตลอดเกือบสามพันปี อักษรที่คนรุ่นของคุณเริ่มเขียน จะถูกสลักบนวิหารต่อไปจนถึง ค.ศ. 394 ซึ่งเป็นจารึกอักษรภาพไฮโรกลิฟชิ้นสุดท้ายที่รู้จัก ที่เกาะฟิเล','The kings who united Egypt will be followed by some thirty dynasties over nearly three thousand years. The signs your generation began to write will be carved on temples until 394 CE, the last known hieroglyphic inscription, on the island of Philae.'),
- ok:X('พีระมิดที่สร้างในชั่วชีวิตของคุณจะตั้งอยู่ต่อไปกว่า 4,500 ปี ในบรรดาเจ็ดสิ่งมหัศจรรย์ของโลกยุคโบราณ มหาพีระมิดเป็นสิ่งเดียวที่ยังตั้งอยู่','The pyramids built in your lifetime will stand for more than 4,500 years. Of the Seven Wonders of the ancient world, only the Great Pyramid still stands.'),
+ ok:X('พีระมิดของยุคคุณจะตั้งอยู่ต่อไปกว่า 4,500 ปี ในบรรดาเจ็ดสิ่งมหัศจรรย์ของโลกยุคโบราณ มหาพีระมิดเป็นสิ่งเดียวที่ยังตั้งอยู่','The pyramids of your age will stand for more than 4,500 years. Of the Seven Wonders of the ancient world, only the Great Pyramid still stands.'),
  fip:X('หลังหลายปีแห่งความอดอยากและสงครามกลางเมือง กษัตริย์จากธีบส์จะรวมแผ่นดินอีกครั้ง นักเขียนรุ่นหลังมองย้อนมาที่ยุคของคุณว่าเป็นยุคแห่งความวุ่นวาย และแต่งบทคร่ำครวญถึงมัน','After years of hunger and civil war, a king from Thebes will reunite the land. Later writers looked back on your age as a time of chaos, and wrote laments about it.'),
  mk:X('นักเขียนในยุคของคุณแต่งนิทานและคำสอนที่ชาวอียิปต์คัดลอกในโรงเรียนต่อมาอีกนับพันปี ภาษาอียิปต์ในยุคนี้ถือเป็นภาษาคลาสสิก ที่นักเรียนอียิปต์วิทยาทุกวันนี้ยังเรียนเป็นภาษาแรก','Writers of your age created tales and teachings that Egyptians would copy in school for a thousand years. The language of this period is the classical Egyptian that Egyptology students still learn first today.'),
  nk:X('จักรวรรดิอียิปต์จะแผ่จากนูเบียถึงซีเรีย แล้วค่อยๆ หดตัวลง ภายในหนึ่งพันปี ชาวเปอร์เซีย กรีก และโรมันจะเข้ามาปกครองแม่น้ำไนล์ แต่สุสานที่คนรุ่นของคุณเจาะไว้ในภูเขา จะดึงดูดผู้คนจากทั่วโลกให้มาชม','Egypt’s empire will reach from Nubia to Syria, then shrink. Within a thousand years Persians, Greeks and Romans will rule the Nile. Yet the tombs your age cut into the hills will draw visitors from all over the world.')};
@@ -4088,7 +4100,7 @@ const SAW8={
  tiger:X(' เสือหายไปจากลุ่มแม่น้ำสินธุนานแล้ว',' Tigers vanished from the Indus valley long ago.'),
  gharial:X(' ตะโขงแทบหายไปจากแม่น้ำสินธุ และใกล้สูญพันธุ์อย่างยิ่ง',' The gharial has nearly vanished from the Indus and is critically endangered.')};
 const RELIG8={bath:X('สระน้ำใหญ่','the Great Bath'),fig:X('ตุ๊กตาดินเผารูปผู้หญิง','the clay women'),horned:X('ตรารูปคนมีเขา','the horned figure'),fire:X('หลุมไฟ','the fire pits'),pipal:X('ใบโพธิ์','the pipal leaf'),procession:X('ขบวนแห่สัตว์เขาเดียว','the procession of the one-horned beast'),burial:X('การฝังศพหันหัวไปทางเหนือ','burials facing north')};
-function epi8(S){const e=era8(S.ya0);let s=L(EPI8[e]);
+function epi8(S){const e=era8(S.ya0);let s=L(EPI8[e]);const forgot=Math.round((Math.min(S.ya,3925)-102)/100)*100;
   const n=S.sealN||0;
   if(n>0){let k=0;for(let i=0;i<Math.min(n,300);i++)if(rnd()<.2)k++;S.sealSurv=k;
     s+=k?L(X(' คุณแกะตราประทับไว้ราว '+n+' ชิ้น ในเกมนี้ '+k+' ชิ้นรอดอยู่ใต้ดิน อาจเป็นหนึ่งในจารึกสินธุกว่า 5,000 ชิ้นที่ขุดพบแล้ว และยังไม่มีใครอ่านออก',' You carved some '+n+' seals; in this game '+k+' survive underground. One may be among the more than 5,000 Indus inscriptions already found, which no one can yet read.'))
@@ -4096,7 +4108,7 @@ function epi8(S){const e=era8(S.ya0);let s=L(EPI8[e]);
   const rs=Object.keys(S.relig||{});
   if(rs.length){const sep=lang==='th'?' ':/^(zh|ja)$/.test(lang)?'、':', ';s+=L(X(' ตลอดชีวิตคุณเห็น {0} นักวิชาการทุกวันนี้ยังเถียงกันว่าสิ่งเหล่านี้หมายความว่าอะไร',' In your life you saw {0}. Scholars today still argue about what they meant.')).replace('{0}',rs.map(k=>L(RELIG8[k])).join(sep))}
   for(const k of ['rhino','elephant','tiger','gharial'])if(S.saw&&S.saw[k])s+=L(SAW8[k]);
-  if(['m2','late'].includes(era8(S.ya0))||S.left8||S.adapt8)s+=L(LESSON8)+(S.adapt8>0?L(X(' คุณเองก็เป็นหนึ่งในคนที่ปรับตัว',' You yourself were one of those who adapted.')):'');return s+L(EPI8T)}
+  if(['m2','late'].includes(era8(S.ya0))||S.left8||S.adapt8)s+=L(LESSON8)+(S.adapt8>0?L(X(' คุณเองก็เป็นหนึ่งในคนที่ปรับตัว',' You yourself were one of those who adapted.')):'');return s+L(EPI8T).replace(/3([,.]?)700/g,(m,sep)=>sep?Math.floor(forgot/1000)+sep+String(forgot%1000).padStart(3,'0'):String(forgot))}
 function fun8Note(S){return X('ชาวสินธุมักฝังศพนอนหงาย หันหัวไปทางเหนือ พร้อมหม้อใส่อาหารและเครื่องดื่ม และเครื่องประดับ เช่น กำไลเปลือกหอยและลูกปัด สุสานเรียบง่ายเมื่อเทียบกับอียิปต์หรือเมโสโปเตเมีย ไม่พบสุสานหลวงที่หรูหรา ในยุคตอนปลายที่สุสาน H ของฮารัปปา บางครั้งกระดูกถูกเก็บในโถเขียนลาย หม้อบางใบวาดรูปนกยูงแบกคนตัวเล็กๆ นักวิชาการบางคนอ่านว่าเป็นการเดินทางของวิญญาณ',
  'Indus people usually buried their dead lying on their backs with the head to the north, with pots of food and drink and ornaments such as shell bangles and beads. Graves were simple compared with Egypt or Mesopotamia, and no lavish royal tombs have been found. Late on, in Harappa’s Cemetery H, bones were sometimes placed in painted urns; some show peacocks carrying tiny figures, which some scholars read as the soul’s journey.')}
 function fun8Opts(S,o,done,lead){
@@ -4249,6 +4261,11 @@ const CARNOTE10=X('แผ่นอักษรลีเนียร์บีบ�
 const CLS10={elite:X('ครอบครัวในวัง ใกล้ชิดกษัตริย์ (วานักซ์)','a palace family close to the king (the wanax)'),free:X('ครอบครัวชาวบ้าน มีที่ดินของตัวเอง','a family of common people with land of their own'),dep:X('คนงานของวัง ได้รับปันส่วนข้าวและมะเดื่อ','palace workers paid in rations of grain and figs'),slave:X('ทาส (โดเอโร) ของวังหรือของเทวสถาน','slaves (do-e-ro) of the palace or a shrine')};
 const CLSNOTE10=X('แผ่นอักษรลีเนียร์บีที่ไพลอสบันทึกผู้หญิงหลายร้อยคนกับลูกๆ แยกตามงาน เช่น บดข้าว ปั่นด้าย พร้อมปันส่วนข้าวและมะเดื่อ หลายคนมีชื่อตามดินแดนฝั่งตะวันออกของทะเล ซึ่งอาจเป็นเชลยหรือทาส มีคำว่า “โดเอโร” ที่แปลว่าทาส และ “วานักซ์” ที่แปลว่ากษัตริย์','Linear B tablets at Pylos list hundreds of women and their children by task, such as grinding grain and spinning, with rations of grain and figs. Many are named after lands across the sea to the east and may have been captives or slaves. The tablets use do-e-ro for slave and wa-na-ka (wanax) for king.');
 
+const PAL10=S=>{const e=era10(S.ya);return e==='min'||e==='myc'||(e==='col'&&S.ya>3185&&!S.burn10)};
+{const A=CAREERS10.scribe.L,P=A[2],D=X('คนที่ยังจำวิธีขีดเครื่องหมายนับแกะได้','the one who still remembers the marks for counting sheep');Object.defineProperty(A,2,{get:()=>S&&S.ch===10&&!PAL10(S)?D:P})}
+const CLS10D={elite:X('ครอบครัวหัวหน้าท้องถิ่น (บาซิเลอุส)','the family of a local chief (basileus)'),free:X('ครอบครัวชาวบ้าน มีที่ดินของตัวเอง','a family of common people with land of their own'),dep:X('คนไร้ที่ดินที่รับจ้างทำนาให้คนอื่น','landless people who work other people’s fields'),slave:X('ทาสในบ้านของคนอื่น','slaves in another family’s house')};
+const CLSNOTE10D=X('หลังวังล่มสลาย ไม่มีปันส่วนของวังและไม่มีอาลักษณ์อีกแล้ว อำนาจตกไปอยู่กับหัวหน้าท้องถิ่น คำว่า “บาซิเลอุส” เดิมในแผ่นลีเนียร์บีเป็นแค่ตำแหน่งเล็กๆ ในวัง (คาซิเรอุ) ต่อมากลายเป็นคำที่แปลว่ากษัตริย์','After the palaces fell, there were no palace rations and no scribes. Power passed to local chiefs: the word basileus, once a minor palace title in Linear B (qa-si-re-u), later came to mean king.');
+const cls10=S=>PAL10(S)?CLS10[S.cls]:CLS10D[S.cls];const clsnote10=S=>PAL10(S)?CLSNOTE10:CLSNOTE10D;
 function init10(){const e=era10(S.ya0);
   S.era=e;S.cls=weighted([['elite',.05],['free',.58],['dep',.27],['slave',.1]]);S.settled=1;S.roleNo=1;
   S.lit=S.cls==='elite'?6:0;S.schOK=S.cls==='elite'?(rnd()<.5?1:0):(rnd()<.06?1:0);S.tabN=0;S.baked=0;S.burn10=0;
@@ -4342,7 +4359,7 @@ const DEC_IN10=[
  n:X('ภาพเขียนฝาผนังที่อโครตีรีเป็นรูปเด็กสาวเก็บดอกหญ้าฝรั่น หญ้าฝรั่นใช้ย้อมผ้าและอาจใช้เป็นยา ภาพจากเกาะเธรารอดมาได้เพราะถูกเถ้าภูเขาไฟฝังไว้','A wall painting at Akrotiri shows girls gathering saffron. Saffron dyed cloth and may have been used as medicine. The paintings of Thera survived because volcanic ash buried them.'),
  o:[opt(X('เก็บจนเต็มตะกร้า','Pick until the basket is full'),S=>{fx({cr:2,f:1});return X('นิ้วของคุณเปื้อนสีส้มไปหลายวัน','Your fingers are stained orange for days.')}),
     opt(X('ไล่จับแพะป่าบนเนิน','Chase the wild goats on the slope'),S=>{fx({sv:3,b:2});S.saw.agrimi=1;return X('แพะป่าเขาโค้งยาวกระโดดจากหินไปหินจนคุณตามไม่ทัน','A wild goat with long curved horns bounds from rock to rock far faster than you.')})]},
-{id:'c10_laby',deck:'child',w:3,ch:10,a:[5,12],cond:S=>['kno','aeg'].includes(S.rg)&&era10(S.ya)!=='min',t:X('เจ้าแม่แห่งเขาวงกต','The Mistress of the Labyrinth'),
+{id:'c10_laby',deck:'child',w:3,ch:10,a:[5,12],cond:S=>['kno','aeg'].includes(S.rg)&&era10(S.ya)!=='min'&&PAL10(S),t:X('เจ้าแม่แห่งเขาวงกต','The Mistress of the Labyrinth'),
  x:X('แม่พาคุณไปถวายน้ำผึ้งหนึ่งไหที่วัง อาลักษณ์จดลงแผ่นดินเหนียวว่า “แด่เจ้าแม่แห่งเขาวงกต”','Your mother takes a jar of honey to the palace as an offering. A scribe writes on a clay tablet: “to the Mistress of the Labyrinth”.'),
  n:X('แผ่นอักษรลีเนียร์บีที่คนอสซอสชิ้นหนึ่งบันทึกการถวายน้ำผึ้งแด่ “ดาปูรีโตโย โปตินียา” ซึ่งมักอ่านว่า “เจ้าแม่แห่งเขาวงกต” คำว่าเขาวงกตอาจมาจากคำว่า “ลาบรีส” ขวานสองคมที่เป็นสัญลักษณ์ศักดิ์สิทธิ์ของชาวมิโนอัน แต่ข้อนี้ยังถกเถียงกัน','A Linear B tablet from Knossos records an offering of honey to “da-pu-ri-to-jo po-ti-ni-ja”, usually read as “the Mistress of the Labyrinth”. The word labyrinth may come from labrys, the double axe that was a sacred Minoan symbol, but this is debated.'),
  o:[opt(X('ถามว่าเขาวงกตอยู่ที่ไหน','Ask where the labyrinth is'),S=>{fx({kn:3});return X('อาลักษณ์หัวเราะแล้วชี้ไปรอบๆ วังที่มีห้องหลายร้อยห้อง','The scribe laughs and waves at the palace around you, with its hundreds of rooms.')}),
@@ -4352,7 +4369,7 @@ const DEC_IN10=[
  n:X('หมวกเขี้ยวหมูป่าพบในสุสานไมซีเนหลายแห่ง และกวีโฮเมอร์บรรยายหมวกแบบนี้ไว้ในอีเลียด ซึ่งแต่งขึ้นหลังจากนั้นราว 500 ปี แสดงว่าความทรงจำบางอย่างจากยุคนี้ถูกส่งต่อผ่านบทเพลงมาหลายร้อยปี','Boar’s-tusk helmets have been found in many Mycenaean tombs, and Homer describes one in the Iliad, composed some 500 years later. Some memories of this age were passed down in song for centuries.'),
  o:[opt(X('ขอไปล่าหมูป่าด้วย','Ask to go on the boar hunt'),S=>{if(rnd()<.2){fx({h:-8});S.inj=1;return X('หมูป่าตัวผู้พุ่งเข้าใส่ ขาคุณเป็นแผลลึก','A boar charges and gashes your leg.')}fx({sv:4});return X('คุณได้เขี้ยวมาหนึ่งคู่ ลุงเย็บมันไว้ตรงหน้าผากหมวก','You come back with a pair of tusks, and your uncle sews them on the front of the helmet.')}),
     opt(X('ลองสวมหมวก','Try the helmet on'),S=>{fx({b:3});return X('หมวกหนักจนคุณเงยหน้าไม่ขึ้น','It is so heavy you can hardly lift your head.')})]},
-{id:'y10_school',deck:'youth',w:4,ch:10,a:[11,17],cond:S=>S.cls!=='slave'&&era10(S.ya)!=='dark'&&S.lit<20,t:X('ลูกศิษย์อาลักษณ์','The scribe’s pupil'),
+{id:'y10_school',deck:'youth',w:4,ch:10,a:[11,17],cond:S=>S.cls!=='slave'&&PAL10(S)&&S.lit<20,t:X('ลูกศิษย์อาลักษณ์','The scribe’s pupil'),
  x:X('อาลักษณ์ของวังต้องการลูกศิษย์ เขาบอกว่าต้องจำสัญลักษณ์เกือบร้อยตัว แต่ละตัวคือหนึ่งพยางค์ และต้องเขียนเร็วก่อนดินจะแห้ง','A palace scribe needs a pupil. He says you must learn nearly a hundred signs, each one a syllable, and write fast before the clay dries.'),
  nf:S=>era10(S.ya)==='min'?X('อักษรลีเนียร์เอของชาวมิโนอันพบบนแผ่นดินเหนียวและภาชนะกว่าพันชิ้น แต่ยังอ่านไม่ออก เพราะเราไม่รู้ว่าเป็นภาษาอะไร','Linear A, the Minoan script, survives on more than a thousand tablets and objects, but it still cannot be read because we do not know the language.'):X('อักษรลีเนียร์บีมีสัญลักษณ์พยางค์ราว 90 ตัวกับภาพสัญลักษณ์ของสิ่งของ ในปี 1952 ไมเคิล เวนทริส สถาปนิกชาวอังกฤษ อ่านออกว่าเป็นภาษากรีกยุคแรก โดยต่อยอดงานของอลิซ โคเบอร์ แผ่นดินเหนียวไม่ได้ตั้งใจเก็บไว้นาน มันรอดมาได้เพราะถูกไฟที่เผาวังอบจนแข็ง','Linear B has about 90 syllable signs plus pictures for goods. In 1952 Michael Ventris, an English architect, showed it was an early form of Greek, building on the work of Alice Kober. The tablets were not meant to last; they survived because the fires that burned the palaces baked them hard.'),
  o:[opt(X('เป็นลูกศิษย์','Become his pupil'),S=>{S.schOK=1;S.lit=clamp(S.lit+12,0,100);fx({kn:4});return X('ปีแรกคุณนับแกะแทนเขาได้แล้ว','By the end of the first year you can count the sheep for him.')}),
@@ -4377,7 +4394,7 @@ const DEC_IN10=[
  n:X('แผ่นดินเหนียวที่คนอสซอสบันทึกแกะหลายหมื่นตัวกับคนเลี้ยงแต่ละคน และจำนวนขนแกะที่ต้องส่ง ถ้าส่งไม่ครบ อาลักษณ์จะจดคำว่า “โอเปโร” แปลว่าค้างหรือขาด','The Knossos tablets record tens of thousands of sheep with each shepherd and the wool each was due to deliver. When someone fell short, the scribe wrote o-pe-ro, “owing” or “lacking”.'),
  o:[opt(X('ส่งให้ครบ แม้ครอบครัวจะเหลือน้อย','Deliver it all, even if your family is left short'),S=>{fx({f:-4,p:3});return X('ชื่อคุณถูกจดว่าครบ และไม่มีใครถามอะไรอีก','Your name is written as complete, and no one asks anything more.')}),
     opt(X('ซ่อนแกะบางตัวไว้บนเขา','Hide some sheep up in the hills'),S=>{if(rnd()<.35){fx({p:-6,b:-5});S.debt+=3;return X('คนเลี้ยงแกะของวังเจอแกะที่ซ่อนไว้ คุณถูกจดว่าค้างไปอีกสองปี','The palace herdsmen find the hidden sheep, and you are written down as owing for two more years.')}fx({f:4});return X('ครอบครัวมีขนแกะพอทอผ้าใช้ในหน้าหนาว','Your family has wool enough to weave for the winter.')})]},
-{id:'a10_ration',deck:'adult',w:5,ch:10,a:[16,55],cond:S=>S.cls==='dep'||S.cls==='slave',t:X('ปันส่วน','The rations'),
+{id:'a10_ration',deck:'adult',w:5,ch:10,a:[16,55],cond:S=>(S.cls==='dep'||S.cls==='slave')&&S.sex==='f'&&PAL10(S),t:X('ปันส่วน','The rations'),
  x:X('ทุกเดือน คนงานในห้องบดข้าวของวังเข้าแถวรับปันส่วนข้าวสาลีกับมะเดื่อ เด็กได้ครึ่งหนึ่งของผู้ใหญ่ ปีนี้อาลักษณ์บอกว่าวังมีข้าวไม่พอ','Every month the women of the palace grinding room line up for rations of wheat and figs; children get half. This year the scribe says the palace is short of grain.'),
  n:CLSNOTE10,
  o:[opt(X('แบ่งส่วนของตัวเองให้ลูก','Give part of your share to your children'),S=>{fx({f:-5,b:4});return X('คุณผอมลง แต่ลูกๆ ยังวิ่งเล่นได้','You grow thinner, but your children still run and play.')}),
@@ -4564,7 +4581,19 @@ function drawAct10(ctx,o,act,gy,now,P){const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx
   return null}
 
 DEC.push(...DEC_IN10,...DEC_CAR10);EV.push(...EV10);
+{const KRX=/grandchild|grandchildren|\byour (children|child|son|daughter|sons|daughters)\b|\bthe children get half/i,txt=e=>[e.x,e.t,e.n].map(v=>v&&v.en||'').join(' ')+' '+(e.o||[]).map(o=>(o.l&&o.l.en)||(o.t&&o.t.en)||'').join(' ');
+ const KID_IDS=new Set(['a6_coffin','a6_lettdead','a10_strangers']);
+ for(const e of [...EV,...DEC]){if(!KRX.test(txt(e))&&!KID_IDS.has(e.id))continue;if(/^(c_|c\d|y\d|y_)/.test(e.id||'')||e.deck==='child')continue;const c=e.cond;e.cond=c?(S=>S.kids.length>0&&c(S)):(S=>S.kids.length>0)}
+ const RRX=/heavy rain|downpour|pouring rain|storm of rain|rain pours/i;for(const e of EV){if(!RRX.test(e.x&&e.x.en||''))continue;const c=e.cond;e.cond=c?(S=>S.yt!=='dry'&&S.dis!=='drought'&&c(S)):(S=>S.yt!=='dry'&&S.dis!=='drought')}}
+const PALEO5=/stone tool|hunter|gatherer|mammoth|\bhides?\b|\bhail\b|fire from the sky|before (people|anyone) knew how to make fire|land and (the )?herds/i;
+if(CLASSM)legOn=0;
 let chosenCar10=store.get('sit.car10','');if(chosenCar10&&!CAREERS10[chosenCar10])chosenCar10='';
+const INF5=X('ในสังคมก่อนยุคใหม่ การศึกษาที่รวบรวมข้อมูลจากหลายสังคมพบว่าเด็กราว 1 ใน 4 ตายก่อนอายุหนึ่งขวบ และเกือบครึ่งตายก่อนเป็นวัยรุ่น ประเทศไทยวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ลองคิดดูว่าอะไรบ้างที่ทำให้เปลี่ยนไปขนาดนี้ ',
+ 'Studies combining data from many pre-modern societies found that about 1 in 4 children died before their first birthday, and nearly half before reaching their teens. In Thailand today, fewer than 1 in 100 children die before age five. Think about what changed to make that difference. ');
+REFLECT4[5]=X('เด็กอายุห้าขวบในเมืองอิฐดิบ ได้ยินเสียงอะไรเป็นอย่างแรกทุกเช้า','What is the first sound a five-year-old hears each morning in a mud-brick city?');
+REFLECT6[5]=X('เด็กห้าขวบริมแม่น้ำไนล์ คงกลัวอะไรมากที่สุด และชอบอะไรมากที่สุด','What might a five-year-old by the Nile fear most, and love most?');
+REFLECT8[5]=X('ถ้าเด็กคนนี้วาดรูปบนพื้นดิน เขาจะวาดอะไร','If this child drew a picture in the dust, what would it be?');
+REFLECT10[5]=X('เด็กห้าขวบริมทะเล เห็นเรือแปลกหน้าเข้าท่า เขาคิดว่าเรือมาจากไหน','A five-year-old by the sea watches a strange ship come in. Where does the child think it came from?');
 /* ---------- v0.13b: collapse from natural change, a lesson ---------- */
 DEC.push({id:'a8_crops',deck:'adult',w:6,ch:8,a:[18,65],cond:S=>(era8(S.ya)==='late'||(era8(S.ya)==='m2'&&S.ya<=4225))&&S.field,t:X('ฝนที่เปลี่ยนไป','The rains that changed'),
  x:X('สามปีแล้วที่แม่น้ำไม่ล้นตลิ่ง ข้าวสาลีหน้าหนาวขึ้นไม่เต็มนา คนแปลกหน้าจากทางตะวันออกบอกว่าพวกเขาปลูกข้าวฟ่างกับข้าวเจ้าตอนฝนหน้าร้อนแทน','For three years the river has not spilled over its banks, and the winter wheat comes up thin. A stranger from the east says his people now sow millet and rice in the summer rains instead.'),
@@ -4750,7 +4779,7 @@ let rafOn=false;
 const mamN=()=>S.ch===2&&S.R.mam?((S.ya0-S.age)<13500?1:2):0;
 function sceneOpts(t){const ya=S.ya0-S.age;const cold=S.R.cold;
   return{sc:S.R.sc,vr:S.vr==='sgrass'&&ya<11700?'jungle':S.vr,seed:S.seed,tm:((t||Date.now())/14000)%1,t,act:S.scAct&&S.scAct.age===S.age?S.scAct.act:S.age<5?'fire':S.focus==='job'&&S.car?CARS()[S.car].scene:((civ(S.ch)&&(ACTS[S.focus]||{})['scene'+S.ch])||(ACTS[S.focus]||{}).scene||'fire'),stage:stage(S.age),
-    people:clamp(Math.round(S.b/15),2,6)+(S.rank>=2?1:0)+(S.rank>=3?1:0),lead:S.rank>=2,dog:S.dog,hut:S.hut,vill:S.ch===3&&!!S.settled,field:(S.ch===3||civ(S.ch))&&!!S.field,city:S.ch===4,era4:S.ch===4?era4(ya):null,egy:S.ch===6,era6:S.ch===6?era6(ya):null,ind8:S.ch===8,aeg10:S.ch===10,vil10:S.ch===10&&S.rg==='aeg',myk10:S.ch===10&&S.rg==='myk',uga10:S.ch===10&&S.rg==='uga',thr10:S.ch===10&&S.rg==='thr',sea10:S.ch===10&&S.rg!=='myk',burn10:S.ch===10&&!!S.burn10,ani10:S.ch===10&&S.sc10a&&S.sc10a.age===S.age?S.sc10a.k:null,vil8:S.ch===8&&S.rg==='vil',cit8:S.ch===8&&['moh','har','dho','kal','rak'].includes(S.rg),bath8:S.ch===8&&S.rg==='moh'&&era8(ya)!=='early',dho8:S.ch===8&&S.rg==='dho',ani8:S.ch===8&&S.sc8a&&S.sc8a.age===S.age?S.sc8a.k:null,school:S.focus==='school',pyr:S.ch===6&&['giz','mem','del'].includes(S.rg)?(ya<=4560?2:(ya<=4614&&S.rg!=='del')?1:0):0,step:S.ch===6&&S.rg==='mem'&&ya<=4690&&ya>4614,pylon:S.ch===6&&['the','aby','ele','ama'].includes(S.rg)&&['mk','nk'].includes(era6(ya)),obel:S.rg==='the'&&S.ch===6&&era6(ya)==='nk',rocks:S.rg==='ele',tombs:S.ch===6&&['the','dem'].includes(S.rg),ani6:S.ch===6&&S.sc6a&&S.sc6a.age===S.age?S.sc6a.k:null,bab:S.rg==='bab',hg:S.hg,penK:S.pen&&S.pen.k,herd:(S.ch===3||civ(S.ch))?Object.keys(S.herd).filter(k=>S.herd[k]>0).flatMap(k=>Array(Math.min(3,S.herd[k])).fill(k)):[],hand:S.hand,handKid:S.handKid,spirit:S.spirit,moai:S.rg==='rap'&&ya<=760,mam:mamN(),
+    people:clamp(Math.round(S.b/15),2,6)+(S.rank>=2?1:0)+(S.rank>=3?1:0),lead:S.rank>=2,dog:S.dog,hut:S.hut,vill:S.ch===3&&!!S.settled,field:(S.ch===3||civ(S.ch))&&!!S.field,city:S.ch===4,era4:S.ch===4?era4(ya):null,egy:S.ch===6,era6:S.ch===6?era6(ya):null,ind8:S.ch===8,aeg10:S.ch===10,vil10:S.ch===10&&S.rg==='aeg',myk10:S.ch===10&&S.rg==='myk',uga10:S.ch===10&&S.rg==='uga',thr10:S.ch===10&&S.rg==='thr',sea10:S.ch===10&&S.rg!=='myk',burn10:S.ch===10&&(!!S.burn10||!PAL10(S)),ani10:S.ch===10&&S.sc10a&&S.sc10a.age===S.age?S.sc10a.k:null,vil8:S.ch===8&&S.rg==='vil',cit8:S.ch===8&&['moh','har','dho','kal','rak'].includes(S.rg),bath8:S.ch===8&&S.rg==='moh'&&era8(ya)!=='early',dho8:S.ch===8&&S.rg==='dho',ani8:S.ch===8&&S.sc8a&&S.sc8a.age===S.age?S.sc8a.k:null,school:S.focus==='school',pyr:S.ch===6&&['giz','mem','del'].includes(S.rg)?(ya<=4560?2:(ya<=4614&&S.rg!=='del')?1:0):0,step:S.ch===6&&S.rg==='mem'&&ya<=4690&&ya>4614,pylon:S.ch===6&&['the','aby','ele','ama'].includes(S.rg)&&['mk','nk'].includes(era6(ya)),obel:S.rg==='the'&&S.ch===6&&era6(ya)==='nk',rocks:S.rg==='ele',tombs:S.ch===6&&['the','dem'].includes(S.rg),ani6:S.ch===6&&S.sc6a&&S.sc6a.age===S.age?S.sc6a.k:null,bab:S.rg==='bab',hg:S.hg,penK:S.pen&&S.pen.k,herd:(S.ch===3||civ(S.ch))?Object.keys(S.herd).filter(k=>S.herd[k]>0).flatMap(k=>Array(Math.min(3,S.herd[k])).fill(k)):[],hand:S.hand,handKid:S.handKid,spirit:S.spirit,moai:S.rg==='rap'&&ya<=760,mam:mamN(),
     ash:S.toba&&S.R.near&&ya>73990,wx:S.wx,yt:S.yt,dis:S.dis,pac:S.R.pac,hk:huntKind(),
     snowGround:!!cold&&(prog<.35||(S.yt==='cold'&&prog<.6)||cold>=2&&prog<.45),snowFall:!!cold&&S.wx&&S.wx.snow&&prog<.3}}
 /* ================= v0.11 SOUND: everything synthesized with Web Audio, no files ================= */
@@ -4996,7 +5025,7 @@ function renderAvatar(){const a=$('#pAvatar');if(!a||!S)return;const key=S.age+'
 /* ================= v0.12 CONTENT: pyramid crews, shared stories, the farming trap, money as trust ================= */
 const pyrEra=S=>era6(S.ya)==='ok'&&['mem','giz','del','aby'].includes(S.rg);
 DEC.push(
-{id:'a6_crew',deck:'adult',w:10,ch:6,a:[16,45],cond:S=>pyrEra(S)&&S.cls!=='elite'&&(!S.car||['farmer','herder','fisher'].includes(S.car)),
+{id:'a6_crew',deck:'adult',w:10,ch:6,a:[16,45],cond:S=>pyrEra(S)&&S.cls!=='elite'&&!!S.corvWent&&(!S.car||['farmer','herder','fisher'].includes(S.car)),
  t:X('อยู่ต่อที่กีซาไหม','Stay on at Giza?'),
  x:X('ฤดูลากหินของคุณใกล้จบแล้ว หัวหน้าทีมบอกว่างานหลวงต้องการคนที่อยู่ทั้งปี ทั้งช่างสกัดหิน คนลากหิน และคนเรือ ทุกคนได้กินจากโรงขนมปังและโรงเบียร์ของพระราชา',
      'Your season of hauling stone is ending. The overseer of your gang says the king’s works need people who stay all year: stone-cutters, haulers and boatmen, all fed from the royal bakeries and breweries.'),
@@ -5098,7 +5127,8 @@ function renderHome(){
   const CSH=chap===4?CAREERS4:chap===6?CAREERS6:chap===8?CAREERS8:chap===10?CAREERS10:CAREERS,ccH=chap===4?chosenCar4:chap===6?chosenCar6:chap===8?chosenCar8:chap===10?chosenCar10:chosenCar;$('#carField').hidden=chap!==3&&chap!==4&&chap!==6&&chap!==8&&chap!==10;$('#carChips').innerHTML='<button data-car="" aria-pressed="'+(!ccH)+'">'+t('carRandom')+'</button>'+Object.keys(CSH).map(k=>'<button data-car="'+k+'" aria-pressed="'+(k===ccH)+'">'+esc(L(CSH[k].n))+'</button>').join('');
   const lives=store.get('sit.lives',[]);
   $('#past').innerHTML=lives.length?lives.slice(0,12).map(l=>{const sp=SP[l.sp];if(!sp||!REGIONS[l.rg])return'';return'<li><span class="t">'+L(sp.n)+(l.ti?' · '+esc(L(l.ti)):'')+'</span><span class="a num">'+t('cardAge',{a:l.age})+'</span><span class="s">'+L(REGIONS[l.rg].n)+(l.ya?' · '+t('yearsAgo',{n:fmt(l.ya)}):'')+' · '+L(CAUSE[l.cause])+'</span></li>'}).join(''):'<li><span class="s">'+t('noPast')+'</span></li>';
-  $('#sources').innerHTML='<p><b>'+t('sources')+'</b></p><p>'+t('src1')+' <a href="https://www.prb.org/articles/how-many-people-have-ever-lived-on-earth/" target="_blank" rel="noopener">PRB</a></p><p>'+t('src2')+'</p><p>'+t('src3')+'</p><p>'+t('src4')+'</p><p>'+t('src5')+'</p><p>'+t('src6')+'</p><p>'+t('src7')+'</p><p>'+t('src8')+'</p><p>'+t('src9')+'</p>';
+  {const b=document.querySelector('#home .brand');if(b)b.textContent='SAPIENS IN TIME'+(CLASSM?' · '+L(X('โหมดห้องเรียน','Classroom'))+(ROOM?' '+ROOM:''):'')}
+  $('#sources').innerHTML='<p><b>'+t('sources')+'</b></p><p>'+t('src1')+' <a href="https://www.prb.org/articles/how-many-people-have-ever-lived-on-earth/" target="_blank" rel="noopener">PRB</a></p><p>'+t('src2')+'</p><p>'+t('src3')+'</p><p>'+t('src4')+'</p><p>'+t('src5')+'</p><p>'+t('src6')+'</p><p>'+t('src7')+'</p><p>'+t('src8')+'</p><p>'+t('src9')+'</p><p>'+t('src10')+'</p><p>'+t('src11')+'</p><p>'+t('src12')+'</p><p>'+t('src13')+'</p><p>'+t('src14')+'</p>';
 }
 function oddsStr(){const p=S.pw*100;return t('oddsPct',{p:p>=1?p.toFixed(0):p>=.1?p.toFixed(1):p.toPrecision(2)})+(S.pw<=.5?' · '+t('oneIn',{n:fmt(1/S.pw)}):'')}
 function renderDraw(){
@@ -5111,7 +5141,7 @@ function renderDraw(){
     [t('kClimate'),L(climate(S.ya0).n)],
     [t('kSex'),t(S.sex==='f'?'sexF':'sexM')],
     [t('kTal'),S.tal.map(k=>'<b>'+L(TALENTS[k].n)+'</b> <span class="small">'+L(TALENTS[k].d)+'</span>').join('<br>')],
-    ...(S.ch===10?[[esc(L(X('ยุค','Era'))),esc(L(ERA10[era10(S.ya0)].n))+'<br><span class="small num">'+esc(L(X('ราว '+fmt(bce(S.ya0))+' ปีก่อนคริสตกาล','about '+fmt(bce(S.ya0))+' BCE')))+'</span>'],[esc(L(X('ฐานะ','Station'))),esc(L(CLS10[S.cls]))+'<br><span class="small">'+esc(L(CLSNOTE10))+'</span>']]:[]),
+    ...(S.ch===10?[[esc(L(X('ยุค','Era'))),esc(L(ERA10[era10(S.ya0)].n))+'<br><span class="small num">'+esc(L(X('ราว '+fmt(bce(S.ya0))+' ปีก่อนคริสตกาล','about '+fmt(bce(S.ya0))+' BCE')))+'</span>'],[esc(L(X('ฐานะ','Station'))),esc(L(cls10(S)))+'<br><span class="small">'+esc(L(clsnote10(S)))+'</span>']]:[]),
     ...(S.ch===8?[[esc(L(X('ยุค','Era'))),esc(L(ERA8[era8(S.ya0)].n))+'<br><span class="small num">'+esc(L(X('ราว '+fmt(bce(S.ya0))+' ปีก่อนคริสตกาล','about '+fmt(bce(S.ya0))+' BCE')))+'</span>'],[esc(L(X('ฐานะ','Station'))),esc(L(CLS8[S.cls]))+'<br><span class="small">'+esc(L(CLSNOTE8))+'</span>']]:[]),
     ...(S.ch===6?[[esc(L(X('ยุค','Era'))),esc(L(ERA6[era6(S.ya0)].n))+'<br><span class="small num">'+esc(L(X('ราว '+fmt(bce(S.ya0))+' ปีก่อนคริสตกาล','about '+fmt(bce(S.ya0))+' BCE')))+'</span>'],[esc(L(X('ฐานะ','Station'))),esc(L(CLS6[S.cls]))+'<br><span class="small">'+esc(L(CLSNOTE6))+'</span>']]:[]),
     ...(S.ch===4?[[esc(L(X('ยุค','Era'))),esc(L(ERA4[era4(S.ya0)].n))+'<br><span class="small num">'+esc(L(X('ราว '+fmt(bce(S.ya0))+' ปีก่อนคริสตกาล','about '+fmt(bce(S.ya0))+' BCE')))+'</span>'],[esc(L(X('ฐานะ','Station'))),esc(L(CLS4[S.cls]))+'<br><span class="small">'+esc(L(CLSNOTE))+'</span>']]:[]),
@@ -5119,7 +5149,7 @@ function renderDraw(){
     [t('kOdds'),'<span class="odds">'+oddsStr()+'</span><br><span class="small">'+t('estimate')+'</span>'],
     ...(CHAPS[S.chap].lin?[[t('kGen'),S.gen>1?t('genN',{n:fmt(S.gen)}):t('genFirst')]]:[])
   ].map(([k,v])=>'<div><span class="k">'+k+'</span><span>'+v+'</span></div>').join('');
-  $('#blurb').textContent=L(S.sp.id==='sap'&&civ(S.chap)?X('สายพันธุ์ของเราเอง ตอนนี้เป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ อาศัยอยู่ทุกทวีปยกเว้นแอนตาร์กติกา ทั้งโลกอาจมีคนราว 15–45 ล้านคน ส่วนใหญ่ยังเป็นชาวนา คนเลี้ยงสัตว์ หรือนักล่า มีเพียงส่วนน้อยที่อยู่ในเมือง','Our own species, now the only humans left, living on every continent except Antarctica. The whole world may hold some 15–45 million people; most are still farmers, herders or hunters, and only a few live in cities.'):S.sp.id==='sap'&&S.chap>=3?X('สายพันธุ์ของเราเอง ตอนนี้เป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ อาศัยอยู่ทุกทวีปยกเว้นแอนตาร์กติกา','Our own species, now the only humans left, living on every continent except Antarctica.'):S.sp.b);$('#facts').innerHTML=S.sp.f.map(f=>'<li>'+L(f)+'</li>').join('');
+  $('#blurb').textContent=L(S.sp.id==='sap'&&civ(S.chap)?X('สายพันธุ์ของเราเอง ตอนนี้เป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ อาศัยอยู่ทุกทวีปยกเว้นแอนตาร์กติกา ทั้งโลกอาจมีคนราว 15–45 ล้านคน ส่วนใหญ่ยังเป็นชาวนา คนเลี้ยงสัตว์ หรือนักล่า มีเพียงส่วนน้อยที่อยู่ในเมือง','Our own species, now the only humans left, living on every continent except Antarctica. The whole world may hold some 15–45 million people; most are still farmers, herders or hunters, and only a few live in cities.'):S.sp.id==='sap'&&S.chap>=3&&S.chap!==9?X('สายพันธุ์ของเราเอง ตอนนี้เป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ อาศัยอยู่ทุกทวีปยกเว้นแอนตาร์กติกา','Our own species, now the only humans left, living on every continent except Antarctica.'):S.sp.b);$('#facts').innerHTML=S.sp.f.map(f=>'<li>'+L(f)+'</li>').join('');
 }
 function renderPlay(){renderAvatar();
   if(!S)return;$('#pAge').textContent=S.age;$('#pYa').textContent=t('yearsAgo',{n:fmt(S.ya0-S.age)});
@@ -5138,7 +5168,7 @@ function renderTools(){const el=$('#tools');const items=[];
   if(S.dog)tech.push('<span class="tc">'+t('dogT')+'</span>');if(S.hut)tech.push('<span class="tc">'+t('hutT')+'</span>');
   if(S.mam)tech.push('<span class="tc mam">'+t('mamCount',{n:S.mam})+'</span>');
   if(S.ch===4){tech.push('<span class="tc">'+esc(L(CLS4[S.cls]))+'</span>');if(S.lit>=5)tech.push('<span class="tc">'+esc(L(X('อ่านออกเขียนได้','literacy')))+' '+Math.round(S.lit)+'%</span>');if(S.tabN)tech.push('<span class="tc mam">'+esc(L(X('แผ่นจารึก','tablets')))+' ×'+S.tabN+'</span>');if(S.ag)tech.push('<span class="tc it">'+esc(L(X('เงิน','silver')))+' '+S.ag+' '+esc(L(X('เชเคิล','shekels')))+'</span>');if(S.debt)tech.push('<span class="tc">'+esc(L(X('หนี้','debt')))+' '+S.debt+'</span>')}
-  if(S.ch===10){tech.push('<span class="tc">'+esc(L(CLS10[S.cls]))+'</span>');if(S.lit>=5)tech.push('<span class="tc">'+esc(L(X('อ่านออกเขียนได้','literacy')))+' '+Math.round(S.lit)+'%</span>');if(S.tabN)tech.push('<span class="tc mam">'+esc(L(X('แผ่นดินเหนียว','tablets')))+' ×'+S.tabN+'</span>');if(S.ag)tech.push('<span class="tc it">'+esc(L(X('ของมีค่า','goods')))+' '+S.ag+'</span>');if(S.debt)tech.push('<span class="tc">'+esc(L(X('หนี้','debt')))+' '+S.debt+'</span>')}
+  if(S.ch===10){tech.push('<span class="tc">'+esc(L(cls10(S)))+'</span>');if(S.lit>=5)tech.push('<span class="tc">'+esc(L(X('อ่านออกเขียนได้','literacy')))+' '+Math.round(S.lit)+'%</span>');if(S.tabN)tech.push('<span class="tc mam">'+esc(L(X('แผ่นดินเหนียว','tablets')))+' ×'+S.tabN+'</span>');if(S.ag)tech.push('<span class="tc it">'+esc(L(X('ของมีค่า','goods')))+' '+S.ag+'</span>');if(S.debt)tech.push('<span class="tc">'+esc(L(X('หนี้','debt')))+' '+S.debt+'</span>')}
   if(S.ch===8){tech.push('<span class="tc">'+esc(L(CLS8[S.cls]))+'</span>');if(S.sig>=5)tech.push('<span class="tc">'+esc(L(X('รู้ตัวอักษร','signs known')))+' '+Math.round(S.sig)+'%</span>');if(S.sealN)tech.push('<span class="tc mam">'+esc(L(X('ตราประทับ','seals')))+' ×'+S.sealN+'</span>');if(S.ag)tech.push('<span class="tc it">'+esc(L(X('ของมีค่า','goods')))+' '+S.ag+'</span>');if(S.debt)tech.push('<span class="tc">'+esc(L(X('หนี้','debt')))+' '+S.debt+'</span>')}
   if(S.ch===6){tech.push('<span class="tc">'+esc(L(CLS6[S.cls]))+'</span>');if(S.lit>=5)tech.push('<span class="tc">'+esc(L(X('อ่านออกเขียนได้','literacy')))+' '+Math.round(S.lit)+'%</span>');if(S.papN)tech.push('<span class="tc mam">'+esc(L(X('กระดาษปาปิรุส','papyri')))+' ×'+S.papN+'</span>');if(S.ag)tech.push('<span class="tc it">'+esc(L(X('ของมีค่า','goods')))+' '+S.ag+' '+esc(L(X('เดเบน','deben')))+'</span>');if(S.debt)tech.push('<span class="tc">'+esc(L(X('หนี้','debt')))+' '+S.debt+'</span>')}
   if(S.ch===3||civ(S.ch)){Object.keys(S.herd).filter(k=>S.herd[k]>0).forEach(k=>tech.push('<span class="tc mam">'+esc(L(ANI[k].n))+' ×'+S.herd[k]+'</span>'));
@@ -5156,7 +5186,7 @@ function renderFocus(){
   if(!S.offer.length)makeOffer();
   el.innerHTML=S.offer.map(id=>'<button data-f="'+id+'" aria-pressed="'+(S.focus===id)+'">'+esc(actLabel(id,S))+'</button>').join('');
 }
-function renderLog(){if(!S)return;$('#log').innerHTML=S.log.map(e=>'<li class="'+(e.c||'')+'"><span class="a num">'+e.a+'</span><span>'+(e.c==='lg'?'✦ ':'')+esc(L(e.x))+(e.n?'<small>'+esc((e.c==='lg'?t('myth'):t('fact'))+L(e.n))+'</small>':'')+'</span></li>').join('')}
+function renderLog(){if(!S)return;$('#log').innerHTML=S.log.map((e,i)=>'<li class="'+(e.c||'')+'"><span class="a num">'+e.a+'</span><span>'+(e.c==='lg'?'✦ ':'')+esc(L(e.x))+(e.n?'<small data-i="'+i+'"'+(e.op?' class="open"':'')+'>'+esc((e.c==='lg'?t('myth'):t('fact'))+L(e.n))+'</small>':'')+'</span></li>').join('')}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const lifeSec=a=>a*CALSEC/EARTH;
 function renderDeath(){
@@ -5164,20 +5194,20 @@ function renderDeath(){
   const sec=lifeSec(Math.max(S.age,.5)).toFixed(3);
   $('#dName').textContent='“'+nmL(S.name)+'”';
   $('#dTitle').textContent=L(S.title);
-  $('#dLine').textContent=t('dLine',{sp:L(S.sp.n),a:S.age,c:L(CAUSE[S.cause])})+(S.kids.length?' · '+t('kids',{n:S.kids.length})+', '+t('kidsAlive',{n:S.kids.filter(k=>k.dies==null).length}):'');
+  $('#dLine').textContent=t('dLine',{sp:L(S.sp.n),a:S.age,c:L(CAUSE[S.cause])})+(S.kids.length?' · '+t('kids',{n:S.kids.length})+', '+t('kidsAlive',{n:S.kids.filter(k=>S.age-k.born>=15&&(k.dies==null||k.dies>=15)).length})+(S.kids.filter(k=>S.age-k.born<15&&(k.dies==null||k.born+k.dies>S.age)).length?', '+L(X('ยังเป็นเด็ก ','still children: '))+S.kids.filter(k=>S.age-k.born<15&&(k.dies==null||k.born+k.dies>S.age)).length:''):'');
   $('#dPath').textContent=t('path',{p:S.path.map(r=>L(REGIONS[r].n)).join(' → ')})+' · '+t('yearsAgo',{n:fmt(S.ya0)});
-  let epi=S.ch===10?epi10(S):S.ch===8?epi8(S):S.ch===6?epi6(S):S.ch===4?epi4(S):L((S.ch===3&&epi3(S))||(S.ch===5&&EPI5[S.sp.id])||(S.ch===2&&EPI2[S.sp.id])||EPI[S.sp.id])+(S.mixed?L(MIXED):'');
+  let epi=(S.age<5?L(INF5):'')+(S.ch===10?epi10(S):S.ch===8?epi8(S):S.ch===6?epi6(S):S.ch===4?epi4(S):L((S.ch===3&&epi3(S))||(S.ch===5&&EPI5[S.sp.id])||(S.ch===2&&EPI2[S.sp.id])||EPI[S.sp.id])+(S.mixed?L(MIXED):''));
   if(S.pioneer)epi+=L(X(' '+ANI[S.pioneer].n.th+'ที่คุณเลี้ยงจากสัตว์ป่าจะเป็นบรรพบุรุษของฝูงในหมู่บ้านไปอีกหลายร้อยปี',' The '+ANI[S.pioneer].n.en+' you raised from wild young will be ancestors of the village herds for centuries.'));
   if(S.cust.length)epi+=L(X(' เรื่องที่คุณพูดกลายเป็นธรรมเนียม: '+S.cust.map(c=>CUSTN[c].th).join(' และ ')+' ลูกหลานยังทำต่อไปอีกหลายรุ่น โดยไม่มีใครจำได้ว่าเริ่มจากคุณ',' Your words became custom: '+S.cust.map(c=>CUSTN[c].en).join(' and ')+'. Descendants keep it for generations, and no one remembers it began with you.'));
   if(S.scape)epi+=L(X(' เพราะคำพูดของคุณ มีคนต้องรับโทษแทนภัยที่ไม่มีใครควบคุมได้',' Because of your words, someone took the blame for a disaster no one could control.'));
   if(S.leg&&S.rank>=2)epi+=L(LEGEND_EPI).replace('{n}',nmL(S.name));
   if(S.spirit>=2)epi+=L(S.spirit===3?X(' ✦ ตำนาน: หลายพันปีต่อมา ยังมีคนเล่าว่าบรรพบุรุษเคยส่งผู้ส่งสารคนหนึ่งมาบอกเรื่องราวของโลก ชื่อของคุณหายไปแล้ว แต่เรื่องเล่ายังอยู่',' ✦ Legend: thousands of years later, people still tell how the ancestors once sent a messenger to tell the story of the world. Your name is lost, but the story lives on.'):X(' นิมิตของคุณถูกเล่าต่อในหลายกลุ่ม จนกลายเป็นส่วนหนึ่งของเรื่องกำเนิดโลกที่ไม่มีใครจำได้แล้วว่าใครเล่าเป็นคนแรก',' Your visions are retold among many bands until they become part of a creation story no one remembers who first told.'));
   $('#dFuneral').textContent=funeralText(S);
-  $('#dCun').textContent=S.ch===4?S.nm4.c:S.ch===6?S.nm6.h:'';if(S.ch===10){if(S.tabN){$('#tabH').textContent=L(X('แผ่นดินเหนียวของคุณ','Your tablets'));$('#dTab').innerHTML='';$('#dTab').appendChild(tab10Block(S))}else $('#tabBlock').hidden=true}if(S.ch===8){$('#tabH').textContent=L(X('ตราประทับของคุณ','Your seal'));$('#dTab').innerHTML='';$('#dTab').appendChild(seal8Block(S))}$('#dCun').className=S.ch===6?'hie':'cun';$('#tabBlock').hidden=!civ(S.ch);if(S.ch===6){const T=papyrus6(S);$('#tabH').textContent=L(T.h);$('#dTab').innerHTML=papHTML(T)}if(S.ch===4){const T=tablet4(S);$('#tabH').textContent=L(T.h);$('#dTab').innerHTML=tabletHTML(T)}
+  $('#dCun').textContent=S.ch===4?S.nm4.c:S.ch===6?S.nm6.h:'';if(S.ch===10){if(S.tabN){$('#tabH').textContent=L(X('แผ่นดินเหนียวของคุณ','Your tablets'));$('#dTab').innerHTML='';$('#dTab').appendChild(tab10Block(S))}else $('#tabBlock').hidden=true}if(S.ch===8){$('#tabH').textContent=L(X('ตราประทับของคุณ','Your seal'));$('#dTab').innerHTML='';$('#dTab').appendChild(seal8Block(S))}$('#dCun').className=S.ch===6?'hie':'cun';$('#tabBlock').hidden=!civ(S.ch);$('#dTab').innerHTML='';if(S.ch===6){const T=papyrus6(S);$('#tabH').textContent=L(T.h);$('#dTab').innerHTML=papHTML(T)}if(S.ch===4){const T=tablet4(S);$('#tabH').textContent=L(T.h);$('#dTab').innerHTML=tabletHTML(T)}
   $('#dEpi').textContent=epi;
   {const top=Object.entries(S.actN).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,n])=>actLabel(k,{age:30,ch:S.ch,car:S.car})+' '+t('yrs',{n}));const bs=SKILLS.slice().sort((a,b)=>S[b]-S[a])[0];
    const best=S.ppl.filter(p=>p.k!=='rival'&&p.age>=0).sort((a,b)=>b.tr-a.tr)[0];
-   $('#dShaped').textContent=(top.length?t('shaped',{a:top.join(' · '),s:t(SKN[bs])+' '+Math.round(S[bs]),f:S.fr.length}):'')+(best&&best.tr>=55?L(X(' · คนที่ใกล้ชิดคุณที่สุด: '+best.n.th+' ('+PK[best.k].th+')',' · Closest to you: '+best.n.en+' ('+PK[best.k].en+')')):'')+((S.ch===3||civ(S.ch))&&herdTot()?L(X(' · ฝูงสัตว์ที่ทิ้งไว้: ',' · Herd left behind: '))+herdStr():'')+(S.car?L(X(' · อาชีพ: ',' · Trade: '))+L(CARS()[S.car].L[S.clv])+' ('+(S.clv+1)+'/4)':'')}
+   $('#dShaped').textContent=(top.length?t('shaped',{a:top.join(' · '),s:t(SKN[bs])+' '+Math.round(S[bs]),f:S.fr.length}):'')+(best&&best.tr>=55?L(X(' · คนที่ใกล้ชิดคุณที่สุด: '+best.n.th+' ('+PK[best.k].th+')',' · Closest to you: '+best.n.en+' ('+PK[best.k].en+')')):'')+((S.ch===3||civ(S.ch))&&herdTot()?L(S.age<15?X(' · ฝูงสัตว์ของครอบครัว: ',' · The family’s herd: '):X(' · ฝูงสัตว์ที่ทิ้งไว้: ',' · Herd left behind: '))+herdStr():'')+(S.car?L(X(' · อาชีพ: ',' · Trade: '))+L(CARS()[S.car].L[S.clv])+' ('+(S.clv+1)+'/4)':'')}
   $('#dClock').textContent=t('clockLine',{n:S.age,s:sec});
   $('#dMs').innerHTML=S.ms.length?S.ms.map(m=>'<li><b class="num">'+m.a+'</b><span>'+esc(L(m.x))+'</span></li>').join(''):'<li><b>–</b><span>'+t('noMs')+'</span></li>';
   $('#finalMsg').value=(S.rec&&S.rec.msg)||'';
@@ -5223,14 +5253,14 @@ async function startDraw(){
   for(let i=0;i<14;i++){el.textContent=names[i%names.length];await sleep(60+i*12)}el.textContent=L(S.sp.n);await sleep(450);
   $('#roll').hidden=true;$('#drawCard').hidden=false;renderDraw();
 }
-function startLife(){SND.unlock();SND.sfx('birth');linStart();S.log=[];S.plan=new Set();makeOffer();show('play');paused=false;prog=0;busy=false;renderPlay();updatePause();
+function startLife(){SND.unlock();SND.sfx('birth');linStart();{const k='sit.cn'+S.chap,n=store.get(k,0);S.prot5=n<2;store.set(k,n+1)}if(SIB){S.sibOf=1;SIB=null}S.log=[];S.plan=new Set();makeOffer();show('play');paused=false;prog=0;busy=false;renderPlay();updatePause();
   log(S.settled?X('คุณเกิดที่'+S.R.n.th+' ในหมู่บ้านเล็กๆ ที่มีคนราวห้าสิบถึงสองร้อยคน','You are born in '+S.R.n.en+', in a small village of fifty to two hundred people.'):X('คุณเกิดที่'+S.R.n.th+' ท่ามกลางกลุ่มคนราวยี่สิบสามสิบคน','You are born in '+S.R.n.en+', into a band of twenty or thirty people.'),rn(S.rg)||null,'big')}
 
 /* ================= LOOP ================= */
 let last=performance.now();const openedAt=Date.now();
 setInterval(()=>{const now=performance.now(),dt=Math.min(1,(now-last)/1000);last=now;
   if(screen==='play'&&S&&!S.dead){
-    if(!paused&&!busy){prog+=dt*speed/pace;if(prog>=1){prog=0;busy=true;yearStep().then(()=>{busy=false}).catch(e=>{busy=false;console.error(e)})}}
+    if(skipTo&&S.age>=skipTo)skipTo=0;if(!paused&&!busy){prog+=dt*(skipTo?40:speed)/pace;if(prog>=1){prog=0;busy=true;yearStep().then(()=>{busy=false}).catch(e=>{busy=false;console.error(e)})}}
     $('#yearProg').style.width=(prog*100)+'%';
     $('#pClock').textContent=clockStr(S.ya0-S.age-prog,3);$('#pDate').textContent=t('dec31');
   }
@@ -5242,6 +5272,7 @@ function updatePause(){const b=$('#pauseBtn');b.textContent=paused?t('resume'):t
 
 /* ================= DOM EVENTS ================= */
 document.addEventListener('click',e=>{
+  const ln=e.target.closest('#log small[data-i]');if(ln&&S){const en=S.log[+ln.dataset.i];if(en){en.op=!en.op;ln.classList.toggle('open',!!en.op)}return}
 
   const lnb=e.target.closest('#linOpts button[data-lin]');if(lnb&&S&&S.linOpts){linContinue(S.linOpts[+lnb.dataset.lin]);startDraw();return}
   const cb=e.target.closest('#chap button[data-ch]');if(cb&&!cb.disabled){chap=+cb.dataset.ch;store.set('sit.chap',chap);renderHome();return}
@@ -5253,11 +5284,14 @@ document.addEventListener('click',e=>{
   const ccb=e.target.closest('#carChips button');if(ccb){if(chap===10){chosenCar10=ccb.dataset.car;store.set('sit.car10',chosenCar10)}else if(chap===8){chosenCar8=ccb.dataset.car;store.set('sit.car8',chosenCar8)}else if(chap===6){chosenCar6=ccb.dataset.car;store.set('sit.car6',chosenCar6)}else if(chap===4){chosenCar4=ccb.dataset.car;store.set('sit.car4',chosenCar4)}else{chosenCar=ccb.dataset.car;store.set('sit.car',chosenCar)}renderHome();return}
   const sb=e.target.closest('#spChips button');if(sb){chosenSp=sb.dataset.sp;store.set('sit.sp',chosenSp);renderHome();return}
   const fb=e.target.closest('#focus button');if(fb&&S){S.focus=fb.dataset.f;renderFocus();return}
-  const spd=e.target.closest('.ctrl [data-sp]');if(spd){speed=+spd.dataset.sp;document.querySelectorAll('.ctrl [data-sp]').forEach(b=>b.setAttribute('aria-pressed',b===spd));return}
+  const spd=e.target.closest('.ctrl [data-sp]');if(spd){const nx={1:2,2:4,4:8,8:1}[+spd.dataset.sp]||1;speed=nx;spd.dataset.sp=nx;spd.textContent=nx+'×';spd.setAttribute('aria-pressed',nx>1);return}
 });
 $('#pauseBtn').onclick=()=>{paused=!paused;updatePause()};
 $('#pAvatar').onclick=openFam;$('#famClose').onclick=closeFam;$('#famSheet').addEventListener('click',e=>{if(e.target.id==='famSheet')closeFam()});
-$('#autoBtn').onclick=()=>{auto=!auto;$('#autoBtn').setAttribute('aria-pressed',auto)};
+$('#autoBtn').onclick=()=>{auto=!auto;$('#autoBtn').setAttribute('aria-pressed',auto);if(auto&&!$('#modal').hidden)setTimeout(()=>{if(auto&&!$('#modal').hidden){const b=[...document.querySelectorAll('#mOpts button')].find(b=>!b.disabled);if(b)b.click()}},1500)};
+$('#skipBtn').onclick=()=>{if(!S||S.dead)return;skipTo=S.age+15;paused=false;updatePause()};
+{let qa=0;$('#quitBtn').onclick=()=>{const b=$('#quitBtn');if(!qa){qa=1;b.textContent=t('quitSure');setTimeout(()=>{qa=0;b.textContent=t('quitLife')},2500);return}qa=0;b.textContent=t('quitLife');paused=true;skipTo=0;if(S)S.quit=1;show('home');renderHome()}}
+$('#sibBtn').onclick=()=>{if(!S)return;SIB={chap:S.chap,sp:S.sp.id,rg:S.path[0],ya:Math.max(CHAPS[S.chap].new+5,S.ya0-1-((rnd()*3)|0)),cls:S.cls};if(LIN)LIN.next=null;startDraw()};
 $('#beBorn').onclick=()=>{if(LIN)LIN.next=null;startDraw()};$('#redraw').onclick=startDraw;$('#begin').onclick=startLife;
 $('#again').onclick=()=>{if(LIN)LIN.next=null;startDraw()};$('#toHome').onclick=()=>{show('home');renderHome()};
 $('#finalMsg').addEventListener('change',e=>{if(!S||!S.rec)return;S.rec.msg=e.target.value;const lives=store.get('sit.lives',[]);const i=lives.findIndex(l=>l.ts===S.rec.ts);if(i>=0){lives[i].msg=S.rec.msg;store.set('sit.lives',lives)}});
@@ -5279,7 +5313,7 @@ async function runIntro(){const my=++introTok;
 function finishIntro(force){if(!force&&introDone&&!$('#introGo').hidden)return;introDone=true;introTok++;
   $('#introLines').innerHTML=INTRO[lang].map(([l,c])=>'<p class="'+c+'">'+l+'</p>').join('');$('#introGo').hidden=false;$('#introGo').focus()}
 $('#introSkip').onclick=finishIntro;
-$('#introGo').onclick=()=>{show('home');renderHome()};
+$('#introGo').onclick=()=>{store.set('sit.seen',1);show('home');renderHome()};
 
 /* test hook: simulates whole lives without UI (used only during development) */
 window.__sitDraw=(c,o)=>drawScene(c,o);
@@ -5293,11 +5327,13 @@ window.__sitLin=async(n,ch,maxLives=40)=>{TEST=true;const out=[];const save=chap
 window.__sitFn=n=>({epi8,fun8Note,fun8Text,title8,epi10,fun10Note,fun10Text,title10})[n];window.__sitLang=l=>{lang=l;trInit()};window.__sitL=o=>L(o);
 window.__sitSim=async(n,opts={})=>{TEST=true;const out=[];const save={mode,chosenSp,legOn,chap};if(opts.mode)mode=opts.mode;if(opts.sp)chosenSp=opts.sp;if(opts.ch)chap=opts.ch;
   try{for(let i=0;i<n;i++){newLife();if(opts.leg!=null)S.leg=!!opts.leg;S.focus='forage';let g=0;while(!S.dead&&g++<130){if(S.age>=5){autoAct()}await yearStep()}
-    out.push({c10:S.ch===10?{lit:S.lit|0,tab:S.tabN,baked:S.baked,cls:S.cls,burn:S.burn10,adapt:S.adapt10,gump:S.gump10,left:S.left10,saw:Object.keys(S.saw||{}).join(','),car:S.car,clv:S.clv,rg:S.rg,era:era10(S.ya0)}:null,c8:S.ch===8?{sig:S.sig|0,seals:S.sealN,cls:S.cls,ag:S.ag,relig:Object.keys(S.relig||{}).join(','),saw:Object.keys(S.saw||{}).join(','),car:S.car,clv:S.clv,rg:S.rg,era:era8(S.ya0),left:S.left8}:null,c6:S.ch===6?{lit:S.lit|0,pap:S.papN,cls:S.cls,sinu:S.sinu,ag:S.ag,bod:S.bod,nameTab:S.nameTab,saw:Object.keys(S.saw||{}).join(','),car:S.car,clv:S.clv,rg:S.rg,era:era6(S.ya0),tomb:S.tomb}:null,c4:S.ch===4?{lit:S.lit|0,tab:S.tabN,cls:S.cls,g:S.gilg,ag:S.ag,debt:S.debt,sid:S.sid||'',hg:S.hg,king:!!S.kingT,nameTab:S.nameTab,sch:S.schOK}:null,lg:opts.logs?S.log.map(e=>e.x).concat(S.log.filter(e=>e.n).map(e=>e.n),[S.title||title(S),S.name]):null,car:S.car,clv:S.clv,name:S.name.en,herdV:herdVal(),herdN:herdTot(),settled:S.settled,field:S.field,pioneer:S.pioneer||null,penKept:S.penKept||null,tried:S.tried.join(','),cust:S.cust.join(','),ppl:S.ppl.length,pAlive:S.ppl.filter(p=>!p.dead).length,rg0:S.path[0],fun:funeralText(S),spirit:S.spirit,hand:S.hand,tal:S.tal.join('+'),decs:Object.keys(S.done).filter(k=>DEC.some(d=>d.id===k)),acts:Object.keys(S.actN).length,fr:S.fr.length,inv:invCount(),sickEver:S.log.some(l=>l.c==='sad'&&/ป่วยด้วย/.test(l.x.th)),dis:S.log.filter(l=>l.c==='cl').length,sk:SKILLS.map(k=>Math.round(S[k])),sp:S.sp.id,rg:S.path.join('>'),ya:S.ya0,age:S.age,rank:S.rank,role:S.role,cause:S.cause,kids:S.kids.length,toba:S.toba,mixed:S.mixed,ms:S.ms.length,logs:S.log.length,mam:S.mam,tech:Object.keys(S.tech).length,hut:S.hut,dog:S.dog,art:S.art})}}
+    out.push({c10:S.ch===10?{lit:S.lit|0,tab:S.tabN,baked:S.baked,cls:S.cls,burn:S.burn10,adapt:S.adapt10,gump:S.gump10,left:S.left10,saw:Object.keys(S.saw||{}).join(','),car:S.car,clv:S.clv,rg:S.rg,era:era10(S.ya0)}:null,c8:S.ch===8?{sig:S.sig|0,seals:S.sealN,cls:S.cls,ag:S.ag,relig:Object.keys(S.relig||{}).join(','),saw:Object.keys(S.saw||{}).join(','),car:S.car,clv:S.clv,rg:S.rg,era:era8(S.ya0),left:S.left8}:null,c6:S.ch===6?{lit:S.lit|0,pap:S.papN,cls:S.cls,sinu:S.sinu,ag:S.ag,bod:S.bod,nameTab:S.nameTab,saw:Object.keys(S.saw||{}).join(','),car:S.car,clv:S.clv,rg:S.rg,era:era6(S.ya0),tomb:S.tomb}:null,c4:S.ch===4?{lit:S.lit|0,tab:S.tabN,cls:S.cls,g:S.gilg,ag:S.ag,debt:S.debt,sid:S.sid||'',hg:S.hg,king:!!S.kingT,nameTab:S.nameTab,sch:S.schOK}:null,lg:opts.logs?S.log.map(e=>e.x).concat(S.log.filter(e=>e.n).map(e=>e.n),[S.title||title(S),S.name]):null,kidsN:S.kids.length,ya0:S.ya0,sex:S.sex,car:S.car,clv:S.clv,name:S.name.en,herdV:herdVal(),herdN:herdTot(),settled:S.settled,field:S.field,pioneer:S.pioneer||null,penKept:S.penKept||null,tried:S.tried.join(','),cust:S.cust.join(','),ppl:S.ppl.length,pAlive:S.ppl.filter(p=>!p.dead).length,rg0:S.path[0],fun:funeralText(S),spirit:S.spirit,hand:S.hand,tal:S.tal.join('+'),decs:Object.keys(S.done).filter(k=>DEC.some(d=>d.id===k)),acts:Object.keys(S.actN).length,fr:S.fr.length,inv:invCount(),sickEver:S.log.some(l=>l.c==='sad'&&/ป่วยด้วย/.test(l.x.th)),dis:S.log.filter(l=>l.c==='cl').length,sk:SKILLS.map(k=>Math.round(S[k])),sp:S.sp.id,rg:S.path.join('>'),ya:S.ya0,age:S.age,rank:S.rank,role:S.role,cause:S.cause,kids:S.kids.length,toba:S.toba,mixed:S.mixed,ms:S.ms.length,logs:S.log.length,mam:S.mam,tech:Object.keys(S.tech).length,hut:S.hut,dog:S.dog,art:S.art})}}
   finally{TEST=false;mode=save.mode;chosenSp=save.chosenSp;legOn=save.legOn;chap=save.chap}
   return out};
 
-applyLang();show('intro');runIntro();
+applyLang();if(store.get('sit.seen',0)&&!QS.has('intro')){introDone=true;show('home');renderHome()}else{show('intro');runIntro()}
 })();
 
+
+try{const d=document.getElementById('dock'),pl=document.getElementById('play');if(d&&pl&&typeof ResizeObserver!=='undefined')new ResizeObserver(()=>{if(d.offsetHeight)pl.style.paddingBottom='calc(env(safe-area-inset-bottom,0px) + '+(d.offsetHeight+24)+'px)'}).observe(d)}catch(e){}
 </script>
