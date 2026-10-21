@@ -21,3 +21,6 @@
 - Templates match whole English strings by pattern. A template that is mostly slots (e.g. `{0} to {1}`) will swallow unrelated sentences — avoid short generic templates.
 - Chapter ids in code: 1, 2, 3, 4 (Mesopotamia), 6 (Egypt, shown as 05), 5 (Pacific, shown as 06). `civ(ch)` = 4 or 6.
 - Sound: `SND` module (search `v0.11 SOUND`). Modes stored in `sit.snd`: 2 music+sound, 1 sound only, 0 off. Audio starts only after a user gesture.
+- Standalone pages need the `[hidden]{display:none!important}` rule (some sections set `display:flex`, which beats the browser's `[hidden]`). The claude.ai artifact host added this itself, so the bug only showed on GitHub Pages / phones.
+- `build.sh` runs `wrap_html.py`, which adds doctype, charset and the mobile viewport. Without the viewport, phones render the page at desktop width and the text looks tiny.
+- Opening music: Ode to Joy (Beethoven, Symphony No. 9, 1824, public domain), synthesized in `SND.ode()`, starts on the first tap on the intro/home screens and fades out when a life is drawn.

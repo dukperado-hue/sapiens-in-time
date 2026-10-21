@@ -1,3 +1,12 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070504">
+<meta name="description" content="Sapiens in Time — live one ordinary life somewhere in human history. A pixel life-sim in 7 languages.">
+<meta property="og:title" content="Sapiens in Time">
+<meta property="og:description" content="You are 1 of ~117 billion humans who have ever lived. Live one life, year by year.">
 <title>Sapiens in Time</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +44,7 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--ember);outli
 h1,h2,h3{text-wrap:balance;margin:0}
 
 /* ---------- intro ---------- */
+[hidden]{display:none!important}
 #intro{position:fixed;inset:0;background:var(--void);display:flex;flex-direction:column;justify-content:center;
   padding:calc(env(safe-area-inset-top,0px) + 32px) max(28px, env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 32px) max(28px, env(safe-area-inset-left,0px));z-index:50}
 .intro-lines{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:22px;width:100%}
@@ -44,7 +54,9 @@ h1,h2,h3{text-wrap:balance;margin:0}
 .caret{display:inline-block;width:.5em;height:1.1em;background:var(--ember);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .intro-go{margin:44px auto 0;max-width:440px;width:100%}
-.skip{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:max(16px, env(safe-area-inset-right,0px));background:none;border:0;color:var(--ash);font-family:var(--px);font-size:11px;letter-spacing:.08em;padding:8px}
+.skip{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 12px);right:max(16px, env(safe-area-inset-right,0px));background:var(--soot);border:1px solid var(--line);color:var(--bone);font-family:var(--body);font-size:15px;letter-spacing:.02em;padding:10px 18px;min-height:44px;min-width:64px;cursor:pointer}
+.introLang{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(16px, env(safe-area-inset-left,0px))}
+.introLang select{font-size:15px;padding:10px 10px;min-height:44px}
 
 /* ---------- shared ---------- */
 .bar{display:flex;justify-content:space-between;align-items:center;padding-block:14px 6px}
@@ -252,10 +264,14 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
 .fun{font-size:15px;line-height:1.75;margin:0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+</head>
+<body>
+
 
 <div id="app">
   <!-- INTRO -->
   <section id="intro" aria-label="intro">
+    <label class="lang introLang"><span class="vh">Language</span><select id="langSel0" class="langSel" aria-label="Language"><option value="th">ไทย</option><option value="en">English</option><option value="zh">中文</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="es">Español</option></select></label>
     <button class="skip" id="introSkip" data-i18n="skip">ข้าม</button>
     <div class="intro-lines" id="introLines" aria-live="polite"></div>
     <div class="intro-go"><button class="btn btn-primary" id="introGo" hidden data-i18n="enter">เข้าสู่โลก</button></div>
@@ -265,7 +281,7 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
   <section id="home" hidden>
     <header class="bar">
       <span class="brand">SAPIENS IN TIME</span>
-      <label class="lang"><span class="vh">Language</span><select id="langSel" aria-label="Language"><option value="th">ไทย</option><option value="en">English</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="de">Deutsch</option><option value="es">Español</option></select></label>
+      <label class="lang"><span class="vh">Language</span><select id="langSel" class="langSel" aria-label="Language"><option value="th">ไทย</option><option value="en">English</option><option value="zh">中文</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="es">Español</option></select></label>
     </header>
     <div class="hero">
       <p class="eyebrow" data-i18n="heroEyebrow"></p>
@@ -3976,8 +3992,21 @@ const SND=(()=>{
     if((k==='stone'||k==='neo')&&r()<.4)for(let i=0;i<2;i++)osc('sine',90,t+i*.5,.25,.16,G.mus,{a:.003,to:60});
     mstep++;musT=ac.currentTime+n*.6+2.5+r()*4}
   document.addEventListener('visibilitychange',()=>{if(!ac)return;if(document.hidden)ac.suspend().catch(()=>{});else if(mode>0)ac.resume().catch(()=>{})});
-  ['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,()=>unlock(),{passive:true}));
-  return{unlock,setMode,get mode(){return mode},scene,call,sfx,onLog,leave(){inPlay=false}}})();
+  let odeG=null,odeDone=false;
+  function ode(){if(!ac||mode!==2||odeG)return;odeDone=true;odeG=ac.createGain();odeG.gain.value=1;odeG.connect(G.mus);
+    // D major. [semitones above D4, beats]
+    const F=[[4,1],[4,1],[5,1],[7,1],[7,1],[5,1],[4,1],[2,1],[0,1],[0,1],[2,1],[4,1],[4,1.5],[2,.5],[2,2],
+             [4,1],[4,1],[5,1],[7,1],[7,1],[5,1],[4,1],[2,1],[0,1],[0,1],[2,1],[4,1],[2,1.5],[0,.5],[0,2],
+             [2,1],[2,1],[4,1],[0,1],[2,1],[4,.5],[5,.5],[4,1],[0,1],[2,1],[4,.5],[5,.5],[4,1],[2,1],[0,1],[2,1],[-5,2],
+             [4,1],[4,1],[5,1],[7,1],[7,1],[5,1],[4,1],[2,1],[0,1],[0,1],[2,1],[4,1],[2,1.5],[0,.5],[0,2]];
+    const B=[0,-5,0,-5,0,-5,-5,0, 0,-5,0,-5,0,-5,-5,0, -5,0,-5,0,-5,-5,-5,-5, 0,-5,0,-5,0,-5,-5,0];
+    const beat=.52,t0=ac.currentTime+.25,D4=293.66;let t=t0;
+    for(const[st,d]of F){pluck(D4*Math.pow(2,st/12),t,.5,odeG,1);osc('sine',D4*2*Math.pow(2,st/12),t,d*beat*.9,.035,odeG,{a:.04,vib:5,vibD:3});t+=d*beat}
+    B.forEach((st,i)=>{const tb=t0+i*2*beat;pluck(D4/2*Math.pow(2,st/12),tb,.32,odeG,0);osc('sine',D4/4*Math.pow(2,st/12),tb,2*beat*.95,.05,odeG,{a:.08})});
+    musT=t+4}
+  function odeStop(){if(!odeG)return;const g=odeG;odeG=null;g.gain.setTargetAtTime(0,ac.currentTime,.4);setTimeout(()=>{try{g.disconnect()}catch(e){}},3000)}
+  ['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,()=>{unlock();if(!odeDone&&ac&&mode===2&&typeof screen!=='undefined'&&(screen==='intro'||screen==='home'))ode()},{passive:true}));
+  return{unlock,setMode,get mode(){return mode},scene,call,sfx,onLog,ode,odeStop,leave(){inPlay=false}}})();
 
 window.__SND=SND;
 function sndBtnUpd(){const b=$('#sndBtn');if(!b)return;const m=SND.mode;b.textContent=m===2?'♪':m===1?'🔉':'🔇';b.setAttribute('aria-label',t(m===2?'sndAll':m===1?'sndFx':'sndOff'));b.title=t(m===2?'sndAll':m===1?'sndFx':'sndOff');b.setAttribute('aria-pressed',m>0)}
@@ -3990,12 +4019,12 @@ function sceneLoop(){if(!rafOn)return;
 const stage=a=>a<5?'baby':a<13?'child':a>=55?'elder':'adult';
 
 /* ================= RENDER ================= */
-document.addEventListener('change',e=>{if(e.target&&e.target.id==='langSel'){lang=e.target.value;if(!LANG[lang])lang='th';store.set('sit.lang',lang);trInit();applyLang()}});
+document.addEventListener('change',e=>{if(e.target&&e.target.classList&&e.target.classList.contains('langSel')){lang=e.target.value;if(!LANG[lang])lang='th';store.set('sit.lang',lang);trInit();applyLang();if(screen==='intro'){if(introDone)finishIntro(true);else runIntro()}}});
 function applyLang(){
   document.documentElement.lang=lang;
   document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>e.placeholder=t(e.dataset.i18nPh));
-  const ls=$('#langSel');if(ls)ls.value=lang;
+  document.querySelectorAll('.langSel').forEach(x=>x.value=lang);
   renderHome();if(S&&screen==='draw')renderDraw();if(S&&screen==='play'){renderPlay();renderLog();updatePause()}if(S&&screen==='death')renderDeath();
 }
 function renderHome(){
@@ -4131,7 +4160,7 @@ function wrap(ctx,text,x,y,max,lh){
   if(line)ctx.fillText(line.trim(),x,y);return y}
 
 /* ================= SCREENS ================= */
-function show(id){screen=id;['intro','home','draw','play','death'].forEach(s=>$('#'+s).hidden=s!==id);$('#dock').hidden=id!=='play';
+function show(id){screen=id;if(id==='draw'||id==='play')SND.odeStop();['intro','home','draw','play','death'].forEach(s=>$('#'+s).hidden=s!==id);$('#dock').hidden=id!=='play';
   document.body.classList.toggle('playing',id==='play');window.scrollTo(0,0);
   if((id==='play'||id==='draw')&&!rafOn){rafOn=true;requestAnimationFrame(sceneLoop)}if(id!=='play'&&id!=='draw')rafOn=false}
 async function startDraw(){
@@ -4182,17 +4211,17 @@ $('#copyShare').onclick=async()=>{const b=$('#copyShare'),txt=$('#shareText');
   setTimeout(()=>b.textContent=t('copy'),2200)};
 
 /* ================= INTRO ================= */
-let introDone=false;
-async function runIntro(){
+let introDone=false,introTok=0;
+async function runIntro(){const my=++introTok;
   const box=$('#introLines');box.innerHTML='';
   const seg=s=>(typeof Intl!=='undefined'&&Intl.Segmenter)?[...new Intl.Segmenter(lang,{granularity:'grapheme'}).segment(s)].map(x=>x.segment):Array.from(s);
-  for(const[line,cls]of INTRO[lang]){if(introDone)break;const p=document.createElement('p');if(cls)p.className=cls;box.appendChild(p);
+  for(const[line,cls]of INTRO[lang]){if(introDone||my!==introTok)return;const p=document.createElement('p');if(cls)p.className=cls;box.appendChild(p);
     const caret=document.createElement('span');caret.className='caret';
-    const g=seg(line);for(let i=0;i<g.length;i++){if(introDone)break;p.textContent=g.slice(0,i+1).join('');p.appendChild(caret);await sleep(lang==='th'?42:34)}
+    const g=seg(line);for(let i=0;i<g.length;i++){if(introDone||my!==introTok)return;p.textContent=g.slice(0,i+1).join('');p.appendChild(caret);await sleep(lang==='th'?42:34)}
     caret.remove();await sleep(650)}
   finishIntro();
 }
-function finishIntro(){if(introDone&&!$('#introGo').hidden)return;introDone=true;
+function finishIntro(force){if(!force&&introDone&&!$('#introGo').hidden)return;introDone=true;introTok++;
   $('#introLines').innerHTML=INTRO[lang].map(([l,c])=>'<p class="'+c+'">'+l+'</p>').join('');$('#introGo').hidden=false;$('#introGo').focus()}
 $('#introSkip').onclick=finishIntro;
 $('#introGo').onclick=()=>{show('home');renderHome()};
@@ -4217,3 +4246,6 @@ applyLang();show('intro');runIntro();
 })();
 
 </script>
+
+</body>
+</html>
