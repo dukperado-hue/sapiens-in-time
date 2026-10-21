@@ -46,8 +46,23 @@ h1,h2,h3{text-wrap:balance;margin:0}
 @keyframes blink{50%{opacity:0}}
 .intro-go{margin:44px auto 0;max-width:440px;width:100%}
 .skip{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 12px);right:max(16px, env(safe-area-inset-right,0px));background:var(--soot);border:1px solid var(--line);color:var(--bone);font-family:var(--body);font-size:15px;letter-spacing:.02em;padding:10px 18px;min-height:44px;min-width:64px;cursor:pointer}
-.introLang{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(16px, env(safe-area-inset-left,0px))}
-.introLang select{font-size:15px;padding:10px 10px;min-height:44px}
+.introLang{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(16px, env(safe-area-inset-left,0px));right:96px}
+.langBtns{display:flex;flex-wrap:wrap;gap:6px}
+.langBtns button{background:var(--soot);border:1px solid var(--line);color:var(--ash);font:inherit;font-size:14px;padding:8px 11px;min-height:40px;cursor:pointer}
+.langBtns button[aria-pressed="true"]{background:var(--char);border-color:var(--ember);color:var(--bone)}
+.homeLang{margin:2px 0 10px}
+.whoRow{display:flex;gap:10px;align-items:flex-start}.whoRow .who{flex:1;min-width:0}
+.avatar{flex:none;width:48px;height:48px;padding:1px;margin-top:6px;border:1px solid var(--line);background:linear-gradient(#3a2e24,#241c16);cursor:pointer}
+.famGrid{display:flex;flex-wrap:wrap;gap:12px 10px;align-items:flex-end;margin:8px 0}
+.fm{display:flex;flex-direction:column;align-items:center;width:86px;text-align:center;gap:4px}
+.fm canvas{background:linear-gradient(#3a2e24,#241c16);border:1px solid var(--line)}
+.fm.me canvas{border-color:var(--ember)}
+.fmc b{display:block;font-size:12.5px;color:var(--bone);font-weight:600;line-height:1.25}
+.fmc span{font-size:11.5px;color:var(--ash)}
+.fm.dead .fmc{opacity:.7}
+.famTop{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+#famFace canvas{border:1px solid var(--ember);background:linear-gradient(#3a2e24,#241c16)}
+#famSheet .sheet{max-height:88vh;overflow-y:auto}
 
 /* ---------- shared ---------- */
 .bar{display:flex;justify-content:space-between;align-items:center;padding-block:14px 6px}
@@ -259,7 +274,7 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
 <div id="app">
   <!-- INTRO -->
   <section id="intro" aria-label="intro">
-    <label class="lang introLang"><span class="vh">Language</span><select id="langSel0" class="langSel" aria-label="Language"><option value="th">ไทย</option><option value="en">English</option><option value="zh">中文</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="es">Español</option></select></label>
+    <div class="langBtns introLang" role="group" aria-label="Language"></div>
     <button class="skip" id="introSkip" data-i18n="skip">ข้าม</button>
     <div class="intro-lines" id="introLines" aria-live="polite"></div>
     <div class="intro-go"><button class="btn btn-primary" id="introGo" hidden data-i18n="enter">เข้าสู่โลก</button></div>
@@ -269,8 +284,8 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
   <section id="home" hidden>
     <header class="bar">
       <span class="brand">SAPIENS IN TIME</span>
-      <label class="lang"><span class="vh">Language</span><select id="langSel" class="langSel" aria-label="Language"><option value="th">ไทย</option><option value="en">English</option><option value="zh">中文</option><option value="de">Deutsch</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="es">Español</option></select></label>
     </header>
+    <div class="langBtns homeLang" role="group" aria-label="Language"></div>
     <div class="hero">
       <p class="eyebrow" data-i18n="heroEyebrow"></p>
       <h1 class="counter num" id="everBorn">117,000,000,000</h1>
@@ -361,7 +376,7 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
       <div class="ck"><small data-i18n="earthClock"></small><b class="num" id="pClock">23:47:15.920</b><small id="pDate"></small></div>
     </header>
     <canvas class="scene" id="scene" width="192" height="108"></canvas>
-    <div class="who" id="pWho"></div>
+    <div class="whoRow"><button class="avatar" id="pAvatar" type="button"></button><div class="who" id="pWho"></div></div>
     <div class="stats" id="stats"></div>
     <div class="skills" id="skills"></div>
     <div class="tools" id="tools"></div>
@@ -382,6 +397,7 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
     <p class="small" data-i18n="cardHint"></p>
     <p class="epi" id="dEpi"></p>
     <div class="block" id="tabBlock" hidden><h2 id="tabH"></h2><div id="dTab"></div></div>
+    <div class="block" id="famBlock"><h2 id="famH2"></h2><div class="famGrid" id="dFam"></div></div>
     <div class="block" id="funBlock"><h2 data-i18n="funeralT"></h2><p class="fun" id="dFuneral"></p></div>
     <div class="clockline" id="dClock"></div>
     <div class="block">
@@ -424,6 +440,17 @@ textarea{width:100%;box-sizing:border-box;background:var(--night);border:1px sol
       <button id="autoBtn" aria-pressed="false" data-i18n="auto"></button>
       <button id="sndBtn" aria-pressed="true"></button>
     </div>
+  </div>
+</div>
+
+<!-- family portrait -->
+<div class="modal" id="famSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="famTop"><div id="famFace"></div><div><h3 id="famName"></h3><p class="small" id="famSub"></p></div></div>
+    <h2 id="famH"></h2>
+    <div class="famGrid" id="famGrid"></div>
+    <p class="small" id="famNote"></p>
+    <div class="opts"><button id="famClose" type="button"></button></div>
   </div>
 </div>
 
@@ -3997,6 +4024,165 @@ const SND=(()=>{
   return{unlock,setMode,get mode(){return mode},scene,call,sfx,onLog,ode,odeStop,leave(){inPlay=false}}})();
 
 window.__SND=SND;
+/* ================= v0.12 FACES: pixel portrait of you + family picture ================= */
+const SKIN=['#4e3222','#5f3c28','#734a31','#8a5a3c','#a06c48','#b88058','#cc9a70','#ddb48e','#eac6a2'];
+const SKINR={eaf:[0,2],saf:[1,3],gsa:[0,2],sah:[0,2],bis:[0,3],kuk:[0,2],van:[1,3],fij:[1,3],ton:[2,4],soc:[2,4],haw:[2,4],rap:[2,4],nzl:[2,4],
+  sun:[2,4],tha:[2,4],phl:[2,4],jav:[2,4],flo:[2,4],luz:[2,4],sas:[1,3],ara:[2,4],lev:[2,5],zag:[3,5],ana:[3,5],
+  eur:[2,5],mst:[2,5],wcv:[2,5],alt:[4,6],sib:[3,6],ber:[3,6],ame:[3,5],eas:[4,7],yel:[4,7],yan:[4,6],tib:[3,6]};
+function strHash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function skinRange(rg){if(R4&&R4[rg])return [3,5];if(typeof R6!=='undefined'&&R6[rg])return rg==='ele'?[2,4]:[2,5];return SKINR[rg]||[3,5]}
+// face spec, deterministic from seed
+function faceSpec(seed,o){const r=srng(seed),sp=o.sp||'sap',[a,b]=skinRange(o.rg);
+  let skin=SKIN[Math.min(8,a+Math.floor(r()*(b-a+1)))];if(sp==='nea')skin=SKIN[4+Math.floor(r()*3)];
+  const hairC=sp==='nea'&&r()<.18?'#7a3a1c':pick2(r,['#1a120c','#20160e','#2a1c12','#120c08']);
+  const eye=(['eur','wcv','mst'].includes(o.rg)&&o.ch===2&&r()<.3)?'#4a6a8a':'#2a1a10';
+  return {seed,sex:o.sex,age:o.age,sp,ch:o.ch,rg:o.rg,cls:o.cls||'',skin,hairC,eye,beard:o.sex==='m'&&r()<.55,style:r(),wig:r()<.6,dead:!!o.dead,big:r()}}
+const pick2=(r,a)=>a[Math.floor(r()*a.length)];
+function shade(c,k){const n=parseInt(c.slice(1),16);let R=n>>16,G=(n>>8)&255,B=n&255;const f=x=>Math.max(0,Math.min(255,Math.round(k<0?x*(1+k):x+(255-x)*k)));return '#'+[f(R),f(G),f(B)].map(v=>v.toString(16).padStart(2,'0')).join('')}
+// draw a 32x32 bust at (x0,y0) scale s
+function drawFace(ctx,F,x0,y0,s){const P=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x0+x*s,y0+y*s,w*s,h*s)};
+  const kid=F.age<13,baby=F.age<4,old=F.age>=55,arch=F.sp!=='sap',nea=F.sp==='nea'||F.sp==='den',ere=F.sp==='ere'||F.sp==='flo'||F.sp==='luz';
+  const sk=F.skin,skD=shade(sk,-.18),skL=shade(sk,.12),hair=old?(F.style<.5?'#bdb5ac':'#8f8780'):F.hairC;
+  const egy=F.ch===6,sum=F.ch===4,pac=F.ch===5,neo=F.ch===3,stone=F.ch<=2||F.ch===7;
+  // clothes / shoulders
+  let cl='#7a5a40',cl2='#5e4430';
+  if(egy){cl=F.cls==='slave'?'#cfc4ae':'#efe9dc';cl2='#d8d0bf'}else if(sum){cl=F.cls==='elite'?'#e0d2ac':'#c9b48a';cl2='#a89064'}
+  else if(neo){cl='#b59a6a';cl2='#8f774e'}else if(pac){cl='#c9a878';cl2='#a3845a'}
+  const sw=kid?14:18,sx=16-sw/2;P(sx,26,sw,6,cl);P(sx+1,25,sw-2,1,cl);P(sx,31,sw,1,cl2);
+  if(stone){for(let i=0;i<sw;i+=2)P(sx+i,25,1,1,'#a88a66')}
+  if(sum&&!kid){for(let i=0;i<sw;i+=3)for(let j=27;j<32;j+=2)P(sx+i+(j%4?1:0),j,1,1,cl2)}
+  if(egy&&(F.cls==='elite'||F.big>.6)&&!kid){P(sx+1,25,sw-2,2,'#2f6f8f');P(sx+2,27,sw-4,1,'#d9b45a');P(sx+3,28,sw-6,1,'#2f6f8f')}
+  if(pac)for(let i=0;i<5;i++)P(11+i*2,26,1,1,'#f2ead8');
+  // neck
+  P(13,22,6,4,skD);
+  // head geometry
+  const hw=nea?16:kid?13:14,hx=16-Math.floor(hw/2),top=baby?10:kid?8:6,bot=23,hh=bot-top;
+  for(let y=top;y<bot;y++){const t=(y-top)/hh;let w=hw;if(t<.15)w=hw-4;else if(t<.25)w=hw-2;if(t>.8)w=hw-(nea?2:3);if(t>.92)w=hw-(nea?3:6);P(16-Math.floor(w/2),y,w,1,sk)}
+  P(16-Math.floor(hw/2),top+hh*.45|0,1,4,skD);P(16+Math.ceil(hw/2)-1,top+hh*.45|0,1,4,skD);// ears shade
+  // hair
+  const H=(x,y,w,h)=>P(x,y,w,h,hair);
+  const ey=top+Math.round(hh*(baby?.5:.45));
+  if(egy){if(kid){P(hx,top,hw,1,skL);H(hx-1,top+2,2,9);H(hx-1,top+10,2,3)}// shaved + sidelock
+    else if(F.sex==='f'||F.wig){H(hx-1,top-1,hw+2,4);H(hx-2,top+2,3,F.sex==='f'?17:10);H(hx+hw-1,top+2,3,F.sex==='f'?17:10);if(F.sex==='f'){P(hx-1,top+1,hw+2,1,'#c0392b')}}
+    else{H(hx,top,hw,2)}}
+  else if(sum){if(F.sex==='f'&&!kid){H(hx-1,top-1,hw+2,4);H(hx+3,top-3,hw-6,3);P(hx-1,top+1,hw+2,1,'#c9a24a');H(hx-1,top+3,2,6);H(hx+hw-1,top+3,2,6)}
+    else if(F.sex==='m'&&!kid&&F.style<.35){P(hx+1,top,hw-2,1,skL)}// shaven priest look
+    else{H(hx-1,top-1,hw+2,4);H(hx-1,top+3,2,7);H(hx+hw-1,top+3,2,7)}}
+  else if(pac){H(hx-1,top-1,hw+2,4);H(hx+4,top-4,hw-8,4);if(F.sex==='f'){H(hx-2,top+3,2,10);H(hx+hw,top+3,2,10)}}
+  else{// stone age / neolithic: loose hair, braids sometimes
+    H(hx-1,top-1,hw+2,4+(ere?1:0));if(F.sex==='f'||F.style>.5){H(hx-2,top+2,3,neo&&F.style>.5?14:11);H(hx+hw-1,top+2,3,neo&&F.style>.5?14:11);if(neo&&F.sex==='f')for(let y=top+6;y<top+16;y+=2){P(hx-2,y,1,1,shade(hair,.2));P(hx+hw+1,y,1,1,shade(hair,.2))}}
+    else{H(hx-1,top+2,2,5);H(hx+hw-1,top+2,2,5)}}
+  if(old&&F.sex==='m'&&F.style>.5)P(hx+3,top,hw-6,2,skL);// balding
+  // brow ridge for archaic humans
+  if(arch&&!baby){P(hx+1,ey-2,hw-2,2,skD);P(hx+1,ey-3,hw-2,1,shade(sk,-.08))}
+  // brows
+  if(!arch)P(hx+2,ey-2,4,1,shade(hair,.15)),P(hx+hw-6,ey-2,4,1,shade(hair,.15));
+  // eyes
+  const ew=baby||kid?3:2;const lx=hx+3,rx=hx+hw-3-ew;
+  if(F.dead){P(lx,ey,ew,1,skD);P(rx,ey,ew,1,skD)}
+  else{P(lx,ey,ew,2,'#f2ece2');P(rx,ey,ew,2,'#f2ece2');P(lx+ew-1,ey,1,2,F.eye);P(rx,ey,1,2,F.eye);if(nea){P(lx,ey-1,ew,1,skD);P(rx,ey-1,ew,1,skD)}}
+  if(egy&&!kid){P(lx-1,ey-1,ew+1,1,'#151010');P(rx,ey-1,ew+1,1,'#151010');P(lx-2,ey,1,1,'#151010');P(rx+ew,ey,2,1,'#151010')}// kohl
+  // nose
+  const nw=nea||ere?4:baby?1:2;P(16-Math.ceil(nw/2),ey+2,nw,nea?3:2,skD);if(!baby)P(16-Math.ceil(nw/2),ey+4,nw,1,shade(sk,-.3));
+  // mouth
+  const my=ey+(baby?4:6);P(14,my,4,1,shade(sk,-.35));if(!old&&!F.dead)P(15,my+1,2,1,shade(sk,-.15));
+  // wrinkles
+  if(old){P(lx-1,ey+2,1,1,skD);P(rx+ew,ey+2,1,1,skD);P(13,my-1,1,1,skD);P(18,my-1,1,1,skD);P(hx+3,top+3,hw-6,1,skD)}
+  // beard
+  if(F.beard&&F.sex==='m'&&F.age>=18&&!(egy)&&!(sum&&F.style<.35)){const bc=old?'#c8c0b6':hair;P(hx+1,my-1,2,4,bc);P(hx+hw-3,my-1,2,4,bc);P(hx+2,my+1,hw-4,sum?5:3,bc);P(14,my,4,1,shade(sk,-.35))}
+  if(egy&&F.sex==='m'&&F.cls==='elite'&&!kid&&F.style>.8)P(15,bot,2,3,'#1a1410');// false beard (kingly), rare
+  // cheeks
+  if(kid&&!F.dead){P(lx-1,ey+3,2,1,shade(sk,.06));P(rx+ew-1,ey+3,2,1,shade(sk,.06))}
+}
+function faceCanvas(F,px){const c=document.createElement('canvas');c.width=32;c.height=32;c.style.width=px+'px';c.style.height=px+'px';c.style.imageRendering='pixelated';drawFace(c.getContext('2d'),F,0,0,1);if(F.dead)c.style.filter='grayscale(1) brightness(.75)';return c}
+function myFace(S,ageOverride){return faceSpec(S.seed^0x5eed,{sex:S.sex,age:ageOverride!=null?ageOverride:S.age,sp:S.sp.id,ch:S.ch,rg:S.rg,cls:S.cls,dead:!!S.dead})}
+function kidInfo(S,k,i){if(!k.sex)k.sex=srng((S.seed^(i*7919+k.born))>>>0)()<.5?'m':'f';
+  if(!k.n){if(S.ch===6&&typeof genName6==='function')k.n=nm4X(genName6(S,k.sex,era6(S.ya)));else if(S.ch===4)k.n=nm4X(genName4(S,k.sex,era4(S.ya)));else{const used=S.ppl.map(p=>p.n.th).concat(S.kids.map(x=>x.n&&x.n.th));const pool=PNAMES.filter(n=>!used.includes(n.th));k.n=pick(pool.length?pool:PNAMES)}}
+  const lived=S.age-k.born,dead=k.dies!=null&&lived>=k.dies,age=dead?k.dies:lived;return {n:k.n,sex:k.sex,age,dead}}
+const FAM={me:X('คุณ','You'),mother:X('แม่','Mother'),father:X('พ่อ','Father'),son:X('ลูกชาย','Son'),daughter:X('ลูกสาว','Daughter'),title:X('ภาพครอบครัว','Family portrait'),
+  close:X('ปิด','Close'),tap:X('แตะเพื่อดูหน้าและครอบครัวของคุณ','Tap to see your face and your family'),none:X('ตอนนี้ยังมีแค่คุณในภาพ','For now, it is only you in the picture'),
+  note:X('หน้าตา สีผิว และทรงผมในภาพเป็นการจำลองแบบคร่าวๆ ตามยุคและถิ่น คนในยุคเดียวกันหน้าตาหลากหลายมาก','Faces, skin tones and hairstyles here are a rough simulation for the time and place. People in every age looked very varied.')};
+function famMembers(S){const out=[];const me={F:Object.assign(myFace(S),{dead:false}),n:S.name,rel:FAM.me,me:1};
+  if(S.age<16&&!S.dead){out.push({F:faceSpec(S.seed^0x3a3a,{sex:'f',age:S.age+20+(S.seed%9),sp:S.sp.id,ch:S.ch,rg:S.rg,cls:S.cls}),n:null,rel:FAM.mother});
+    const fa=(S.nm4&&S.nm4.fa)||(S.nm6&&S.nm6.fa);out.push({F:faceSpec(S.seed^0x4b4b,{sex:'m',age:S.age+24+(S.seed%11),sp:S.sp.id,ch:S.ch,rg:S.rg,cls:S.cls}),n:fa?X(fa.th,fa.l):null,rel:FAM.father})}
+  const pr=S.ppl.find(p=>p.k==='partner');if(pr)out.push({F:faceSpec(strHash(pr.n.th),{sex:S.sex==='f'?'m':'f',age:Math.max(16,S.age+((strHash(pr.n.th)%7)-3)),sp:S.sp.id,ch:S.ch,rg:S.rg,cls:S.cls,dead:pr.dead}),n:pr.n,rel:PK.partner,dead:pr.dead});
+  out.unshift(me);
+  S.ppl.filter(p=>p.k==='sib').forEach(p=>{const h=strHash(p.n.th);out.push({F:faceSpec(h,{sex:h%2?'m':'f',age:Math.max(1,S.age+((h%13)-6)),sp:S.sp.id,ch:S.ch,rg:S.rg,cls:S.cls,dead:p.dead}),n:p.n,rel:PK.sib,dead:p.dead})});
+  S.kids.forEach((k,i)=>{const K=kidInfo(S,k,i);out.push({F:faceSpec(strHash(K.n.th)^S.seed,{sex:K.sex,age:K.age,sp:S.sp.id,ch:S.ch,rg:S.rg,cls:S.cls,dead:K.dead}),n:K.n,rel:K.sex==='m'?FAM.son:FAM.daughter,dead:K.dead,kid:1,age:K.age})});
+  return out}
+function famHTML(S,box){box.innerHTML='';const ms=famMembers(S);
+  ms.forEach(m=>{const d=document.createElement('div');d.className='fm'+(m.dead?' dead':'')+(m.me?' me':'');d.appendChild(faceCanvas(m.F,m.kid&&m.F.age<13?56:72));
+    const cap=document.createElement('div');cap.className='fmc';cap.innerHTML=(m.n?'<b>'+esc(nmL(m.n))+'</b>':'')+'<span>'+esc(L(m.rel))+(m.dead?' †':'')+'</span>';d.appendChild(cap);box.appendChild(d)});
+  if(ms.length===1){const p=document.createElement('p');p.className='small';p.textContent=L(FAM.none);box.appendChild(p)}}
+let famWasPaused=null;
+function openFam(){if(!S)return;const sh=$('#famSheet');$('#famFace').innerHTML='';$('#famFace').appendChild(faceCanvas(myFace(S),160));
+  $('#famName').textContent=nmL(S.name);$('#famSub').textContent=t('cardAge',{a:S.age})+' · '+L(title(S));$('#famH').textContent=L(FAM.title);$('#famNote').textContent=L(FAM.note);$('#famClose').textContent=L(FAM.close);
+  famHTML(S,$('#famGrid'));sh.hidden=false;if(screen==='play'){famWasPaused=paused;paused=true;updatePause()}}
+function closeFam(){$('#famSheet').hidden=true;if(famWasPaused!=null&&screen==='play'){paused=famWasPaused;updatePause()}famWasPaused=null}
+function renderAvatar(){const a=$('#pAvatar');if(!a||!S)return;const key=S.age+'|'+S.ch+'|'+S.seed+'|'+S.cls;if(a.dataset.k===key)return;a.dataset.k=key;a.innerHTML='';a.appendChild(faceCanvas(myFace(S),44));a.title=L(FAM.tap);a.setAttribute('aria-label',L(FAM.tap))}
+
+/* ================= v0.12 CONTENT: pyramid crews, shared stories, the farming trap, money as trust ================= */
+const pyrEra=S=>era6(S.ya)==='ok'&&['mem','giz','del','aby'].includes(S.rg);
+DEC.push(
+{id:'a6_crew',deck:'adult',w:10,ch:6,a:[16,45],cond:S=>pyrEra(S)&&S.cls!=='elite'&&(!S.car||['farmer','herder','fisher'].includes(S.car)),
+ t:X('อยู่ต่อที่กีซาไหม','Stay on at Giza?'),
+ x:X('ฤดูลากหินของคุณใกล้จบแล้ว หัวหน้าทีมบอกว่างานหลวงต้องการคนที่อยู่ทั้งปี ทั้งช่างสกัดหิน คนลากหิน และคนเรือ ทุกคนได้กินจากโรงขนมปังและโรงเบียร์ของพระราชา',
+     'Your season of hauling stone is ending. The overseer of your gang says the king’s works need people who stay all year: stone-cutters, haulers and boatmen, all fed from the royal bakeries and breweries.'),
+ n:X('นักโบราณคดีคิดว่าพีระมิดสร้างโดยคนงานสองแบบ แบบแรกคือทีมช่างฝีมือประจำจำนวนไม่มากที่ทำงานตลอดปี แบบที่สองคือคนจำนวนมากจากหมู่บ้านต่างๆ ที่ผลัดกันมาเป็นรอบ คล้ายจ่ายภาษีเป็นแรงงาน การขุดค้นที่เฮต เอล-กูรอบ เมืองคนงานทางใต้ของสฟิงซ์ พบโรงขนมปัง โรงเบียร์ เรือนพัก และกระดูกวัว แกะ แพะ มากพอเลี้ยงคนหลายพันคน คนเหล่านี้ไม่ใช่ทาสอย่างที่ตำนานรุ่นหลังเล่า',
+     'Archaeologists think the pyramids were built by two kinds of workers: a smaller permanent crew of skilled craftsmen who worked all year, and many more labourers who came from the villages in rotating shifts, much like a tax paid in work. Digs at Heit el-Ghurab, the workers’ town south of the Sphinx, found bakeries, breweries, sleeping halls and enough cattle, sheep and goat bones to feed thousands. They were not the slaves of later legend.'),
+ o:[Object.assign(opt(X('อยู่ต่อกับทีมช่างประจำของพระราชา','Stay on with the king’s permanent crew'),S=>{S.car='builder';S.clv=Math.max(1,S.clv||0);S.cxp=0;S.crew6=1;fx({h:-2,b:3,f:4});ms(X('เข้าทีมช่างประจำของพระราชาที่กีซา','Joined the king’s permanent crew at Giza'));
+      return X('ทุกสิบวันคุณได้ปันส่วน ขนมปัง เบียร์ หัวหอม และบางครั้งมีเนื้อ มือคุณหนาขึ้น และทีมกลายเป็นครอบครัวที่สองของคุณ','Every ten days you receive rations: bread, beer, onions and sometimes meat. Your hands grow hard, and the gang becomes your second family.')}),
+      {lockF:S=>S.sex!=='m',lockT:X('ทีมลากและสกัดหินเป็นผู้ชาย','The stone gangs were men')}),
+    opt(X('ไปทำงานในโรงขนมปังและโรงเบียร์ของเมืองคนงาน','Work in the bakeries and breweries of the workers’ town'),S=>{S.car='brewer';S.clv=Math.max(1,S.clv||0);S.cxp=0;S.crew6=1;fx({b:2,f:5});
+      return X('คุณอบขนมปังทีละหลายพันก้อนในหม้อดินรูประฆังที่ฝังในขี้เถ้าร้อน ตอนเย็นทีมคนงานเดินผ่านมารับเบียร์อุ่นๆ','You bake thousands of loaves in bell-shaped clay pots set in hot ashes. In the evenings the gangs come past for their warm beer.')}),
+    opt(X('กลับไปทำนาที่หมู่บ้าน','Go home to your village fields'),S=>{fx({b:1});return X('คุณกลับไปทำนาเมื่อน้ำลด ฤดูน้ำหลากหน้า เจ้าหน้าที่จะมาเรียกอีก','You go back to your fields when the water falls. Next flood season the officials will come again.')})]},
+{id:'a3_oldway',deck:'adult',w:4,ch:3,a:[25,60],cond:S=>!!S.settled&&!!S.field,
+ t:X('วิถีเก่า','The old way'),
+ x:X('ในปีที่อดอยาก ยายคนหนึ่งเล่าว่าตอนเป็นเด็ก กลุ่มของนางกินพืชหลายสิบชนิดและย้ายที่ตามฤดู ตอนนี้ทุกคนต้องบดเมล็ดพืชตั้งแต่เช้ามืด และมีปากท้องมากเกินกว่าจะกลับไปใช้ชีวิตแบบเดิม',
+     'In a hungry year, an old woman remembers that when she was a girl her band ate dozens of kinds of plants and moved with the seasons. Now everyone grinds grain from before dawn, and there are too many mouths to feed to go back.'),
+ n:X('โครงกระดูกจากหมู่บ้านเกษตรยุคแรกหลายแห่งเตี้ยกว่า ฟันผุมากกว่า และมีร่องรอยความหิวในวัยเด็กมากกว่าคนหาของป่ารุ่นก่อน ที่อาบู ฮูเรย์ราในซีเรีย นิ้วเท้า เข่า และหลังของผู้หญิงสึกจากการคุกเข่าบดเมล็ดพืชทุกวัน แต่ทุ่งนาเลี้ยงคนได้มากกว่าป่าในพื้นที่เท่ากัน หมู่บ้านเกษตรจึงโตขึ้นเรื่อยๆ และหันกลับไปหาของป่าไม่ได้ง่ายๆ',
+     'Skeletons from many early farming villages show shorter people, more tooth decay and more signs of childhood hunger than the foragers before them. At Abu Hureyra in Syria, women’s toes, knees and backs were worn from kneeling at grinding stones every day. Yet a field fed more people than the same land of wild plants, so farming villages kept growing and could not easily go back to foraging.'),
+ o:[opt(X('ขึ้นเขาไปหาของป่าแบบสมัยก่อน','Go up into the hills to gather wild food as in the old days'),S=>{fx({f:6,h:2,kn:2});return X('คุณได้ถั่วป่า ผลไม้ และหัวพืชกลับมา พอประทังได้หลายวัน แต่ไม่พอเลี้ยงทั้งหมู่บ้าน','You bring back wild nuts, fruit and roots, enough to get by for days, but not enough to feed the whole village.')}),
+    opt(X('บุกเบิกนาแปลงที่สอง','Clear a second field'),S=>{S.field=(S.field||1)+1;fx({h:-3,f:4});return X('หลังคุณปวดทุกคืน แต่ปีหน้าจะมีเมล็ดพืชมากขึ้น และมีปากท้องเพิ่มขึ้นด้วย','Your back aches every night, but next year there will be more grain, and more mouths too.')}),
+    opt(X('แลกของกับคนหาของป่าบนเขา','Trade with the foragers in the hills'),S=>{fx({b:3,so:2,f:3});if(typeof addFriend==='function'&&rnd()<.5)addFriend();return X('คุณเอาเมล็ดพืชไปแลกเนื้อแห้งกับหนังสัตว์ ทั้งสองฝ่ายต่างคิดว่าอีกฝ่ายลำบากกว่า','You swap grain for dried meat and hides. Each side thinks the other has the harder life.')})]},
+{id:'a6_kingdead',deck:'adult',w:3,ch:6,a:[18,70],
+ t:X('พระราชาสวรรคต','The king is dead'),
+ x:X('พระราชาสวรรคตแล้ว นักบวชบอกว่าจนกว่าพระราชาองค์ใหม่จะขึ้นครองราชย์ มาอัต ระเบียบของโลก กำลังสั่นคลอน ทุกคนรอดูแม่น้ำไนล์ ราวกับว่าน้ำอาจไม่มา',
+     'The king has died. Until the new king is crowned, the priests say, Ma’at, the order of the world, hangs in the balance. Everyone watches the Nile, as if the flood might not come.'),
+ n:X('ชาวอียิปต์เชื่อว่าพระราชาในฐานะโอรสของเทพเป็นผู้รักษามาอัต ความถูกต้องและระเบียบของโลก ไม่ให้ความโกลาหลเข้ามา รัชกาลใหม่ทุกครั้งเริ่มด้วยการฟื้นฟูมาอัต ความเชื่อร่วมกันนี้ทำให้คนนับล้านยอมรับภาษี แรงงาน และอำนาจของพระราชา',
+     'Egyptians believed the king, as son of the gods, upheld Ma’at, the right order of the world, against chaos. Every new reign began by restoring it. This shared belief helped millions of people accept taxes, labour and the king’s rule.'),
+ o:[opt(X('ถวายเครื่องบูชาที่วิหารให้พระราชาองค์ใหม่','Bring an offering to the temple for the new king'),S=>{fx({b:2,f:-2});return X('เมื่อพระราชาองค์ใหม่ขึ้นครองราชย์ น้ำไนล์ก็มาตามฤดู ทุกคนบอกว่ามาอัตกลับคืนมาแล้ว','The new king is crowned, the Nile rises on time, and everyone says Ma’at has returned.')}),
+    opt(X('สงสัยในใจว่าน้ำจะมาอยู่ดีไหม แม้ไม่มีพระราชา','Wonder quietly whether the river would come anyway, king or no king'),S=>{fx({kn:2});return X('คุณไม่บอกใคร เพราะความคิดแบบนี้อันตราย แต่มันติดอยู่ในใจคุณไปอีกนาน','You tell no one, because such thoughts are dangerous, but the question stays with you for a long time.')})]}
+);
+EV.push(
+{a:[18,60],w:3,ch:6,once:1,cond:S=>pyrEra(S)&&(S.crew6||S.car==='builder'),fxF:S=>{fx({b:-3})},
+ x:X('ชายคนหนึ่งในทีมของคุณตายเมื่อเชือกลากเลื่อนขาด เขาถูกฝังในสุสานคนงานบนเนินเหนือเมือง พร้อมโถขนมปัง โถเบียร์ และสุสานเล็กๆ ของตัวเอง',
+     'A man in your gang dies when a sledge rope snaps. He is buried in the workers’ cemetery on the slope above the town, with jars of bread and beer and a little tomb of his own.'),
+ n:X('ในปี 1990 นักโบราณคดีพบสุสานของคนสร้างพีระมิดที่กีซา มีสุสานเล็กๆ จากอิฐดิบและหินหลายร้อยหลุม โครงกระดูกแสดงร่องรอยการทำงานหนัก แต่ก็มีกระดูกหักที่ต่อติดดี และแม้แต่การตัดแขนขาที่ผู้ป่วยรอดชีวิต แสดงว่าคนงานได้รับการรักษา',
+     'In 1990 archaeologists found the cemetery of the pyramid builders at Giza, with hundreds of small tombs of mud brick and stone. The skeletons show hard labour, but also well-healed fractures and even amputations the patients survived, which suggests the workers were given medical care.')},
+{a:[10,60],w:2.5,ch:2,once:1,rg:['eur','mst','wcv'],cond:S=>S.ya>=33000,
+ x:X('ข้างกองไฟ ช่างแกะสลักชราคนหนึ่งเหลางาแมมมอธเป็นรูปคนตัวเป็นคนแต่หัวเป็นสิงโต คุณถามว่ามันคืออะไร เขาตอบว่า “คนที่ไม่มีอยู่จริง แต่ตอนนี้ทุกคนรู้จักเขาแล้ว”',
+     'By the fire, an old carver shapes mammoth ivory into a figure with a man’s body and a lion’s head. You ask what it is. “Someone who does not exist,” he says, “yet now everyone knows him.”'),
+ n:X('มนุษย์สิงโตแห่งโฮเลนชไตน์-ชตาเดล ประเทศเยอรมนี แกะจากงาแมมมอธเมื่อราว 40,000 ปีก่อน เป็นรูปปั้นสิ่งที่มีอยู่แค่ในจินตนาการที่เก่าที่สุดชิ้นหนึ่งที่รู้จัก เรื่องเล่าถึงสิ่งที่ไม่มีใครเคยเห็น เช่น ผี บรรพบุรุษ และต่อมาคือเทพ กฎหมาย และอาณาจักร ทำให้คนแปลกหน้าจำนวนมากไว้ใจและร่วมมือกันได้',
+     'The Lion-man of Hohlenstein-Stadel in Germany, carved from mammoth ivory about 40,000 years ago, is one of the oldest known figures of a being that exists only in the imagination. Stories about things no one has seen, such as spirits and ancestors, and later gods, laws and kingdoms, let large numbers of strangers trust each other and work together.')},
+{a:[20,70],w:4,ch:2,once:1,rg:['ame'],cond:S=>S.ya<=13500,
+ x:X('ยายเล่าว่าตอนเด็กๆ นางเห็นสัตว์ยักษ์อยู่บ่อยๆ ทั้งสลอธพื้นดินที่สูงกว่าคน และแมมมอธ แต่คุณไม่เคยเห็นสักตัว',
+     'Your grandmother says that when she was small she often saw giant beasts, ground sloths taller than a man and mammoths. You have never seen one.'),
+ n:X('ภายในไม่กี่พันปีหลังมนุษย์มาถึงทวีปอเมริกา แมมมอธ สลอธพื้นดินยักษ์ ม้า และเสือเขี้ยวดาบก็สูญพันธุ์ นักวิทยาศาสตร์ยังถกเถียงว่าเป็นเพราะการล่ามากแค่ไหน และเพราะอากาศที่เปลี่ยนตอนปลายยุคน้ำแข็งมากแค่ไหน น่าจะเป็นทั้งสองอย่าง',
+     'Within a few thousand years of humans reaching the Americas, mammoths, giant ground sloths, horses and sabre-toothed cats died out. Scientists still argue how much was hunting and how much the changing climate at the end of the Ice Age; probably both.')},
+{a:[14,70],w:1.1,ch:4,once:1,cond:S=>S.ag>=1,
+ x:X('พ่อค้าจากเมืองที่คุณไม่เคยไปรับเงินของคุณแลกกับสินค้า โดยไม่ถามชื่อคุณด้วยซ้ำ เงินหนักเท่ากันไม่ว่าที่นี่หรือที่เมืองของเขา',
+     'A merchant from a city you have never seen takes your silver for his goods without even asking your name. Silver weighs the same here as in his city.'),
+ n:X('เงินใช้เป็นเงินตราได้เพราะทุกคนในภูมิภาคเชื่อว่าคนต่อไปจะรับมัน พ่อค้าพกเศษเงินตัดและขดลวดเงินไปชั่งบนตาชั่ง เหรียญที่มีตราพระราชามาทีหลังมาก ที่ลิเดียราว 600 ปีก่อนคริสตกาล',
+     'Silver worked as money because everyone in the region trusted that the next person would accept it. Merchants carried cut pieces and coils of silver and weighed them on balance scales. Coins stamped by kings came much later, in Lydia, around 600 BCE.')},
+{a:[14,70],w:2,ch:4,once:1,cond:S=>era4(S.ya)==='ob',
+ x:X('บนยอดแท่งศิลากฎหมาย พระราชายืนอยู่ต่อหน้าเทพชามาชผู้ประทับบนบัลลังก์ คนในตลาดบอกว่ากฎหมายพวกนี้มาจากสวรรค์',
+     'At the top of the law stele, the king stands before the sun god Shamash on his throne. People in the market say the laws came down from heaven.'),
+ n:X('ผู้ปกครองมักบอกว่ากฎหมายและลำดับชั้นของสังคมเป็นสิ่งที่เทพประทานมา นักประวัติศาสตร์หลายคนชี้ว่า เมื่อคนเชื่อว่าระเบียบสังคมมาจากเทพหรือธรรมชาติ ไม่ใช่สิ่งที่คนสร้างขึ้น ก็มีน้อยคนที่จะตั้งคำถาม',
+     'Rulers often presented their laws and the ranks of society as gifts of the gods. Many historians point out that when people believe an order is divine or natural, rather than made by humans, few think to question it.')}
+);
+
+window.__FACE={faceSpec,drawFace};
 function sndBtnUpd(){const b=$('#sndBtn');if(!b)return;const m=SND.mode;b.textContent=m===2?'♪':m===1?'🔉':'🔇';b.setAttribute('aria-label',t(m===2?'sndAll':m===1?'sndFx':'sndOff'));b.title=t(m===2?'sndAll':m===1?'sndFx':'sndOff');b.setAttribute('aria-pressed',m>0)}
 function sceneLoop(){if(!rafOn)return;
   if(screen==='play'&&S){const so=sceneOpts();drawScene($('#scene').getContext('2d'),so);SND.scene(so,true)}
@@ -4007,12 +4193,15 @@ function sceneLoop(){if(!rafOn)return;
 const stage=a=>a<5?'baby':a<13?'child':a>=55?'elder':'adult';
 
 /* ================= RENDER ================= */
+const LANGLIST=[['th','ไทย'],['en','English'],['zh','中文'],['de','Deutsch'],['ja','日本語'],['ko','한국어'],['es','Español']];
+document.addEventListener('click',e=>{const lb=e.target.closest&&e.target.closest('.langBtns button');if(lb){setLang(lb.dataset.lang)}});
+function setLang(v){lang=v;if(!LANG[lang])lang='th';store.set('sit.lang',lang);trInit();applyLang();if(screen==='intro'){if(introDone)finishIntro(true);else runIntro()}}
 document.addEventListener('change',e=>{if(e.target&&e.target.classList&&e.target.classList.contains('langSel')){lang=e.target.value;if(!LANG[lang])lang='th';store.set('sit.lang',lang);trInit();applyLang();if(screen==='intro'){if(introDone)finishIntro(true);else runIntro()}}});
 function applyLang(){
   document.documentElement.lang=lang;
   document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>e.placeholder=t(e.dataset.i18nPh));
-  document.querySelectorAll('.langSel').forEach(x=>x.value=lang);
+  document.querySelectorAll('.langBtns').forEach(box=>{if(!box.children.length)box.innerHTML=LANGLIST.map(([k,n])=>'<button data-lang="'+k+'" lang="'+k+'">'+n+'</button>').join('');box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang))});
   renderHome();if(S&&screen==='draw')renderDraw();if(S&&screen==='play'){renderPlay();renderLog();updatePause()}if(S&&screen==='death')renderDeath();
 }
 function renderHome(){
@@ -4058,7 +4247,7 @@ function renderDraw(){
   ].map(([k,v])=>'<div><span class="k">'+k+'</span><span>'+v+'</span></div>').join('');
   $('#blurb').textContent=L(S.sp.id==='sap'&&civ(S.chap)?X('สายพันธุ์ของเราเอง ตอนนี้เป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ อาศัยอยู่ทุกทวีปยกเว้นแอนตาร์กติกา ทั้งโลกอาจมีคนราว 15–45 ล้านคน ส่วนใหญ่ยังเป็นชาวนา คนเลี้ยงสัตว์ หรือนักล่า มีเพียงส่วนน้อยที่อยู่ในเมือง','Our own species, now the only humans left, living on every continent except Antarctica. The whole world may hold some 15–45 million people; most are still farmers, herders or hunters, and only a few live in cities.'):S.sp.id==='sap'&&S.chap>=3?X('สายพันธุ์ของเราเอง ตอนนี้เป็นมนุษย์สายพันธุ์เดียวที่เหลืออยู่ อาศัยอยู่ทุกทวีปยกเว้นแอนตาร์กติกา','Our own species, now the only humans left, living on every continent except Antarctica.'):S.sp.b);$('#facts').innerHTML=S.sp.f.map(f=>'<li>'+L(f)+'</li>').join('');
 }
-function renderPlay(){
+function renderPlay(){renderAvatar();
   if(!S)return;$('#pAge').textContent=S.age;$('#pYa').textContent=t('yearsAgo',{n:fmt(S.ya0-S.age)});
   $('#pWho').innerHTML='<b>'+L(S.sp.n)+'</b><span>'+L(S.R.n)+'</span><span class="chip">'+esc(L(title(S)))+'</span>'+S.tal.map(k=>'<span class="chip tal" title="'+esc(L(TALENTS[k].d))+'">'+esc(L(TALENTS[k].n))+'</span>').join('')
     +'<span class="chip yt">'+esc(L(YT[S.yt]))+'</span>'+(S.sick?'<span class="chip sick">'+esc(t('sickT',{d:L(DIS[S.sick.k].n)}))+'</span>':'')+'<span class="cli">'+L(climate(S.ya0-S.age).n)+'</span>';
@@ -4095,6 +4284,7 @@ function renderLog(){if(!S)return;$('#log').innerHTML=S.log.map(e=>'<li class="'
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const lifeSec=a=>a*CALSEC/EARTH;
 function renderDeath(){
+  $('#famH2').textContent=L(FAM.title);famHTML(S,$('#dFam'));
   const sec=lifeSec(Math.max(S.age,.5)).toFixed(3);
   $('#dName').textContent='“'+nmL(S.name)+'”';
   $('#dTitle').textContent=L(S.title);
@@ -4190,6 +4380,7 @@ document.addEventListener('click',e=>{
   const spd=e.target.closest('.ctrl [data-sp]');if(spd){speed=+spd.dataset.sp;document.querySelectorAll('.ctrl [data-sp]').forEach(b=>b.setAttribute('aria-pressed',b===spd));return}
 });
 $('#pauseBtn').onclick=()=>{paused=!paused;updatePause()};
+$('#pAvatar').onclick=openFam;$('#famClose').onclick=closeFam;$('#famSheet').addEventListener('click',e=>{if(e.target.id==='famSheet')closeFam()});
 $('#autoBtn').onclick=()=>{auto=!auto;$('#autoBtn').setAttribute('aria-pressed',auto)};
 $('#beBorn').onclick=()=>{if(LIN)LIN.next=null;startDraw()};$('#redraw').onclick=startDraw;$('#begin').onclick=startLife;
 $('#again').onclick=()=>{if(LIN)LIN.next=null;startDraw()};$('#toHome').onclick=()=>{show('home');renderHome()};

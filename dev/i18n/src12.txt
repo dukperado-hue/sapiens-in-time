@@ -1,0 +1,47 @@
+S3160	You
+S3161	Mother
+S3162	Father
+S3163	Son
+S3164	Daughter
+S3165	Family portrait
+S3166	Close
+S3167	Tap to see your face and your family
+S3168	For now, it is only you in the picture
+S3169	Faces, skin tones and hairstyles here are a rough simulation for the time and place. People in every age looked very varied.
+S3170	Stay on at Giza?
+S3171	Your season of hauling stone is ending. The overseer of your gang says the king’s works need people who stay all year: stone-cutters, haulers and boatmen, all fed from the royal bakeries and breweries.
+S3172	Archaeologists think the pyramids were built by two kinds of workers: a smaller permanent crew of skilled craftsmen who worked all year, and many more labourers who came from the villages in rotating shifts, much like a tax paid in work. Digs at Heit el-Ghurab, the workers’ town south of the Sphinx, found bakeries, breweries, sleeping halls and enough cattle, sheep and goat bones to feed thousands. They were not the slaves of later legend.
+S3173	Stay on with the king’s permanent crew
+S3174	Joined the king’s permanent crew at Giza
+S3175	Every ten days you receive rations: bread, beer, onions and sometimes meat. Your hands grow hard, and the gang becomes your second family.
+S3176	The stone gangs were men
+S3177	Work in the bakeries and breweries of the workers’ town
+S3178	You bake thousands of loaves in bell-shaped clay pots set in hot ashes. In the evenings the gangs come past for their warm beer.
+S3179	Go home to your village fields
+S3180	You go back to your fields when the water falls. Next flood season the officials will come again.
+S3181	The old way
+S3182	In a hungry year, an old woman remembers that when she was a girl her band ate dozens of kinds of plants and moved with the seasons. Now everyone grinds grain from before dawn, and there are too many mouths to feed to go back.
+S3183	Skeletons from many early farming villages show shorter people, more tooth decay and more signs of childhood hunger than the foragers before them. At Abu Hureyra in Syria, women’s toes, knees and backs were worn from kneeling at grinding stones every day. Yet a field fed more people than the same land of wild plants, so farming villages kept growing and could not easily go back to foraging.
+S3184	Go up into the hills to gather wild food as in the old days
+S3185	You bring back wild nuts, fruit and roots, enough to get by for days, but not enough to feed the whole village.
+S3186	Clear a second field
+S3187	Your back aches every night, but next year there will be more grain, and more mouths too.
+S3188	Trade with the foragers in the hills
+S3189	You swap grain for dried meat and hides. Each side thinks the other has the harder life.
+S3190	The king is dead
+S3191	The king has died. Until the new king is crowned, the priests say, Ma’at, the order of the world, hangs in the balance. Everyone watches the Nile, as if the flood might not come.
+S3192	Egyptians believed the king, as son of the gods, upheld Ma’at, the right order of the world, against chaos. Every new reign began by restoring it. This shared belief helped millions of people accept taxes, labour and the king’s rule.
+S3193	Bring an offering to the temple for the new king
+S3194	The new king is crowned, the Nile rises on time, and everyone says Ma’at has returned.
+S3195	Wonder quietly whether the river would come anyway, king or no king
+S3196	You tell no one, because such thoughts are dangerous, but the question stays with you for a long time.
+S3197	A man in your gang dies when a sledge rope snaps. He is buried in the workers’ cemetery on the slope above the town, with jars of bread and beer and a little tomb of his own.
+S3198	In 1990 archaeologists found the cemetery of the pyramid builders at Giza, with hundreds of small tombs of mud brick and stone. The skeletons show hard labour, but also well-healed fractures and even amputations the patients survived, which suggests the workers were given medical care.
+S3199	By the fire, an old carver shapes mammoth ivory into a figure with a man’s body and a lion’s head. You ask what it is. “Someone who does not exist,” he says, “yet now everyone knows him.”
+S3200	The Lion-man of Hohlenstein-Stadel in Germany, carved from mammoth ivory about 40,000 years ago, is one of the oldest known figures of a being that exists only in the imagination. Stories about things no one has seen, such as spirits and ancestors, and later gods, laws and kingdoms, let large numbers of strangers trust each other and work together.
+S3201	Your grandmother says that when she was small she often saw giant beasts, ground sloths taller than a man and mammoths. You have never seen one.
+S3202	Within a few thousand years of humans reaching the Americas, mammoths, giant ground sloths, horses and sabre-toothed cats died out. Scientists still argue how much was hunting and how much the changing climate at the end of the Ice Age; probably both.
+S3203	A merchant from a city you have never seen takes your silver for his goods without even asking your name. Silver weighs the same here as in his city.
+S3204	Silver worked as money because everyone in the region trusted that the next person would accept it. Merchants carried cut pieces and coils of silver and weighed them on balance scales. Coins stamped by kings came much later, in Lydia, around 600 BCE.
+S3205	At the top of the law stele, the king stands before the sun god Shamash on his throne. People in the market say the laws came down from heaven.
+S3206	Rulers often presented their laws and the ranks of society as gifts of the gods. Many historians point out that when people believe an order is divine or natural, rather than made by humans, few think to question it.

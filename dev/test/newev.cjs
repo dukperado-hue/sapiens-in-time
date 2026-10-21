@@ -1,0 +1,3 @@
+const b=require('fs').readFileSync(__dirname+'/sim5.cjs','utf8').split('const rep=')[0];
+eval(b+`;(async()=>{const pats={lion:/lion’s head/,sloth:/ground sloths taller/,old:/The old way/,silver:/without even asking your name/,stele:/law stele/,crew:/Stay on at Giza/,crewS:/permanent crew|bakeries and breweries of the workers/,rope:/sledge rope snaps/,king:/The king is dead/};
+for(const ch of [2,3,4,6]){const o=await window.__sitSim(500,{ch,logs:1,leg:true});const c={};for(const x of o){const t=(x.lg||[]).map(e=>e&&e.en||'').join('|');for(const k in pats)if(pats[k].test(t))c[k]=(c[k]||0)+1}console.log('ch'+ch,JSON.stringify(c))}})()`)
