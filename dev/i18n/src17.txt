@@ -1,0 +1,333 @@
+S4351	Your family buries your small body beneath the house floor, so you can stay close to everyone.
+S4352	One of your children falls ill and dies. The family buries the little body beneath the house floor with a single jade bead.
+S4353	the first Olmec villages and the spring of El Manatí
+S4354	San Lorenzo at its height
+S4355	the age of La Venta
+S4356	after the fall of La Venta
+S4357	San Lorenzo, the town on its plateau above the Coatzacoalcos River
+S4358	La Venta, the town on an island in the marshes
+S4359	Tres Zapotes, the town at the foot of the Tuxtla hills
+S4360	a village in the Tuxtla mountains, near the basalt
+S4361	Chalcatzingo, a village below the cliffs of the highlands
+S4362	a farming village by a river on the Gulf Coast plain
+S4363	maize, beans and squash
+S4364	A jaguar
+S4365	San Lorenzo stood on a plateau that people built up with fill until it rose above the flood plain. It flourished around 1200–900 BCE. Ten colossal heads have been found here, and long drains made of basalt troughs fitted end to end.
+S4366	La Venta, on an island in the marshes near the river mouth, flourished around 900–400 BCE. It had a cone-shaped clay mound about 30 metres high, ceremonial plazas, four colossal heads, and pits where tons of serpentine blocks were buried, never to be seen again.
+S4367	Tres Zapotes lasted longer than the other Olmec towns. Here, in 1862, a farmhand dug up the first colossal head the modern world came to know.
+S4368	The basalt for the colossal heads came from the Tuxtla mountains, especially the volcano Cerro Cintepec, 60–150 kilometres from the great towns. Boulders weighing tens of tons were moved with no wheels and no animals to pull them.
+S4369	Chalcatzingo, in the central highlands of Mexico, lies hundreds of kilometres from the coast, yet its cliffs carry Olmec-style carvings, such as a figure seated in a cave mouth from which rain clouds drift. Ideas and precious goods travelled far.
+S4370	Most people lived in villages of pole houses roofed with palm leaves. They grew maize, beans and squash on riverbank land that flooded every year, caught fish and turtles in the rivers, and raised dogs to eat. Everything was carried on human backs or by canoe.
+S4371	We do not know what the Olmec called themselves, or the name of a single person. “Olmec” comes from the language of the Aztecs, who lived more than two thousand years later, and means “people of the rubber land”. The names in the game are invented.
+S4372	a child who chases parrots from the maize
+S4373	the farmer with the best riverbank land
+S4374	a child who traps turtles at the bank
+S4375	a canoe-man who knows every bend of the river
+S4376	owner of many canoes
+S4377	Stone sculptor
+S4378	Pound and polish basalt into a human face
+S4379	a child who carries wet sand for the polishers
+S4380	a stone sculptor
+S4381	the sculptor who carves the eyes and lips
+S4382	master carver of the colossal heads
+S4383	Jade and mirror worker
+S4384	Polish blue-green jade and iron-ore mirrors
+S4385	a child who polishes jade beads
+S4386	a jade worker
+S4387	a polisher of curved iron-ore mirrors
+S4388	the carver who makes the ruler’s jades
+S4389	Rubber maker
+S4390	Tap latex from the trees and wind it into balls
+S4391	a child who holds the latex cup
+S4392	a rubber maker
+S4393	the maker of the bounciest balls
+S4394	the one whose balls are used at the great rites
+S4395	Shape pots and clay baby figurines
+S4396	a maker of jaguar-faced baby figures
+S4397	the potter every household wants
+S4398	Long-distance trader
+S4399	Travel to trade for obsidian and jade from far lands
+S4400	a child who carries the bundles behind a parent
+S4401	the trader who crosses the mountains to the highlands
+S4402	the trader who knows the ruler of every town
+S4403	Shaman
+S4404	a shaman
+S4405	the shaman who becomes a jaguar in dreams
+S4406	the ruler’s own shaman
+S4407	The Olmec had no metal tools. Sculptors of the colossal heads pounded with harder stones, polished with wet sand, and drilled details with reeds spun against sand. Jade workers did the same. Their blue-green jade came from the Motagua valley in Guatemala, hundreds of kilometres away.
+S4408	the family of the ruler and those close to him
+S4409	a family of farmers and fishers
+S4410	a craft family working for the ruler
+S4411	Olmec society had rulers powerful enough to order thousands of people to drag stones weighing tens of tons and heap up great mounds. Elite families probably controlled the best riverbank land, renewed with silt by every flood. Whether anyone was enslaved, we know very little.
+S4412	jade beads
+S4413	rubber balls
+S4414	The seasonal flood covers the riverbank land, then drains away leaving a hand’s depth of fresh mud. The maize will be good this year.
+S4415	The rains come late and the river never rises over the banks. The first maize wilts.
+S4416	The Gulf Coast is rainy and floods every year. Riverbank land renewed with fresh silt can grow two maize crops a year. Some archaeologists think Olmec rulers gained their power by controlling these rich lands.
+S4417	Finished your first colossal head
+S4418	On the day the last sand is washed from the stone face, the whole town gathers to look. The face you have carved for years looks back at everyone.
+S4419	Another colossal head you helped carve is finished.
+S4420	You must work a season for the lender in place of what you still owe.
+S4421	Every family must carry baskets of earth up to raise the plateau higher still. No oxen, no horses, no carts: only thousands of human backs.
+S4422	At San Lorenzo people moved enormous amounts of earth in baskets. The Americas had no large animals that could be tamed to pull loads; America’s native horses had died out more than ten thousand years earlier.
+S4423	People batter the faces of the colossal heads and stone thrones, then drag them to be buried in rows in trenches. A few years later most families have left the town.
+S4424	Around 900 BCE San Lorenzo declined. Many monuments were damaged and buried. Some think enemies or rebels did it, some that it was a ritual “killing” of monuments when a ruler died, and some that the river changed course and the town lost its importance. No one knows for sure.
+S4425	Saw San Lorenzo emptied
+S4426	The cone-shaped clay mound in the middle of town grows higher every year, until from its top you can see the sea.
+S4427	The rulers are gone. Many monuments are smashed, families drift away from the island, and grass grows over the plazas.
+S4428	La Venta was abandoned around 400 BCE. Some scholars point to rivers shifting and silting up, making farming and canoe travel around the town harder, but the real causes are still debated.
+S4429	The volcano’s summit breathes thin smoke all month, and the ground trembles softly at night. The old people say the mountain is breathing.
+S4430	The Tuxtlas are volcanic mountains. The dense basalt of the colossal heads is cooled lava from these volcanoes.
+S4431	You help carry bundles of salt and dried fish to an upriver village and are paid in maize.
+S4432	The Olmec had no money. Valuables were jade, obsidian for blades, iron-ore mirrors, feathers and cacao beans. Everything moved on human backs, for there were no pack animals and no wheels.
+S4433	a child of the ruling family
+S4434	a child of the rubber land
+S4435	one of the ruling family
+S4436	a craftsman of the ruler
+S4437	Join the rites in the plaza before the mound
+S4438	Watch the shaman dance in a jaguar skin
+S4439	Plant maize, beans and squash on the riverbank land
+S4440	Chase the parrots from the maize
+S4441	Raise the dogs and gather turtle eggs
+S4442	Play with the puppies
+S4443	Paddle a canoe after fish and turtles
+S4444	Catch shrimp at the riverbank
+S4445	Heap earth for a house platform above the floods
+S4446	Trade with the merchants who come by canoe
+S4447	Listen to the elders tell of people who became jaguars
+S4448	Listen to grandmother’s stories of the forest animals
+S4449	Lie under the stars and count the days to the rains
+S4450	At the edge of the marsh an animal as big as three pigs put together walks out of the forest. Its nose stretches into a short trunk that twitches this way and that.
+S4451	The tapir is Central America’s largest land animal, weighing over 300 kilograms. It is a distant cousin of horses and rhinos. Only a few thousand remain today, and it is endangered.
+S4452	Before dawn a roar fills the forest like a hundred jaguars. You cling to your mother, who laughs and points up into the trees: a troop of small black monkeys.
+S4453	Howler monkeys are among the loudest land animals on Earth; their calls carry for kilometres. Mexico’s howlers are endangered today as their forests are cut.
+S4454	A little animal in jointed armour scuttles across your path and digs itself into the ground in a blink.
+S4455	The nine-banded armadillo always gives birth to four young at once, and all four are identical twins from a single egg.
+S4456	Your father paddles slowly, then points into the water. A huge grey back rises to breathe, with whiskers round its mouth like a grandfather’s.
+S4457	The Antillean manatee grazes on plants in rivers and coastal lagoons; its closest living relatives are elephants. In 1493 Columbus wrote of seeing “mermaids” less beautiful than the stories said, probably manatees. Today they are endangered.
+S4458	A gold-and-black furred animal climbs a tree and flicks a tongue as long as your arm into an ants’ nest, sending the ants scurrying.
+S4459	The tamandua anteater has no teeth at all. Its sticky tongue, about 40 centimetres long, laps up thousands of ants and termites a day.
+S4460	A band of a dozen long-nosed animals, tails held straight up, raids the village for fallen fruit until every dog is barking.
+S4461	White-nosed coatis travel in bands of mothers and young, while males mostly live alone. Their upright tails help the band keep sight of one another in tall grass.
+S4462	The first strange animal
+S4463	Creep closer
+S4464	It stops and looks at you for a moment, then vanishes into the forest. You tell everyone about it for days.
+S4465	Run to fetch your friends
+S4466	By the time everyone arrives it has gone. No one believes you until your father nods.
+S4467	The ball that bounces
+S4468	The children knock a small black rubber ball back and forth with their hips, no hands allowed. It bounces higher than your head.
+S4469	The oldest rubber balls in the world come from the spring of El Manatí, in Olmec country, about 3,600 years old. They were made from tree latex dried into thin strips and wound round a core. Europeans had never seen bouncing rubber until they reached the Americas some three thousand years later.
+S4470	Play until dark
+S4471	Your hips are bruised all over, but you hit the ball three times in a row.
+S4472	Ask the rubber maker to teach you
+S4473	Your first ball is lopsided and bounces the wrong way, but it bounces.
+S4474	The giant toad
+S4475	A toad as big as your father’s hand sits by the house. The grown-ups shout at you not to touch it: it has poison behind its eyes.
+S4476	The giant toad has poison glands behind its eyes. Toad bones turn up at several Olmec sites, and some scholars suggest its venom was used in rites, but this is only a guess.
+S4477	Poke it with a stick
+S4478	It puffs itself up, then hops slowly away as if you did not matter at all.
+S4479	Pick it up to show your friends
+S4480	Your hands go numb, your eyes sting, and you are sick all night. Your mother says nothing but “I told you.”
+S4481	The jaguar baby
+S4482	Grandmother gives you a clay figure of a plump baby with a snarling jaguar mouth. Long ago, she says, a woman had a child by a jaguar.
+S4483	Olmec art is full of “were-jaguar” babies with snarling, down-turned mouths. Scholars read them differently: a rain god, a shaman transforming. The story of a woman and a jaguar ✦ is only one explanation.
+S4484	Keep it by your bed
+S4485	Every night you turn its face to the door so it can keep watch.
+S4486	Ask whether jaguars still have children with people
+S4487	Grandmother laughs until she coughs, and tells you to go and ask the shaman yourself.
+S4488	The carver’s helper
+S4489	The stone sculptors need strong young hands to pound basalt with hammerstones, day and night for months, until your ears ring.
+S4490	Become a helper
+S4491	In your first year you never touch the face, but you learn where the stone breaks easily.
+S4492	Keep helping in the fields
+S4493	Taming a peccary
+S4494	You caught a baby peccary and raised it until it was grown. Now you want it to carry the maize baskets instead of your own back.
+S4495	The Americas had only a few truly domesticated animals: dogs, and later turkeys; in the Andes, llamas, alpacas and guinea pigs. Peccaries live in fierce herds and will not breed in pens; a tapir carries its young for more than a year and has one at a time. There was no large animal that could pull a plough or a cart.
+S4496	Tie a basket on its back
+S4497	It shakes the basket off, bites your leg, and bolts into the forest for good.
+S4498	Keep it as a companion instead
+S4499	It follows you everywhere like a dog, until one day it hears a herd in the forest and never comes back.
+S4500	Your family and a family from an upriver village talk of a marriage. They would like a jade bead.
+S4501	We know very little about Olmec families, since there are no records we can read. What we know comes from houses, graves and buried offerings, such as jades often found in the mouth or on the body of the dead.
+S4502	The wedding has dog meat, roast fish and a frothy cacao drink.
+S4503	Dragging the great stone
+S4504	The ruler orders every village to send people to move a basalt boulder heavier than ten houses, from the foot of the mountains down to the river, then onto rafts to the town.
+S4505	No one knows for sure how the Olmec moved stones of tens of tons. Most likely hundreds of people hauled them on log rollers and floated them on great rafts down the rivers, with no wheels, no draft animals and no metal tools.
+S4506	Go and haul
+S4507	A roller slips and the stone slides onto your foot. You limp for months.
+S4508	Helped haul the stone for a colossal head
+S4509	For a month you sing in time with three hundred others, until the stone is on the raft.
+S4510	Send food instead
+S4511	The haulers eat every grain of your maize and ask for more.
+S4512	The sacred spring
+S4513	At the spring below the hill of El Manatí, people throw rubber balls, jade axes and carved wooden figures into the water as offerings. Your family must decide what to give.
+S4514	At El Manatí, mud under the water preserved offerings for more than 3,000 years: the world’s oldest rubber balls, jade axes and carved wooden busts, things that almost never survive in the tropics.
+S4515	Offer your best rubber ball
+S4516	Made an offering at the spring of El Manatí
+S4517	The ball sinks slowly into the brown water. You ask for the rains to come in season.
+S4518	Offer grandfather’s jade axe
+S4519	The green jade disappears into the mud. Three thousand years later someone will dig it up.
+S4520	The riverbank land
+S4521	The ruler’s men come to say that the riverbank land your family has farmed for three generations must now give half its maize to the ruler.
+S4522	Give the share
+S4523	Half the maize goes to the ruler’s stores, and your family must plant the higher ground, which yields less.
+S4524	Move to clear land on another river
+S4525	No one has claimed the new land yet, but it takes three years to farm it well.
+S4526	The bitter drink
+S4527	At the ruler’s feast a servant pours cacao from high up into a pot to make it froth, then hands it to you. It is bitter, with no sugar at all.
+S4528	Scientists have found traces of cacao in pots from the Olmec region more than 3,000 years old. Cacao was drunk bitter at rites and feasts long before anyone added sugar, which arrived from the Old World after 1500.
+S4529	Drain the cup
+S4530	You pull a face; the host laughs and pours you another.
+S4531	Ask for cacao beans to plant
+S4532	The servant looks at you as if you had asked for gold.
+S4533	The journey to the highlands
+S4534	The merchants will walk thirty days over the mountains to trade for black obsidian and iron ore for mirrors. Everything goes on their backs.
+S4535	Obsidian found in Olmec towns came from several highland volcanoes hundreds of kilometres away. With no pack animals, each person carried perhaps 20–30 kilograms per trip.
+S4536	Go with the caravan
+S4537	You fall on a fog-bound mountain path, break a leg, and spend a season in a strange village.
+S4538	In the highlands you see a cliff carved with a figure seated in a cave mouth, rain clouds drifting out, just like the patterns on the jades at home.
+S4539	The caravan comes back with obsidian and stories of cold so sharp it makes your teeth chatter.
+S4540	Burying the ruler’s face
+S4541	The shaman says the ruler is dead, and his stone face must be “killed” and buried too. People begin to batter the nose and lips of the colossal head.
+S4542	Many monuments at San Lorenzo were battered and buried in rows. Scholars still argue whether this was ritual, enemy destruction or revolt.
+S4543	Help bury it with care
+S4544	You sprinkle red earth on the stone face before covering it, as you would on a body.
+S4545	Watch from a distance
+S4546	You remember that face all your life, though no one will see it again for three thousand years.
+S4547	The treasure no one may see
+S4548	Hundreds of people carry green serpentine blocks into a deep pit and lay them in layers, with a jaguar-mask mosaic on top. Then everyone heaps earth over it until it is gone. No one will see it again.
+S4549	At La Venta archaeologists found “massive offerings”: tons of serpentine carried from far away and buried deep underground, some laid as jaguar-mask mosaics meant to stay hidden for ever.
+S4550	Help carry the stones
+S4551	Your shoulders are raw, but you know one of the most beautiful things in the world lies under your feet.
+S4552	Ask why it must be buried
+S4553	The shaman answers: “What is given to the gods is not for people to look at.”
+S4554	Where to go
+S4555	The island empties a little more each day. Your family must choose: west to Tres Zapotes, where people still live, or up to high ground beyond the floods.
+S4556	After La Venta fell, Tres Zapotes lived on for centuries. A stone there bears a Long Count date of the Mesoamerican calendar equal to 32 BCE, one of the oldest such dates known.
+S4557	Go to Tres Zapotes
+S4558	At Tres Zapotes people still carve stone, but the art is beginning to look different.
+S4559	Go up to the high ground
+S4560	No colossal heads, no rulers: only maize fields and the howler monkeys at dawn.
+S4561	Signs on a stone block
+S4562	The chief shaman has you help scratch small signs into a pillow-sized serpentine block: maize, fish, insects, boxes, in rows. He says they are words the stone will remember.
+S4563	In the late 1990s road builders in Veracruz found the “Cascajal block” in a pile of rubble. It carries 62 signs, some repeated. In 2006 scholars proposed it as the oldest writing in the Americas, from about 900 BCE, but because it was found out of its original layer, some still question its age and meaning, and no one can read it.
+S4564	Carve every sign with care
+S4565	Carved the signs on the Cascajal block
+S4566	Your hand shakes, but not one sign goes crooked. The shaman nods once.
+S4567	Ask what the stone will say
+S4568	He says only those who can read will know. Three thousand years later, still no one can.
+S4569	Whose face?
+S4570	A grandchild stands craning up at the colossal head in the plaza and asks whose face it is.
+S4571	Most archaeologists think each colossal head is a portrait of one ruler: every face is different and each wears a helmet with its own emblem. The claim, popular online, that they show Africans who crossed the ocean has no evidence behind it; the faces look like the native people of the Gulf Coast today.
+S4572	Tell the ruler’s name, as you remember it
+S4573	The child murmurs the name over and over, but no one writes it anywhere, and it vanishes with that generation.
+S4574	Say it is everyone’s great-grandfather
+S4575	The child laughs and runs to tell friends that great-grandfather was as big as a house.
+S4576	The ruler’s face
+S4577	The ruler sits still all day so you can study his face: full cheeks, thick lips, eyes slightly narrowed. The basalt before you stands almost three metres tall. You must choose whether to carve him as you see him, or as he wants to be seen.
+S4578	San Lorenzo Colossal Head 1, called “El Rey” (the King) by local people, is almost 3 metres tall and weighs about 25 tons. Its face is so individual that scholars believe it portrays a real person.
+S4579	Carve him as you see him
+S4580	Carved the face of “El Rey”
+S4581	The ruler looks at the stone face for a long time, then says, “Yes. That is me.”
+S4582	Make him younger and fiercer
+S4583	The ruler beams. His wife giggles behind him.
+S4584	The old throne
+S4585	No new basalt has come for years. The master carver points at the stone throne of the previous ruler and tells you to recarve it into a head of the present one.
+S4586	Marks on the stone show that some heads, such as San Lorenzo Head 7, were recarved from old thrones, and at La Venta one throne was abandoned halfway through becoming a head. The Olmec recycled scarce stone.
+S4587	Recarve it
+S4588	The edge of the old throne still shows on the back of the head, for anyone who looks closely.
+S4589	Ask to wait for new stone
+S4590	The master grumbles that you are too soft-hearted and gives the job to someone else.
+S4591	The mirror that lights fire
+S4592	You polish black iron ore into a concave disc until it gleams. Turned to the sun, it gathers the light into one point until a dry leaf begins to smoke.
+S4593	The Olmec made concave mirrors of iron ores such as magnetite, polished until they reflected images and focused light. Rulers probably wore them on the chest; they turn up in graves and offerings at La Venta.
+S4594	Give it to the ruler
+S4595	The ruler hangs it on his chest. When he passes, a flash of light catches every eye.
+S4596	Keep it to look at your own face
+S4597	For the first time you see your own face clearly, and you are shocked by how big your nose is.
+S4598	A ball for the great rites
+S4599	The ruler orders a ball as big as a human head for the great rites. It must bounce well and never split. You must tap latex for a month.
+S4600	A 2024 study of the El Manatí balls found they were made of latex from the Castilla tree, dried into thin strips and wound layer by layer round a core, then coated with more latex to bind and bounce. The method is much like the one still used in the region today.
+S4601	Wind it layer by layer, patiently
+S4602	The ball is so heavy you lift it with both hands. Dropped, it bounces back to your chest, and everyone cheers.
+S4603	Put a stone inside to make it heavy fast
+S4604	The ball bounces crooked at the rites, and the ruler looks round for whoever made it.
+S4605	No one finds out, but you lie awake for many nights.
+S4606	Becoming the jaguar
+S4607	At the night rites you wear the jaguar skin and dance round the fire until you drip with sweat. The people believe that tonight you will travel in jaguar form to speak with the ancestors.
+S4608	Several Olmec figures show a person turning into a jaguar step by step. Scholars read them as shamans believed able to change into animals. Beliefs in an animal double like this are still found in some Indigenous communities in Mexico.
+S4609	Dance until you fall
+S4610	You wake at dawn remembering nothing, but everyone says you roared like a real jaguar.
+S4611	Dance slowly and sing for rain
+S4612	Three days later it rains. Everyone gives you the credit, though you know the rainy season was due anyway.
+S4613	This morning paw prints as big as a grown-up’s hand circle the dog pen. One of the dogs is gone.
+S4614	The jaguar is the most important animal in Olmec art. It swims well and hunts on land and in water. About 4,800 remain in Mexico today.
+S4615	The biggest eagle you have ever seen drops from the treetops, seizes a monkey and is gone.
+S4616	The harpy eagle has talons as long as a grizzly bear’s claws and hunts monkeys and sloths. Today it has all but vanished from Mexico.
+S4617	In the night dozens of sea turtles crawl up the beach to lay their eggs. You help your father fill a basket, but your mother says to leave half.
+S4618	Every species of sea turtle in the Gulf of Mexico is now endangered or threatened.
+S4619	A crocodile drags a neighbour’s dog into the river as it bends to drink.
+S4620	Small bats creep in at night to bite the dogs’ legs. In the morning there are spots of blood on the floor.
+S4621	Vampire bats are real and live only in the Americas. They feed on animal blood, just a few teaspoons at a time.
+S4622	The maize ears in the field are only as long as your palm, with small hard kernels. Your mother soaks them in lime water all night before they can be ground.
+S4623	Maize came from a wild grass called teosinte, with just a few hard-cased kernels. People in Mexico began selecting it about 9,000 years ago, and it took thousands of years for the ears to grow big enough to be a staple. Soaking in lime water releases more of its nutrients.
+S4624	There is a feast today. Your father kills the fattest dog in the pen.
+S4625	Animal bones from San Lorenzo show that dogs were an important source of meat. The Americas had no pigs, cattle, goats or sheep, so most meat came from fish, turtles, deer and dogs.
+S4626	A cold north wind blows for three days and nights. The sea goes wild and no canoe can go out.
+S4627	People on the Gulf Coast call the winter north-wind storms nortes. They carry cold air from North America down into the tropics.
+S4628	You stand before a colossal head twice as tall as your father, its face painted red, wearing a helmet carved with jaguar claws.
+S4629	Seventeen Olmec colossal heads are known: ten from San Lorenzo, four from La Venta, two from Tres Zapotes and one from La Cobata. They stand from about 1.5 to over 3 metres tall, weigh from about 6 to as much as 40–50 tons, and were probably once brightly painted.
+S4630	After heavy rain, water rushes through stone troughs buried under the plaza and spouts out at the edge of the plateau.
+S4631	People slash the rubber trees in a herringbone pattern, and white latex trickles into the gourds below.
+S4632	A trader from the highlands brings black obsidian blades to swap, sharp enough to split a hair.
+S4633	Obsidian blades are sharper than steel scalpels, and were Mesoamerica’s main cutting tool for thousands of years, since no one on the continent worked iron.
+S4634	On the cliff above the village a figure is carved seated in a cave mouth, with rain clouds drifting out and drops falling on maize plants.
+S4635	Round black basalt boulders as big as houses lie scattered round the foot of the mountain. Carvers from the town walk among them, tapping each one and listening.
+S4636	Your eyes are so dim a grandchild must help you strip the maize.
+S4637	Before dawn the howler monkeys still wake you, as they did when you were small. You are not afraid of them now.
+S4638	Howler monkeys roar in the distance.
+S4639	A flock of parrots shrieks over the roofs.
+S4640	Frogs chorus after the rain.
+S4641	Dogs bark at a passing canoe.
+S4642	Women grind maize on stone slabs outside the houses.
+S4643	Fireflies wink in the maize.
+S4644	The clack of hammerstones carries from the carvers’ yard.
+S4645	Rain drums on the palm-leaf roof.
+S4646	A big-billed toucan eats fruit in a tree by the house.
+S4647	The river rises higher than any year before, lapping at the house platforms and drowning the maize fields.
+S4648	A great storm from the sea tears every palm roof away and topples trees across the river.
+S4649	The rains never come. The highland soil cracks and the maize dies before it ears.
+S4650	A few generations after you, the rulers of San Lorenzo will begin to have their faces carved in enormous basalt boulders, a custom that will last for centuries.
+S4651	Not long after you, San Lorenzo will be emptied, its rulers’ stone faces buried, and La Venta will rise in the marshes to the east.
+S4652	La Venta will be abandoned around 400 BCE, but what the Olmec began — the rubber ballgame, jade, the jaguar in religion, towns planned round ceremonial plazas — will live on among the Maya, the Zapotecs and later the Aztecs.
+S4653	The Olmec name will be forgotten, but within a few centuries of you the Maya will build great cities in the eastern forests, using the same Long Count calendar carved at Tres Zapotes, and develop a script we can read today.
+S4654	 Then the colossal heads lay underground for more than two thousand years, until in 1862 a farmhand at Tres Zapotes dug one up, thinking at first it was the bottom of a huge upturned iron cauldron. It was reported in 1869; Matthew Stirling excavated Olmec towns from 1938 to 1946; the last head was found in 1994. When oil drilling came close to La Venta in the 1950s, the poet Carlos Pellicer had its monuments moved to a park museum in Villahermosa.
+S4655	 The tapir you saw as a child now survives in only a few thousand, in scattered patches of forest.
+S4656	 The howler monkeys that once frightened you are endangered in Mexico today.
+S4657	 The manatees you saw in the river are endangered today.
+S4658	 The jaguar that prowled round your dog pen now numbers about 4,800 in all of Mexico.
+S4659	 The harpy eagle has all but vanished from Mexico.
+S4660	 Why did the Olmec, or the Aztecs two thousand years later, not sail off to conquer Europe instead? Not because anyone was cleverer. Your continent had lost its large animals, its native horses among them, more than ten thousand years before, so there were no oxen, horses or camels to pull ploughs and carts, carry riders, or pass herd diseases to people until they built up resistance. Maize took thousands of years to turn from a wild grass into a staple, and the Americas run north to south, across deserts and jungles, so crops and knowledge spread slowly. Long after you, people on this coast made toy animals on wheels, but with nothing to pull a cart, the wheel stayed a toy. In 1519 Spanish ships landed on this same coast, near today’s Veracruz, bringing horses, steel and smallpox, which killed vast numbers of the native people. The difference came from geography, plants and animals, not from the people themselves.
+S4661	 You finished {0} colossal heads. In this game, one of them might be a head standing in a museum today, its carver’s name unknown.
+S4662	 The stone you helped haul became a ruler’s face. No one remembers the haulers’ names, but no head ever reached a town without them.
+S4663	 “El Rey”, San Lorenzo Head 1, stands today in the Museum of Anthropology in Xalapa. In this game, the hands that carved that face were yours.
+S4664	 The Cascajal block is real, and no one can read it yet. In this game, you scratched those signs.
+S4665	 The offerings at the spring of El Manatí were dug up from 1988 onwards. The rubber ball you threw in may be one of the oldest balls in the world.
+S4666	The Olmec often buried their dead beneath or beside the house. The elite received jade, mirrors and red cinnabar sprinkled over the body. In the humid tropics bones rarely survive: some La Venta graves hold only jades laid out in the shape of a body that has vanished.
+S4667	Place a jade bead in the mouth
+S4668	The green jade lies cool in the mouth, like a breath that has not yet left.
+S4669	Sprinkle red powder over the body
+S4670	Red as blood and as the sunrise; everyone sings as it falls.
+S4671	Bury them beneath the house floor
+S4672	They will lie beneath the family’s feet for ever, hearing the laughter and the grinding of maize every day.
+S4673	You are buried with an iron-ore mirror on your chest, jade axes, and red cinnabar sprinkled over your body.
+S4674	Your family buries you beneath the house floor with a clay pot and a jade bead in your mouth.
+S4675	A five-year-old by an Olmec river has seen animals found nowhere else on Earth. If this child told a Thai child today about one of them, what would they say?
+S4676	The Olmec hauled stones of tens of tons by human strength alone to carve their rulers’ faces. If you could carve one face for people to see three thousand years from now, whose would it be?
+S4677	a hauled stone that slipped
+S4678	A colossal head you carved. Every real head has its own face and helmet emblem; the game’s picture is only an imitation.
+S4679	The colossal head carved from the stone you helped haul. The game’s picture is only an imitation.
+S4680	colossal heads
+S4681	Your colossal head
+S4682	The head you helped haul
+T176	You trade {0} with a travelling merchant for goods worth {1} units
