@@ -1,0 +1,418 @@
+S6504	Kushim, keeper of the barley store
+S6505	Enmebaragesi, king of Kish
+S6506	King Gilgamesh at the walls of Uruk
+S6507	the funeral of Queen Puabi
+S6508	Eannatum’s Stele of the Vultures
+S6509	Uruinimgina and the word for freedom
+S6510	Sargon of Akkad
+S6511	Enheduanna, the first named author
+S6512	Naram-Sin, who called himself a god
+S6513	Gudea of Lagash
+S6514	the laws of Ur-Nammu
+S6515	Shulgi, the running king
+S6516	the day Ur fell
+S6517	Hammurabi’s stele of laws
+S6518	Ea-nasir, the copper merchant everyone complained about
+S6519	Nabonidus, the digging king
+S6520	Cyrus entering Babylon
+S6521	King Narmer in the two crowns
+S6522	Imhotep and the Step Pyramid
+S6523	Merer, who shipped stone for the pyramid
+S6524	the boy king’s letter to Harkhuf
+S6525	Ahmose driving out the Hyksos
+S6526	Hatshepsut’s ships back from Punt
+S6527	Thutmose III at Megiddo
+S6528	Akhenaten and the sun disc
+S6529	the sculptor Thutmose and Nefertiti’s bust
+S6530	the burial of Tutankhamun
+S6531	the peace treaty with the Hittites
+S6532	the building of the Great Bath
+S6533	the earthquake at Kalibangan
+S6534	sailors back from Akkad
+S6535	the great signboard at Dholavira
+S6536	the basin at Lothal
+S6537	the statue called the “Priest-King”
+S6538	the clay disc from Phaistos
+S6539	the burial of the Griffin Warrior
+S6540	the burning of the palace at Knossos
+S6541	the building of the Lion Gate at Mycenae
+S6542	the lost Uluburun ship
+S6543	the Hittite king’s letter to his “brother”
+S6544	the raid on Wilusa
+S6545	the last letters from Ugarit
+S6546	the fire at the palace of Pylos
+S6547	news of Ramesses III’s victory
+S6548	the casting of the giant bronze cauldron
+S6549	the burying of the masks at Sanxingdui
+S6550	King Di Xin’s feast
+S6551	the Lord of the West in prison
+S6552	Bo Yi and Shu Qi
+S6553	the building of the clay pyramid at La Venta
+S6554	the burial of the jaguar-mask pavement
+S6555	the sixteen stone figures at La Venta
+S6556	A name on clay
+S6557	At the temple granary a scribe presses signs into clay: 29,086 measures of barley, 37 months, and at the end two more signs that read “Kushim”.
+S6558	A tablet from Uruk of around 3100–3000 BCE bears the word “Kushim”. Many scholars think it names the official in charge, perhaps the oldest known name of a person, though some think it is a title ✦. The first person whose name history recorded may have been an accountant, not a king.
+S6559	Ask him to write your name too
+S6560	He laughs: there is no sign for your name yet. Someone will have to invent one.
+S6561	Help count the sacks
+S6562	You miscount by two sacks. Kushim corrects it without a word.
+S6563	The king of Kish
+S6564	The procession of King Enmebaragesi of Kish brings a stone vase carved with his name to the temple. People say he fought as far as the mountains of Elam and brought back the enemy’s weapons.
+S6565	Enmebaragesi, around 2600 BCE, is the first king on the Sumerian King List whose existence is confirmed by inscriptions of his own time: his name survives on fragments of stone vases. In a poem about Gilgamesh, his son Agga besieges Uruk ✦.
+S6566	Bow down with the others
+S6567	The king looks over your head, but you see the vase up close.
+S6568	Ask a soldier about Elam
+S6569	He tells of mountains with snow on them, which you do not believe exist.
+S6570	Gilgamesh’s wall
+S6571	The young king of Uruk, Gilgamesh, has drafted the whole city to build a brick wall around it. He inspects the work himself every day. The old folk grumble that he gives nobody’s children any rest.
+S6572	Gilgamesh may have been a real king of Uruk around 2700 BCE, but the epic in which he seeks immortality, fights the Bull of Heaven and loses his friend Enkidu is legend ✦. In the epic, the people complain to the gods that Gilgamesh oppresses the young. The walls of Uruk ran about 9 km.
+S6573	Go and lay bricks
+S6574	Two thousand years later people still sing of the wall you helped build.
+S6575	Slip off to work in the fields
+S6576	Nobody comes looking. The king has more workers than he can count.
+S6577	The queen’s funeral
+S6578	Queen Puabi has died. Her body, crowned with golden leaves and covered in lapis and carnelian beads, is carried down into a deep tomb. Dozens of attendants follow her down, and none come back up.
+S6579	The Royal Tombs of Ur, around 2500 BCE, were excavated by Leonard Woolley in the 1920s. The largest pit held the bodies of 74 attendants. Scholars still debate whether they died willingly or were killed; scans of two skulls in 2009 found signs of blows to the head.
+S6580	Lyre music rises from the deep pit, then falls silent. You dream of it for years.
+S6581	Go home and hold your family
+S6582	That night your small house feels warmer than any palace.
+S6583	The Stele of the Vultures
+S6584	After beating Umma in a war over a border canal, King Eannatum of Lagash sets up a stone carved with soldiers in a tight wall of shields, marching over enemy corpses, and vultures flying off with heads.
+S6585	The Stele of the Vultures, around 2450 BCE, is one of the oldest war monuments and the oldest known image of soldiers fighting in a shield wall. Lagash and Umma fought over the same strip of land for generations. Its fragments are in the Louvre.
+S6586	Look for yourself among the soldiers
+S6587	Every soldier has the same face. Only the king is big.
+S6588	Look at the vultures
+S6589	You think of the relatives who did not come back from the war.
+S6590	Return to mother
+S6591	The new king of Lagash, Uruinimgina, proclaims the cancelling of debts, sends debt-slaves home to their families, forbids the rich to force poor men to sell their donkeys, and bars officials from preying on widows and orphans. The proclamation is called amargi.
+S6592	Uruinimgina’s reforms of around 2350 BCE are among the oldest recorded attempts at social reform. Amargi literally means “return to mother”, going home free, and is often called the oldest known word for freedom. A few years later Lagash was overrun by Umma.
+S6593	Go and bring a debt-slave relative home
+S6594	Your uncle weeps the whole way home.
+S6595	Wonder how long it will last
+S6596	You are right to wonder: within a few years the city falls. But the word survives.
+S6597	A king in a neck stock
+S6598	Sargon of Akkad’s soldiers drag Lugalzagesi, the defeated king of Uruk, in a neck stock to the gate of Enlil’s temple at Nippur, for everyone to see.
+S6599	Around 2334 BCE Sargon united the Sumerian cities and lands around them into one of the world’s first empires. His inscriptions tell of Lugalzagesi in the neck stock. The story that his mother set him adrift in a basket on the river, like Moses, is a much later legend ✦.
+S6600	Jeer at the beaten king
+S6601	Yesterday he was a king. You begin to think high places are not always safe.
+S6602	Get a good look at Sargon
+S6603	He is not as tall as you expected, but everyone steps out of his way.
+S6604	A hymn with a signature
+S6605	The high priestess of the moon god at Ur is Enheduanna, daughter of Sargon. She composes hymns to the goddess Inanna so moving the whole temple weeps, and at the end of a hymn she puts her own name.
+S6606	Enheduanna, around 2285 BCE, is the first author in history whose name we know, man or woman. In one hymn she tells of being driven from her temple in a revolt and later restored. Her hymns were copied in scribal schools for centuries.
+S6607	Learn the hymn by heart
+S6608	You can sing one verse into old age, never knowing people will still read it four thousand years later.
+S6609	Ask why she put her name in it
+S6610	She says, “So the goddess knows who is singing.”
+S6611	The king who became a god
+S6612	King Naram-Sin of Akkad has his name written with the sign for a god in front of it, like a deity’s. The priests at Nippur whisper that Enlil will not be pleased.
+S6613	Naram-Sin (about 2254–2218 BCE) was the first Mesopotamian king to call himself a god; his victory stele is in the Louvre. Centuries later a poem, the Curse of Agade, blamed his destruction of Enlil’s temple for the empire’s fall ✦, which historians do not believe happened.
+S6614	Make an offering to the king
+S6615	The soldiers nod approvingly. The priests watch you out of the corner of their eyes.
+S6616	Make your offering to Enlil instead
+S6617	You are not sure which god is watching, so you choose the older one.
+S6618	Gudea’s dream
+S6619	King Gudea of Lagash says the god Ningirsu came to him in a dream and ordered a new temple. The whole city must stop quarrelling, wash clean, and come to help mould the first brick.
+S6620	Gudea ruled Lagash around 2144–2124 BCE. About two dozen of his black diorite statues survive, several inscribed with the story of his dream and the temple building. The diorite came from far away, perhaps from today’s Oman.
+S6621	Help mould the first brick
+S6622	Everyone sings as the brick dries. No one quarrels all day, which has never happened before.
+S6623	Ask if the dream was real
+S6624	Your neighbour says, “The temple will be real,” which is answer enough.
+S6625	Fines in silver
+S6626	At the city gate an official reads out King Ur-Nammu’s laws: whoever cuts off another man’s foot pays ten shekels of silver; whoever knocks out a tooth pays two.
+S6627	The Code of Ur-Nammu, around 2100 BCE, is the oldest surviving law code, some three hundred years older than Hammurabi’s. Many injuries were punished with fines in silver rather than an eye for an eye. Ur-Nammu also began the great ziggurat of Ur, which still stands.
+S6628	Count your own teeth
+S6629	Your teeth are worth two shekels each. You smile more carefully.
+S6630	Go and sue the neighbour who punched you
+S6631	The judge makes him pay, and the neighbour never greets you again.
+S6632	The king who ran
+S6633	Word is that King Shulgi will run from Nippur to Ur and back in a single day, to attend the festival in both cities. People line the road to watch.
+S6634	In a hymn Shulgi had written about himself (he reigned about 2094–2047 BCE), he claims to have run from Nippur to Ur and back, some 160 km each way, in a single day ✦. Shulgi also claimed to speak five languages and never forget a lesson.
+S6635	Run after the king for a while
+S6636	You give out before the first canal. The king vanishes in the dust.
+S6637	Bet that he can’t do it
+S6638	No one dares take your bet, in case the soldiers hear.
+S6639	Ur falls
+S6640	Elamites from the mountains storm Ur and carry King Ibbi-Sin away as a captive. The moon god’s temple is plundered, and bodies lie in the streets like broken pottery.
+S6641	Ur was destroyed by the Elamites around 2004 BCE, ending the Third Dynasty of Ur. The poem Lament for Ur mourns it, one of the oldest laments for a fallen city.
+S6642	Flee towards the marshes
+S6643	Survived the fall of Ur
+S6644	You hide in the reeds for three days and return to a city as quiet as a tomb.
+S6645	Hide the family’s tablets
+S6646	You bury them under the floor. In this game, they may still be waiting for an archaeologist.
+S6647	The stone of laws
+S6648	In the temple stands a black stone taller than a man. At the top Hammurabi receives the laws from the sun god; below are nearly three hundred laws. Anyone who cannot read may have a scribe read them aloud.
+S6649	Hammurabi’s stele, around 1754 BCE, is in the Louvre. Some laws are “an eye for an eye”, but only between nobles; injuring a commoner or a slave was paid for in silver, so the law was not the same for everyone. Hammurabi said he wrote it “so that the strong should not oppress the weak”.
+S6650	Pay a scribe to read the laws that concern you
+S6651	You learn that if your field dyke breaks and floods your neighbour’s field, you must pay. You go home and mend the dyke at once.
+S6652	Ask why the laws are not equal
+S6653	The scribe glances left and right and tells you to ask more quietly.
+S6654	Bad copper
+S6655	The house next door belongs to a copper merchant named Ea-nasir. Today another clay letter arrives: a man named Nanni complains the copper he received was poor, and that his servant was sent away empty-handed.
+S6656	Nanni’s letter to Ea-nasir, around 1750 BCE, is in the British Museum and is often called the world’s oldest customer complaint. Archaeologists found several complaints in Ea-nasir’s own house, which has made him an internet meme.
+S6657	Buy copper from him anyway
+S6658	Your copper cracks at the first blow. You start writing complaint number eleven.
+S6659	Listen to the customers shouting outside his door
+S6660	Better than any show, and free.
+S6661	The king who dug
+S6662	King Nabonidus has the ground dug beneath the sun god’s temple at Sippar. The workers find an inscription of King Naram-Sin. The king announces it is 3,200 years old and has it carefully reburied.
+S6663	Nabonidus (ruled 556–539 BCE) is often called the first archaeologist, because he dug for and recorded old inscriptions. He reckoned Naram-Sin lived 3,200 years before him; the real gap was about 1,700. His daughter Ennigaldi-Nanna kept old objects in a room some call the first museum.
+S6664	Help dig, carefully
+S6665	You touch a brick made nearly two thousand years before you. Your hands shake.
+S6666	Grumble that the king cares more for old things than the country
+S6667	Many grumble the same. A few years later, the Persians arrive.
+S6668	Cyrus enters the city
+S6669	Cyrus’s Persian army enters Babylon almost without a fight. The priests open the gates in welcome, and gods seized from other cities are sent home to their own temples.
+S6670	Cyrus took Babylon in 539 BCE. The Cyrus Cylinder tells the story from his side; some call it the first charter of human rights, but most historians see it as royal propaganda in the Mesopotamian tradition. Exiled Jews were allowed to go home.
+S6671	Go to watch the procession
+S6672	Life in the market goes on as before. Only the soldiers’ language has changed.
+S6673	Help your Jewish neighbours pack for home
+S6674	They were born in Babylon, but sing of Jerusalem all the way.
+S6675	Two crowns
+S6676	King Narmer appears before the crowd wearing the white crown of the south, and at another ceremony the red crown of the north. People say the land along the Nile now has one king.
+S6677	The Narmer Palette, around 3100 BCE, shows the king wearing both crowns. Greek historians said a king called Menes united Egypt ✦, perhaps Narmer or Hor-Aha. It is unclear whether unification came from one war or happened gradually over generations.
+S6678	Cheer the king
+S6679	You do not know you are cheering the start of three thousand years.
+S6680	Ask whether taxes will go up
+S6681	The answer is yes, and for the next three thousand years.
+S6682	A mountain of stone steps
+S6683	At Saqqara the master builder Imhotep is stacking six tombs of stone one on top of the other towards the sky. No one has ever built anything so big in stone. Everyone calls it a staircase for the king to climb to heaven.
+S6684	King Djoser’s Step Pyramid, around 2670 BCE, is one of the oldest large stone buildings in the world. Imhotep was a real man whose name appears on the base of Djoser’s statue; over a thousand years later Egyptians worshipped him as a god of medicine.
+S6685	You are paid in bread and beer, and watch a man-made mountain grow every month.
+S6686	Ask Imhotep why not use brick
+S6687	He says, “Brick lasts a hundred years. Stone lasts for ever.”
+S6688	Merer’s logbook
+S6689	You join the boat crew of an inspector named Merer, shipping white limestone from the Tura quarries across the river to Khufu’s pyramid. Merer records every trip on a papyrus roll.
+S6690	Merer’s diary was found in 2013 at the ancient harbour of Wadi al-Jarf, the oldest inscribed papyri known, around 2560 BCE. It and the workers’ town at Giza show the pyramids were built by fed and paid workers, not slaves as in the films.
+S6691	Row an extra trip
+S6692	Merer notes down your crew. In this game, you may be in the oldest papyrus in the world.
+S6693	Ask how many stones the king needs
+S6694	Merer says, “More than the stars in the sky,” and goes back to writing.
+S6695	A letter from the boy king
+S6696	Harkhuf, governor of Elephantine, returns from a long journey south with a small dancer from a faraway land. Soon a letter arrives from King Pepi II, still a boy, ordering him brought with the greatest care, with men watching all night so he doesn’t fall in the river.
+S6697	Harkhuf had Pepi II’s letter, of around 2270 BCE, carved on the front of his tomb at Aswan. It is one of the liveliest letters from ancient Egypt: a king of about eight so excited he orders the dancer checked on ten times a night.
+S6698	Volunteer to keep watch on the boat
+S6699	At midnight the dancer teaches you one step. You remember it into old age.
+S6700	Laugh at the king’s letter
+S6701	The king is a child like any other. You feel closer to him.
+S6702	Driving out the foreigners
+S6703	Ahmose’s army from Thebes sails north against the Hyksos, who have ruled northern Egypt for a hundred years. Some soldiers drive chariots taken from the enemy himself.
+S6704	The Hyksos, “rulers of foreign lands”, ruled northern Egypt for about a century until Ahmose drove them out around 1550 BCE and began the New Kingdom. Egyptians took up the horse and chariot widely in this period.
+S6705	Go and see the horses up close
+S6706	The beast runs three times faster than a donkey. You want one.
+S6707	Send bread to the soldiers
+S6708	A young soldier smiles at you. You hope he comes back.
+S6709	Ships from Punt
+S6710	Pharaoh Hatshepsut’s ships come back from the land of Punt in the south, loaded with whole incense trees, roots still in baskets, baboons, ivory and leopard skins. All Thebes comes down to the quay.
+S6711	Hatshepsut was a female pharaoh who ruled around 1479–1458 BCE. Reliefs in her temple at Deir el-Bahari show the expedition to Punt, including the queen of Punt. Punt probably lay around Eritrea or Somalia. After her death many of her images were destroyed.
+S6712	Smell the incense from a living tree
+S6713	The scent makes you dizzy. Next year these trees will grow before the temple.
+S6714	Go to see the baboons
+S6715	One snatches your bread, and the whole quay laughs.
+S6716	The narrow pass
+S6717	Thutmose III brings the army before the city of Megiddo. Every general begs him to go round by the wide road, but the pharaoh chooses a narrow pass where soldiers must walk in single file, and leads the way himself.
+S6718	The Battle of Megiddo in 1457 BCE is the first battle recorded in detail, on the walls of Karnak. The enemy never expected an army through the narrow pass and broke, but the Egyptian soldiers stopped to loot the enemy camp, so the city had to be besieged for seven more months.
+S6719	Follow the pharaoh into the pass
+S6720	Fought at Megiddo
+S6721	All night you walk in the dark, feeling the breath of the men ahead and behind.
+S6722	Loot the enemy camp
+S6723	You get one gold ring, and seven months of your general’s curses.
+S6724	A single god
+S6725	In a new city in the desert, Pharaoh Akhenaten worships only one god, the sun disc Aten. The carvings show sunbeams ending in little hands, holding out life to the pharaoh and Queen Nefertiti.
+S6726	Akhenaten ruled around 1353–1336 BCE, moved the capital to Amarna and tried to push aside the other gods. Carvings of the time show the royal family playing affectionately with their children, unlike other Egyptian art. After his death the city was abandoned and his name struck from the king lists.
+S6727	Sing the hymn to the Aten
+S6728	“You rise beautiful on the horizon,” you sing every morning, though a figure of Taweret is still hidden at home.
+S6729	Ask where the other gods have gone
+S6730	No one answers, but the workers here still wear charms of the old gods under their clothes.
+S6731	The sculptor’s workshop
+S6732	In the workshop of a sculptor named Thutmose stands a painted bust of Queen Nefertiti. One eye has not yet been inlaid; the sculptor uses it as a model for his apprentices.
+S6733	The bust of Nefertiti was found in 1912 in the ruins of a workshop at Amarna, where the name Thutmose appears on an ivory piece found in the same place. It is in a Berlin museum today, and Egypt still asks for it back. The empty left eye may be because it was a teaching model.
+S6734	Ask to be an apprentice
+S6735	You polish limestone for three months before you are allowed to touch paint.
+S6736	Ask why the other eye is missing
+S6737	He smiles: “So the pupils can see how an eye is made.” Three thousand years later, people still ask the same question.
+S6738	The young pharaoh
+S6739	Pharaoh Tutankhamun has died at about nineteen. His tomb was not ready in time, and the craftsmen must hurry to cram gold, furniture and chariots into small rooms until they are packed full.
+S6740	Tutankhamun died around 1323 BCE after restoring the old gods. His tomb was found almost intact by Howard Carter in 1922. The “curse of the pharaoh” was a newspaper invention ✦; most of the expedition lived long lives.
+S6741	Help finish the wall paintings in time
+S6742	Your painting has one drip of paint in it. In this game, tourists will stand looking at it three thousand years later.
+S6743	Weep with the funeral procession
+S6744	He was younger than you. Death does not care who is pharaoh.
+S6745	Peace with the enemy
+S6746	Envoys return with a treaty engraved on silver. Ramesses II and the Hittite king, old enemies from Kadesh, agree to be brothers, never to fight again, and to send back each other’s runaways.
+S6747	The Treaty of Kadesh, around 1259 BCE, is the oldest peace treaty to survive in full from both sides: the Egyptian version carved on temple walls, the Hittite on a clay tablet in Akkadian. A replica of that tablet hangs at the United Nations headquarters.
+S6748	Celebrate with the neighbours
+S6749	Mothers of soldier sons weep with relief.
+S6750	Wonder whether the kings will keep their word
+S6751	Surprisingly, they do, until both kingdoms have far bigger problems.
+S6752	The Great Bath
+S6753	On the high mound in the middle of the city, workers lay fired bricks tightly into a long pool with steps down at both ends, then seal it with bitumen so no water leaks. No one tells you what the pool is for.
+S6754	The Great Bath of Mohenjo-daro, around 2500 BCE, is one of the oldest public water tanks in the world, about 12 m long and 2.4 m deep. Archaeologists think it may have been used for ritual cleansing, but since the Indus script cannot be read, no one knows for sure.
+S6755	Help spread the bitumen
+S6756	Your hands stay black for a week, but the pool will not leak for four and a half thousand years.
+S6757	Sneak down to dip your feet
+S6758	An old man chases you out. You still don’t know what you did wrong.
+S6759	The tilting ground
+S6760	In the middle of the night the ground at Kalibangan shakes violently. House walls tilt, the street cracks into steps, and some wells run dry overnight.
+S6761	Archaeologists found tilted walls and displaced layers at Kalibangan from around 2600 BCE, interpreted as one of the oldest excavated traces of an earthquake. Afterwards the town was rebuilt on the planned grid of the mature Indus cities.
+S6762	Get everyone out of the house
+S6763	Survived the Kalibangan earthquake
+S6764	Your house still stands, but nobody dares sleep inside for a month.
+S6765	Help rebuild on the new street plan
+S6766	The new streets are straight as if drawn with a rule. You like them better.
+S6767	News from a king in the west
+S6768	Sailors back from the city of Akkad in the west say the king there, Sargon, boasts that ships from the land of “Meluhha” moor at his quay, and that a man there earns his living interpreting your language.
+S6769	Sargon’s inscriptions of around 2300 BCE mention ships from Meluhha at the quay of Akkad, and most scholars think Meluhha was the Indus civilisation. A seal of a man named Shu-ilishu calls him “interpreter of the Meluhhan language”. Many Indus-style seals and beads have been found in Mesopotamia.
+S6770	Ask the sailors to teach you words of their language
+S6771	You only remember the words for “beer” and “too expensive”.
+S6772	Send carnelian beads with the next ship
+S6773	In this game, your beads may end up in a royal tomb at Ur.
+S6774	Big letters over the gate
+S6775	Craftsmen set pieces of white stone into a long wooden board to make ten signs, each as big as a man’s head, and mount it over the city gate for everyone coming in to see.
+S6776	The Dholavira signboard bears ten Indus signs, each about 37 cm tall; it was found fallen in a room beside the north gate. It is the largest public Indus inscription known. No one can read it: it might be the city’s name, a ruler’s, or a blessing.
+S6777	Ask what it says
+S6778	The craftsman tells you, and you nod. Four thousand years later, no one knows the answer any more.
+S6779	Copy the signs in the sand
+S6780	The fish sign is the one you draw best.
+S6781	The great basin
+S6782	At Lothal workers dig a brick basin longer than any field, with a sluice to the river. Some say it is for ships, some for storing fresh water, and they argue about it all day.
+S6783	The brick basin at Lothal, about 220 by 37 m, was interpreted by Indian archaeologists as the world’s oldest dockyard, though some scholars argue it was a water reservoir. The debate is not settled.
+S6784	Side with the dockyard camp
+S6785	Four thousand years later, scholars are having the same argument as you.
+S6786	Side with the reservoir camp
+S6787	The bearded man of stone
+S6788	In a large house near the central mound stands a stone figure of a bearded man, eyes half closed, wrapped in a cloak patterned with trefoils, a band around his head. No one in the city can tell you whether he is a king, a priest or an ancestor.
+S6789	The figure archaeologists call the “Priest-King” is only about 17.5 cm tall and was found in 1927. The name is the archaeologists’ own; there is no evidence the Indus civilisation had kings or priests of that kind. Indus cities had no great palaces or royal tombs like Egypt’s or Mesopotamia’s.
+S6790	Bow to the figure
+S6791	You do not know who you are bowing to, but it feels right.
+S6792	Look closely at the cloak pattern
+S6793	The trefoils still have traces of red. You go home and weave the same pattern.
+S6794	The disc no one can read
+S6795	A merchant from Phaistos shows a round clay disc stamped on both sides with little pictures spiralling to the centre: a plumed head, a fish, a shield, a flower. He says even the palace scribes cannot read it.
+S6796	The Phaistos Disc was found in 1908 in the palace of Phaistos on Crete and may date to around 1700 BCE. Its 241 signs were pressed in with stamps, which some call the oldest “printing”. No one has deciphered it, and some scholars even suspect it is a fake ✦.
+S6797	Buy the disc
+S6798	You can’t read it either, but it makes the house look expensive.
+S6799	Try to guess what it says
+S6800	You guess it is a song. Thirty-seven centuries later, people are still guessing the same.
+S6801	The warrior and the seal
+S6802	A high-ranking warrior has died and is buried with bronze swords, combs, a mirror, gold rings and a tiny stone seal carved with a battle scene so fine you must squint to see it. Many of the things came from Crete.
+S6803	The tomb of the “Griffin Warrior”, around 1450 BCE, was found at Pylos in 2015. Its Pylos Combat Agate is only 3.6 cm long but so detailed scholars study it under microscopes. It shows how much mainland Greeks had absorbed of Minoan culture.
+S6804	Look at the seal up close
+S6805	You count three men in the scene, and every muscle on them.
+S6806	Help carry the coffin
+S6807	His family gives you a copper ring as a keepsake.
+S6808	The palace in flames
+S6809	Palaces and great houses all over Crete burn, all but Knossos. Soon people who speak a different tongue, from the mainland, are running the palace, and the scribes start keeping accounts in a new script.
+S6810	Around 1450 BCE most Minoan centres were destroyed and Mycenaeans from the mainland took control of Knossos. The palace tablets switched from Linear A, still unread, to Linear B, an early form of Greek deciphered in 1952.
+S6811	Learn the new script
+S6812	The new scribes laugh at your accent, but teach you anyway.
+S6813	Keep a tablet in the old script
+S6814	Soon no one will be able to read it, not even in your own house.
+S6815	The Lion Gate
+S6816	At Mycenae workers heave stones weighing many tons into the walls, and set above the gate a slab carved with two lions facing a column.
+S6817	The Lion Gate of Mycenae, around 1250 BCE, is the oldest large sculpture in Europe still standing where it was made. Later Greeks thought only the giant Cyclopes could have lifted such stones ✦, and the walls are still called “Cyclopean”.
+S6818	Help push stones up the ramp
+S6819	No giants needed: just enough men, rope and beer.
+S6820	Watch the lions being carved
+S6821	The heads are made separately and fixed on. Three thousand years later both heads are gone.
+S6822	The great ship that never came home
+S6823	A great merchant ship leaves harbour carrying ten tons of copper in oxhide-shaped ingots, a ton of tin, blue glass, ebony, ivory and gold. A month later word comes that it struck a rocky cape and sank.
+S6824	The Uluburun wreck, around 1300 BCE, was found off Turkey in 1982 by a sponge diver. Its cargo came from many cultures, including a gold scarab bearing Queen Nefertiti’s name, evidence of how widely Bronze Age trade linked the world. Ten parts copper to one of tin is the recipe for bronze.
+S6825	Help load the copper ingots
+S6826	Each ingot weighs as much as you. Three thousand years later, archaeologists will lift it from the seabed.
+S6827	Mourn the sailors
+S6828	There is no grave to visit, only the sea, looking as calm as ever.
+S6829	A letter to a brother
+S6830	Envoys return from the Hittite lands in Anatolia with a clay letter from the Hittite king. In it, one of the greatest kings in the world calls your king “my brother”, then complains about a raider hiding in your lands.
+S6831	Several Hittite royal letters mention a land called Ahhiyawa, which most scholars identify with the Mycenaean Greeks. In the Tawagalawa letter of around 1250 BCE the Hittite king calls the king of Ahhiyawa his brother and asks him to hand over a raider named Piyamaradu.
+S6832	Feel proud of your king
+S6833	Your king puts on airs for a month. So do the taxes.
+S6834	Ask who the raider is
+S6835	No one knows. Or everyone knows and won’t say.
+S6836	The city on the straits
+S6837	The warriors of your town are gathering ships to raid Wilusa, the high-walled city on the straits to the east. The leaders promise gold and captives. The old men say they will bring back only bodies.
+S6838	Hittite records mention a city called Wilusa, which most scholars identify with Troy (Ilios in Greek). Troy VII was destroyed around 1180 BCE. The Trojan War of Homer’s epic, with its wooden horse and Helen, is legend ✦; how much of it happened no one knows.
+S6839	Join the raid
+S6840	An arrow from the walls takes you in the thigh. You come home empty-handed and limp for the rest of your life.
+S6841	You come back with one copper cup and a story that grows longer every year.
+S6842	Half of those who went never return. Those who do tell stories until they become songs.
+S6843	The enemy ships have come
+S6844	In the palace a scribe writes the king’s letter to the king of Cyprus: “My father, behold, the enemy’s ships came; my cities were burned, and they did evil things in my country. All my troops are far away in the Hittite land.”
+S6845	Ugarit was destroyed around 1185 BCE in the Bronze Age collapse. This letter was found in the palace archives; the popular story that the tablets were still in a kiln, waiting to be sent when the city fell, is a misunderstanding passed down ✦. Ugarit also gave us one of the oldest alphabets, written in cuneiform signs.
+S6846	Help carry the letter to the harbour
+S6847	The sea is full of strange sails. You are not sure the messenger ship can get out.
+S6848	Escaped Ugarit before it fell
+S6849	From the hills you watch smoke rise from a city no one will ever rebuild.
+S6850	The fire that saved the words
+S6851	The palace of Pylos goes up in flames. The archive room, full of clay tablets listing sheep, oil and rowers, grows so hot that the unbaked tablets are fired as hard as pottery.
+S6852	About a thousand Linear B tablets survive because fire swept the palace of Pylos around 1180 BCE; clay records were normally temporary and unbaked. Some of the last tablets mention sending rowers to guard the coast, as if danger were known to be coming.
+S6853	Help fight the fire
+S6854	The fire is too strong. All you can do is get people out.
+S6855	Flee to the mountains
+S6856	Survived the burning of Pylos
+S6857	The world of the palaces ends in a night. Life in the mountain villages goes on.
+S6858	News from Egypt
+S6859	A trader says Pharaoh Ramesses III has defeated the “Sea Peoples” at the mouths of the Nile and had the battles on land and water carved on the walls of a great temple. Some survivors have fled back to your coast.
+S6860	The reliefs at Medinet Habu, around 1177 BCE, show the oldest surviving picture of a sea battle. “Sea Peoples” is a modern scholars’ name for several groups on the move by sea during the Bronze Age collapse, who were invaders and refugees at once.
+S6861	Feed the survivors
+S6862	They speak a tongue you don’t know, but hunger is understood in every language.
+S6863	Drive them from the harbour
+S6864	Their boats put to sea again. You don’t know where they will land.
+S6865	The biggest bronze
+S6866	Hundreds of casters pour molten bronze from dozens of crucibles at once into a clay mould the size of a room, making a four-legged cauldron for the late mother of the king.
+S6867	The Houmuwu (or Simuwu) ding, weighing 832.84 kg, is the largest known Shang bronze, made around the 13th–12th century BCE. Villagers dug it up in 1939 and reburied it to hide it from Japanese soldiers during the war. It is now in the National Museum of China.
+S6868	Help work the bellows
+S6869	Half your eyebrows are singed, but the vessel comes out perfect.
+S6870	Count the crucibles
+S6871	You count seventy before everything turns to smoke and light.
+S6872	Burying the masks
+S6873	The people of the river city dig great pits, break and burn bronze masks with bulging eyes, bronze heads, hundreds of elephant tusks and a bronze tree taller than a man, then bury it all. No one tells you why.
+S6874	The pits at Sanxingdui in Sichuan were found in 1986, and six more in 2019–2022. New dating suggests they were filled around 1100 BCE. The culture was very different from the Shang and left no writing; why they smashed and buried such treasures is still a mystery.
+S6875	Help carry the tusks
+S6876	The tusks are heavy and cold. You feel you are burying something bigger than things.
+S6877	Secretly keep a little scrap of gold foil
+S6878	You hide it all your life and never dare show anyone.
+S6879	A lake of wine, a forest of meat
+S6880	Rumour from the palace says King Di Xin has dug a pool filled with wine deep enough to row a boat in, and hung meat from the trees like a forest, where naked guests chase each other all night.
+S6881	The tale of the “lake of wine and forest of meat” of Di Xin, last Shang king, was written by later historians drawing on the stories of the victorious Zhou ✦. There may be some truth in it, but winners tend to paint losers as monsters to justify taking power.
+S6882	Believe the rumour
+S6883	You pass it on, and the story grows each time.
+S6884	Wonder who is spreading it
+S6885	Most of the tellers have just come back from the west, where the Zhou are gathering strength.
+S6886	The prisoner who drew lines
+S6887	Ji Chang, Lord of the West and head of the Zhou, has been imprisoned by the Shang king at Youli. People say that in prison he lays out sticks in whole and broken lines, arranging them into sixty-four figures of six lines each.
+S6888	Chinese tradition says King Wen of Zhou arranged the 64 hexagrams of the Yijing (I Ching) while imprisoned ✦. Modern scholars think the book grew out of early Zhou divination over a long time, not from one man.
+S6889	Smuggle food in to him
+S6890	He says nothing but sends back a figure of sticks. You don’t understand it, but keep it.
+S6891	Try laying out the sticks yourself
+S6892	You get to ten figures and lose track. Three thousand years later, people around the world still consult this book.
+S6893	Two brothers on the mountain
+S6894	Two brothers, Bo Yi and Shu Qi, refuse to accept that the Zhou had the right to overthrow the Shang. They will not eat Zhou grain, and go up Mount Shouyang to live on wild ferns.
+S6895	The story of Bo Yi and Shu Qi is told by the historian Sima Qian, writing about a thousand years later ✦. The brothers starved on the mountain and became models of loyalty in Chinese culture; Confucius praised them.
+S6896	Take them grain
+S6897	They thank you but will not touch it: it was grown on Zhou land.
+S6898	Think them too stubborn
+S6899	Three thousand years later, people still argue whether they were heroes or simply stubborn.
+S6900	A mountain of earth
+S6901	On an island in the swamps thousands of people carry clay in baskets, heaping it into a mound higher than any tree in the forest. The leaders say it is a sacred mountain made by human hands.
+S6902	The Great Pyramid of La Venta is built of clay, about 30 m tall, one of the oldest pyramids in Mesoamerica, around 900–400 BCE. It may imitate the volcanoes of the nearby Tuxtla mountains.
+S6903	Carry basket after basket of clay
+S6904	You carry three hundred baskets. The mountain rises by the width of a finger.
+S6905	Climb up to see the swamps from the top
+S6906	For the first time in your life you see the rivers, the sea and the far-off volcanoes.
+S6907	Burying the most beautiful thing
+S6908	Craftsmen lay hundreds of green serpentine blocks into a huge jaguar-face mosaic on the ground. It takes months. When it is finished, everyone helps cover it with earth until nothing shows, and no one sees it again.
+S6909	At La Venta archaeologists found “massive offerings”: thousands of tons of serpentine blocks buried underground, and mosaic pavements of animal faces covered over as soon as they were finished. Burying such wealth may have been an offering to the underworld.
+S6910	Help lay the stones
+S6911	You set the jaguar’s eye: the most beautiful work you will ever do, and no one will ever see it.
+S6912	The shaman says, “Because the most beautiful things belong to the gods below.”
+S6913	Sixteen stone figures
+S6914	The priests set sixteen little jade and stone figures in a circle, with six stone celts standing behind them like a wall. One figure stands with its back to the wall, and all the others face it. Then the whole scene is buried.
+S6915	Offering 4 at La Venta is a buried scene of 16 figurines and 6 celts. Remarkably, years later someone dug a small hole precisely down to the figures’ heads and then filled it in again, showing someone remembered exactly where it was. What the scene meant, no one knows.
+S6916	Memorise the spot
+S6917	Years later, in this game, you are the one who digs the little hole to look at it again.
+S6918	Ask who the figure with its back to the wall is
+S6919	The priest smiles but won’t say. Three thousand years later, archaeologists are still guessing.
+S6920	 In one lifetime you met or witnessed 
+S6921	, and almost no one knew you were there.
