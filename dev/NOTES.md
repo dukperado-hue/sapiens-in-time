@@ -24,3 +24,11 @@
 - Standalone pages need the `[hidden]{display:none!important}` rule (some sections set `display:flex`, which beats the browser's `[hidden]`). The claude.ai artifact host added this itself, so the bug only showed on GitHub Pages / phones.
 - `build.sh` runs `wrap_html.py`, which adds doctype, charset and the mobile viewport. Without the viewport, phones render the page at desktop width and the text looks tiny.
 - Opening music: Ode to Joy (Beethoven, Symphony No. 9, 1824, public domain), synthesized in `SND.ode()`, starts on the first tap on the intro/home screens and fades out when a life is drawn.
+
+## v0.22 living world (engine notes)
+- `ATM` (in `blocks/v22a.js`): one weather clock for picture and sound. `ATM.update()` runs in `sceneLoop` for the live play scene only (`o.live=1`); it schedules lightning strikes with a distance and calls `SND.thunder(d)`. `drawScene` reads `ATM.flash()` and `ATM.gust`. Cards and the draw screen are not live, so they never flash.
+- Post layers inside `drawScene`: `rain22`, `fg22` (foreground), `embers22`, `shafts22`, `grade22`, `flash22`. The stage around the canvas (`#stage`) does the camera, letterbox (`body.cine`), title card (`#tcard`) and death fade (`body.dying`) in CSS.
+- Variety (`blocks/v22v.js`): `log()` goes through `gate22` (routine lines may not repeat); `yearStep` filters events with `ok22`/`fresh22` and weights them with `thw22` (theme balancer); ambient lines go through `amb22`, which can also pick a quiet moment from `QM22`. New quiet moments: add `{th,bio,era,a,mx,need,x}`.
+- Debug query flags: `?storm` (force rain/storm), `?dusk` (low sun).
+- Tests: `node test/rep22.cjs` (repetition per chapter), `GJ=old/game.js node test/bal22.cjs` (survival, compare builds), `node test/snd22.cjs` (thunder timing/loudness, needs playwright).
+- A `const` in a block file used by code that runs earlier in the script throws a TDZ error and stops the whole game: keep `window.__X=X` lines inside the block that defines X.

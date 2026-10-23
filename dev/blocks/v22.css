@@ -1,0 +1,67 @@
+/* ---------- v0.22 stage: a slow camera, letterbox for big moments, title cards ---------- */
+.stage{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--void);isolation:isolate}
+.stage canvas.scene{border:0;transform-origin:46% 80%;animation:cam22 46s ease-in-out infinite alternate;transition:transform 1.3s cubic-bezier(.3,.1,.2,1);will-change:transform}
+@keyframes cam22{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.07) translate(-1.1%,-.6%)}}
+body.cine .stage canvas.scene{animation-play-state:paused;transform:scale(1.13) translate(0,-1.5%)}
+.stage::before,.stage::after{content:'';position:absolute;left:0;right:0;height:0;background:#050302;z-index:2;transition:height .9s ease;pointer-events:none}
+.stage::before{top:0}.stage::after{bottom:0}
+body.cine .stage::before,body.cine .stage::after{height:9%}
+.tcard{position:absolute;left:0;right:0;bottom:14%;z-index:3;text-align:center;pointer-events:none;opacity:0;color:var(--bone);text-shadow:0 2px 14px #000,0 0 3px #000;padding:0 16px}
+.tcard small{display:block;font-family:var(--px);font-size:11px;letter-spacing:.18em;color:var(--ember)}
+.tcard b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(18px,3.6vw,30px);line-height:1.25}
+.tcard.on{animation:tc22 4.6s ease forwards}
+@keyframes tc22{0%{opacity:0;transform:translateY(10px)}14%{opacity:1;transform:none}74%{opacity:1}100%{opacity:0;transform:translateY(-4px)}}
+.yearbar{margin-top:8px}
+/* the scene, cropped, at the top of an event card (phones: the card covers the stage) */
+.mscene{display:block;width:calc(100% + 2*max(18px, env(safe-area-inset-left,0px)));margin:-22px calc(-1*max(18px, env(safe-area-inset-left,0px))) 4px;height:auto;aspect-ratio:192/68;image-rendering:pixelated;image-rendering:crisp-edges;border-bottom:1px solid var(--line);background:var(--void)}
+.khint{display:none;font-size:12px;color:var(--ash);margin:2px 0 0}
+.opts{counter-reset:opt}
+.opts button{counter-increment:opt}
+@media (hover:hover) and (pointer:fine){
+  .khint{display:block}
+  .opts button::before{content:counter(opt);display:inline-block;min-width:20px;margin-right:10px;padding:0 5px;border:1px solid var(--line);font-family:var(--px);font-size:11px;color:var(--ash);text-align:center;border-radius:2px}
+}
+/* volume */
+.vol{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:13px;color:var(--ash)}
+.vol input,.dvol{accent-color:var(--ember);flex:1;min-width:0}
+.dvol{display:none;max-width:110px}
+/* phones: the journal sits right under the stage, in its own scroll box, so scene and story are in view together */
+.side{display:flex;flex-direction:column}
+.side #stats{order:0}.side #log{order:1}.side .whoRow{order:2}.side #skills{order:3}.side #tools{order:4}
+.sk .bar{padding:0;display:block}
+@media (max-width:999px){
+  .side #stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 8px;margin-top:2px}
+  .side #stats .stat .lb{font-size:11px;flex-wrap:wrap;column-gap:4px}
+  .side .whoRow{margin-top:4px}
+  .focus button{min-height:44px;padding:7px 3px;font-size:12.5px}
+  .dock{padding-top:12px}
+  .ctrl{gap:5px}.ctrl button{padding:6px 8px}
+  body.playing .pbar{padding-block:6px 6px;margin-bottom:8px}
+  .side #log{max-height:min(50vh,460px);overflow-y:auto;overscroll-behavior:contain;margin:6px 0 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(180deg,#000 88%,transparent);mask-image:linear-gradient(180deg,#000 88%,transparent);padding-bottom:18px}
+  .side #log li:first-child{animation:lnIn22 .6s ease}
+}
+@keyframes lnIn22{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (orientation:landscape) and (max-height:500px){
+  .side #log{max-height:none}
+  body.playing .stage{max-width:calc((100vh - 120px)*1.778);margin-inline:auto}
+}
+/* computers: a wide stage on the left, the journal on the right */
+@media (min-width:1000px){
+  body.playing #app{max-width:1320px;padding-inline:24px}
+  body.playing #play{display:grid;grid-template-columns:minmax(0,1fr) 400px;grid-template-rows:auto auto auto 1fr;column-gap:28px;align-items:start}
+  body.playing #play>.pbar,body.playing #play>.stage,body.playing #play>.yearbar{grid-column:1}
+  body.playing #play>.stage{max-width:calc((100vh - 290px)*1.778);width:100%;justify-self:center}
+  body.playing .side{grid-column:2;grid-row:1/span 4;position:sticky;top:0;max-height:100vh;overflow-y:auto;padding:12px 4px 24px 0;scrollbar-width:thin}
+  body.playing .side .whoRow{order:0}body.playing .side #stats{order:1}body.playing .side #skills{order:2}body.playing .side #tools{order:3}
+  body.playing .side #log{order:5;margin-top:10px;border-top:1px solid var(--line)}
+  body.playing .dock{left:calc(max(0px,(100vw - 1320px)/2) + 24px);right:calc(max(0px,(100vw - 1320px)/2) + 452px);padding-inline:0;background:linear-gradient(0deg,var(--night) 78%,transparent)}
+  body.playing .dock-in{max-width:none}
+  .dvol{display:block}
+  body.playing .modal{background:linear-gradient(90deg,rgba(5,3,2,.05),rgba(5,3,2,.25) 45%,rgba(5,3,2,.8) 70%);justify-content:flex-end;align-items:center;padding-right:calc(max(0px,(100vw - 1320px)/2) + 24px)}
+  body.playing .modal .sheet{box-sizing:border-box;max-width:400px;border:1px solid var(--ochre);border-top-width:2px;max-height:88vh;padding:24px 22px;animation:in22 .35s ease}
+  body.playing .modal .mscene{display:none}
+}
+@keyframes in22{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+.opts button.primary::before{color:#1a0d07;border-color:rgba(26,13,7,.35)}
+body.dying .stage canvas.scene{filter:grayscale(1) brightness(.35);transform:scale(1.1);transition:filter 1.5s ease,transform 1.6s ease}
+body.dying .stage::before,body.dying .stage::after{height:12%}
