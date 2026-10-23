@@ -1,0 +1,835 @@
+S6923	Small children were usually not cremated. Your family buries your small body by the river.
+S6924	One of your children falls ill and dies. Small children were usually not cremated, so the family buries the little body by the river.
+S6925	the sixteen realms and the wandering teachers
+S6926	Magadha rises: the Nandas and the Mauryas
+S6927	the age of Ashoka and his edicts
+S6928	after the Mauryas: the Shungas, the Greeks, and the scriptures written down
+S6929	Rajagaha, capital of Magadha, ringed by five hills
+S6930	Pataliputra, where the Son meets the Ganges
+S6931	Savatthi, capital of Kosala
+S6932	Vesali, the Licchavis’ city, ruled by an assembly
+S6933	Varanasi, the holy city on the Ganges
+S6934	the Shakya country, near Kapilavatthu and Lumbini
+S6935	Vidisha, a merchants’ town near the Sanchi hill
+S6936	Taxila, the crossroads city of Gandhara
+S6937	Kalinga, on the eastern sea coast
+S6938	Anuradhapura, capital of the island of Lanka
+S6939	a farming village on the Ganges plain
+S6940	wheat, barley and grapes
+S6941	rice, pulses, sugar cane and cotton
+S6942	A sloth bear from the Lankan forest
+S6943	A tiger from the riverside forest
+S6944	Rajagaha sat in a ring of five hills, joined by a dry-stone wall some 40 km long whose remains can still be seen. King Bimbisara ruled here in the Buddha’s time; later Magadha’s capital moved to Pataliputra. Its hot springs have drawn bathers since then.
+S6945	Pataliputra began as a small fort by the river and became the capital of the Nandas and the Mauryas. The Greek envoy Megasthenes recorded a city some 80 stades (about 15 km) long, with 570 towers and 64 gates; archaeologists have dug up stretches of its timber palisade. Today it is Patna, in Bihar.
+S6946	Savatthi was the capital of Kosala. According to the texts, the Buddha spent more rainy seasons at its Jeta Grove than anywhere else, so many discourses open: “Once the Blessed One was staying at Savatthi.”
+S6947	Vesali was the city of the Licchavis in the Vajji league, which had no single king but decided great matters in assembly. Some historians call it an early republic, though the voices in the assembly belonged to noble clans, not to everyone.
+S6948	Varanasi, or Kashi, was a holy city before the Buddha. Its cloth was so famous that the Pali texts use it as the very example of fine fabric. About 10 km away lies the deer park at Isipatana, Sarnath, where the texts say the Buddha first taught.
+S6949	The Shakyas were a warrior clan governed in assembly. Scholars think the Buddha’s father was probably a clan leader, not the great king of later stories. Where Kapilavatthu stood is still argued over: Tilaurakot in Nepal or Piprahwa in India.
+S6950	Vidisha was a merchants’ town on the trade route from the Ganges plain to the west. Nearby is the hill of Sanchi, where Ashoka built a stupa and later generations carved its splendid stone gateways.
+S6951	Taxila sat at the crossroads of India, Persia and Central Asia. It was ruled in turn by Persians, Alexander, the Mauryas, Greeks, Sakas and Kushans. People here wrote in Kharosthi, read right to left, and the oldest surviving Buddhist manuscripts come from this land of Gandhara.
+S6952	Kalinga lay on the eastern coast. Its seafarers traded across the Bay of Bengal to Southeast Asia; the Malay word “Keling” for people from India comes from its name.
+S6953	Anuradhapura was Lanka’s capital for over a thousand years, its people farming with the water of huge reservoirs. The island’s chronicles say Buddhism arrived in Ashoka’s time, and the Pali canon chanted in Thai temples today descends from the line written down on this island.
+S6954	Most people in the Ganges valley grew rice. Iron axes and ploughshares let them clear the riverside forest for paddy. A village had its headman, its sacred tree, and a steady stream of wandering ascetics of many schools coming to beg for food.
+S6955	good-hearted
+S6956	the name of a star
+S6957	joy
+S6958	the one given
+S6959	friend
+S6960	golden
+S6961	given by the naga
+S6962	given by the sages
+S6963	fortunate
+S6964	the higher one
+S6965	the moon
+S6966	well born
+S6967	servant of the yakkha
+S6968	a woman of the Gotama clan
+S6969	a Brahmin clan name from an ancient seer
+S6970	a Brahmin clan name from the seer Vasishtha
+S6971	a Brahmin clan name from the seer Kashyapa
+S6972	protected by the Dhamma
+S6973	the Dhamma
+S6974	gift of the god: a Greek name
+S6975	good fame: a Greek name, also borne by a Greek queen in India
+S6976	fearless: a common name in Lanka
+S6977	the name of a Lankan queen who became a nun, the chronicles say
+S6978	Rice farmer
+S6979	a child who scares birds from the rice
+S6980	a rice farmer
+S6981	a farmer with buffaloes of their own
+S6982	the village headman
+S6983	Throw pots on the wheel and fire them black and glossy as a mirror
+S6984	a child who kneads the clay
+S6985	a potter who can make the black polished ware
+S6986	the head of the potters’ guild
+S6987	Caravan trader
+S6988	Lead ox-carts of cloth, salt and spices through the forests to other towns
+S6989	a child who guards the carts
+S6990	the leader of a caravan of five hundred carts
+S6991	a great merchant even kings must flatter
+S6992	Brahmin priest
+S6993	Recite the Vedas perfect to the syllable and perform fire rites for households
+S6994	a pupil reciting the Vedas after his teacher
+S6995	a Brahmin priest
+S6996	the priest the whole town invites
+S6997	the royal chaplain
+S6998	Renunciant
+S6999	Go on the morning alms round, hear the teaching and meditate under the trees
+S7000	a novice
+S7001	a renunciant
+S7002	a renunciant who has many teachings by heart
+S7003	a teacher with hundreds of pupils
+S7004	Mahout and soldier
+S7005	Train war elephants, sleep beside them, and learn every command they know
+S7006	a boy who cuts fodder for the elephants
+S7007	a mahout
+S7008	a war-elephant driver of the royal army
+S7009	the master of a hundred elephants
+S7010	Gather herbs, brew medicines and treat the sick, rich and poor
+S7011	a child who grinds the medicines
+S7012	a physician people travel from other towns to see
+S7013	the royal physician
+S7014	Carver
+S7015	Carve wood and ivory, and in later times stone railings and gateways for stupas
+S7016	a child who polishes the carvings
+S7017	a carver
+S7018	a carver whose Jataka scenes seem alive
+S7019	the head of the carvers’ guild
+S7020	Most work in this age ran in families. Craftsmen of one kind formed guilds called seni, with heads and rules of their own, and some were rich enough to pay for part of a stupa. Those who renounced the world left work and family behind and lived on the food lay people put in their bowls.
+S7021	a Brahmin family
+S7022	a khattiya family, of the warrior and ruling class
+S7023	a householder family of farmers and traders
+S7024	a family of labourers and craftsmen
+S7025	a candala family, pushed outside the varnas
+S7026	Brahmin texts divided society into four varnas: brahmins, khattiyas, vessas and suddas, with some groups such as the candalas pushed outside. Real life was divided far more finely, by birth group and occupation. The Pali texts usually list khattiyas before brahmins, and one discourse teaches that no one is low or high by birth, only by deeds.
+S7027	black polished pots
+S7028	Kashi cotton cloth
+S7029	a monk or nun in the Buddha’s Sangha
+S7030	a bhikkhu
+S7031	a bhikkhuni
+S7032	a Nigantha ascetic, a follower of Mahavira
+S7033	a Nigantha monk
+S7034	a Nigantha nun
+S7035	an Ajivika ascetic
+S7036	The grown-ups talk of the sixteen great realms fighting over the Ganges plain. Magadha and Kosala are growing; the small realms are swallowed one by one.
+S7037	Buddhist and Jain texts speak of sixteen “great realms”, the mahajanapadas, in this age. Some had kings; some were governed by assemblies of warrior clans. Within about two hundred years Magadha swallowed nearly all of them.
+S7038	Ajatasattu’s Magadhan army crosses the Ganges against the Vajjis. Vesali falls, and the Licchavi assembly meets no more.
+S7039	Jain texts say Ajatasattu used two new weapons, a great stone-throwing engine and a chariot fitted with a swinging mace ✦. In the discourses, a minister is sent to ask the Buddha before the war, and he answers that the Vajjis will not decline as long as they meet often and in harmony.
+S7040	Taxes are up again. People say the Nanda king at Pataliputra has hoarded more gold than anyone can count.
+S7041	The Nanda dynasty ruled Magadha in the 4th century BCE. Greek and Roman writers heard that the Nanda army was so vast that Alexander’s soldiers refused to march on into the Ganges valley. Indian stories tell of the Nandas’ wealth and greed ✦.
+S7042	Survived the Kalinga war
+S7043	The Mauryan army invades Kalinga. Villages burn; people are killed and driven off as captives. Your family flees into the forest.
+S7044	Ashoka’s Rock Edict 13 says that in the Kalinga war 150,000 people were carried away, 100,000 killed, and many times that number died afterwards. He wrote of his deep remorse. Strikingly, the edicts set up in Kalinga itself leave this passage out.
+S7045	Word comes that the Yavanas, the Greeks from the north-west, have marched as far as the Ganges valley.
+S7046	Indians called the Greeks Yavanas, from Ionia. In the 2nd century BCE Greek kings ruling Gandhara pushed deep into India; the grammarian Patanjali and later Puranic texts mention the raid.
+S7047	The Kosalan army of King Vidudabha storms the Shakya land. The town is burned and many are killed. Your family escapes.
+S7048	The commentaries say Vidudabha took revenge because the Shakyas had tricked his father into marrying a slave girl’s daughter ✦. It happened shortly before the Buddha’s passing; after that the Shakyas are barely heard of as a realm again.
+S7049	A merchant shows off a strange gold coin with a man in a leaf crown on it. He says it comes from a far western city called Rome.
+S7050	In the 1st century Roman ships sailed to South India every year on the monsoon, and hoards of gold and silver coins of Augustus and Tiberius have been found in India. The Roman writer Pliny complained that India drained the Empire of money every year. Players of the Rome chapter may have seen the Buddha at the Red Sea port of Berenike.
+S7051	You help load sacks of rice onto a cart and are paid in copper coins.
+S7052	India’s earliest coins were karshapana: bits of silver punched one stamp at a time with symbols such as a sun, an elephant or a hill, with no king’s name and no face. The Pali texts price things in karshapana more than in anything else.
+S7053	a Brahmin child
+S7054	a child of the Ganges valley
+S7055	a Brahmin
+S7056	a khattiya
+S7057	a householder
+S7058	a labourer
+S7059	a candala
+S7060	Offer rice and flowers at the sacred tree and tend the household fire
+S7061	Help Mother set rice at the foot of the banyan
+S7062	Recite hymns and teachings after a teacher until you know every word
+S7063	Sit under a tree repeating after the teacher
+S7064	Write Brahmi letters on palm leaves and boards
+S7065	Transplant rice in the flooded monsoon paddies
+S7066	Help pull up the rice seedlings
+S7067	Tend the humped cattle and buffaloes
+S7068	Ride a buffalo down to wallow
+S7069	Fish in the Ganges
+S7070	Catch little fish in the paddies
+S7071	Practise wrestling and racing
+S7072	Chase the peacocks
+S7073	Raise mud walls, thatch roofs and cut bamboo
+S7074	Buy and sell at the market with punch-marked coins
+S7075	Listen to Jataka tales and the stories of wandering ascetics
+S7076	Listen to Grandmother’s tale of the hare in the moon
+S7077	Watch the moon to count the uposatha days, waxing and waning
+S7078	Gather medicines in the forest, such as neem and turmeric
+S7079	King Bimbisara and the young Shakya ascetic
+S7080	Sujata’s milk-rice
+S7081	the first teaching at the deer park
+S7082	Makkhali Gosala and Mahavira
+S7083	Anathapindika and the Jeta Grove
+S7084	Mahapajapati and the first nuns
+S7085	Jivaka the physician
+S7086	the passing of Mahavira
+S7087	Prince Ajatasattu
+S7088	the building of the Patali fort
+S7089	Ambapali
+S7090	the passing at Kusinara
+S7091	the First Council
+S7092	Panini the grammarian
+S7093	Alexander at Taxila
+S7094	Chandragupta Maurya
+S7095	Megasthenes, the Greek envoy
+S7096	Bhadrabahu and the monks who went south
+S7097	the Second Council at Vesali
+S7098	Ashoka’s edicts
+S7099	the special edicts of Kalinga
+S7100	the caves Ashoka gave the Ajivikas
+S7101	Ashoka’s pillar at Lumbini
+S7102	the Third Council at Pataliputra
+S7103	the monks Sona and Uttara
+S7104	the monk Mahinda
+S7105	Sanghamitta’s Bodhi branch
+S7106	King Dasaratha’s caves
+S7107	the last Mauryan emperor
+S7108	Pushyamitra’s horse sacrifice
+S7109	King Milinda and Nagasena
+S7110	the ashes of King Menander
+S7111	the Bharhut railings
+S7112	the pillar of Heliodorus
+S7113	King Kharavela
+S7114	the ivory carvers of Vidisha at the Sanchi gate
+S7115	the writing of the canon at Aluvihare
+S7116	the birch-bark scroll in a clay pot
+S7117	the monk Bala’s bodhisattva statue
+S7118	Kanishka’s “BODDO” coin
+S7119	Ashvaghosha, the poet of the Buddha’s life
+S7120	A young ascetic at Rajagaha
+S7121	A young ascetic of the Shakya clan walks his alms round in Rajagaha so calmly that people stop to stare. The king’s men report it, and King Bimbisara rides out to the foot of the hill to offer him wealth and an army. He declines: he is seeking awakening.
+S7122	This story is told in the Pabbajja Sutta of the Sutta Nipata, among the earlier layers of the texts. At the time he was just one of hundreds of wandering ascetics in the Ganges valley; no one knew that 2,500 years later hundreds of millions would call him the Buddha.
+S7123	Put rice in his bowl
+S7124	He glances at you, thanks you with a nod, and walks on in silence.
+S7125	Follow to hear what the king says
+S7126	The king asks him to come back and teach at Rajagaha if he finds what he seeks. You remember that.
+S7127	The milk-rice
+S7128	In the village of Uruvela a young woman named Sujata cooks rice in the richest milk to offer to the spirit of the banyan. But at the foot of the tree sits a gaunt ascetic, so she offers the rice to him instead.
+S7129	The story of Sujata comes from much later commentaries ✦, but its core matches the early discourses, which say the Buddha gave up starving himself and began eating again before his awakening. It also shows villagers already worshipping tree spirits before Buddhism existed.
+S7130	Help Sujata stir the pot
+S7131	The rice smells so good that parrots gather round the pot.
+S7132	Peek at the ascetic eating
+S7133	He eats slowly, mouthful by mouthful, as though he has not tasted rice in years.
+S7134	Five men in the deer park
+S7135	You graze the cattle near the deer park at Isipatana and see five thin ascetics listening all day to another ascetic. He speaks of a middle way, between indulgence and self-torment.
+S7136	According to the texts this was the first teaching, the Dhammacakkappavattana Sutta, which Thais remember on Asalha Bucha day. The ruins at Sarnath today include a pillar of Ashoka whose four-lion capital became India’s national emblem.
+S7137	Sit and listen too
+S7138	You don’t understand every word, but you remember “the middle way” all your life.
+S7139	Drive the cattle home before dark
+S7140	At home you mention six thin men in the forest. Mother says that forest is always full of odd ascetics.
+S7141	Two teachers quarrel
+S7142	In a potter’s workshop at Savatthi, the naked ascetic Makkhali Gosala shouts at Mahavira, a teacher he once wandered with for six years. The whole market crowds in to watch.
+S7143	The Jain Bhagavati Sutra tells this ✦. Gosala led the Ajivikas, who taught that everything is fixed by fate and human effort changes nothing. The Ajivikas were once big enough for Ashoka to give them caves, but they vanished, and not one of their own texts survives. We know them only through their rivals.
+S7144	Side with Gosala: fate decides everything
+S7145	If everything is fixed, there is nothing to worry about. You sleep well that night.
+S7146	Side with Mahavira: our deeds matter
+S7147	You walk home taking care not to tread on the ants, for the first time in your life.
+S7148	Paving the ground with coins
+S7149	The merchant Anathapindika wants to buy Prince Jeta’s grove to give to the Buddha. The prince jokes that he will sell only if the ground is covered in coins, so the merchant has cartloads of coins brought and laid out for real.
+S7150	The story is in the Vinaya ✦. A carving on the Bharhut stupa railing, about 2,100 years old, shows a cart of coins and men covering the ground, with a label naming the scene, so the story was already widely told by then. It is in the Indian Museum in Kolkata.
+S7151	Get hired to lay the coins
+S7152	You are paid one coin, and privately think the merchant has gone mad.
+S7153	Ask why he would pay so much
+S7154	He answers, “So the monks have shelter in the rains,” and goes back to counting coins.
+S7155	The women who walked barefoot
+S7156	Mahapajapati, the Buddha’s foster mother, and hundreds of Shakya women shave their heads, put on earth-dyed robes and walk barefoot to Vesali until their feet swell, to ask to be ordained.
+S7157	According to the Vinaya the Buddha refused three times until Ananda pleaded for them, and the order of nuns began ✦. Many scholars think some of the special rules for nuns were added later. The Therigatha keeps poems said to be by the first nuns, perhaps the oldest literature by women in India.
+S7158	Wash their feet
+S7159	An old woman smiles at you and says, “We have walked far, but we are not there yet.”
+S7160	Ask why women want to renounce
+S7161	A young woman answers, “Because we grow old, fall sick and die just as men do.”
+S7162	People in Rajagaha talk of a young physician named Jivaka, once a baby abandoned on a rubbish heap, who studied seven years at Taxila and now treats both the king and the monks.
+S7163	The Vinaya tells that Jivaka’s teacher sent him to find a plant within a day’s walk that was not a medicine, and he came back saying he could find none ✦. In Thailand Jivaka Komarabhacca is honoured as the father of traditional medicine, and Thai massage practitioners pay respect to him before they begin.
+S7164	Have Jivaka treat your wound
+S7165	He smears on a green, very smelly paste. The wound heals in three days.
+S7166	Ask to be his helper
+S7167	You learn that every leaf around you can be medicine, if you know how to use it.
+S7168	The night Pava lit its lamps
+S7169	Word comes that Mahavira, teacher of the Nigantha ascetics, has passed away at Pava. That night people fill the town with lamps, because the light of knowledge has gone out.
+S7170	The Jain Kalpa Sutra says eighteen kings lit lamps on the night of Mahavira’s nirvana ✦, and Jains still celebrate it at Diwali. Jain tradition puts it in 527 BCE, but many historians think it was later, close to the Buddha’s time. Buddhist discourses themselves say the Nigantha teacher died at Pava while the Buddha was alive.
+S7171	Light a lamp at your door
+S7172	The whole street glows with little flames. You have never seen so lovely a night.
+S7173	Ask what the teacher taught
+S7174	“Harm no living thing, not even the smallest insect,” a monk answers, sweeping the ground before he sits.
+S7175	A king in prison
+S7176	Prince Ajatasattu has locked up his father, King Bimbisara, and starves him. People whisper that the queen hides food in her hair to smuggle it in.
+S7177	According to the commentaries and later texts, Ajatasattu seized power from his father ✦. The details differ between Buddhist and Jain texts, but both agree he made Magadha stronger than ever and began the fort that became Pataliputra.
+S7178	Help the queen smuggle food
+S7179	The guard stares at you until your heart pounds, but lets you pass.
+S7180	Keep well away from palace affairs
+S7181	The affairs of kings are for kings. You have rice to plant.
+S7182	A fort by the river
+S7183	At the village of Pataligama, Magadha’s workmen are building a fort by the Ganges. An old ascetic passes with his disciples and says this place will become a great city, threatened by fire, by water and by quarrels.
+S7184	The Mahaparinibbana Sutta says the Buddha foretold this on his last journey ✦. A few generations later Pataliputra was the capital of the largest empire India had yet known; today it is Patna.
+S7185	Help haul logs for the palisade
+S7186	In this game, a log you carried may be one archaeologists dig up two thousand years from now.
+S7187	Follow to watch the ascetic cross the river
+S7188	The gate he leaves by is named the Gotama Gate, and the ford he crosses gets the same name.
+S7189	Ambapali’s mango grove
+S7190	Ambapali, Vesali’s richest courtesan, invites the Buddha to a meal before the Licchavi princes can. They offer her a hundred thousand coins for the honour, but she refuses.
+S7191	The Mahaparinibbana Sutta tells this; after the meal she gave her mango grove to the Sangha. The Therigatha has verses said to be hers, written when she became a nun in old age, comparing her once glossy black hair with its white age. Some scholars doubt she wrote them herself.
+S7192	Help prepare the meal
+S7193	The whole town gossips that a courtesan has beaten every prince in it. You hide a smile.
+S7194	Go and watch the princes’ sulky procession
+S7195	Princes in yellow, red and white ride home in their chariots with faces you will describe for years.
+S7196	Between the twin sal trees
+S7197	At Kusinara, a small town of the Mallas, the old teacher people call the Buddha falls ill after a meal at a smith’s house and lies down between two sal trees. His last words, people say, are that all things pass away: strive on with care.
+S7198	The Mahaparinibbana Sutta says that after the cremation the relics were divided into eight shares for eight towns ✦. The year is still argued: Thai tradition counts the Buddhist Era from 543 BCE, while many historians estimate around 400 BCE, the figure this game uses. In 1898 a stone casket found at Piprahwa bore an inscription about relics of the Buddha of the Shakyas; a set of gems from that find nearly went to auction in 2025 before returning to India.
+S7199	Help build the pyre
+S7200	You hear people weeping, and others sitting perfectly still, not weeping at all. You are not sure which understood more.
+S7201	Remember the last words
+S7202	“Strive on with care.” You repeat it whenever you feel lazy, and sometimes it even works.
+S7203	Five hundred voices reciting together
+S7204	In a cave outside Rajagaha hundreds of monks gather. Ananda recites the teachings he remembers, one after another; Upali recites the rules of the order. All listen and repeat, so that everyone remembers them the same way.
+S7205	Tradition says the First Council of 500 arahants met three months after the Buddha’s passing ✦. Most scholars think the canon took shape over centuries, not in one meeting. But group recitation is how the teachings survived for centuries without writing: about 370 years by historians’ estimates, or over 500 by the Thai Buddhist Era.
+S7206	Bring water for the monks
+S7207	The chanting echoes until you feel the rock itself is reciting.
+S7208	Try to recite one passage along
+S7209	You get the first three lines by heart. In this game, they are still chanted in Thai temples today.
+S7210	Four thousand rules
+S7211	Teachers at Taxila talk of a grammarian named Panini, who set down the rules of Sanskrit in about four thousand formulas so short they must be chanted like spells. Students recite them all day without writing a word.
+S7212	Panini’s grammar, the Ashtadhyayi, has about 4,000 rules. Its date is uncertain ✦, usually put around the 5th–4th century BCE. Modern linguists rank it among the most detailed analyses of language from the ancient world. Many Pali and Sanskrit words in Thai still follow its rules.
+S7213	Learn the first rule by heart
+S7214	The first rule is two words long. It takes you three days to understand what it means.
+S7215	Ask why nobody writes it down
+S7216	The teacher looks at you oddly. “If it were written, why would you bother to remember it?”
+S7217	Each man owns only the earth he stands on
+S7218	A foreign king named Alexander enters Taxila; its ruler opens the gates to him. In a grove outside town, a group of naked ascetics stamp their feet on the ground when they see him.
+S7219	The Greek historian Arrian tells that the ascetics explained: each man possesses only as much earth as he stands on, yet Alexander roamed the world seizing other people’s land, and would end with just enough earth to bury him ✦. In 326 BCE Alexander’s soldiers refused to march beyond the River Beas.
+S7220	Stamp your feet with the ascetics
+S7221	The Greek soldiers turn and laugh. You are not sure they understood.
+S7222	Sell fruit to the Greek soldiers
+S7223	They have never seen a mango, and pay three times the price.
+S7224	A new dynasty
+S7225	A young man named Chandragupta takes Pataliputra from the Nanda king. People say behind him stands a cunning Brahmin called Chanakya, once insulted by the Nanda king, who swore not to tie up his hair until he had his revenge.
+S7226	Chandragupta founded the Maurya dynasty around 321 BCE; Greek writers called him Sandrokottos. The tales of Chanakya come from later plays and legends ✦, and many scholars think the Arthashastra, the treatise on statecraft under his name, was put together centuries later.
+S7227	Go out to watch him enter the city
+S7228	He is hardly older than you, but the elephant he rides is bigger than your house.
+S7229	Hide the rice, just in case
+S7230	Kings change; taxes stay. You know that much.
+S7231	The Greek who wrote everything down
+S7232	A Greek named Megasthenes has come as envoy to the court. He questions everyone in the market and writes that Indians are divided into seven classes, and that there is not a single slave in India.
+S7233	Megasthenes’ book is lost; only quotations by Greek and Roman writers survive. His claim that India had no slaves was wrong: Indian texts of the same age plainly mention slaves. Scholars think he was comparing with the Greek slavery he knew, or misunderstood his informants. A good example of how outsiders see only part of another society.
+S7234	Tell him there’s a slave next door
+S7235	The interpreter translates. He nods, but does not change what he wrote.
+S7236	Ask him about his homeland
+S7237	He tells of cities where people argue philosophy in the market. You say it’s the same here.
+S7238	Twelve years of famine
+S7239	Rain fails year after year. An old Nigantha teacher named Bhadrabahu leads thousands of disciples south to where there is still rice. Others stay behind and, out of need, begin wearing white cloth.
+S7240	Jain tradition places this famine in Chandragupta’s reign, and says Chandragupta himself gave up the throne to follow Bhadrabahu south ✦. Jains trace to it the split between the Digambara (“sky-clad”) and Svetambara (“white-clad”) traditions, both of which still exist today.
+S7241	Share rice with the monks who stayed
+S7242	You have less rice left, but sleep more easily than you expected.
+S7243	Follow the group heading south
+S7244	You walk for months until you see a great granite hill later called Shravanabelagola, then decide to walk home.
+S7245	Monks who took money
+S7246	In Vesali the Vajjian monks set out bowls of water for lay people to drop copper and silver coins into. A monk from the west sees it and is furious: it breaks the rules. A great meeting is called to decide.
+S7247	According to the texts, the Second Council met at Vesali about a hundred years after the Buddha’s passing to settle ten disputed points, including accepting gold and silver ✦. Scholars think the Sangha began splitting into schools around this time or soon after, a path that led in the end to both Thai-style Theravada and the Mahayana.
+S7248	Drop a coin in the bowl
+S7249	The monk smiles. The western monk looks at you as if you were the one breaking the rules.
+S7250	Give rice instead of money
+S7251	Monks of both sides accept your rice. On that, at least, no one argues.
+S7252	The king’s words on a rock
+S7253	A royal officer reads aloud the words carved on a great rock: once the royal kitchen killed many hundreds of thousands of animals a day; now only two peacocks and a deer, and soon none at all. The king has had wells dug and trees planted along the roads, and medical care given to both people and animals.
+S7254	Ashoka’s Rock Edicts 1 and 2 really do say these things, and Rock Edict 12 asks respect for all religions, because “contact between religions is good”. Most are in Brahmi script, the earliest securely dated writing in India after the Indus age, and a distant ancestor of the Thai alphabet.
+S7255	Ask him to read it again, slowly
+S7256	You learn the shapes of three letters, and start to want to read for yourself.
+S7257	Wonder about the chicken you still plan to eat
+S7258	The king forbids killing certain animals on certain days. You count the days carefully.
+S7259	All men are my children
+S7260	In newly conquered Kalinga an officer reads the king’s words on a rock near town: “All men are my children,” with orders that officials treat people fairly, without anger or cruelty.
+S7261	At Dhauli and Jaugada in Kalinga the edicts leave out Rock Edict 13, the one expressing remorse for the war, and add two special edicts instead. Historians ask whether the king did not want to remind the bereaved, or whether the remorse was meant for readers elsewhere.
+S7262	The words are gentle, but your village still has many empty houses.
+S7263	Walk away in silence
+S7264	Some things fine words do not mend.
+S7265	Caves polished like mirrors
+S7266	Royal craftsmen hollow caves out of the granite hills near Gaya and polish the walls until they reflect a lamp flame like glass. The king gives these caves to the Ajivika ascetics for the rains, not to Buddhist monks.
+S7267	Inscriptions at Barabar say Ashoka gave the caves to the Ajivikas in the 12th and 19th years of his reign. The Mauryan polish on the walls still shines today. Ashoka supported many faiths, though he followed the Buddha, yet the Ajivikas vanished in the end: royal support alone was not enough to make a faith survive.
+S7268	Help polish the walls
+S7269	You polish until you see your own face in the stone, and are startled by what you look like.
+S7270	Take food to the Ajivika ascetics
+S7271	The naked ascetic says your coming today was fixed from the beginning. You are not sure how to feel about that.
+S7272	The king comes to Lumbini
+S7273	Ashoka’s elephants arrive at the village of Lumbini. He has a stone pillar set up to mark that the Buddha was born here, and announces that the village will pay only an eighth of its harvest in tax.
+S7274	The Lumbini pillar says the king came in person in the 20th year of his reign and cut the village of Lummini’s tax to one-eighth. Rediscovered in 1896, it is one of the oldest datable records that mention the Buddha.
+S7275	Celebrate the tax cut
+S7276	The whole village celebrates for three days, not for the pillar but for the tax.
+S7277	Go and bow at the foot of the pillar
+S7278	The stone is cold in the morning. You think of a child born here more than two hundred years ago.
+S7279	Sorting out the monks
+S7280	At Pataliputra an elder named Moggaliputta Tissa questions the monks one by one on what the Buddha taught. Those who answer wrongly are made to disrobe; people say many had joined only because the king gave the Sangha so much.
+S7281	The Third Council is told only in the Theravada texts of Lanka ✦. Ashoka’s edicts do not mention it directly, though one warns that monks who split the Sangha must disrobe. The texts say that after this council missions went out in nine directions, including to Lanka and Suvarnabhumi.
+S7282	Give robes to the monks who passed
+S7283	An old monk accepts the cloth with trembling hands and smiles at you.
+S7284	Feel sorry for the ones made to disrobe
+S7285	Some are glad, some weep. One of them ends up working in your fields.
+S7286	To the Land of Gold
+S7287	At the riverside two monks named Sona and Uttara prepare to set off east for the land people call Suvarnabhumi, the Land of Gold. No one on the quay knows exactly where it is.
+S7288	The story of Sona and Uttara comes from Lanka’s Mahavamsa chronicle, composed around the 5th century ✦. Thailand and Myanmar each believe Suvarnabhumi was their land, at places such as Nakhon Pathom or Thaton. Historians note no Southeast Asian evidence as old as Ashoka has been found, but sea trade certainly linked India with what is now Thailand within a few centuries.
+S7289	Give them dried rice for the journey
+S7290	One monk says that if they get there, he will tell the people whose rice it was.
+S7291	Ask if the Land of Gold really has gold
+S7292	A merchant nearby laughs. “Gold, spices and storms. You may not come back.”
+S7293	The riddle of the mango tree
+S7294	Hunting deer on the hill of Mihintale, King Devanampiya Tissa meets a stranger monk named Mahinda. The monk asks: what tree is this? Are there other mango trees? Are there trees that are not mangoes? And besides the other mangoes and the other trees, is there any other tree?
+S7295	The Lankan chronicles say the king answered rightly, “This tree itself,” and Mahinda judged him wise enough to hear the teaching ✦. According to the chronicles Mahinda was Ashoka’s son. Sri Lankans still celebrate Poson every year to remember the day.
+S7296	Try to answer the riddle before the king
+S7297	You get stuck on the last question. The king answers first and everyone applauds him.
+S7298	Put down your bow and listen
+S7299	The deer you were aiming at runs off, and you don’t mind at all.
+S7300	A branch across the sea
+S7301	A ship arrives from India. A nun named Sanghamitta has brought a branch of the Bodhi tree, planted in a golden vessel. The whole city comes out, and the king wades into the sea up to his neck to receive it.
+S7302	The chronicles say Sanghamitta was Ashoka’s daughter ✦. The Sri Maha Bodhi in Anuradhapura, grown from that branch, is still alive today and is recognised as the oldest living human-planted tree with a known planting date, more than 2,200 years old.
+S7303	Help water the sapling
+S7304	In this game, the bucket you poured is still somewhere in the wood of the tree people bow to today.
+S7305	Go and look at the ship from India
+S7306	The sailors speak a language half like yours and tell of a city bigger than your whole island.
+S7307	The grandson’s caves
+S7308	King Dasaratha, Ashoka’s grandson, has caves cut into the Nagarjuni hill for the Ajivika ascetics to shelter in the rains, “for as long as the sun and moon endure”.
+S7309	An inscription in the Nagarjuni caves says the Vahiyaka cave was “given by Dasaratha, dear to the gods, to the venerable Ajivikas”. The sun and moon endure, and so do the caves, but the Ajivikas do not.
+S7310	Help carry rock out of the caves
+S7311	The granite dust stays in your lungs for months.
+S7312	Ask an ascetic how long his faith will last
+S7313	He answers, “All is already fixed.” Which is true, though not in the way he means.
+S7314	The last review of the troops
+S7315	Brihadratha, the last Mauryan emperor, comes out to review the army. In front of every soldier, his general Pushyamitra draws his sword and kills him. Not one soldier moves.
+S7316	The Harshacharita, written in the 7th century, says Pushyamitra used a review of the army as the pretext to kill his master, around 185 BCE ✦. The Maurya dynasty ended less than fifty years after Ashoka’s death.
+S7317	Stand still like everyone else
+S7318	That night no one in camp speaks of it, and next day everyone takes pay from the new master.
+S7319	Leave the army
+S7320	You go home to plant rice, which looks like the wisest move at the time.
+S7321	The horse that may go anywhere
+S7322	A white horse wanders through the village with hundreds of guards. For a year it may go wherever it likes; any realm that bars its way must fight. At the year’s end it will be led back and sacrificed, to proclaim Pushyamitra supreme.
+S7323	The ashvamedha was the grandest Vedic rite a king could hold; an inscription at Ayodhya says Pushyamitra performed it twice. Later Buddhist texts accuse him of killing monks, but most historians doubt it, since the stupas at Bharhut and Sanchi were repaired and enlarged under his dynasty.
+S7324	Offer the horse some grass
+S7325	The horse eats your grass and wanders off. The guards nod as if you had earned great merit.
+S7326	Ask what happens if it eats the rice in your field
+S7327	“The horse may eat anything,” a guard replies. You watch your field all night.
+S7328	The chariot that isn’t there
+S7329	King Milinda, a Greek king who loves debate, asks the monk Nagasena his name. Nagasena says a name is only a label, then asks in return: what is your chariot? Is it the wheels? The axle? The body?
+S7330	The Milindapanha records this dialogue ✦. Milinda was Menander I, a Greek king of Gandhara around 165–130 BCE; some of his coins bear a wheel that may be the Dhamma wheel. The text is still popular in Thailand.
+S7331	Side with the king: a chariot is a chariot
+S7332	The Greek soldiers applaud you, but by the time you get home you are no longer sure.
+S7333	Side with Nagasena
+S7334	That night you count the parts of your own cart and cannot find the “cart” anywhere.
+S7335	Ashes divided
+S7336	King Menander dies in camp. The cities quarrel over who will keep his ashes, and at last agree to share them equally, each building a monument of its own.
+S7337	The Greek writer Plutarch tells this ✦. Many scholars notice how closely it resembles the division of the Buddha’s relics; some think Menander was honoured in a Buddhist way, others that Plutarch mixed the two stories up.
+S7338	Help build your city’s monument
+S7339	The little domed monument looks just like a stupa, and passers-by bow to it.
+S7340	Wonder who started this custom
+S7341	An old man in town says he has heard of the same thing happening to a teacher, centuries ago.
+S7342	The Buddha you cannot see
+S7343	Carvers cover the stone railing round the stupa with Jataka scenes, kings, and yakkhas standing guard. But in scenes from the Buddha’s life there is no figure of him at all: only a tree, footprints, an empty seat.
+S7344	The Bharhut stupa, about 2,100 years old, is an example of early Buddhist art that shows the Buddha only by symbols. Many scenes carry labels naming the story, and yakkhas and yakkhinis guard the gates; Thais see their descendants at temple gates today. The railing was found in 1873 and most of it is in a museum in Kolkata.
+S7345	Ask the carver why he leaves the Buddha out
+S7346	The carver says, “He has gone out like a flame. How do you carve someone who is not there?” and goes on carving footprints.
+S7347	Give coins for one railing post
+S7348	The carver cuts your name at the foot of the post. Very small, but in this game, it is still there.
+S7349	The Greek who worshipped Vasudeva
+S7350	A Greek envoy from Taxila named Heliodorus sets up a stone pillar topped with a Garuda, dedicated to Vasudeva, god of gods, and has it carved that he is a Bhagavata, a devotee.
+S7351	The Heliodorus pillar at Vidisha, set up around 113 BCE, is early evidence of the worship of Vasudeva-Krishna, which grew into one of the largest strands of Hinduism, and shows Greeks adopting local faiths. Villagers still worship it today as Khamb Baba, Father Pillar.
+S7352	Join the pillar’s dedication
+S7353	The Greek sings the hymn in an odd accent, but his devotion is easy to understand.
+S7354	Read the other face of the pillar
+S7355	“Three steps to immortality: self-control, giving up, and watchfulness.” It sounds familiar from somewhere.
+S7356	The Jina comes home
+S7357	King Kharavela of Kalinga marches home from Magadha bringing back the Jina of Kalinga, carried off by a Nanda king centuries before. The whole city turns out to welcome it.
+S7358	Kharavela’s Hathigumpha inscription opens with salutations to the Arhats and Siddhas, like a Jain prayer, and tells of bringing back “the Jina of Kalinga”. Its date is debated ✦, usually put around the 1st century BCE. A century and more after Ashoka conquered Kalinga, it had a strong king of its own again.
+S7359	Join the welcoming procession
+S7360	The old weep, for their grandparents’ grandparents spoke of this image.
+S7361	Count the elephants in the procession
+S7362	You count seventy-two elephants, then count again and get seventy-four.
+S7363	The gate the ivory carvers made
+S7364	The ivory carvers of Vidisha pool their money and carve the southern stone gateway of the Sanchi stupa, as finely as if it were ivory. On one pillar they inscribe that this is the work of the ivory workers of Vidisha.
+S7365	The inscription is still on Sanchi’s southern gateway. The northern gateway carves the Vessantara Jataka, which Thais hear every year at the Thet Mahachat sermon. Sanchi has hundreds of donor inscriptions, many by women, monks and nuns.
+S7366	Ask to help with the carving
+S7367	You get to carve one leaf on one branch, and look for it every time you pass.
+S7368	Give money towards the railing
+S7369	Your name is carved alongside hundreds of others.
+S7370	Write it down before it is forgotten
+S7371	After years of war and famine many monks have died, and some lines of recitation have nearly broken. So the monks at the Aluvihare caves decide to do what has never been done: write all the teachings down on palm leaves.
+S7372	The Lankan chronicles say the canon and its commentaries were first written down in the reign of King Vattagamani Abhaya, around 29–17 BCE ✦, after the teachings had passed by mouth for about 370 years if the Buddha died around 400 BCE, as many historians estimate, or more than 500 years counting by the Thai Buddhist Era. The Pali canon used in Thai temples descends from this line.
+S7373	Help prepare the palm leaves
+S7374	You boil the leaves, dry them and rub them smooth. The monks say your work matters as much as their reciting.
+S7375	Ask why they don’t just go on reciting
+S7376	An old monk answers, “Last year only one of us still had a whole collection by heart.”
+S7377	A scroll in a clay pot
+S7378	The monks put a worn-out birch-bark scroll into a clay pot and bury it beside a stupa, because sacred words are too precious to throw away, even once a new copy has been made.
+S7379	In 1994 the British Library acquired about 80 fragments of birch-bark scrolls from Gandhara that had been stored in clay pots. Dated to roughly the first half of the 1st century CE and written in Kharosthi script in the Gandhari language, they are among the oldest Buddhist manuscripts ever found.
+S7380	Help dig the hole
+S7381	Two thousand years later, in this game, someone digs where you dug.
+S7382	Ask to see the writing before it is buried
+S7383	The letters run right to left. You recognise one, and then the lid goes on.
+S7384	A red statue from Mathura
+S7385	A monk named Bala, a master of the scriptures, brings a larger-than-life red sandstone bodhisattva statue from Mathura and sets it up at Sarnath. People stand and stare; many have never seen a human figure meant to evoke the Buddha.
+S7386	The monk Bala’s bodhisattva is inscribed with the 3rd year of King Kanishka’s reign, in the early 2nd century CE, and was found at Sarnath in 1904–05. In this period carvers at Mathura and in Gandhara began making the Buddha in human form, after centuries of Buddhist art that used only symbols.
+S7387	Bow to the statue
+S7388	You never saw him, but now you can picture his face. Or at least one carver could.
+S7389	Grumble that the old way was better
+S7390	A young monk calls you old-fashioned. You say you simply remember how it used to be.
+S7391	A coin with the Buddha on it
+S7392	At the market a gold coin of King Kanishka comes into your hands. On one side is the king; on the other a standing figure in a monk’s robe, with Greek letters spelling “BODDO”.
+S7393	Gold coins of Kanishka from around 127–150 CE, some showing the Buddha with his name in Greek letters, are in the British Museum. Kanishka’s Kushan empire reached from Central Asia to the Ganges, and along its Silk Road links Buddhism travelled to China.
+S7394	Keep it as a charm
+S7395	You never spend it, not even in the hungry years.
+S7396	Spend it on a cow
+S7397	The cow does not know it was bought with the Buddha’s image, and you think he would not mind.
+S7398	A poem of the Buddha’s life
+S7399	A poet named Ashvaghosha recites a long Sanskrit poem telling the Buddha’s life from his birth in a palace, the pleasures of the palace, the sights of an old man, a sick man, a dead man and a monk, to his awakening. The listeners weep and laugh as the story goes.
+S7400	Ashvaghosha’s Buddhacarita was composed around the 1st–2nd century CE ✦; tradition places him at Kanishka’s court. It is among the first works to tell the Buddha’s life as one complete story. In the early discourses the sights of age, sickness, death and a renunciant are told of an earlier Buddha named Vipassi; only later were they told of Gotama himself.
+S7401	Listen to every canto
+S7402	The story Grandmother told you as a child now has a palace, dancers and a white horse. It is far more beautiful than hers.
+S7403	Ask where the poet learned all these details
+S7404	The poet smiles. “Poets don’t lie. They make the truth easier to remember.”
+S7405	Supper is hot rice, a stew of pulses, boiled greens and a drop of ghee. On a good day there is curd with cane sugar too.
+S7406	Rice, pulses, ghee and curd were the staples of the Ganges valley. Alexander’s admiral Nearchus marvelled at “reeds that make honey without bees”: sugar cane. The Sanskrit word sharkara travelled all the way to become English “sugar”.
+S7407	Every evening Mother spins cotton into thread. Every piece of clothing in the house is made from cotton you grow.
+S7408	India was among the first lands to grow cotton for cloth. The Greek historian Herodotus wrote that India had trees bearing wool finer and better than a sheep’s; Greeks had never seen cotton.
+S7409	The monsoon arrives. The sky stays dark all day, the frogs sing all night, and everyone hurries to plant rice while the water lasts.
+S7410	The Rigveda has a hymn to the frogs, croaking at the first rains like pupils repeating their teacher. Life in the Ganges valley hung on the monsoon; a late or weak monsoon meant a hungry year.
+S7411	Mosquitoes swarm over the standing water. The neighbour’s child has a fever with fits of shivering every third day.
+S7412	A fever that returns in cycles like this was probably malaria; ancient Indian medical texts describe such recurring fevers. In this age malaria was one of the great killers of the lowland plains.
+S7413	Tonight a tiger takes a cow from the pen at the end of the village. The men follow its tracks with torches to the edge of the forest, and stop.
+S7414	The forests of the Ganges valley were still vast. Tigers, wild elephants and Indian rhinos lived close to villages. One of Ashoka’s edicts forbids killing many kinds of animals, and another addresses the forest peoples within his realm.
+S7415	On the uposatha day many villagers do no heavy work, go to hear the teaching, and keep the precepts, eating only once.
+S7416	Moon-day observances were a custom of many ascetic schools before Buddhism. The Vinaya says King Bimbisara asked the Buddha to have monks meet on these days as other schools did. The Thai wan phra holy days descend from this custom.
+S7417	In the morning people bathe in the Ganges. Not far off, smoke from funeral pyres drifts up from the bank.
+S7418	Cremation by the river and bathing in a sacred river are ancient customs. Work at the cremation grounds usually fell to candala groups, shunned for that very work, though everyone depended on them at the end of life.
+S7419	There is a festival in the town square: wrestling, dancers, cockfights and liquor. The old folk grumble that young people today have too much fun.
+S7420	Festivals like this were called samaja. Ashoka’s first rock edict says he disapproved of them, though some kinds he thought good. Rulers frowning on ordinary people’s fun go back more than two thousand years.
+S7421	A snake man opens his basket in the village square. The cobra rears and spreads its hood; the children shriek, but none of them leave.
+S7422	Snakebite has been a major killer in rural India throughout history; even today India loses tens of thousands of people a year to it. No wonder nagas were both worshipped and feared.
+S7423	The head of the carpenters’ guild calls a meeting in the village. Every guild member must chip in for the family of a carpenter who fell from a scaffold and died.
+S7424	Jatakas and inscriptions of this age mention guilds of many crafts, with heads and rules of their own; some even took deposits and lent money. Some later inscriptions record money deposited with guilds so that the interest would feed monks.
+S7425	Your knees ache when the rains come. You sit on the veranda telling the young ones that the forest used to come right up behind the village.
+S7426	You are starting to forget people’s names, but the verses you learned as a child you still know word for word.
+S7427	Memories drilled by repetition in childhood often last into old age. That is one reason a culture of recitation could hand on teachings for centuries without writing.
+S7428	The frogs sing all night after the rain.
+S7429	A peacock calls from the mango tree.
+S7430	Ascetics walk past the house in silence on their alms round.
+S7431	Buffaloes lie wallowing in the mud pool.
+S7432	The smell of ghee drifts from the kitchen.
+S7433	Cart bells jingle on the road.
+S7434	The women sing as they plant the rice.
+S7435	A monkey steals bananas from the veranda.
+S7436	Smoke from the Brahmin’s fire rite rises at dawn.
+S7437	Children play with nut dice under the banyan.
+S7438	a cobra bite
+S7439	trampled by a war elephant
+S7440	a recurring fever
+S7441	The monsoon comes late and weak. The paddies dry up, the price of rice soars, and the poor gather grass and roots to eat.
+S7442	The Ganges bursts its banks, flooding fields and villages. Your family flees to higher ground.
+S7443	An earthquake cracks the mud walls, and thatched roofs come down.
+S7444	A storm off the sea carries away several fishing boats.
+S7445	tree spirits, yakkhas, nagas and mother goddesses
+S7446	No temples or scriptures of its own, yet it never vanished: every faith took it in. Yakkhas became gate guardians of Buddhist, Jain and Hindu temples; in Thailand, the giants at temple gates and Thao Wessuwan. Nagas became temple stair-rails.
+S7447	the Brahmins’ fire rites
+S7448	Animal sacrifice slowly faded, but the Vedas were still recited mouth to mouth for over three thousand years, and Brahmin belief merged with devotion to Vishnu, Shiva and local gods into the Hinduism of over a billion people. The court Brahmins of Thailand descend from this line.
+S7449	the Sangha of the Buddha
+S7450	Almost vanished from India after the 13th century, when Nalanda was destroyed, but survived in Lanka, Southeast Asia, Tibet and East Asia. In 2020 there were about 324 million Buddhists. In India, Ambedkar and hundreds of thousands of followers turned to Buddhism in 1956.
+S7451	the Niganthas of Mahavira
+S7452	Never left India, and never vanished. There are about four and a half million Jains today, and the Jain principle of non-harm influenced Mahatma Gandhi.
+S7453	the Ajivikas of Makkhali Gosala
+S7454	Faded from the north after the Mauryas; the last traces are in South India around the 14th century. None of their own scriptures survive; we know them only through rivals, and through the still-gleaming Barabar caves.
+S7455	the materialists, who taught there is no next life
+S7456	Almost none of their texts survive; they are known mostly through those who wrote against them. Yet their question, how can we know?, has been asked in every age of philosophy since.
+S7457	the devotees of Vasudeva
+S7458	Grew into the worship of Krishna and Vishnu, one of the largest strands of Hinduism; the Bhagavad Gita became one of the most read scriptures in the world.
+S7459	After you, Magadha will swallow its neighbours one by one, Pataliputra will become the capital of the largest empire India has yet known, and the teachers you heard of will be remembered by disciples who will argue for centuries over what they really said.
+S7460	After you, Chandragupta’s grandson will conquer Kalinga, regret it, and spend his reign carving his thoughts on rocks across the land.
+S7461	After you, the Maurya empire will fall apart within fifty years, its last emperor killed in front of his own army. But the monks of Ashoka’s time will carry the teachings across the sea.
+S7462	After you, the Kushans will rule from Central Asia to the Ganges, images of the Buddha will travel the Silk Road to China, and in Lanka Buddhaghosa will render the commentaries into Pali in the 5th century, the version Thai temples still study.
+S7463	 In your age the Buddha’s Sangha was one school among many, alongside the Niganthas, the Ajivikas, the materialists, the Brahmins, and the spirits every village fed. Historians point to several reasons Buddhism lasted: a community of monks and nuns with rules for living together that outlived its founder; teachings memorised in groups and then written down; kings who gave support (though Ashoka also gave caves to the Ajivikas, who still vanished); monks travelling with merchants by land and sea; and a readiness to welcome villagers’ nagas and yakkhas instead of driving them out. Yet even Buddhism nearly vanished from the land of its birth. It survived because it had already taken root elsewhere, including the land that would become Thailand.
+S7464	 Traces of this age are all around Thailand today: the Buddhist Era counted from the Buddha’s passing, a Thai alphabet descended from Brahmi, chanting in Pali, Khao Phansa, the wan phra holy days, naga stair-rails, giants guarding temple gates, and the hare in the moon.
+S7465	 You told the Buddha’s story just as you heard it, adding nothing, cutting nothing.
+S7466	 You added wonders to the Buddha’s story for the young, like countless tellers before and after you. Stories told with love tend to grow this way.
+S7467	 You told the teaching instead of the life, which is what the early discourses themselves cared most about.
+S7468	, and almost none of them knew you were there.
+S7469	m
+S7470	 You knew enough of the teachings by heart to pass them on.
+S7471	 Your name was carved on a stupa railing, where, in this game, it may still be.
+S7472	 You survived the day your homeland fell.
+S7473	Most people of the Ganges valley were cremated by the river, their bones and ashes given to the water. Revered monks might get a small stupa for their relics. Small children were usually buried instead of burned, and the cremation-ground work fell to candala groups.
+S7474	Invite ascetics to chant
+S7475	The chanting rises over the crackle of the fire, and everyone falls quiet.
+S7476	Give the ashes to the Ganges
+S7477	The river carries the ashes east, as it has carried everyone.
+S7478	Give to the poor in the name of the dead
+S7479	Many of the poor eat their fill that day.
+S7480	Monks and villagers cremate you and keep your relics in a little stupa beside the monastery, where someone leaves flowers every holy day.
+S7481	Your disciples cremate you simply, without a grand rite, as you taught them.
+S7482	Your son lights the pyre with fire from the household altar, and Brahmins chant the Vedas throughout.
+S7483	Your master pays for a cremation at the burning ground outside town. Only a few people come.
+S7484	Your family carries you to the riverbank, burns you on a pyre and gives your bones to the water.
+S7485	In the Buddha’s time ordinary people listened to many teachers and fed ascetics of every school. Do you listen to ideas different from your own?
+S7486	The Buddha’s story grew each time it was retold. What stories in your own life have grown in the retelling?
+S7487	 Your name at the foot of a stupa railing post, in Brahmi letters. 
+S7488	 A stupa of your age. 
+S7489	The faiths you gave to, and what became of them after you
+S7490	Milk for the naga
+S7491	Grandmother takes you to the anthill behind the village, sets a cup of milk by the hole, and whispers that a naga lives below. Treat it well, and it will bring the rains on time.
+S7492	Nagas were sacred serpents who ruled water and rain. Villagers worshipped them before Buddhism or Jainism, and both took nagas into their own stories: in the discourses the naga king Mucalinda spreads his hood to shelter the Buddha from the rain. The naga stair-rails of Thai temples descend from this belief.
+S7493	Leave a flower too
+S7494	By morning the cup is empty. You don’t know whether it was the naga or the cat.
+S7495	Hide and wait to see the naga
+S7496	You see a cobra, and run home faster than you have ever run.
+S7497	The yakkha under the banyan
+S7498	Under the great banyan in the village is a stone platform the villagers smear with red and heap with rice. The grown-ups say the yakkha in the tree protects the village; anger it, and someone will fall sick.
+S7499	Yakkhas in ancient India were not always demons; many were gods of trees, towns and treasure, and great stone yakkha statues from this age survive. Buddhism took them in as guardians. Thao Wessuwan, whom many Thais worship, is the king of the yakkhas, and the giants guarding Thai temple gates descend from this belief.
+S7500	Bow to the yakkha every time you pass
+S7501	You believe it helped you through a fever once. Who knows?
+S7502	Climb the banyan
+S7503	Nothing happens except a scolding from Mother, which is scarier than any yakkha.
+S7504	A strange coin
+S7505	Father shows you a small bent piece of silver punched with a sun, an elephant and signs you don’t know. He says it will buy a basket of rice.
+S7506	India’s punch-marked coins began around the 6th–5th century BCE, not long after the world’s first coins in Lydia, and around the time China began using coins. Money helped trade and towns grow, and left merchants with wealth to support ascetics; many historians see this as one reason wandering schools flourished in this age.
+S7507	You count it every night. It is still only one coin.
+S7508	Ask why a bit of silver is worth anything
+S7509	Father thinks a long time and says, “Because everyone believes it is.” The answer is still true 2,500 years later.
+S7510	Ascetics who stop walking in the rains
+S7511	When the first rains come, the ascetics who passed through every day stop travelling and stay in one place for the whole wet season. The grown-ups say it is because villagers once complained that they trampled the seedlings and the little creatures.
+S7512	The Vinaya says lay people complained that monks trampled young grass and small creatures in the rains while ascetics of other schools stayed put, so the Buddha told monks to keep the rains retreat. It is the origin of Khao Phansa, still kept in Thailand every year.
+S7513	Help build a hut for the ascetics
+S7514	All through the rains you hear chanting from the hut you helped to thatch.
+S7515	Take care not to tread on the worms
+S7516	You walk so slowly that Mother asks if you are ill.
+S7517	The hare in the moon
+S7518	Grandmother tells how, long ago, a hare had nothing to give a hungry Brahmin, so it leapt into the fire to offer its own flesh. The Brahmin was a god in disguise, who drew the hare on the moon for everyone to see.
+S7519	This is the Sasa Jataka, a tale of one of the Buddha’s past lives ✦. Many Jatakas were folk tales already being told, retold as stories of the Bodhisatta. Thais still see “the hare in the moon” from this tale.
+S7520	Look for the hare on the moon
+S7521	You see two long ears, and you will see them for the rest of your life.
+S7522	Ask whether the hare was hurt
+S7523	Grandmother says the fire was not hot at all for one who gave with a true heart. You don’t quite believe it, but you love the story.
+S7524	One syllable at a time
+S7525	Your teacher sits facing you and chants the Vedic hymns two words at a time. You must repeat them with every rise and fall of pitch, and once you know them, chant them again in several patterns of shuffled words, until not one syllable can go wrong.
+S7526	Brahmins chanted the Vedas in elaborate patterns: word by word, in pairs forwards and backwards. This helped the Rigveda pass by mouth with astonishing accuracy for more than three thousand years, and UNESCO honours Vedic chanting as intangible heritage. Such methods may have set the example for Buddhist monks who kept their teachings without writing.
+S7527	Recite until your voice is hoarse
+S7528	That night you recite in your dreams too, without a single mistake.
+S7529	Ask what the words mean
+S7530	The teacher says meaning matters, but sound matters more: a wrong sound spoils the rite.
+S7531	Your family arranges your marriage to a man of your own birth group. An astrologer picks the day; you and the groom take seven steps around the fire, and you move to his family’s house.
+S7532	Your family and another of your birth group agree on a marriage. An astrologer picks the day, and the bride will come to live in your family’s house.
+S7533	The seven steps around the sacred fire are a Vedic wedding rite still used in India today. Families usually chose partners from the same birth group. Several Buddhist discourses tell of married couples who were devoted lay followers together, and teach the duties of husband to wife and wife to husband.
+S7534	Drums and flutes play all night, and the new house smells of the ritual fire for days.
+S7535	Your family is displeased but agrees to wait. The village aunts talk about it for a long time.
+S7536	The hall of curiosity
+S7537	At the hall on the edge of town, ascetics of many schools stay and debate every evening. One, wrapped in a blanket woven of human hair, says death is the end: there is no next life. Another, naked, says all is fixed by fate. A third teaches harming nothing at all. A fourth speaks of a middle way.
+S7538	The Pali texts call such places kutuhalasala, “halls of curiosity”. The Samaññaphala Sutta names six rival teachers of the Buddha’s time, including Ajita of the hair blanket, who taught there is no next life, Makkhali Gosala, and the Nigantha Nataputta, Mahavira. Ordinary people listened to many schools and fed ascetics of all of them; they did not pick one religion as people often do today.
+S7539	Believe the hair-blanket man: death is the end
+S7540	You decide to enjoy your dinner today, since tomorrow may not come.
+S7541	Believe the naked one: fate decides all
+S7542	You stop worrying about your lessons, since the outcome is fixed. Which is why it turns out badly.
+S7543	Listen to the teacher of harmlessness
+S7544	You start straining your water before you drink, in case tiny creatures are inside.
+S7545	Listen to the middle way
+S7546	Not too far either way. It sounds easy; you find it is the hardest of all.
+S7547	Who comes begging at the door
+S7548	The third is a devotee of Vasudeva, singing hymns.
+S7549	The third is naked and carries a staff.
+S7550	Lay people of this age commonly fed ascetics of many schools. Buddhist monks took food in a bowl; some Jain ascetics received it in their palms and ate standing; Ajivikas carried a bamboo staff. Ashoka’s edicts urge giving to both ascetics and Brahmins, not to one school alone.
+S7551	Put rice in the bowl
+S7552	The monk accepts and walks on without thanking you. Later you learn that the giving was your merit.
+S7553	Put rice in the open palms
+S7554	The ascetic eats then and there, carefully, not dropping a single grain.
+S7555	Give to the devotee of Vasudeva
+S7556	Give to the naked ascetic with the staff
+S7557	He blesses you with words you have never heard, but they feel warm.
+S7558	A goat for the rite
+S7559	The village Brahmin says a goat must be sacrificed this year so the rains come and the fields bear. But a passing ascetic says killing brings no one merit: offer rice and milk instead.
+S7560	In the Kutadanta Sutta the Buddha tells of a great sacrifice of the past in which no animal was killed, only ghee, oil, milk and honey offered ✦. Jain ascetics opposed killing even more strictly. Over centuries animal sacrifice slowly declined in India and vegetarianism spread, which historians credit to many schools together.
+S7561	Give the goat for the rite
+S7562	The rite is splendid and the rains come on time that year. Everyone credits the goat.
+S7563	Offer rice and milk instead
+S7564	The Brahmin is displeased. The rains come on time anyway. You say nothing, but your goat is still alive.
+S7565	May we eat together?
+S7566	A friend you have known since childhood comes from a family that clears refuse. The grown-ups say you should not eat with him. Today he offers to share his sweets with you in front of everyone.
+S7567	The Vasala Sutta teaches that “one is not an outcaste by birth, nor a Brahmin by birth, but by deeds”. The Sangha accepted people of every varna; the Theragatha has verses by a monk named Sunita who had swept up withered flowers for a living. Even so, division by birth persisted and grew stricter over the following centuries.
+S7568	Sit and eat with him
+S7569	The sweets are sweeter than you expected. The neighbour aunt doesn’t speak to you for a month.
+S7570	Politely refuse
+S7571	He smiles as if he is used to it. You think about that smile for a long time.
+S7572	Going forth
+S7573	You have seen the old die and children fall sick, and household life feels like nothing but burdens. Many of your age shave their heads, put on dyed cloth and leave home as wandering ascetics. Whom would you follow?
+S7574	Going forth was a common choice in this age, for men and women alike. Under the Vinaya, slaves, debtors, soldiers in service and those without their parents’ consent could not be ordained, so the Sangha would not become an escape from worldly duties. Jain ascetics were strictest about harming no life; some Ajivikas went naked and practised harsh austerities.
+S7575	Ask your master to free you first
+S7576	Your master agrees. You are free, though no longer sure you want to renounce.
+S7577	Your master refuses. A slave cannot be ordained.
+S7578	You go back to work, the thought still circling.
+S7579	Become a nun in the Buddha’s Sangha
+S7580	Join the Buddha’s Sangha
+S7581	Your hair falls to the ground, and you feel surprisingly light.
+S7582	Become a Nigantha ascetic
+S7583	You are given a little broom to sweep small creatures from your path.
+S7584	Become an Ajivika ascetic
+S7585	Your teacher says your path is already fixed; you need only walk it.
+S7586	Stay and care for your family
+S7587	Instead you give alms every morning, and find that is a path too.
+S7588	The reciters
+S7589	The senior monks divide the community into groups, each responsible for keeping one collection of teachings by heart and handing it on to the next generation. You are invited to join.
+S7590	The Pali texts and commentaries mention bhanakas, reciters who each kept one collection, such as the Digha-bhanakas who held the long discourses. Many teachings are built of repetitions and numbered lists, the Four Noble Truths, the Eightfold Path, which made them easier to memorise. This kept the teachings for centuries before they were written down.
+S7591	Join the reciters
+S7592	Became a reciter of the teachings
+S7593	Every evening you recite with the group until the voices become one. If anyone slips a word, everyone hears at once.
+S7594	Ask to practise meditation instead
+S7595	You sit beneath a tree every day until the birds stop being afraid of you.
+S7596	Your name on the stupa railing
+S7597	The town’s stupa is being enlarged. Anyone who gives enough for one railing post or crossbar may have their name carved on the stone.
+S7598	The stupas at Sanchi and Bharhut carry hundreds of donor inscriptions: villagers, merchants, craft guilds, and, surprisingly, many monks and nuns, showing that some renunciants still had money of their own. The stupas belonged to whole communities, not to kings alone.
+S7599	Give, and have your name carved
+S7600	Name carved on a stupa railing
+S7601	The carver cuts your name and your village’s. The letters are tiny, but the stone will outlast you.
+S7602	Give without a name
+S7603	No one knows it was yours, and you like it that way.
+S7604	The new letters
+S7605	The officer who reads the king’s edicts teaches the letters to anyone who wants to learn. They are simple strokes and circles, written left to right.
+S7606	The Brahmi letters of Ashoka’s edicts are the earliest securely dated writing in India after the Indus age. From Brahmi came many scripts, including the Pallava script of South India, which led to Old Khmer and at last to Thai. Anyone reading Thai today uses descendants of these letters.
+S7607	Learn to read
+S7608	Learned to read Brahmi
+S7609	Your name takes five letters. You write it in the dust until the wind blows it away.
+S7610	Listening is enough for you
+S7611	You remember every word you hear, as people have done for a thousand years.
+S7612	Pilgrimage to the four places
+S7613	You have saved enough to travel to the four places: Lumbini where the Buddha was born, Bodh Gaya where he awoke, Sarnath where he first taught, and Kusinara where he passed away.
+S7614	The Mahaparinibbana Sutta names these four as places the faithful should go to see. Ashoka visited several himself and set up pillars. Today tens of thousands of Thais travel to these sites every year.
+S7615	Set out
+S7616	Made the pilgrimage to the four places
+S7617	You walk for months, wear out two pairs of sandals, and come home with one dry Bodhi leaf.
+S7618	Keep the money for the family
+S7619	You tell yourself you will go next year. Next year there is always something else.
+S7620	Dice of vibhitaka nuts
+S7621	The village men play dice made of vibhitaka nuts, betting coins. Some have already lost a cow; some say they will win it back tonight.
+S7622	The Rigveda has the song of a gambler who has lost everything, even his wife, lamenting that the dice draw him like a drug ✦. Vibhitaka nuts were used as dice from Vedic times and are still used in herbal medicine today.
+S7623	Have one throw
+S7624	You win two coins and decide to stop while ahead.
+S7625	You lose two coins and suddenly understand the gambler’s song in the Rigveda.
+S7626	Walk on by
+S7627	That night someone else loses a cow. Not you.
+S7628	The mustard seed
+S7629	After you lose your child, an old nun tells you of a woman named Kisa Gotami who carried her dead baby through the town begging for medicine. The Buddha told her to bring a mustard seed from a house where no one had ever died. She searched all day, and understood there was no such house.
+S7630	The story of Kisa Gotami comes from the commentaries ✦; verses attributed to her are in the Therigatha. In this age nearly half of all children did not live to grow up, and almost every family had lost a child. The story is still told in Thai temples to comfort the bereaved.
+S7631	The grief stays, but you know you are not alone with it.
+S7632	Go and sit with another mother who has just lost a child
+S7633	You say nothing, only sit with her, and that is enough.
+S7634	Yavana neighbours
+S7635	The Greek family next door call their gods by strange names, yet their son gives alms every morning and their daughter has married your friend. Coins in the market carry two scripts: Greek on one side, Kharosthi on the other.
+S7636	Greek kings of Gandhara struck bilingual coins; several inscriptions record Greeks giving to Buddhist stupas; and Gandharan craftsmen blended Greek art with Buddhist stories into Gandharan art, which helped shape the earliest images of the Buddha.
+S7637	Invite them to eat
+S7638	They bring wine; you bring rice and dal. Everyone eats their fill.
+S7639	Ask them to teach you Greek letters
+S7640	Greek runs left to right, like Brahmi, but looks nothing like it.
+S7641	Telling the young about the Buddha
+S7642	an ascetic who left home, nearly starved himself to death, found the middle way, awoke under a tree and taught for over forty years.
+S7643	a story passed down for generations, gaining wonders with every telling.
+S7644	The early discourses say very little about the Buddha’s childhood and life before he left home. The full continuous story, with its palaces for three seasons, the four sights and many wonders, came together in works written centuries later, such as the Buddhacarita (1st–2nd century CE) and the Nidanakatha (around the 5th century). Stories grow when they are told with love; for Buddhists, the teaching matters more than the details.
+S7645	Tell it exactly as you heard it
+S7646	Some of the children doze off, but one asks a question so good you cannot answer it.
+S7647	Add a wonder or two to liven it up
+S7648	You tell how lotuses sprang up under each step he took as a newborn. The children’s eyes go wide, and in this game they will pass it on bigger still.
+S7649	Skip the life; tell the teaching
+S7650	You teach that everything changes. One child cries, remembering a dog that died. You hold him.
+S7651	Which order to join
+S7652	You have chosen the renunciant’s life, but must still choose a teacher. The monks of Gotama, the Nigantha ascetics of Mahavira and the Ajivikas would all welcome you.
+S7653	In this age all three orders had male and female ascetics and competed for supporters. All three won royal favour at times; only two survive today.
+S7654	The Buddha’s Sangha
+S7655	You learn to hold the bowl steady, and to walk slowly.
+S7656	The Niganthas
+S7657	Your teacher shows you how to strain water, sweep your path and never eat after sunset.
+S7658	The Ajivikas
+S7659	Your teacher says every soul will be freed at its appointed time, not a moment sooner or later.
+S7660	The alms round
+S7661	At first light you walk into the village with your bowl, in silence, asking nothing, choosing no house, taking whatever is given. Today a poor woman puts stale rice in your bowl.
+S7662	Monks of this age begged daily and ate what they received, even meat if it had not been killed for them. Jain ascetics were far stricter, taking only food not prepared specially for them. The morning almsgiving Thais still practise comes straight from this custom.
+S7663	Eat it gladly
+S7664	The stale rice is not good, but her intention is.
+S7665	Pass the rice on to a beggar by the road
+S7666	The beggar eats it in a blink. You go hungry that day and feel strangely full.
+S7667	The black polished ware
+S7668	A master potter teaches you to make ware with a black, mirror-like gloss that rich townsfolk pay dearly for, but keeps back the last secret of how to fire it to that shine.
+S7669	Northern Black Polished Ware was the fine pottery of the Ganges valley in this age, found in towns from Taxila to Kalinga. Archaeologists still argue over how its gloss was made.
+S7670	Experiment until you crack it
+S7671	After thirty spoiled pots, the thirty-first shines so you can see your face in it.
+S7672	Make plain pots for ordinary people
+S7673	Your pots don’t shine, but every house in the village owns one.
+S7674	The forest of yakkhas
+S7675	Your caravan must cross a great forest. The guide says yakkhas there trick travellers into pouring away their water, then eat the whole caravan. Your people grow afraid.
+S7676	Many Jatakas tell of caravans of five hundred carts crossing forests and deserts ✦. Merchants were key supporters of Buddhism and Jainism, and ascetics often travelled with caravans, so the faiths spread along the trade routes.
+S7677	Keep the water, whatever anyone says
+S7678	Mid-forest, strangers say there is a lake ahead; pour out your water to lighten the carts. You don’t believe them, and everyone survives.
+S7679	Invite some ascetics to travel with you
+S7680	The ascetics chant every night, your people lose their fear, and you hear teachings all the way for free.
+S7681	The priest’s fee
+S7682	A rich merchant hires you for a great twelve-day fire rite, the fee a hundred cows. But the night before, his son says he has been listening to Buddhist monks and thinks the rite is pointless.
+S7683	Brahmins were paid a fee called dakshina: cows, gold or land. Buddhist texts criticised lavish sacrifices, yet called a good person “a true Brahmin”, and many Brahmins were among the Buddha’s leading disciples. The relationship was more complicated than simple enmity.
+S7684	Perform the rite as splendidly as you can
+S7685	The fires burn beautifully for twelve days. The merchant’s son watches from the back and says nothing more.
+S7686	Talk with the merchant’s son first
+S7687	You argue until dawn and agree on one thing: goodness matters more than rites.
+S7688	Nine thousand elephants
+S7689	The royal army has more elephants than anyone can count. You are given a young bull that will let no one ride him; it will take months to win each other’s trust.
+S7690	The Roman writer Pliny the Elder, drawing on Greek reports, recorded that the king of Pataliputra had 9,000 elephants. When Chandragupta made peace with Seleucus, Seleucus received 500 elephants, which later helped him win a great battle in the west.
+S7691	Sleep beside the elephant every night
+S7692	Three months later the elephant lifts you onto its back with its own trunk.
+S7693	Use the hook to make it obey
+S7694	The elephant flings you off; two ribs crack, and it never trusts you again.
+S7695	The elephant obeys, but looks at you with eyes that keep you awake at night.
+S7696	Medicine in every plant
+S7697	Your patients are merchants, monks and beggars. An older physician says never treat for free, or people won’t trust the medicine. But monks have no money.
+S7698	The Vinaya has a chapter on medicines, listing what monks might use: ghee, oil, honey, molasses and various roots. Ayurvedic texts such as the Charaka Samhita were compiled later, but drew on centuries of gathered knowledge.
+S7699	Treat the monks for free
+S7700	The monks have no money, but they spread the word until every merchant in town comes to you.
+S7701	Charge everyone the same
+S7702	You grow richer, and the beggars find another physician.
+S7703	The yakkhini on the post
+S7704	You are given a yakkhini to carve, hanging from a branch on a stupa gateway post. The master says she must be lovely enough to stop passers-by, yet look like a guardian, not a dancer.
+S7705	You carve ivory into combs and boxes for the town’s rich. The master says one day the king will build in stone, and will want carvers with steady hands.
+S7706	The yakkhinis of the Sanchi gates are fertility goddesses villagers already worshipped. Ivory carvers and woodworkers turned to stone in this age, bringing their techniques with them. Ashoka’s pillars were polished so finely that some people once took them for metal.
+S7707	Carve with all your care
+S7708	Two thousand years later, in this game, your work is the most photographed on that gate.
+S7709	Ask to carve a Jataka scene instead
+S7710	You carve the monkey king who made himself a bridge for his troop to escape across the river. Everyone who sees it smiles.
+S7711	The bandit with a garland of fingers
+S7712	All Savatthi fears a bandit called Angulimala, who kills people and strings their fingers into a garland. One day word comes that he chased an ascetic but, however fast he ran, could not catch him, though the ascetic only walked.
+S7713	In the Angulimala Sutta the ascetic is the Buddha, who says, “I have stopped; it is you who have not stopped,” and Angulimala throws down his sword and becomes a monk ✦. Thais know the Angulimala paritta, chanted for women in childbirth.
+S7714	Doubt a bandit can change
+S7715	Months later you give alms to a thin monk, and someone whispers that it is him. Your hands shake.
+S7716	Believe anyone can change
+S7717	You stop talking about the people who once wronged you, and feel lighter.
+S7718	The naga king and the seven-day storm
+S7719	People tell that soon after the awakening, a storm raged seven days and nights, and a naga king named Mucalinda came out of a pond, coiled seven times around the Buddha and spread his hood over him against the rain.
+S7720	This is told in the Udana ✦. The Buddha sheltered by the naga, the image for Thais born on Saturday, comes from this story. Nagas were water gods villagers already worshipped; the story shows Buddhism taking local beliefs in as protectors instead of rejecting them.
+S7721	Leave milk at the pond
+S7722	You are not sure whom you are honouring, the naga or the Buddha, or both.
+S7723	Pass the tale on to the children
+S7724	In the children’s version the storm lasts ten days and the naga has seven heads.
+S7725	The yakkhini who ate children
+S7726	The village mothers tell of Hariti, a yakkhini who stole other people’s children to eat, until the Buddha hid her own youngest child. Then she understood other mothers’ pain and became a protector of children instead.
+S7727	Hariti’s story is in later Buddhist texts ✦. Statues of Hariti holding children are common in Gandhara, and she became a protector of children as far as China and Japan: another local goddess taken into Buddhism.
+S7728	Make an offering for Hariti to protect the children
+S7729	You leave rice at the door. Whoever eats it, your children sleep soundly.
+S7730	Think of the other mothers
+S7731	You send food to the house with a newborn.
+S7732	The prince who gave everything away
+S7733	A storyteller in the market tells of Prince Vessantara, who gave away the kingdom’s white elephant, his chariot, his children and even his wife. The listeners weep, argue, and come back to hear it again every year.
+S7734	The Vessantara Jataka tells the last life before the Buddha ✦. It was carved on the Sanchi gates two thousand years ago; Thais hear it at the Thet Mahachat sermon, and people still argue today over whether giving away a wife and children can be good.
+S7735	Weep when the children are led away
+S7736	The whole market weeps with you, and the storyteller earns more coins than all year.
+S7737	Argue that the prince was wrong
+S7738	An aunt agrees with you, an uncle doesn’t, and they are still arguing after you go home.
+S7739	Eighty-four thousand stupas
+S7740	People say Ashoka opened the old stupas, divided the relics into eighty-four thousand portions, and built eighty-four thousand stupas across the land, all finished on a single day, at the moment of an eclipse.
+S7741	This legend comes from the Ashokavadana, written centuries after Ashoka ✦. Eighty-four thousand is a number meaning “a great many”, found across Buddhist texts, as in the 84,000 teachings. In his real edicts Ashoka mentions enlarging one stupa, of an earlier Buddha.
+S7742	Believe the legend
+S7743	You count stupas on every journey, but never reach eighty thousand.
+S7744	Think the tellers exaggerate
+S7745	A number that big must mean “an awful lot”. You are right.
+S7746	Years in this chapter follow many historians’ estimate that the Buddha passed away around 400 BCE. The Thai Buddhist Era counts from 543 BCE, following the Lankan chronicles. Scholars still debate it; proposals run from about 480 to 370 BCE.
+S7747	met or witnessed
+S7748	name on a stupa
+S7749	reciter
+S7750	karshapana
+S7751	A stupa railing of your age
+T191	Your name, {0}, means “{1}”. Names of this age often honoured stars, gods, nagas or yakkhas. Names like Nagadatta or Yakkhadasi appear among donors carved at the Bharhut and Sanchi stupas: people who gave to Buddhist monuments still honoured local spirits too. The names are real names of the age; the people are invented.
+T192	You sell {0} at the market for {1} karshapana
+T193	 You lived as {0}.
+T194	Three ascetics stand at your door this morning. One holds a bowl and waits in silence, asking for nothing. One holds out his palms to receive food. {0} You have rice enough for one.
+T195	The village young ones crowd round and ask for the story of the Buddha. You have not heard much: {0} The young want something more exciting.
+T196	Went forth as {0}
