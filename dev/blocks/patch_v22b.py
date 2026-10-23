@@ -58,6 +58,7 @@ document.addEventListener('keydown',e=>{if(e.target&&/^(TEXTAREA|INPUT)$/.test(e
 rep("sndAll:'ดนตรีและเสียง',","vol:'ระดับเสียง',keyHint:'กดตัวเลข 1–9 เพื่อเลือก',sndAll:'ดนตรีและเสียง',")
 rep("sndAll:'Music and sound',","vol:'Volume',keyHint:'Press 1–9 to choose',sndAll:'Music and sound',")
 rep("@media (prefers-reduced-motion:reduce)","/*V22CSS*/\n@media (prefers-reduced-motion:reduce)")
-s=s.replace('/*V22CSS*/',blk('v22.css'))
+s=s.replace('/*V22CSS*/',blk('v22.css')+blk('v22b.css'))
+exec(open(B+'patch_v22c.py',encoding='utf-8').read())
 # death: the stage drains of colour and light before the last page
 rep("  if(TEST)return;SND.sfx('death');\n  await sleep(900);","  if(TEST)return;SND.sfx('death');document.body.classList.add('dying');\n  await sleep(1600);document.body.classList.remove('dying');")

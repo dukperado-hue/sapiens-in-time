@@ -349,6 +349,31 @@ body.cine .stage::before,body.cine .stage::after{height:9%}
 .opts button.primary::before{color:#1a0d07;border-color:rgba(26,13,7,.35)}
 body.dying .stage canvas.scene{filter:grayscale(1) brightness(.35);transform:scale(1.1);transition:filter 1.5s ease,transform 1.6s ease}
 body.dying .stage::before,body.dying .stage::after{height:12%}
+/* ---------- v0.22 landscape home, birth and death screens on computers ---------- */
+.dHead,.dBody{display:flex;flex-direction:column;gap:14px}
+@media (min-width:1000px){
+  body[data-scr=home] #app,body[data-scr=draw] #app,body[data-scr=death] #app{max-width:1320px;padding-inline:24px}
+  /* home: hero beside the year clock, chapters as a grid, past lives beside the sources */
+  #home{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px;align-items:start}
+  #home>.bar,#home>.homeLang{grid-column:1/-1}
+  #home>.hero{grid-column:1;align-self:center}
+  #home>.block:has(#track){grid-column:2;border-top:0}
+  #home>.block:has(#chap){grid-column:1/-1}
+  #home>.block:has(#past){grid-column:1}
+  #home>footer{grid-column:2;padding-top:26px}
+  #home .chap{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:10px}
+  #home .field,#home #beBorn,#home .warn{max-width:760px}
+  /* birth: the scene large on the left, the facts on the right */
+  #draw>.bar,#draw>.roll{max-width:none}
+  #drawCard:not([hidden]){display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);column-gap:32px;align-items:start}
+  #drawCard>canvas.scene{grid-column:1;grid-row:1/span 4;position:sticky;top:16px;max-height:calc(100vh - 120px);object-fit:contain}
+  #drawCard>.rec,#drawCard>.blurb,#drawCard>.facts,#drawCard>.row{grid-column:2}
+  #drawCard>.rec{margin-top:0}
+  /* death: who you were and the card on the left (stays in view), the story on the right */
+  #death{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:40px;align-items:start}
+  #death>.dHead{position:sticky;top:16px}
+  #death .cardimg{max-height:calc(100vh - 360px);object-fit:contain;object-position:left top}
+}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -474,6 +499,7 @@ body.dying .stage::before,body.dying .stage::after{height:12%}
 
   <!-- DEATH -->
   <section id="death" hidden>
+    <div class="dHead">
     <p class="eyebrow" data-i18n="lifeEnded"></p>
     <h1 id="dName"></h1>
     <p class="cun" id="dCun"></p>
@@ -483,6 +509,8 @@ body.dying .stage::before,body.dying .stage::after{height:12%}
     <p class="shaped" id="dShaped"></p>
     <img class="cardimg" id="cardImg" alt="">
     <p class="small" data-i18n="cardHint"></p>
+    </div>
+    <div class="dBody">
     <p class="epi" id="dEpi"></p>
     <div class="block" id="tabBlock" hidden><h2 id="tabH"></h2><div id="dTab"></div></div>
     <div class="block" id="famBlock"><h2 id="famH2"></h2><div class="famGrid" id="dFam"></div></div>
@@ -511,6 +539,7 @@ body.dying .stage::before,body.dying .stage::after{height:12%}
     </div>
     <button class="btn btn-ghost" id="sibBtn" data-i18n="sibBtn" hidden></button>
     <button class="btn btn-ghost" id="toHome" data-i18n="home"></button>
+    </div>
   </section>
 </div>
 
@@ -8802,19 +8831,20 @@ function renderDeath(){
 async function makeCard(sec){
   try{await Promise.race([Promise.all(['600 40px Pridi','400 22px Anuphan','600 22px Anuphan','12px Silkscreen'].map(f=>document.fonts.load(f))),sleep(1500)])}catch(e){}
   const off=document.createElement('canvas');off.width=192;off.height=108;{const o=sceneOpts(9000);o.tm=.86;o.dis=null;o.people=3+(S.rank>=2?2:0);drawScene(off.getContext('2d'),o)}
-  const c=document.createElement('canvas');c.width=720;c.height=960;const x=c.getContext('2d');
-  x.fillStyle='#110d0b';x.fillRect(0,0,720,960);x.imageSmoothingEnabled=false;x.drawImage(off,0,0,720,405);
-  if(S.hand){const h=document.createElement('canvas');h.width=24;h.height=24;const hc=h.getContext('2d');handStencil(hc,6,6,S.hand==='black'?'#1e1814':'#b8482e');if(S.handKid)handStencil(hc,15,9,'#b8482e',1);x.drawImage(h,620,300,96,96)}
-  x.fillStyle='#c9623a';x.fillRect(0,405,720,6);
-  const pad=44;let y=468;
-  x.fillStyle='#eba84b';x.font='14px Silkscreen, monospace';x.fillText('SAPIENS IN TIME · DEC 31 '+clockStr(S.ya0,2),pad,y);y+=56;
-  x.fillStyle='#ede4d4';x.font='600 46px Pridi, serif';y=wrap(x,L(S.sp.n),pad,y,632,56)+46;
-  x.fillStyle='#eba84b';x.font='600 26px Anuphan, sans-serif';y=wrap(x,L(S.title),pad,y,632,34)+40;
-  x.font='400 22px Anuphan, sans-serif';x.fillStyle='#a0948a';y=wrap(x,L(REGIONS[S.path[0]].n)+' · '+t('yearsAgo',{n:fmt(S.ya0)}),pad,y,632,32)+44;
-  x.fillStyle='#ede4d4';x.font='600 30px Anuphan, sans-serif';x.fillText(t('cardAge',{a:S.age}),pad,y);y+=40;
-  x.font='400 22px Anuphan, sans-serif';x.fillStyle='#a0948a';y=wrap(x,L(CAUSE[S.cause]),pad,y,632,32)+42;
-  x.fillStyle='#eba84b';x.font='600 24px Anuphan, sans-serif';y=wrap(x,oddsStr(),pad,y,632,32)+42;
-  x.fillStyle='#ede4d4';x.font='400 21px Anuphan, sans-serif';wrap(x,t('clockLine',{n:S.age,s:sec}),pad,y,632,30);
+  const c=document.createElement('canvas');c.width=1280;c.height=720;const x=c.getContext('2d');
+  x.fillStyle='#110d0b';x.fillRect(0,0,1280,720);x.imageSmoothingEnabled=false;x.drawImage(off,0,0,768,432);
+  {const g=x.createLinearGradient(0,330,0,432);g.addColorStop(0,'rgba(17,13,11,0)');g.addColorStop(1,'rgba(17,13,11,.85)');x.fillStyle=g;x.fillRect(0,330,768,102)}
+  if(S.hand){const h=document.createElement('canvas');h.width=24;h.height=24;const hc=h.getContext('2d');handStencil(hc,6,6,S.hand==='black'?'#1e1814':'#b8482e');if(S.handKid)handStencil(hc,15,9,'#b8482e',1);x.drawImage(h,660,320,96,96)}
+  x.fillStyle='#c9623a';x.fillRect(768,0,6,720);
+  const px=810,mw=430;let y=70;
+  x.fillStyle='#eba84b';x.font='18px Silkscreen, monospace';x.fillText('SAPIENS IN TIME',px,y);y+=30;x.fillText('DEC 31 '+clockStr(S.ya0,2),px,y);y+=74;
+  x.fillStyle='#ede4d4';x.font='600 54px Pridi, serif';y=wrap(x,L(S.sp.n),px,y,mw,62)+56;
+  x.fillStyle='#eba84b';x.font='600 34px Anuphan, sans-serif';y=wrap(x,L(S.title),px,y,mw,42)+48;
+  x.font='400 27px Anuphan, sans-serif';x.fillStyle='#a0948a';y=wrap(x,L(REGIONS[S.path[0]].n)+' · '+t('yearsAgo',{n:fmt(S.ya0)}),px,y,mw,36)+54;
+  x.fillStyle='#ede4d4';x.font='600 40px Anuphan, sans-serif';x.fillText(t('cardAge',{a:S.age}),px,y);y+=48;
+  x.font='400 27px Anuphan, sans-serif';x.fillStyle='#a0948a';wrap(x,L(CAUSE[S.cause]),px,y,mw,36);
+  let by=500;x.fillStyle='#eba84b';x.font='600 34px Anuphan, sans-serif';by=wrap(x,oddsStr(),44,by,680,44)+60;
+  x.fillStyle='#ede4d4';x.font='400 28px Anuphan, sans-serif';wrap(x,t('clockLine',{n:S.age,s:sec}),44,by,680,38);
   $('#cardImg').src=c.toDataURL('image/png');$('#cardImg').alt=L(S.sp.n)+' · '+L(S.title);
 }
 function wrap(ctx,text,x,y,max,lh){
@@ -8824,7 +8854,7 @@ function wrap(ctx,text,x,y,max,lh){
 
 /* ================= SCREENS ================= */
 function show(id){screen=id;if(id==='draw'||id==='play')SND.odeStop();['intro','home','draw','play','death'].forEach(s=>$('#'+s).hidden=s!==id);$('#dock').hidden=id!=='play';
-  document.body.classList.toggle('playing',id==='play');window.scrollTo(0,0);
+  document.body.classList.toggle('playing',id==='play');document.body.dataset.scr=id;window.scrollTo(0,0);
   if((id==='play'||id==='draw')&&!rafOn){rafOn=true;requestAnimationFrame(sceneLoop)}if(id!=='play'&&id!=='draw')rafOn=false}
 async function startDraw(){
   newLife();show('draw');$('#drawCard').hidden=true;$('#roll').hidden=false;

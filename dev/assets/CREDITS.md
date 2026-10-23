@@ -1,0 +1,41 @@
+# Sound library (not used in the game yet)
+
+Freely licensed recordings kept for later use. Every file was shortened to at most 60 seconds, mixed to mono and encoded as Ogg Opus (`make_sfx.py`, from clones of the public GitHub repos named in “via”). Nothing here is wired into `index.html` yet.
+
+- **CC0 / Public Domain**: free for any use, no credit required (credit is still given here).
+- **CC BY / CC BY 3.0**: commercial use allowed (Steam included) **if the author is credited** in the game’s credits, with a link to the licence, and changes are noted (“shortened, mono, Opus”).
+- Licences are as stated by the repo each file came from (“via”). Before shipping a file, open its original page (“source”) once and confirm the licence; Freesound and SoundBible pages could not be opened from this workspace.
+- Not taken: anything CC BY-NC, CC BY-ND, the BBC archive, or files whose licence was not stated.
+
+| File | Sound | Author | Licence | Source | Via | s | KB |
+|---|---|---|---|---|---|---|---|
+| `amb_birds_day.ogg` | Birds singing in daylight (loop) | kvgarlic (edit: Porrumentzio) | CC0 | https://freesound.org/people/kvgarlic/sounds/156826/ | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 60.0 | 262 |
+| `amb_stream.ogg` | Small stream over stones (loop) | gluckose | CC0 | https://freesound.org/people/gluckose/sounds/333987/ | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 60.0 | 267 |
+| `amb_wind_soft.ogg` | Soft wind (loop) | felix.blume (edit: Porrumentzio) | CC0 | https://freesound.org/people/felix.blume/sounds/217506/ | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 14.8 | 67 |
+| `amb_wind_strong.ogg` | Strong wind (loop) | felix.blume | CC0 | https://freesound.org/people/felix.blume/sounds/139337/ | [list](https://github.com/Muges/ambientsounds/blob/7ef9aefeeed93c37bca3cdb246a982dd1afce2f0/readme.md) | 60.0 | 257 |
+| `amb_fire_crackle.ogg` | Wood fire crackling | inchadney | CC0 | https://freesound.org/people/inchadney/sounds/132534/ | [list](https://github.com/Muges/ambientsounds/blob/7ef9aefeeed93c37bca3cdb246a982dd1afce2f0/readme.md) | 60.0 | 255 |
+| `amb_fire_small.ogg` | Small fire crackling | ezwa (SoundBible) | Public Domain | https://soundbible.com/1543-Fireplace.html | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 25.5 | 112 |
+| `amb_crickets_night.ogg` | Crickets at night | Lisa Redfern (SoundBible) | Public Domain | https://soundbible.com/2083-Crickets-Chirping-At-Night.html | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 49.3 | 303 |
+| `amb_rain.ogg` | Steady rain (loop) | alex36917 (edit: Porrumentzio) | CC BY | https://freesound.org/people/alex36917/sounds/524605/ | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 60.0 | 253 |
+| `amb_storm.ogg` | Rain storm (loop) | Digifish music (edit: Porrumentzio) | CC BY | https://freesound.org/people/digifishmusic/sounds/41739/ | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 25.7 | 114 |
+| `amb_waves.ogg` | Sea waves on a shore (loop) | Luftrum (edit: Porrumentzio) | CC BY | https://freesound.org/people/Luftrum/sounds/48412/ | [list](https://github.com/rafaelmardojai/blanket/blob/775f2a767230a9681850d1b1e085be58656f1382/SOUNDS_LICENSING.md) | 60.0 | 256 |
+| `amb_thunderstorm.ogg` | Thunderstorm with rolling thunder | RHumphries | CC BY | https://freesound.org/people/RHumphries/sounds/2523/ | [list](https://github.com/Muges/ambientsounds/blob/7ef9aefeeed93c37bca3cdb246a982dd1afce2f0/readme.md) | 60.0 | 252 |
+| `amb_rain_heavy.ogg` | Heavy rain | D W | CC BY | https://freesound.org/people/D%20W/sounds/136971/ | [list](https://github.com/Muges/ambientsounds/blob/7ef9aefeeed93c37bca3cdb246a982dd1afce2f0/readme.md) | 50.0 | 217 |
+| `amb_rain_forest.ogg` | Rain in a forest | Corsica_S | CC BY | https://freesound.org/people/Corsica_S/sounds/169031/ | [list](https://github.com/Muges/ambientsounds/blob/7ef9aefeeed93c37bca3cdb246a982dd1afce2f0/readme.md) | 60.0 | 252 |
+| `ani_crow.ogg` | Crow call | davidworksonline | CC0 | http://freesound.org/people/davidworksonline/sounds/54973/ | [list](https://github.com/sonic-pi-net/sonic-pi/blob/df6f17e4625b0451fa2af8accf2e1e641c7ad458/etc/samples/README.md) | 0.5 | 3 |
+| `obj_bell.ogg` | Struck bell | AlaskaRobotics | CC0 | http://freesound.org/people/AlaskaRobotics/sounds/221515/ | [list](https://github.com/sonic-pi-net/sonic-pi/blob/df6f17e4625b0451fa2af8accf2e1e641c7ad458/etc/samples/README.md) | 6.7 | 44 |
+| `ani_hen_1.ogg` | Hen clucking | evsecrets | CC0 | https://freesound.org/people/evsecrets/sounds/346961/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 0.7 | 4 |
+| `ani_hen_2.ogg` | Hen clucking | evsecrets | CC0 | https://freesound.org/people/evsecrets/sounds/346961/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 0.9 | 5 |
+| `ani_cow.ogg` | Cow lowing | Zozzy | CC0 | https://www.freesound.org/people/Zozzy/sounds/59245/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 1.7 | 10 |
+| `ani_donkey_1.ogg` | Donkey braying | JarredGibb | CC0 | https://freesound.org/people/JarredGibb/sounds/233131/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 1.1 | 7 |
+| `ani_donkey_2.ogg` | Donkey braying | Garuda1982 | CC BY 3.0 | https://freesound.org/people/Garuda1982/sounds/539505/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 1.3 | 7 |
+| `ani_horse.ogg` | Horse whinny | GoodListener | CC BY 3.0 | https://freesound.org/people/GoodListener/sounds/322454/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 1.1 | 7 |
+| `ani_sheep.ogg` | Sheep bleat | Blender Foundation | CC BY 3.0 | (VoxeLibre LICENSE-media.md, no page given) | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 0.8 | 5 |
+| `ani_dog_bark.ogg` | Dog bark (modified, simplified) | Hybrid Dog (dogblocks mod) | CC0 | https://github.com/HybridDog/dogblocks/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 0.4 | 2 |
+| `ani_dog_growl.ogg` | Dog growl (modified, simplified) | Hybrid Dog (dogblocks mod) | CC0 | https://github.com/HybridDog/dogblocks/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 2.1 | 13 |
+| `ani_bear_growl.ogg` | Bear growl | tbsounddesigns | CC BY 3.0 | https://freesound.org/people/tbsounddesigns/sounds/416861/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 2.5 | 14 |
+| `ani_cat.ogg` | Cat meow | SelsRoyalNavy | CC0 | https://freesound.org/people/SelsRoyalNavy/sounds/427081/ | [list](https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md) | 2.1 | 11 |
+
+Licences: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+Still missing (would need opengameart.org, freesound.org or Wikimedia Commons opened for this workspace, or files attached by hand): elephant, tiger, lion, frog, peacock, gull, rooster crow, owl, cicada, goat, camel, footsteps on earth, market crowd without modern noise.

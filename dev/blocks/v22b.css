@@ -1,0 +1,25 @@
+/* ---------- v0.22 landscape home, birth and death screens on computers ---------- */
+.dHead,.dBody{display:flex;flex-direction:column;gap:14px}
+@media (min-width:1000px){
+  body[data-scr=home] #app,body[data-scr=draw] #app,body[data-scr=death] #app{max-width:1320px;padding-inline:24px}
+  /* home: hero beside the year clock, chapters as a grid, past lives beside the sources */
+  #home{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px;align-items:start}
+  #home>.bar,#home>.homeLang{grid-column:1/-1}
+  #home>.hero{grid-column:1;align-self:center}
+  #home>.block:has(#track){grid-column:2;border-top:0}
+  #home>.block:has(#chap){grid-column:1/-1}
+  #home>.block:has(#past){grid-column:1}
+  #home>footer{grid-column:2;padding-top:26px}
+  #home .chap{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:10px}
+  #home .field,#home #beBorn,#home .warn{max-width:760px}
+  /* birth: the scene large on the left, the facts on the right */
+  #draw>.bar,#draw>.roll{max-width:none}
+  #drawCard:not([hidden]){display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);column-gap:32px;align-items:start}
+  #drawCard>canvas.scene{grid-column:1;grid-row:1/span 4;position:sticky;top:16px;max-height:calc(100vh - 120px);object-fit:contain}
+  #drawCard>.rec,#drawCard>.blurb,#drawCard>.facts,#drawCard>.row{grid-column:2}
+  #drawCard>.rec{margin-top:0}
+  /* death: who you were and the card on the left (stays in view), the story on the right */
+  #death{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:40px;align-items:start}
+  #death>.dHead{position:sticky;top:16px}
+  #death .cardimg{max-height:calc(100vh - 360px);object-fit:contain;object-position:left top}
+}
