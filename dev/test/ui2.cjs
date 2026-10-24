@@ -5,7 +5,7 @@ const errs=[];
 function el(id){const o={id,hidden:false,textContent:'',innerHTML:'',value:'',src:'',alt:'',placeholder:'',style:{},dataset:{},disabled:false,classList:{toggle(){},add(){},remove(){}},
  setAttribute(){},getAttribute(){return null},appendChild(){},insertAdjacentHTML(){},addEventListener(){},focus(){},select(){},remove(){},
  closest(){return null},querySelectorAll(){return[]},firstChild:null,
- getContext(){return new Proxy({},{get:(t,k)=>k in t?t[k]:(k==='measureText'?(s)=>({width:String(s).length*12}):(...a)=>{if(k==='fillRect'&&a.some(v=>Number.isNaN(v)))errs.push('NaN fillRect')}),set:(t,k,v)=>(t[k]=v,true)})},toDataURL(){return 'data:image/png;base64,AAA'}};
+ getContext(){return new Proxy({},{get:(t,k)=>k in t?t[k]:(k==='measureText'?(s)=>({width:String(s).length*12}):/Gradient$/.test(k)?()=>({addColorStop(){}}):(...a)=>{if(k==='fillRect'&&a.some(v=>Number.isNaN(v)))errs.push('NaN fillRect')}),set:(t,k,v)=>(t[k]=v,true)})},toDataURL(){return 'data:image/png;base64,AAA'}};
  return new Proxy(o,{get:(t,k)=>k in t?t[k]:undefined,set:(t,k,v)=>(t[k]=v,true)})}
 const cache={};const $=s=>cache[s]||(cache[s]=el(s));
 const store={'sit.lang':process.env.LG||'th','sit.chap':JSON.stringify(CH),'sit.pace':'0.03','sit.leg':'1'};
