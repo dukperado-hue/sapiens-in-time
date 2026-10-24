@@ -258,5 +258,155 @@
   "via": "https://github.com/VoxeLibre/VoxeLibre/blob/4492ce6ff8d856daa4567abe2ea689f4e7a39842/mods/ENTITIES/mobs_mc/LICENSE-media.md",
   "seconds": 2.1,
   "bytes": 12068
+ },
+ {
+  "file": "amb_frogs_night.ogg",
+  "what": "Frogs at night",
+  "author": "Aj_",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "via": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "seconds": 0.3,
+  "bytes": 1846
+ },
+ {
+  "file": "amb_night_bird.ogg",
+  "what": "Night bird calling",
+  "author": "Aj_",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "via": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "seconds": 0.8,
+  "bytes": 4997
+ },
+ {
+  "file": "amb_crickets_2.ogg",
+  "what": "Crickets",
+  "author": "Aj_",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "via": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "seconds": 0.2,
+  "bytes": 1278
+ },
+ {
+  "file": "obj_mosquito.ogg",
+  "what": "Mosquito whine",
+  "author": "Aj_",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "via": "https://opengameart.org/content/birdcricketfrog-and-mosquito-sounds",
+  "seconds": 0.4,
+  "bytes": 2520
+ },
+ {
+  "file": "ani_frog_croak.ogg",
+  "what": "Frog croak",
+  "author": "EZduzziteh",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/frog-croaks",
+  "via": "https://opengameart.org/content/frog-croaks",
+  "seconds": 1.0,
+  "bytes": 5278
+ },
+ {
+  "file": "ani_frog_ribbit.ogg",
+  "what": "Frog ribbit",
+  "author": "EZduzziteh",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/ribbit-frog-sounds",
+  "via": "https://opengameart.org/content/ribbit-frog-sounds",
+  "seconds": 1.2,
+  "bytes": 6157
+ },
+ {
+  "file": "amb_cicadas.ogg",
+  "what": "Cicadas in the heat",
+  "author": "syncopika",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/cicada-sounds",
+  "via": "https://opengameart.org/content/cicada-sounds",
+  "seconds": 26.1,
+  "bytes": 118772
+ },
+ {
+  "file": "amb_gulls.ogg",
+  "what": "Seagulls",
+  "author": "Rango Mango",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/solo-seagull-sound-effects",
+  "via": "https://opengameart.org/content/solo-seagull-sound-effects",
+  "seconds": 3.9,
+  "bytes": 19414
+ },
+ {
+  "file": "ani_peacock.ogg",
+  "what": "Peacock call",
+  "author": "qubodup",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/peacock-scream",
+  "via": "https://opengameart.org/content/peacock-scream",
+  "seconds": 0.9,
+  "bytes": 7003
+ },
+ {
+  "file": "ani_peacock_chirp.ogg",
+  "what": "Peacock short call",
+  "author": "AntumDeluge",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/peacock-chirp",
+  "via": "https://opengameart.org/content/peacock-chirp",
+  "seconds": 1.9,
+  "bytes": 12275
+ },
+ {
+  "file": "amb_crickets_loop.ogg",
+  "what": "Crickets (loopable)",
+  "author": "Wolfgang_ (original: Ted Kerr)",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/crickets-ambient-noise-loopable",
+  "via": "https://opengameart.org/content/crickets-ambient-noise-loopable",
+  "seconds": 11.5,
+  "bytes": 53969
+ },
+ {
+  "file": "amb_rain_thunder.ogg",
+  "what": "Rain with long thunder",
+  "author": "WuxiaScrub",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/rain-long-thunder",
+  "via": "https://opengameart.org/content/rain-long-thunder",
+  "seconds": 44.4,
+  "bytes": 197555
+ },
+ {
+  "file": "amb_birds_2.ogg",
+  "what": "Birds singing (loop)",
+  "author": "isaiah658",
+  "license": "CC0",
+  "source": "https://opengameart.org/content/ambient-bird-sounds",
+  "via": "https://opengameart.org/content/ambient-bird-sounds",
+  "seconds": 30.7,
+  "bytes": 143530
+ },
+ {
+  "file": "ani_elephant.ogg",
+  "what": "Elephant trumpeting",
+  "author": "Thagavaluzhavan (Wikimedia user)",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Elephant_voice_-_trumpeting.ogg",
+  "via": "https://commons.wikimedia.org/wiki/File:Elephant_voice_-_trumpeting.ogg",
+  "seconds": 1.4,
+  "bytes": 8909
+ },
+ {
+  "file": "ani_tiger.ogg",
+  "what": "Tiger growling (first 20 s)",
+  "author": "schots",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:439280_schots_angry-tiger.wav",
+  "via": "https://commons.wikimedia.org/wiki/File:439280_schots_angry-tiger.wav",
+  "seconds": 20.0,
+  "bytes": 107219
  }
 ]

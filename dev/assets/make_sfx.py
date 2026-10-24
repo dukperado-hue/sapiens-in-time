@@ -34,11 +34,34 @@ L=[ # out, src, what, author, licence, original page
  ('ani_dog_growl','%smobs_mc_wolf_growl.ogg'%V,'Dog growl (modified, simplified)','Hybrid Dog (dogblocks mod)','CC0','https://github.com/HybridDog/dogblocks/'),
  ('ani_bear_growl','%smobs_mc_bear_growl.1.ogg'%V,'Bear growl','tbsounddesigns','CC BY 3.0','https://freesound.org/people/tbsounddesigns/sounds/416861/'),
  ('ani_cat','%smobs_mc_cat_idle.2.ogg'%V,'Cat meow','SelsRoyalNavy','CC0','https://freesound.org/people/SelsRoyalNavy/sounds/427081/')]
+# second batch (24 Oct 2026): OpenGameArt.org and Wikimedia Commons, CC0 only, files in SRC2
+SRC2=sys.argv[2] if len(sys.argv)>2 else '/tmp/snd2/dl'
+OGA='https://opengameart.org/content/'
+L2=[('amb_frogs_night','bc/birdsCrickets/frog.wav','Frogs at night','Aj_','CC0',OGA+'birdcricketfrog-and-mosquito-sounds'),
+ ('amb_night_bird','bc/birdsCrickets/birdNight.wav','Night bird calling','Aj_','CC0',OGA+'birdcricketfrog-and-mosquito-sounds'),
+ ('amb_crickets_2','bc/birdsCrickets/cricket.wav','Crickets','Aj_','CC0',OGA+'birdcricketfrog-and-mosquito-sounds'),
+ ('obj_mosquito','bc/birdsCrickets/distressedMosquito.wav','Mosquito whine','Aj_','CC0',OGA+'birdcricketfrog-and-mosquito-sounds'),
+ ('ani_frog_croak','croak_01_0.mp3','Frog croak','EZduzziteh','CC0',OGA+'frog-croaks'),
+ ('ani_frog_ribbit','ribbit_01.mp3','Frog ribbit','EZduzziteh','CC0',OGA+'ribbit-frog-sounds'),
+ ('amb_cicadas','082526-cicadasounds_0.ogg','Cicadas in the heat','syncopika','CC0',OGA+'cicada-sounds'),
+ ('amb_gulls','Seagull_Ambient_1.wav','Seagulls','Rango Mango','CC0',OGA+'solo-seagull-sound-effects'),
+ ('ani_peacock','peacockscream.flac','Peacock call','qubodup','CC0',OGA+'peacock-scream'),
+ ('ani_peacock_chirp','peacock_chirp_0.ogg','Peacock short call','AntumDeluge','CC0',OGA+'peacock-chirp'),
+ ('amb_crickets_loop','crickets_1.mp3','Crickets (loopable)','Wolfgang_ (original: Ted Kerr)','CC0',OGA+'crickets-ambient-noise-loopable'),
+ ('amb_rain_thunder','rain-thunder.ogg','Rain with long thunder','WuxiaScrub','CC0',OGA+'rain-long-thunder'),
+ ('amb_birds_2','birds-isaiah658_0.ogg','Birds singing (loop)','isaiah658','CC0',OGA+'ambient-bird-sounds'),
+ ('ani_elephant','Elephant_voice_-_trumpeting.ogg','Elephant trumpeting','Thagavaluzhavan (Wikimedia user)','CC0','https://commons.wikimedia.org/wiki/File:Elephant_voice_-_trumpeting.ogg'),
+ ('ani_tiger','439280_schots_angry-tiger.wav','Tiger growling (first 20 s)','schots','CC0','https://commons.wikimedia.org/wiki/File:439280_schots_angry-tiger.wav')]
 os.makedirs(OUT,exist_ok=True);meta=[]
 for out,src,what,auth,lic,page in L:
     repo=src.split('/')[0];p=SRC+'/'+src;o=OUT+out+'.ogg';amb=out.startswith('amb_')
     subprocess.run(['ffmpeg','-v','error','-y','-i',p,'-t','60','-ac','1','-af','afade=t=out:st=59:d=1' if amb else 'anull','-c:a','libopus','-b:a','40k' if amb else '48k',o],check=True)
     d=float(subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',o],capture_output=True,text=True).stdout)
     r=R[repo];meta.append({'file':out+'.ogg','what':what,'author':auth,'license':lic,'source':page,'via':'https://github.com/%s/blob/%s/%s'%(r[0],r[1],r[2]),'seconds':round(d,1),'bytes':os.path.getsize(o)})
+for out,src,what,auth,lic,page in L2:
+    p=SRC2+'/'+src;o=OUT+out+'.ogg';amb=out.startswith('amb_');T='20' if out=='ani_tiger' else '60'
+    subprocess.run(['ffmpeg','-v','error','-y','-i',p,'-t',T,'-ac','1','-af','afade=t=out:st=59:d=1' if amb else 'anull','-c:a','libopus','-b:a','40k' if amb else '48k',o],check=True)
+    d=float(subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',o],capture_output=True,text=True).stdout)
+    meta.append({'file':out+'.ogg','what':what,'author':auth,'license':lic,'source':page,'via':page,'seconds':round(d,1),'bytes':os.path.getsize(o)})
 json.dump(meta,open(OUT+'credits.json','w'),indent=1,ensure_ascii=False)
 print(len(meta),'files',sum(m['bytes'] for m in meta)//1024,'KB')
