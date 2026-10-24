@@ -87,5 +87,10 @@ blk=''.join(open(B+f,encoding='utf-8').read()+'\n' for f in ['v23a.js','v23b.js'
 blk+="DEC.push(...DEC_IN22,...DEC_CAR22,...EVD22);EV.push(...EV22);\nlet chosenCar22=store.get('sit.car22','');if(chosenCar22&&!CAREERS22[chosenCar22])chosenCar22='';\n"
 k="let chosenCar20=store.get('sit.car20','');if(chosenCar20&&!CAREERS20[chosenCar20])chosenCar20='';\n"
 rep(k,k+blk)
+
+# v0.23b: on the birth card, show the person's name first
+_i=s.find("    [t('kName'),");_j=s.find("\n",_i)+1;_ln=s[_i:_j];s=s[:_i]+s[_j:]
+_k=s.find("    [t('kSpecies'),'<b>'+L(S.sp.n)");assert _i>0 and _k>0
+s=s[:_k]+_ln+s[_k:]
 open(F,'w',encoding='utf-8').write(s)
 print('ok',len(s))
