@@ -170,7 +170,7 @@ function drawSuvarna(ctx,gy,o,now){const R=(a,b,w,h,c)=>{ctx.fillStyle=c;ctx.fil
 function drawAct22(ctx,o,act,gy,now,P){const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x|0,y|0,w|0,h|0)};
   const fy=gy+18,PC='#c8463a',st=o.stage||'adult',ph=st==='child'?4:6,el=st==='elder',fires=[];
   if(act==='rice22'){for(let x=40;x<170;x+=1)R(x,fy-2,1,3,'#5f8a8e');for(let x=44;x<168;x+=6){R(x,fy-6,1,4,'#5f9a3a');R(x+1,fy-7,1,2,'#7fba4a')}
-    const bx=60+Math.sin(now/1200)*8;R(bx,fy-12,22,8,'#4a4a50');R(bx+20,fy-11,6,6,'#4a4a50');R(bx+24,fy-13,4,1,'#d8d0c0');R(bx+2,fy-4,3,4,'#3a3a40');R(bx+16,fy-4,3,4,'#3a3a40');
+    const bx=60+Math.sin(now/1200)*8;if(GFX.hi){beast(ctx,bx+12,fy,'buffalo',1,((now/400)|0)%2,0);R(bx+24,fy-9,10,1,'#6a4a2a')}else{R(bx,fy-12,22,8,'#4a4a50');R(bx+20,fy-11,6,6,'#4a4a50');R(bx+24,fy-13,4,1,'#d8d0c0');R(bx+2,fy-4,3,4,'#3a3a40');R(bx+16,fy-4,3,4,'#3a3a40')}
     const bend=((now/400)|0)%2;fig(ctx,120,fy-1,{c:PC,h:ph-(bend?1:0),elder:el});fig(ctx,140,fy-1,{c:'#3a5a8a',h:6});return fires}
   if(act==='bead22'){R(96,fy-4,16,4,'#5a4632');fires.push([104,fy-6,2]);const fl=((now/120)|0)%3;R(102,fy-9-fl,4,3,'#ffb04a');
     const cols=['#c8402a','#e8c84a','#2a5ac8','#3a9a4a'];for(let i=0;i<12;i++)R(120+i*3,fy-2,2,2,cols[i%4]);fig(ctx,86,fy+1,{c:PC,h:ph,elder:el});return fires}
@@ -180,6 +180,7 @@ function drawAct22(ctx,o,act,gy,now,P){const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx
     const hit=((now/250)|0)%2;fig(ctx,86,fy+1,{c:PC,h:ph,elder:el});R(91,fy-8-(hit?1:0),3,1,'#8a8a8a');return fires}
   if(act==='fire22'){R(104,fy-18,10,8,'#c8463a');R(102,fy-20,14,2,'#8a3a2a');R(106,fy-24,6,4,'#c8463a');R(108,fy-10,2,10,'#5a3a22');R(105,fy-12,8,1,'#e8c84a');
     const sm=((now/200)|0)%3;R(108,fy-27-sm,1,3,'rgba(200,200,200,.6)');fig(ctx,90,fy+1,{c:PC,h:ph,elder:el});fig(ctx,126,fy+1,{c:'#3a5a8a',h:5});return fires}
+  if(act==='ele22'&&GFX.hi){const ex=90+Math.sin(now/900)*6;ele24(ctx,ex,fy,1,((now/500)|0)%2);fig(ctx,ex-6,fy-18,{c:PC,h:ph,elder:el,pose:'sit'});return fires}
   if(act==='ele22'){const ex=80+Math.sin(now/900)*6;R(ex,fy-16,26,12,'#7a7a80');R(ex+24,fy-14,8,9,'#7a7a80');R(ex+30,fy-6,2,7,'#6a6a70');R(ex+2,fy-4,4,5,'#6a6a70');R(ex+18,fy-4,4,5,'#6a6a70');R(ex+26,fy-12,2,2,'#1a1a1a');
     fig(ctx,ex+12,fy-16,{c:PC,h:ph,elder:el});return fires}
   if(act==='dance22'){const t=(now/400)|0,f=t%2;fig(ctx,100,fy+1,{c:'#d8a830',h:ph,elder:el});R(95,fy-ph-6+f,4,1,'#e8c050');R(103,fy-ph-5-f,4,1,'#e8c050');R(100,fy-ph-10,2,2,'#e8c050');
