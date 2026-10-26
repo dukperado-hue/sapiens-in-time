@@ -1,28 +1,63 @@
-S8898	About to choose: 
-S8899	tap to choose yourself
-S8900	Many stone boundary markers in the northeast date from the Dvaravati period, roughly the 6th to 9th centuries, and some are carved with Jatakas such as the Vessantara. Old Mon inscriptions of this age are mostly short notes of donors and merit. Players of the Ganges chapter will remember the Vessantara carved on the Sanchi gate.
-S8901	The Thai topknot-cutting rite has roots in Brahmin ritual: children kept a topknot until adolescence, and its cutting marked growing up. The rite is known from much later times; there is no direct evidence that people of the Dvaravati period practised it, so this scene is a guess.
-S8902	Their children call you aunt as they grow up.
-S8903	Their children call you uncle as they grow up.
-S8904	a single bead on a cord
-S8905	a small pierced shell
-S8906	a little red stone polished smooth
-S8907	The baby cries less and will hardly feed.
-S8908	Lately you tire easily and do not want to run and play.
-S8909	Something that began mildly days ago does not go away. Your body will not listen any more.
-S8910	Lately you sleep longer each day, and dream of people who are gone.
-S8911	Letters learned on the sly
-S8912	Every morning your brother goes to the temple to learn letters from a monk. In the evening he writes them in the sand by the house to practise, and you sit beside him watching.
-S8913	For centuries temples were where boys in this region learned to read. Most girls did not study there, though some learned from brothers or parents at home.
-S8914	Ask him to teach you
-S8915	He laughs, but teaches you every evening. By the year’s end you can write your name in the sand.
-S8916	Watch quietly and remember
-S8917	No one knows you can read two words on the boundary stone.
-T212	{0}, your {1} and one of the people closest to you, dies suddenly. You never said goodbye.
-T213	Your mother ties {0} round your wrist. It was your grandmother’s, she says; keep it safe.
-T214	This same year, elsewhere · {0}
-T215	Your {0} animals are divided among your kin.
-T216	about {0} years ago
-T217	CE {0}
-T218	Born and died in {0}
-T219	Born in {0}, died in {1}
+S8918	a farming family, one of the zhong (众), “the multitude”
+S8919	Many shells carry a short note on the edge saying who sent how many to the palace, such as “Que sent in 250” (雀入二百五十). Some shells came from far to the south, showing how wide the network sending goods to the king was.
+S8920	On a jiashen (甲申) day a diviner asks the ancestors: “Lady Hao (婦好) will give birth. Will it be good?” The king reads the cracks: “If she gives birth on a ding day, it will be good; on a geng day, very lucky.” Thirty-one days later Fu Hao gives birth to a daughter. Everyone waits for you to carve the outcome on the shell.
+S8921	Every ten days the grown-ups start the count again: jia, yi, bing, ding, wu, ji, geng, xin, ren, gui (甲乙丙丁戊己庚辛壬癸). The children chant along like a song.
+S8922	The Shang counted days in weeks of ten, combined with a set of twelve names into a sixty-day cycle. On the last day of every ten-day week the king asked whether the next ten days would be free of disaster. The sixty cycle is still used in the Chinese calendar today, for example the jiazi (甲子) year that comes round every 60 years; the set of twelve was only later paired with the twelve zodiac animals.
+S8923	Studies combining data from many pre-modern societies found that about 1 in 4 children died before their first birthday, and nearly half before reaching their teens. 
+S8924	In Thailand today, fewer than 1 in 100 children die before age five. 
+S8925	In Japan today, fewer than 1 in 100 children die before age five. 
+S8926	In South Korea today, fewer than 1 in 100 children die before age five. 
+S8927	In China today, fewer than 1 in 100 children die before age five. 
+S8928	In Germany today, fewer than 1 in 100 children die before age five. 
+S8929	In Spain today, fewer than 1 in 100 children die before age five. 
+S8930	Think about what changed to make that difference. 
+S8931	The water rises again. This time you know what to carry to high ground first, and you get it there in time.
+S8932	Another flood. The young ones ask what the earlier floods were like, and you tell them while you all bail.
+S8933	Another year without rain. You remember what saved you last time and start on it early.
+S8934	Drought again. People come to ask what to do, because you have lived through it before.
+S8935	The storm comes again. You lashed the roof down the moment you saw the clouds.
+S8936	Another storm. The children cry; you tell them you have been through this before, and were still here in the morning.
+S8937	Wildfire again. This time you had already cleared the ground around your shelter.
+S8938	Smoke from a wildfire drifts in again. You know which way to go.
+S8939	The blizzard returns. You stored enough wood at the start of winter.
+S8940	Snow shuts the paths again. Everyone huddles round the fire, as before.
+S8941	Ash falls again. You cover the water at once.
+S8942	The sky darkens with ash again. The old ones say they have seen this before.
+S8943	The ground shakes again. You are out in the open before you have time to think.
+S8944	Another quake. Less is broken this time, because everyone builds lower now.
+S8945	The sea pulls back strangely again. You shout for everyone to run uphill.
+S8946	A great wave comes again. This time everyone knows what to do.
+S8947	The hillside slides again. You had already moved your shelter away from the slope.
+S8948	The earth slips again; this time no one is there.
+S8949	Your first piece
+S8950	Go slowly and make it as fine as you can
+S8951	It is finished late, but your teacher looks at it for a long time, then nods.
+S8952	Get it done on time
+S8953	It is done on time and faultless, though no one mentions it.
+S8954	Take the child and teach everything
+S8955	The child is clumsy but keen. A year later you see your own hands in their work.
+S8956	Keep working alone
+S8957	You have more quiet hours with the work, and grow better still.
+S8958	The greatest work of your life
+S8959	Your name has reached the most powerful person in these parts. They send word that they want work from your hands, and will accept nothing less than the best they have seen.
+S8960	Made the greatest work of your life for the most powerful patron
+S8961	People talk about the piece for years, and some travel far to see it.
+S8962	It is not what they hoped for. They pay half, and you lie awake for many nights.
+S8963	Decline politely
+S8964	You go back to the small work that makes you happy.
+S8965	These figures are for Lapita voyagers descended from Taiwan and the Philippines. Ancient DNA of the first Lapita people in Vanuatu and Tonga shows almost no Papuan ancestry, while the Papuans who had lived on these islands for tens of thousands of years carry about 3–5% Denisovan DNA.
+S8966	A canoe from the next island
+S8967	A canoe from the next island comes to trade pots for shell. Someone from that village finds a reason to talk with you every day until it must sail home.
+S8968	Early Austronesian communities probably married between villages and islands, which bound trade networks together. Some researchers argue from DNA that men often moved to their wife’s family, but this is still debated.
+S8969	Sail away with them
+S8970	Found a partner and moved to another island
+S8971	You board with a few belongings and begin life with a new family who speak with a slightly different accent.
+S8972	Ask them to stay here
+S8973	Found a partner who crossed the sea to stay
+S8974	When the canoe leaves, they are not on it.
+S8975	They hesitate a long time, then sail home.
+S8976	The canoe sails away over the horizon.
+T220	Today, for the first time, you work alone as {0}, from start to finish, with no one watching over your shoulder.
+T221	People now call you {0}. A family brings their child to be your apprentice.
+T222	Your child number {0} is born, a daughter. You name her {1}.
+T223	Your child number {0} is born, a son. You name him {1}.

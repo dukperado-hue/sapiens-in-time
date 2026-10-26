@@ -368,6 +368,7 @@ body.dying .stage::before,body.dying .stage::after{height:12%}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 #mOpts button.auto30{outline:2px dashed var(--ember);outline-offset:2px}
+#linBlock.lin31{border:2px solid var(--ember);box-shadow:0 0 24px rgba(235,168,75,.25)}
 </style>
 
 <div id="app">
@@ -1073,7 +1074,7 @@ function rollDisaster(a){S.dis=null;if(rnd()>=.05)return;
   const k=weighted(c),D=DST[k];S.dis=k;let m=1;
   if(D.sh&&S.focus==='build')m=.5;if(D.sh&&S.house)m*=.6;if(k==='tsunami'&&(hasT('eye')||hasT('mem')))m=.3;if(k==='wildfire'&&hasT('eye'))m=.6;
   fx(D.fx,m);if(D.loss&&invCount()&&rnd()<.6){const ks=Object.keys(S.inv).filter(x=>S.inv[x]>0);const i=pick(ks);S.inv[i]--}
-  log((S.ch===4&&D.x4)||(S.ch===6&&D.x6)||(S.ch===8&&D.x8)||(S.ch===10&&D.x10)||(S.ch===12&&D.x12)||(S.ch===14&&D.x14)||(S.ch===16&&D.x16)||(S.ch===18&&D.x18)||(S.ch===20&&D.x20)||(S.ch===22&&D.x22)||(S.ch===24&&D.x24)||(S.ch===26&&D.xMg)||(S.ch===28&&D.xNw)||D.x,m<1?X('การเตรียมตัวช่วยให้เสียหายน้อยกว่าที่ควร','Being prepared kept the damage down'):null,'cl');if(D.ms)ms(D.ms);
+  const ag31=again31(k);log(ag31||(S.ch===4&&D.x4)||(S.ch===6&&D.x6)||(S.ch===8&&D.x8)||(S.ch===10&&D.x10)||(S.ch===12&&D.x12)||(S.ch===14&&D.x14)||(S.ch===16&&D.x16)||(S.ch===18&&D.x18)||(S.ch===20&&D.x20)||(S.ch===22&&D.x22)||(S.ch===24&&D.x24)||(S.ch===26&&D.xMg)||(S.ch===28&&D.xNw)||D.x,m<1?X('การเตรียมตัวช่วยให้เสียหายน้อยกว่าที่ควร','Being prepared kept the damage down'):null,'cl');if(D.ms)ms(D.ms);
 }
 const huntKind=()=>{const r=S.rg;if(S.ch===3&&R3[r])return R3[r].hunt;if(r==='sun'&&S.ya>=11700&&S.seed%3===0)return'banteng';if(r==='nzl')return'moa';if(r==='sah')return'roo';if(['sun','jav','luz'].includes(r))return'boar';if(['eaf','saf','ara','sas','lev'].includes(r))return'ante';if(['mst','eas'].includes(r))return'horse';if(r==='ame')return'bison';return'deer'};
 
@@ -1632,7 +1633,7 @@ function herdYear(a,care){const ks=Object.keys(S.herd).filter(k=>S.herd[k]>0);if
   const yt=S.yt,gm=yt==='good'?1.25:yt==='wet'?1.1:yt==='dry'?.55:yt==='cold'?.7:1;
   for(const k of ks){const A=ANI[k];let n=S.herd[k];n+=Math.floor(n*A.grow*gm*(care?1.25:1)*(S.cust.includes('own')?1.1:1)+rnd());
     if(S.dis==='drought'||(yt==='dry'&&!care))n-=Math.round(n*(care?.08:.2)*rnd());S.herd[k]=Math.max(0,n)}
-  const cap=S.settled?30:20;let tot=herdTot();while(tot>cap){const k=pick(Object.keys(S.herd).filter(x=>S.herd[x]>0));S.herd[k]--;tot--}
+  const cap=Math.round((S.settled?30:20)*(.6+((S.seed>>>3)%9)/10)*(S.cls==='elite'?1.5:S.cls==='slave'?.4:1));let tot=herdTot();while(tot>cap){const k=pick(Object.keys(S.herd).filter(x=>S.herd[x]>0));S.herd[k]--;tot--}
   if(rnd()<(care?.05:.13)*(S.dog?.5:1)){const k=pick(ks);const d=Math.min(S.herd[k],1+((rnd()*2)|0));if(d>0){S.herd[k]-=d;
     log(S.ch===8?(S.sc8a={k:'tiger',age:S.age},X('เสือลาก'+ANI[k].n.th+'ของคุณไป '+d+' ตัวตอนกลางคืน','A tiger drags off '+d+' of your '+ANI[k].n.en+' in the night')):S.ch===6?(S.sc6a={k:'croc',age:S.age},X('จระเข้ลาก'+ANI[k].n.th+'ของคุณลงน้ำไป '+d+' ตัวตอนลงกินน้ำ','A crocodile drags '+d+' of your '+ANI[k].n.en+' into the river as they drink')):X(R3[S.rg].pred.th+'ลาก'+ANI[k].n.th+'ของคุณไป '+d+' ตัวตอนกลางคืน',R3[S.rg].pred.en+' drags off '+d+' of your '+ANI[k].n.en+' in the night'),null,'it')}}
   if(rnd()<.045){const k=pick(ks);const d=Math.ceil(S.herd[k]*(.3+rnd()*.3));if(d>0){S.herd[k]-=d;log(X('โรคระบาดในฝูง'+ANI[k].n.th+' ตายไป '+d+' ตัว','Sickness runs through your '+ANI[k].n.en+'; '+d+' die'),null,'sad')}}
@@ -2018,7 +2019,7 @@ function carYear(a){if(!S.car||a<12)return;const C=CARS()[S.car];if(S.focus!==C.
     if(S.car==='healer'){fx({h:2});if(rnd()<.3)fx({b:2})}
     if(S.car==='builder'&&!S.house&&S.clv>=1){S.house=1;log(X('คุณสร้างบ้านหลังใหม่ให้ครอบครัวตัวเองด้วยมือ','You build your family a new house with your own hands'),null,'it')}}
   const need=[[4,0,0],[14,50,0],[28,72,75]][S.clv];
-  if(S.clv<3&&S.cxp>=need[0]&&(S[C.sk]||0)>=need[1]&&S.p>=need[2]){S.clv++;fx({p:[3,6,12][S.clv-1]});
+  if(S.clv<3&&S.cxp>=need[0]&&(S[C.sk]||0)>=need[1]&&S.p>=need[2]){S.clv++;S.cm31=S.clv;fx({p:[3,6,12][S.clv-1]});
     log(X('ทุกคนเริ่มเรียกคุณว่า'+C.L[S.clv].th,'People begin to call you '+C.L[S.clv].en),S.clv===1?(S.ch===4?CARNOTE4:S.ch===6?CARNOTE6:S.ch===8?CARNOTE8:S.ch===10?CARNOTE10:S.ch===12?CARNOTE12:S.ch===14?CARNOTE14:S.ch===16?CARNOTE16:S.ch===18?CARNOTE18:S.ch===20?CARNOTE20:S.ch===22?CARNOTE22:S.ch===24?CARNOTE24:S.ch===26?CARNOTEMg:S.ch===28?CARNOTENw:CARNOTE):null,'big');ms(X('กลายเป็น'+C.L[S.clv].th,'Became '+C.L[S.clv].en))}}
 const CARNOTE=X('ในหมู่บ้านเกษตรยุคแรก งานบางอย่างเริ่มมีคนที่ทำเป็นหลัก เช่น ปั้นหม้อ ตีหิน หรือดูแลฝูงสัตว์ แต่คนส่วนใหญ่ยังทำหลายอย่าง อาชีพเต็มตัวแบบช่างในเมืองเกิดขึ้นทีหลัง เมื่อมีอาหารเหลือพอเลี้ยงคนที่ไม่ได้ผลิตอาหาร','In early farming villages some tasks began to have people who mainly did them, such as potting, knapping or herding, but most people still did many things. Full-time crafts like those of city artisans came later, when surplus food could feed people who did not produce it.');
 const CAR_DEC={id:'career',t:X('จะฝึกเป็นอะไร','What will you learn'),
@@ -2535,7 +2536,7 @@ async function yearStep(){
   S.lowF=S.f<22?S.lowF+1:0;
   // children
   if(S.partner&&a>=17&&a<=42&&a-S.lastBirth>=2&&rnd()<(S.settled?.31+(S.tech.quern?.03:0):.26)){addKid(false);
-    log(X('คุณมีลูกคนที่ '+S.kids.length,'You have another child (child number '+S.kids.length+')'),null,'big');if(S.sex==='f')S.yr+=.015}
+    log(birth31(),null,'big');if(S.sex==='f')S.yr+=.015}
   for(const k of S.kids){if(k.dies!=null&&!k.dead&&k.born+k.dies===a&&k.born!==a){
     if(S.focus==='child'&&rnd()<.35){k.dies=null;fx({b:4});log(X('ลูกคนหนึ่งป่วยหนัก คุณเฝ้าดูแลทั้งคืนจนไข้ลด','One of your children falls gravely ill. You nurse them through the night until the fever breaks.'),null,'big');continue}
     k.dead=1;fx({b:-6,h:-3});
@@ -2561,6 +2562,7 @@ async function yearStep(){
   if(!d&&S.ch===3&&S.focus==='tame'&&!S.pen&&a>=12&&(S.tamePass==null||a-S.tamePass>=3)&&wildCands(S).length)d=TAME_DEC;
   if(!d&&st&&S.plan.has(a)){const c=DEC.filter(e=>e.deck===st&&canDec(e,a));if(c.length)d=weighted(c.map(e=>[e,e.w||1]))}
   if(!d&&a>=17&&a<=45&&!S.role&&!S.car&&!S.roleNo&&topFams(S).length&&rnd()<.15){const RF=roleFams(S),top=topFams(S)[0];if(RF[top].reduce((x,i)=>x+(S.actN[i]||0),0)>=7)d=ROLE_DEC}
+  if(!d&&S.cm31)d=cm31();
   if(!d)d=marry30(a);
   if(!d){const c=DEC.filter(e=>!e.forced&&!e.deck&&canDec(e,a)&&rnd()<(e.w||1)*.05);if(c.length)d=pick(c)}
   if(!d&&a>=15&&a-(S.lastD29==null?0:S.lastD29)>=4&&rnd()<.45)d=pers29(a);
@@ -2602,7 +2604,7 @@ function modal({eye,title,text,note,noteLg,input,opts}){skipTo=0;
     opts.forEach((o,i)=>{const b=document.createElement('button');b.textContent=o.l;if(o.primary)b.className='primary';if(o.lock){b.disabled=true;const q=document.createElement('span');q.className='req';q.textContent=o.lock;b.appendChild(q)}
       b.onclick=()=>{$('#modal').hidden=true;document.body.classList.remove('cine');res({i,v:mi.value.trim()})};box.appendChild(b)});
     $('#modal').hidden=false;document.body.classList.add('cine');modalScene22();setTimeout(()=>box.firstChild&&box.firstChild.focus(),50);
-    if(auto){const ai=pick(okI.length?okI:[0]);$('#mEye').textContent=(eye||'')+' · '+(input?t('autoHint'):L(X('อีกครู่จะเลือก: ','About to choose: '))+opts[ai].l+' · '+L(X('แตะเพื่อเลือกเอง','tap to choose yourself')));try{const bb=box.children[ai];if(bb)bb.classList.add('auto30')}catch(e){}setTimeout(()=>{if(!$('#modal').hidden){$('#modal').hidden=true;document.body.classList.remove('cine');res({i:ai,v:''})}},input?1500:3600)}
+    if(auto){const pl31=okI.length>1&&AP31!=null?okI.filter(i=>i!==AP31):okI;const ai=pick(pl31.length?pl31:[0]);$('#mEye').textContent=(eye||'')+' · '+(input?t('autoHint'):L(X('อีกครู่จะเลือก: ','About to choose: '))+opts[ai].l+' · '+L(X('แตะเพื่อเลือกเอง','tap to choose yourself')));try{const bb=box.children[ai];if(bb)bb.classList.add('auto30')}catch(e){}setTimeout(()=>{if(!$('#modal').hidden){$('#modal').hidden=true;document.body.classList.remove('cine');res({i:ai,v:''})}},input?1500:3600)}
   })}
 const SKN={sv:'skSv',cr:'skCr',so:'skSo',tr:'skTr',kn:'skKn'};
 function lockText(o){if(o.lockF&&o.lockF(S))return L(o.lockT||X('ยังทำไม่ได้','Not possible yet'));if(!o.req)return null;for(const k in o.req)if((S[k]||0)<o.req[k])return t('needSk',{s:t(SKN[k]),n:o.req[k]});return null}
@@ -2610,8 +2612,8 @@ async function decide(d){
   const text=d.xf?d.xf(S):d.x;let note=d.nf?d.nf(S):d.n;if(note&&note.en){const ns=S.nSeen30=S.nSeen30||{};if(ns[note.en])note=null;else ns[note.en]=1}const os=d.of?d.of(S):d.o;
   if(/ดาว/.test(text.th||'')||/\bstars?\b/i.test(text.en||''))S.scAct={act:'stars',age:S.age};
   if(!TEST)SND.sfx('card');
-  const r=await modal({eye:t(d.lg?'legendEye':'decision',{a:S.age}),title:(d.lg?'✦ ':'')+L(d.t),text:L(text),note:L(note),noteLg:d.lg,opts:os.map(o=>({l:L(o.l),lock:lockText(o)}))});
-  const res=os[r.i].run(S);if(!TEST)SND.sfx('pick');
+  AP31=(S.ap31||{})[d.id];const r=await modal({eye:t(d.lg?'legendEye':'decision',{a:S.age}),title:(d.lg?'✦ ':'')+L(d.t),text:L(text),note:L(note),noteLg:d.lg,opts:os.map(o=>({l:L(o.l),lock:lockText(o)}))});
+  (S.ap31=S.ap31||{})[d.id]=r.i;AP31=null;const res=os[r.i].run(S);if(!TEST)SND.sfx('pick');
   const pn=S.pendingNote;S.pendingNote=null;
   log(X(d.t.th+' — '+res.th,d.t.en+' — '+res.en),pn||note,d.lg?'lg':'big');setThm22({en:(d.t.en||'')+' '+((text&&text.en)||'')},S.age);
 }
@@ -4787,7 +4789,7 @@ function drawAct10(ctx,o,act,gy,now,P){const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx
   return null}
 
 DEC.push(...DEC_IN10,...DEC_CAR10);EV.push(...EV10);
-const PALEO5=/stone tool|hunter|gatherer|mammoth|\bhides?\b|\bhail\b|fire from the sky|before (people|anyone) knew how to make fire|land and (the )?herds/i;
+const PALEO5=/stone tool|hunter|gatherer|mammoth|\bhides?\b|\bhail\b|fire from the sky|before (people|anyone) knew how to make fire|land and (the )?herds|days’ walk|moves camp/i;
 if(CLASSM)legOn=0;
 let chosenCar10=store.get('sit.car10','');if(chosenCar10&&!CAREERS10[chosenCar10])chosenCar10='';
 /* ================= v0.16 CHAPTER 12 (shown as 08): SHANG CHINA AND THE ORACLE BONES ================= */
@@ -4854,7 +4856,7 @@ warrior:{n:X('นักรบ','Warrior'),act:'job',scene:'march',sk:'sv',l:X('�
  L:[X('เด็กถือโล่','a boy who carries the shields'),X('นักรบ','a warrior'),X('คนขับรถศึก','a chariot driver'),X('ผู้นำทัพของตระกูล','leader of the lineage’s warriors')]}};
 {const A=CAREERS12.warrior.L,P=A[2],D=X('นักธนูที่แม่นที่สุดในกองร้อย','the best archer in the company');Object.defineProperty(A,2,{get:()=>S&&S.ch===12&&S.ya>3230?D:P})}
 const CARNOTE12=X('เมืองอินมีย่านโรงงานแยกตามงาน: โรงหล่อสำริดขนาดใหญ่ โรงกระดูกที่ใช้กระดูกวัวหลายตัน โรงปั้นหม้อ และโรงหยก ตำรายุคหลังเล่าว่างานช่างสืบทอดกันในตระกูล และเมื่อซางล่ม ชาวโจวแจกตระกูลช่างของซางทั้งตระกูลให้ขุนนางใหม่ของตน','Yin had separate workshop districts: great bronze foundries, bone workshops that used tons of cattle bone, potteries and jade workshops. Later records say crafts passed down within lineages, and that after the fall the Zhou handed out whole Shang craft lineages to their new lords.');
-const CLS12={elite:X('ตระกูลขุนนางใกล้ชิดกษัตริย์','a noble lineage close to the king'),free:X('ครอบครัวชาวนา หนึ่งใน “จง” คนจำนวนมาก','a farming family, one of the zhong, “the multitude”'),dep:X('ครอบครัวช่างที่ทำงานให้โรงงานของกษัตริย์','a craft family working for the king’s workshops'),slave:X('เชลยศึกที่ต้องรับใช้บ้านขุนนาง','a war captive serving a noble household')};
+const CLS12={elite:X('ตระกูลขุนนางใกล้ชิดกษัตริย์','a noble lineage close to the king'),free:X('ครอบครัวชาวนา หนึ่งใน “จง” (众) คนจำนวนมาก','a farming family, one of the zhong (众), “the multitude”'),dep:X('ครอบครัวช่างที่ทำงานให้โรงงานของกษัตริย์','a craft family working for the king’s workshops'),slave:X('เชลยศึกที่ต้องรับใช้บ้านขุนนาง','a war captive serving a noble household')};
 const CLSNOTE12=X('สังคมซางจัดตามตระกูล กษัตริย์และขุนนางทำพิธีเซ่นบรรพบุรุษ ชาวนาไถนาและไปรบเมื่อถูกเรียก เชลยจากศัตรู เช่น ชาวเชียง ถูกใช้แรงงาน และหลายคนถูกฆ่าในพิธีบูชายัญ กระดูกเสี่ยงทายบันทึกคนที่ถูกบูชายัญไว้กว่า 13,000 คน','Shang society was organised by lineage. The king and nobles made offerings to their ancestors; farmers tilled and went to war when called. Captives from enemies such as the Qiang were made to work, and many were killed in sacrifices: the oracle bones record more than 13,000 people offered.');
 const CLS12Z={elite:X('ตระกูลขุนนางซางที่ตอนนี้ต้องรับใช้โจว','a Shang noble lineage that must now serve the Zhou'),free:CLS12.free,dep:X('ครอบครัวช่างที่ถูกยกให้ขุนนางโจว','a craft family handed over to a Zhou lord'),slave:CLS12.slave};
 const cls12=S=>S.ch===12&&era12(S.ya)==='zhou'&&S.rg!=='zou'&&S.rg!=='sxd'?CLS12Z[S.cls]:CLS12[S.cls];
@@ -4972,7 +4974,7 @@ const DEC_IN12=[
     opt(X('ซ่อนตัวในป่าจนทัพไปพ้น','Hide in the woods until the army has gone'),S=>{fx({p:-6,b:-2});return X('ไม่มีใครตามหาคุณ แต่ทั้งหมู่บ้านรู้','No one comes looking for you, but the whole village knows.')})]},
 {id:'a12_shells',deck:'adult',w:5,ch:12,a:[16,60],cond:S=>['plc','vil','zz'].includes(S.rg)&&S.cls!=='elite',t:X('ส่งกระดองเต่า','Sending the shells'),
  x:X('เจ้านายสั่งให้หมู่บ้านส่งกระดองเต่าสองร้อยห้าสิบอันไปให้กษัตริย์ก่อนหน้าหนาว คุณต้องลงไปงมเต่าในหนองทั้งเดือน','Your lord orders the village to send two hundred and fifty turtle shells to the king before winter. You spend a month wading in the marshes after turtles.'),
- n:X('ขอบกระดองหลายชิ้นมีบันทึกสั้นๆ ว่าใครส่งกระดองมาให้วังกี่ชิ้น เช่น “เชว่ส่งมาสองร้อยห้าสิบ” กระดองบางส่วนเป็นของส่งมาจากแดนไกลทางใต้ แสดงว่ากษัตริย์มีเครือข่ายส่งของเข้าวังกว้างขวาง','Many shells carry a short note on the edge saying who sent how many to the palace, such as “Que sent in 250”. Some shells came from far to the south, showing how wide the network sending goods to the king was.'),
+ n:X('ขอบกระดองหลายชิ้นมีบันทึกสั้นๆ ว่าใครส่งกระดองมาให้วังกี่ชิ้น เช่น “เชว่ส่งมาสองร้อยห้าสิบ” (雀入二百五十) กระดองบางส่วนเป็นของส่งมาจากแดนไกลทางใต้ แสดงว่ากษัตริย์มีเครือข่ายส่งของเข้าวังกว้างขวาง','Many shells carry a short note on the edge saying who sent how many to the palace, such as “Que sent in 250” (雀入二百五十). Some shells came from far to the south, showing how wide the network sending goods to the king was.'),
  o:[opt(X('งมเต่าจนครบ','Catch turtles until you have enough'),S=>{fx({h:-3,p:3,sv:2});return X('ขาคุณเปื่อยจากน้ำในหนอง แต่ชื่อหมู่บ้านถูกสลักไว้บนขอบกระดอง','Your legs are raw from the marsh water, but the village’s name is carved on the edge of a shell.')}),
     opt(X('แลกหมูกับกระดองจากพ่อค้า','Trade a pig to a merchant for shells'),S=>{if(S.herd.pig)addHerd('pig',-1);fx({so:2});return X('พ่อค้ายิ้มกว้าง เขาเพิ่งได้กระดองชุดนั้นมาจากทางใต้ในราคาถูกกว่านี้ครึ่งหนึ่ง','The merchant grins. He got those shells from the south for half the price.')})]},
 {id:'a12_captive',deck:'adult',w:5,ch:12,a:[16,65],cond:S=>S.rg==='yin'&&S.cls!=='slave'&&['wud','late'].includes(era12(S.ya)),t:X('เชลยที่ทำงานข้างคุณ','The captive who works beside you'),
@@ -5018,7 +5020,7 @@ const DEC_IN12=[
 ];
 const DEC_CAR12=[
 {id:'k12_birth',a:[16,70],w:12,ch:12,cond:S=>S.rg==='yin'&&S.ya<=3270&&S.ya>=3228&&(S.car==='diviner'||S.lit>=40),t:X('การคลอดของฟู่ห่าว','Fu Hao’s childbirth'),
- x:X('วันเจี่ยเซิน นักเสี่ยงทายเชว่ถามบรรพบุรุษ: “ฟู่ห่าวจะคลอด จะดีไหม” กษัตริย์อ่านรอยแตกแล้วตอบว่า “ถ้าคลอดวันติงจะดี ถ้าคลอดวันเกิงจะดีมาก” สามสิบเอ็ดวันต่อมา ฟู่ห่าวคลอดลูกสาว ทุกคนรอให้คุณสลักผลลงบนกระดอง','On a jiashen day the diviner Que asks the ancestors: “Lady Hao will give birth. Will it be good?” The king reads the cracks: “If she gives birth on a ding day, it will be good; on a geng day, very lucky.” Thirty-one days later Fu Hao gives birth to a daughter. Everyone waits for you to carve the outcome on the shell.'),
+ x:X('วันเจี่ยเซิน (甲申) นักเสี่ยงทายถามบรรพบุรุษ: “ฟู่ห่าว (婦好) จะคลอด จะดีไหม” กษัตริย์อ่านรอยแตกแล้วตอบว่า “ถ้าคลอดวันติงจะดี ถ้าคลอดวันเกิงจะดีมาก” สามสิบเอ็ดวันต่อมา ฟู่ห่าวคลอดลูกสาว ทุกคนรอให้คุณสลักผลลงบนกระดอง','On a jiashen (甲申) day a diviner asks the ancestors: “Lady Hao (婦好) will give birth. Will it be good?” The king reads the cracks: “If she gives birth on a ding day, it will be good; on a geng day, very lucky.” Thirty-one days later Fu Hao gives birth to a daughter. Everyone waits for you to carve the outcome on the shell.'),
  n:X('กระดองชิ้นนี้มีอยู่จริง และบันทึกผลไว้ว่า “สามสิบเอ็ดวันต่อมา วันเจี่ยอิน คลอด ไม่ดี เป็นลูกสาว” ชาวซางให้คุณค่ากับลูกชายมากกว่าในพิธีเซ่นบรรพบุรุษ เป็นหนึ่งในบันทึกเรื่องส่วนตัวที่เก่าที่สุดของจีน','This shell really exists, and records the outcome: “Thirty-one days later, on the jiayin day, she gave birth. It was not good: a girl.” The Shang valued sons more for carrying on the ancestral rites. It is one of the oldest personal records in China.'),
  o:[opt(X('สลักตามที่เกิดขึ้นทุกคำ','Carve exactly what happened'),S=>{S.boneN+=1;S.gump12='birth';fx({kn:4,p:5});ms(X('สลักบันทึกการคลอดของฟู่ห่าว','Carved the record of Fu Hao’s childbirth'));return X('คุณสลัก “ไม่ดี เป็นลูกสาว” แล้วนึกถึงทารกตัวเล็กที่ยังไม่รู้ว่าตัวเองถูกบันทึกว่าอะไร','You carve “not good: a girl”, and think of the tiny baby who does not know what has been written about her.')}),
     opt(X('สลักแค่ว่า “คลอดแล้ว แม่ลูกปลอดภัย”','Carve only “She has given birth; mother and child are safe”'),S=>{S.boneN+=1;S.gump12='birth';if(rnd()<.5){fx({p:-6});return X('หัวหน้านักเสี่ยงทายขูดตัวอักษรของคุณออก แล้วสลักใหม่ตามแบบเดิม','The chief diviner scrapes your signs away and carves it again the usual way.')}fx({b:3});return X('ไม่มีใครสังเกต แต่กระดองที่รอดมาถึงวันนี้ไม่ใช่ชิ้นของคุณ','No one notices. But the shell that survives today is not yours.')})]},
@@ -5056,7 +5058,7 @@ const EV12=[
 E12({a:[4,70],w:1.6,x:X('หน้าเกี่ยว ทั้งบ้านตัดรวงข้าวฟ่างด้วยมีดหินรูปครึ่งวงกลม แล้วมัดเป็นฟ่อนตากไว้หน้าบ้าน','At harvest the whole household cuts millet heads with half-moon stone knives and ties them in sheaves to dry outside the house.'),n:X('ชาวนายุคซางยังใช้เครื่องมือหินและไม้เป็นหลัก สำริดแพงเกินไปสำหรับจอบเสียม ส่วนใหญ่ถูกใช้ทำภาชนะพิธีและอาวุธของชนชั้นสูง','Shang farmers still worked mostly with stone and wooden tools. Bronze was too costly for hoes and spades, and went mainly into ritual vessels and the weapons of the elite.')}),
 E12({a:[3,70],w:1.3,x:X('หมาของบ้านเห่าใส่คนแปลกหน้าทั้งคืน พ่อบอกว่ามันคือยามที่ดีที่สุดของหมู่บ้าน','The family dog barks at a stranger all night. Your father says it is the best guard in the village.'),n:X('หลุมศพยุคซางจำนวนมากมีหลุมเล็กใต้โลงที่ฝังหมาไว้ เหมือนให้เฝ้าเจ้าของต่อในโลกหลังความตาย','Many Shang graves have a small pit beneath the coffin with a dog buried in it, as if to keep guarding its master after death.')}),
 E12({a:[5,70],w:1.2,cond:S=>['yin','vil','zz'].includes(S.rg),x:X('แม่น้ำเหลืองขุ่นจนเหมือนโคลนไหล ผู้เฒ่าบอกว่าทุกปีมันพาดินมาทับนาใหม่','The Yellow River runs so thick it looks like flowing mud. The old people say every year it brings new earth to the fields.'),n:X('แม่น้ำเหลืองพาตะกอนดินเหลืองมามากที่สุดสายหนึ่งในโลก ทำให้ที่ราบภาคกลางอุดมสมบูรณ์ แต่ก็ทำให้แม่น้ำเปลี่ยนทางและท่วมใหญ่บ่อยครั้งตลอดประวัติศาสตร์จีน','The Yellow River carries more silt than almost any river on Earth. It made the Central Plain fertile, but also made the river shift course and flood disastrously again and again in Chinese history.')}),
-E12({a:[6,70],w:1.3,cond:notSxd,x:X('ทุกสิบวัน ผู้ใหญ่นับวันใหม่: เจี่ย อี่ ปิ่ง ติง อู้ จี่ เกิง ซิน เหริน กุ่ย เด็กๆ ท่องตามเหมือนร้องเพลง','Every ten days the grown-ups start the count again: jia, yi, bing, ding, wu, ji, geng, xin, ren, gui. The children chant along like a song.'),n:X('ชาวซางนับวันเป็นรอบสิบวัน และรวมกับอีกชุดสิบสองชื่อเป็นรอบหกสิบวัน ทุกวันสุดท้ายของรอบสิบวัน กษัตริย์ถามว่าสิบวันข้างหน้าจะไม่มีภัยใช่ไหม ระบบหกสิบนี้ยังใช้ในปฏิทินจีนจนวันนี้ เช่น การนับปีนักษัตร','The Shang counted days in weeks of ten, combined with a set of twelve names into a sixty-day cycle. On the last day of every ten-day week the king asked whether the next ten days would be free of disaster. The sixty cycle is still used in the Chinese calendar today, for example in naming years.')}),
+E12({a:[6,70],w:1.3,cond:notSxd,x:X('ทุกสิบวัน ผู้ใหญ่นับวันใหม่: เจี่ย อี่ ปิ่ง ติง อู้ จี่ เกิง ซิน เหริน กุ่ย (甲乙丙丁戊己庚辛壬癸) เด็กๆ ท่องตามเหมือนร้องเพลง','Every ten days the grown-ups start the count again: jia, yi, bing, ding, wu, ji, geng, xin, ren, gui (甲乙丙丁戊己庚辛壬癸). The children chant along like a song.'),n:X('ชาวซางนับวันเป็นรอบสิบวัน และรวมกับอีกชุดสิบสองชื่อเป็นรอบหกสิบวัน ทุกวันสุดท้ายของรอบสิบวัน กษัตริย์ถามว่าสิบวันข้างหน้าจะไม่มีภัยใช่ไหม ระบบหกสิบนี้ยังใช้ในปฏิทินจีนจนวันนี้ เช่น ปีเจี่ยจื่อ (甲子) ที่วนกลับมาทุก 60 ปี ส่วนชุดสิบสองชื่อนั้น ภายหลังจึงจับคู่กับสัตว์สิบสองนักษัตร','The Shang counted days in weeks of ten, combined with a set of twelve names into a sixty-day cycle. On the last day of every ten-day week the king asked whether the next ten days would be free of disaster. The sixty cycle is still used in the Chinese calendar today, for example the jiazi (甲子) year that comes round every 60 years; the set of twelve was only later paired with the twelve zodiac animals.')}),
 E12({a:[6,70],w:1.6,once:1,cond:notSxd,fxF:S=>{S.relig12=1},x:X('วันนี้ตรงกับชื่อของปู่ทวด ทั้งตระกูลยกภาชนะสำริดใส่เนื้อและเหล้าข้าวฟ่างขึ้นวาง แล้วเรียกชื่อท่านให้มากิน','Today is your great-grandfather’s day. The whole lineage sets out bronze vessels of meat and millet ale and calls his name to come and eat.'),n:X('ชาวซางเซ่นบรรพบุรุษตามตารางที่แน่นอน แต่ละองค์ในวันที่ตรงกับชื่อ ภาชนะสำริดสวยๆ ที่อยู่ในพิพิธภัณฑ์ทั่วโลกทุกวันนี้ ส่วนใหญ่ทำมาเพื่อใช้ในพิธีนี้','The Shang fed their ancestors on a fixed schedule, each on the day matching their name. Most of the splendid bronze vessels in museums around the world today were made for these rites.')}),
 E12({a:[8,70],w:1.5,once:1,cond:S=>['yin','vil'].includes(S.rg)&&era12(S.ya)!=='erl',x:X('ข่าวลือจากวังว่ากษัตริย์ปวดฟัน นักเสี่ยงทายกำลังถามว่าบรรพบุรุษองค์ไหนโกรธ','A rumour comes from the palace: the king has toothache, and the diviners are asking which ancestor is angry.'),n:X('กระดูกเสี่ยงทายถามเรื่องส่วนตัวของกษัตริย์บ่อยมาก ทั้งปวดฟัน ปวดท้อง ฝันร้าย และการคลอดลูก เพราะเชื่อว่าความเจ็บป่วยอาจมาจากบรรพบุรุษที่ไม่พอใจ','The oracle bones often ask about the king’s private troubles — toothache, stomach pains, bad dreams, childbirth — because illness might come from a displeased ancestor.')}),
 E12({a:[8,70],w:1.4,once:1,cond:notSxd,x:X('ยายเล่าว่าเทพสูงสุด “ตี้” อยู่บนฟ้า สั่งลม ฝน และฟ้าร้อง มนุษย์ขอตี้ตรงๆ ไม่ได้ ต้องขอผ่านบรรพบุรุษ','Grandmother says the high god Di lives in the sky and commands wind, rain and thunder. People cannot ask Di directly; they must ask through the ancestors.'),n:RAINNOTE12}),
@@ -10492,7 +10494,7 @@ GX({id:'gx12_dixin',ch:12,a:[14,80],cond:both(inR('yin'),ybx(3085,3072)),t:X('�
     opt(X('สงสัยว่าใครเป็นคนปล่อยข่าว','Wonder who is spreading it'),S=>{meetX(S,'dixin');fx({kn:3});return X('คนเล่าส่วนใหญ่เพิ่งกลับมาจากทางตะวันตก ที่ซึ่งตระกูลโจวกำลังรวบรวมกำลัง','Most of the tellers have just come back from the west, where the Zhou are gathering strength.')})]}),
 GX({id:'gx12_wenwang',ch:12,a:[14,80],cond:both(inR('zou','vil'),ybx(3095,3080)),t:X('คนในคุกที่วาดเส้น','The prisoner who drew lines'),
  x:X('ซีปั๋วชาง ผู้นำของตระกูลโจวทางตะวันตก ถูกราชาซางขังไว้ที่โหย่วหลี่ คนเล่าว่าในคุก เขาเอาไม้มาเรียงเป็นเส้นตรงกับเส้นขาด จัดเป็นรูปหกเส้นได้หกสิบสี่แบบ','Ji Chang, Lord of the West and head of the Zhou, has been imprisoned by the Shang king at Youli. People say that in prison he lays out sticks in whole and broken lines, arranging them into sixty-four figures of six lines each.'),
- n:X('ตามประเพณีจีน กษัตริย์เหวินแห่งโจวจัดเรียงฉักกระ 64 แบบของคัมภีร์อี้จิงขณะถูกคุมขัง ✦ นักวิชาการปัจจุบันเห็นว่าคัมภีร์นี้พัฒนามาจากการเสี่ยงทายของยุคต้นโจวเป็นเวลานาน ไม่ได้มาจากคนเดียว','Chinese tradition says King Wen of Zhou arranged the 64 hexagrams of the Yijing (I Ching) while imprisoned ✦. Modern scholars think the book grew out of early Zhou divination over a long time, not from one man.'),
+ n:X('ตามประเพณีจีน กษัตริย์เหวินแห่งโจวจัดเรียงสัญลักษณ์หกเส้น (卦) 64 แบบของคัมภีร์อี้จิงขณะถูกคุมขัง ✦ นักวิชาการปัจจุบันเห็นว่าคัมภีร์นี้พัฒนามาจากการเสี่ยงทายของยุคต้นโจวเป็นเวลานาน ไม่ได้มาจากคนเดียว','Chinese tradition says King Wen of Zhou arranged the 64 hexagrams of the Yijing (I Ching) while imprisoned ✦. Modern scholars think the book grew out of early Zhou divination over a long time, not from one man.'),
  o:[opt(X('ส่งอาหารเข้าไปให้เขา','Smuggle food in to him'),S=>{meetX(S,'wenwang');fx({so:3,b:2});return X('เขาไม่พูดอะไร แต่ส่งไม้เรียงเป็นรูปหนึ่งกลับมาให้คุณ คุณไม่เข้าใจมัน แต่เก็บไว้','He says nothing but sends back a figure of sticks. You don’t understand it, but keep it.')}),
     opt(X('ลองเรียงไม้แบบเขาเอง','Try laying out the sticks yourself'),S=>{meetX(S,'wenwang');fx({kn:3});return X('คุณเรียงได้สิบแบบก็งง สามพันปีต่อมา คนทั้งโลกยังเปิดหนังสือเล่มนี้เสี่ยงทาย','You get to ten figures and lose track. Three thousand years later, people around the world still consult this book.')})]}),
 GX({id:'gx12_boyi',ch:12,a:[14,85],cond:both(inR('zou','vil','yin'),ybx(3070,3055)),t:X('สองพี่น้องบนภูเขา','Two brothers on the mountain'),
@@ -10919,7 +10921,7 @@ const AREA26C={28:'ame',26:'eas',4:'wea',6:'naf',8:'sas',10:'eur',12:'eas',14:'a
 const AREA26R={eaf:'afr',saf:'afr',gsa:'afr',lev:'wea',ara:'wea',zag:'wea',ana:'wea',sas:'sas',sun:'sea',jav:'sea',flo:'sea',luz:'sea',phl:'sea',tha:'sea',
   kuk:'png',sah:'png',bis:'png',van:'pol',fij:'pol',ton:'pol',soc:'pol',haw:'pol',rap:'pol',nzl:'pol',eur:'eur',mst:'eur',wcv:'eur',
   sib:'eas',alt:'eas',tib:'eas',eas:'eas',yel:'eas',yan:'eas',ber:'ame',ame:'ame',ale:'naf',alx:'naf',cai:'naf',jud:'wea',uga:'wea',enk:'wea',jer:'wea',kie:'eur',caf:'eur',sar:'eur',sam:'wea',tab:'wea'};
-function area26(S){if(!S)return 'wea';if(S.ch===28)return {nat:'ame',afr:'afr',mes:'ame'}[S.peoNw]||'eur';if(civ(S.ch)&&AREA26C[S.ch]&&!['ale','alx','cai','jud','uga','enk','jer','kie','caf','sar','sam','tab'].includes(S.rg))return S.ch===24&&S.rg==='cor'?'eur':AREA26C[S.ch];return AREA26R[S.rg]||AREA26C[S.ch]||'wea'}
+function area26(S){if(!S)return 'wea';if(S.ch===5)return 'pol';if(S.ch===28)return {nat:'ame',afr:'afr',mes:'ame'}[S.peoNw]||'eur';if(civ(S.ch)&&AREA26C[S.ch]&&!['ale','alx','cai','jud','uga','enk','jer','kie','caf','sar','sam','tab'].includes(S.rg))return S.ch===24&&S.rg==='cor'?'eur':AREA26C[S.ch];return AREA26R[S.rg]||AREA26C[S.ch]||'wea'}
 
 /* ---------- archaic ancestry (estimates for people living in each region today) ---------- */
 const MIX26={afr:[.3,0],naf:[1.5,0],wea:[1.8,0],eur:[1.9,0],sas:[1.9,.1],eas:[2.2,.2],sea:[2,.3],png:[2,4],pol:[1.9,.8],ame:[2,.1]};
@@ -11000,7 +11002,7 @@ function world26(S){const ya=S.ya0,r=srng((S.seed>>>0)+26),sp=S.sp.id,ar=area26(
   const c=WORLD26.filter(w=>ya<=w[0]&&ya>=w[1]&&(w[2]===0||w[2]!==S.ch)&&!(w[2]===1&&sp!=='sap')&&!(w[1]===238&&ar==='png')&&!(w[1]===24000&&ar==='ame'));
   for(let i=c.length-1;i>0;i--){const j=(r()*(i+1))|0;[c[i],c[j]]=[c[j],c[i]]}return c.slice(0,3).map(w=>w[3])}
 function rows26(S){const out=[],m=mix26(S),g=lin26(S),w=world26(S);
-  if(m)out.push([esc(L(X('สายเลือด','Ancestry'))),(Array.isArray(m)?m.map(x=>esc(L(x))).join(' · '):esc(L(m)))+'<br><span class="small">'+esc(L(MIXNOTE26))+'</span>']);
+  if(m)out.push([esc(L(X('สายเลือด','Ancestry'))),(Array.isArray(m)?m.map(x=>esc(L(x))).join(' · '):esc(L(m)))+'<br><span class="small">'+esc(L(S.ch===5?MIXNOTE31:MIXNOTE26))+'</span>']);
   if(g)out.push([esc(L(X('ไล่สาย','Lineage'))),g.map(x=>esc(L(x).trim())).join(' ')+'<br><span class="small">'+esc(L(GENNOTE26))+'</span>']);
   if(w.length)out.push([esc(L(X('ปีเดียวกันที่อื่น','Same year, elsewhere'))),w.map(x=>'· '+esc(L(x))).join('<br>')]);
   return out}
@@ -11480,7 +11482,7 @@ const GAME29={
 function starMode29(){let round=1,total=0;const go=()=>mg29('stars',{arcade:1,round,cons:pick(Object.keys(CONST29))}).then(r=>{total+=r.q;const b=book29();if(total>(b.best.stars||0)){b.best.stars=total;store.set('sit.book',b)}
    if(r.q>=1&&r.next){round++;go()}else homeBook29()});go()}
 /* stars inside a life: once, the first year you spend watching the sky */
-function starDue29(a){return S&&S.starQ29==null&&!S.dead&&a>=10&&a<=60&&(S.focus==='stars'&&rnd()<.5||(S.scAct&&S.scAct.act==='stars'&&S.scAct.age===a)||S.ch===5&&a>=12&&rnd()<.2)}
+function starDue29(a){return S&&S.starQ29==null&&!S.dead&&a>=10&&a<=60&&((S.goals29||[]).includes('stars')&&a>=12&&rnd()<.2||S.focus==='stars'&&rnd()<.5||(S.scAct&&S.scAct.act==='stars'&&S.scAct.age===a)||S.ch===5&&a>=12&&rnd()<.2)}
 async function starLife29(a){if(TEST){S.starQ29=weighted([[0,.2],[1,.3],[2,.3],[3,.2]]);return}const k=constFor29(S);let sc;try{sc=await mg29('stars',{cons:k})}catch(e){sc=1}S.starQ29=sc;
   log(X('คืนนั้นคุณนอนดูฟ้าจนจำ'+CONST29[k].n.th+'ได้ขึ้นใจ','That night you watch the sky until you know '+CONST29[k].n.en+' by heart.'),CONST29[k].f,sc>=2?'it':null);fx({kn:1+sc})}
 ['p29_storm','p29_lend','p29_guest'].forEach(id=>{const p=PERS29.find(p=>p.id===id);const c0=p.c;p.c=S=>(S.settled||civ(S.ch)||S.ch===3)&&(!c0||c0(S))});
@@ -11535,6 +11537,74 @@ DEC.push({id:'c22_letters_f',deck:'child',w:6,ch:22,a:[8,13],cond:S=>S.schOK&&S.
  n:X('วัดเป็นที่เรียนหนังสือของเด็กชายในภูมิภาคนี้มาหลายร้อยปี ผู้หญิงส่วนใหญ่ไม่ได้เรียนที่วัด แต่บางคนเรียนจากพี่น้องหรือพ่อแม่ในบ้าน','For centuries temples were where boys in this region learned to read. Most girls did not study there, though some learned from brothers or parents at home.'),
  o:[opt(X('ขอให้พี่สอน','Ask him to teach you'),S=>{S.lit=clamp((S.lit||0)+8,0,100);fx({kn:3,so:1});return X('พี่หัวเราะ แต่สอนให้ทุกเย็น ปลายปีคุณเขียนชื่อตัวเองบนทรายได้','He laughs, but teaches you every evening. By the year’s end you can write your name in the sand.')}),
     opt(X('ดูเงียบๆ แล้วจำเอง','Watch quietly and remember'),S=>{S.lit=clamp((S.lit||0)+4,0,100);fx({kn:2});return X('ไม่มีใครรู้ว่าคุณอ่านคำบนใบเสมาได้สองคำ','No one knows you can read two words on the boundary stone.')})]});
+
+/* ===================== v0.31: fixes from the "Mika" test (readers of other languages, careers that matter) ===================== */
+
+/* the child-mortality comparison speaks of the reader's own country */
+const INF5A=X('ในสังคมก่อนยุคใหม่ การศึกษาที่รวบรวมข้อมูลจากหลายสังคมพบว่าเด็กราว 1 ใน 4 ตายก่อนอายุหนึ่งขวบ และเกือบครึ่งตายก่อนเป็นวัยรุ่น ','Studies combining data from many pre-modern societies found that about 1 in 4 children died before their first birthday, and nearly half before reaching their teens. ');
+const INF5C={th:X('ประเทศไทยวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In Thailand today, fewer than 1 in 100 children die before age five. '),
+ en:X('ประเทศไทยวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In Thailand today, fewer than 1 in 100 children die before age five. '),
+ ja:X('ญี่ปุ่นวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In Japan today, fewer than 1 in 100 children die before age five. '),
+ ko:X('เกาหลีใต้วันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In South Korea today, fewer than 1 in 100 children die before age five. '),
+ zh:X('จีนวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In China today, fewer than 1 in 100 children die before age five. '),
+ de:X('เยอรมนีวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In Germany today, fewer than 1 in 100 children die before age five. '),
+ es:X('สเปนวันนี้ เด็กตายก่อนอายุห้าขวบไม่ถึง 1 ใน 100 คน ','In Spain today, fewer than 1 in 100 children die before age five. ')};
+const INF5D=X('ลองคิดดูว่าอะไรบ้างที่ทำให้เปลี่ยนไปขนาดนี้ ','Think about what changed to make that difference. ');
+const inf531=()=>L(INF5A)+L(INF5C[lang]||INF5C.en)+L(INF5D);
+
+/* a disaster that comes back is remembered, not described word for word again */
+const AGAIN31={
+ flood:[X('น้ำท่วมอีกแล้ว คราวนี้คุณรู้ว่าต้องขนอะไรขึ้นที่สูงก่อน และขนทันก่อนน้ำมาถึง','The water rises again. This time you know what to carry to high ground first, and you get it there in time.'),X('น้ำท่วมมาอีกครั้ง คนรุ่นหลังถามคุณว่าครั้งก่อนๆ เป็นอย่างไร คุณเล่าขณะที่ช่วยกันวิดน้ำ','Another flood. The young ones ask what the earlier floods were like, and you tell them while you all bail.')],
+ drought:[X('ฝนไม่มาอีกปีหนึ่ง คุณจำได้ว่าคราวก่อนอะไรช่วยให้รอด และเริ่มทำตั้งแต่ต้นฤดู','Another year without rain. You remember what saved you last time and start on it early.'),X('แล้งอีกแล้ว ผู้คนมาถามคุณว่าจะทำอย่างไร เพราะคุณผ่านมาแล้วหลายครั้ง','Drought again. People come to ask what to do, because you have lived through it before.')],
+ storm:[X('พายุมาอีกครั้ง คุณมัดหลังคาไว้แน่นตั้งแต่เห็นเมฆ','The storm comes again. You lashed the roof down the moment you saw the clouds.'),X('พายุอีกลูกหนึ่ง เด็กๆ ร้องไห้ คุณเล่าว่าเคยผ่านแบบนี้มาแล้ว และเช้าวันรุ่งขึ้นก็ยังอยู่','Another storm. The children cry; you tell them you have been through this before, and were still here in the morning.')],
+ wildfire:[X('ไฟป่ามาอีกแล้ว คราวนี้คุณถางพื้นรอบที่พักไว้ก่อนแล้ว','Wildfire again. This time you had already cleared the ground around your shelter.'),X('ควันไฟป่าลอยมาอีกครั้ง คุณรู้ว่าต้องไปทางไหน','Smoke from a wildfire drifts in again. You know which way to go.')],
+ blizzard:[X('พายุหิมะมาอีกครั้ง คุณเก็บฟืนไว้พอตั้งแต่ต้นหนาว','The blizzard returns. You stored enough wood at the start of winter.'),X('หิมะปิดทางอีกแล้ว ทุกคนนั่งชิดกันรอบไฟเหมือนครั้งก่อน','Snow shuts the paths again. Everyone huddles round the fire, as before.')],
+ ash:[X('เถ้าภูเขาไฟตกลงมาอีก คุณคลุมแหล่งน้ำไว้ทันที','Ash falls again. You cover the water at once.'),X('ฟ้ามืดด้วยเถ้าอีกครั้ง คนแก่เล่าว่าเคยเห็นแบบนี้','The sky darkens with ash again. The old ones say they have seen this before.')],
+ quake:[X('แผ่นดินไหวอีกครั้ง คุณวิ่งออกมาที่โล่งก่อนจะคิด','The ground shakes again. You are out in the open before you have time to think.'),X('แผ่นดินสั่นอีกแล้ว คราวนี้เสียหายน้อยกว่า เพราะทุกคนสร้างบ้านให้เตี้ยลง','Another quake. Less is broken this time, because everyone builds lower now.')],
+ tsunami:[X('น้ำทะเลลดลงผิดปกติอีกครั้ง คุณตะโกนให้ทุกคนวิ่งขึ้นที่สูง','The sea pulls back strangely again. You shout for everyone to run uphill.'),X('คลื่นใหญ่มาอีกครั้ง ทุกคนรู้แล้วว่าต้องทำอย่างไร','A great wave comes again. This time everyone knows what to do.')],
+ slide:[X('ดินถล่มอีกครั้ง คุณย้ายที่พักออกจากเชิงเขาไว้แล้ว','The hillside slides again. You had already moved your shelter away from the slope.'),X('ดินเลื่อนลงมาอีก คราวนี้ไม่มีใครอยู่ตรงนั้น','The earth slips again; this time no one is there.')]};
+function again31(k){const n=S.disN31=S.disN31||{};n[k]=(n[k]||0)+1;if(n[k]<2||!AGAIN31[k])return null;return AGAIN31[k][Math.min(n[k]-2,1)]}
+
+/* careers: three moments you actually decide, as you rise */
+function cm31(){const C=CARS()[S.car];if(!C)return null;const lv=S.cm31;S.cm31=0;
+  if(lv===1)return {id:'cm31_1',t:X('งานชิ้นแรกที่เป็นของคุณ','Your first piece'),x:X('วันนี้เป็นครั้งแรกที่คุณทำงานคนเดียวในฐานะ'+C.L[1].th+' ตั้งแต่ต้นจนจบ ไม่มีใครยืนดูอยู่ข้างหลัง','Today, for the first time, you work alone as '+C.L[1].en+', from start to finish, with no one watching over your shoulder.'),
+   o:[opt(X('ทำช้าๆ ให้ประณีตที่สุด','Go slowly and make it as fine as you can'),S=>{fx({cr:4,f:-2});return X('งานเสร็จช้ากว่ากำหนด แต่ครูหยิบขึ้นมาดูนานมาก แล้วพยักหน้า','It is finished late, but your teacher looks at it for a long time, then nods.')}),
+      opt(X('ทำให้เสร็จทันเวลา','Get it done on time'),S=>{fx({f:3,p:2});return X('งานเสร็จทันเวลา ไม่มีที่ติ แต่ก็ไม่มีใครพูดถึง','It is done on time and faultless, though no one mentions it.')})]};
+  if(lv===2)return {id:'cm31_2',t:X('ลูกมือคนแรก','Your first apprentice'),x:X('ตอนนี้คนเรียกคุณว่า'+C.L[2].th+' มีครอบครัวหนึ่งพาลูกมาฝากให้เป็นลูกมือของคุณ','People now call you '+C.L[2].en+'. A family brings their child to be your apprentice.'),
+   o:[opt(X('รับไว้และสอนทุกอย่าง','Take the child and teach everything'),S=>{fx({so:3,p:2,b:2});return X('เด็กคนนั้นซุ่มซ่ามแต่ตั้งใจ ปีต่อมาคุณเห็นมือของตัวเองในงานของเขา','The child is clumsy but keen. A year later you see your own hands in their work.')}),
+      opt(X('ทำงานคนเดียวต่อไป','Keep working alone'),S=>{fx({cr:3});return X('คุณได้เวลาเงียบๆ กับงานมากขึ้น และทำได้ดีขึ้นอีก','You have more quiet hours with the work, and grow better still.')})]};
+  if(lv===3)return {id:'cm31_3',t:X('งานที่ใหญ่ที่สุดในชีวิต','The greatest work of your life'),x:X('ชื่อของคุณไปถึงหูคนที่มีอำนาจที่สุดในละแวกนี้ เขาส่งคนมาบอกว่าต้องการงานจากมือคุณ และจะไม่ยอมรับงานที่ด้อยกว่าที่เคยเห็น','Your name has reached the most powerful person in these parts. They send word that they want work from your hands, and will accept nothing less than the best they have seen.'),
+   o:[opt(X('รับงาน','Accept'),S=>{if(rnd()<.55+(S.cr||0)/250){fx({p:8,b:4});ms(X('ทำงานที่ใหญ่ที่สุดในชีวิตให้คนที่มีอำนาจที่สุด','Made the greatest work of your life for the most powerful patron'));return X('งานชิ้นนั้นถูกพูดถึงไปอีกหลายปี และมีคนเดินทางมาไกลเพื่อดูมัน','People talk about the piece for years, and some travel far to see it.')}fx({p:-3,b:-3});return X('งานไม่เป็นอย่างที่เขาหวัง เขาจ่ายครึ่งเดียว และคุณนอนไม่หลับไปหลายคืน','It is not what they hoped for. They pay half, and you lie awake for many nights.')}),
+      opt(X('ปฏิเสธอย่างสุภาพ','Decline politely'),S=>{fx({b:2});return X('คุณกลับไปทำงานเล็กๆ ที่ทำให้มีความสุข','You go back to the small work that makes you happy.')})]};
+  return null}
+
+/* children are named the day they are born */
+function kidName31(sx){return S.ch===6?nm4X(genName6(S,sx,era6(S.ya))):S.ch===4?nm4X(genName4(S,sx,era4(S.ya))):S.ch===16?gn16X(sx):S.ch===18?gn18X(sx,'sib'):S.ch===20?gn20X(sx):S.ch===22?gn22X(sx):S.ch===24?gn24X(sx):S.ch===26?gnMgX(sx):S.ch===28?gnNwX(sx):null}
+function birth31(){const i=S.kids.length-1,k=S.kids[i];let n=null;try{k.sex=srng((S.seed^(i*7919+k.born))>>>0)()<.5?'m':'f';n=kidName31(k.sex)}catch(e){}
+  if(!n){const used=S.ppl.map(p=>p.n.th).concat(S.kids.map(x=>x.n&&x.n.th));const pool=PNAMES.filter(x=>!used.includes(x.th));n=pick(pool.length?pool:PNAMES)}k.n=n;
+  return k.sex==='f'?X('ลูกคนที่ '+S.kids.length+' ของคุณเกิดแล้ว เป็นลูกสาว คุณตั้งชื่อเธอว่า '+n.th,'Your child number '+S.kids.length+' is born, a daughter. You name her '+n.en+'.'):X('ลูกคนที่ '+S.kids.length+' ของคุณเกิดแล้ว เป็นลูกชาย คุณตั้งชื่อเขาว่า '+n.th,'Your child number '+S.kids.length+' is born, a son. You name him '+n.en+'.')}
+
+/* Pacific voyagers came by the Austronesian route */
+const MIXNOTE31=X('ตัวเลขนี้สำหรับนักเดินเรือลาปิตาที่สืบเชื้อสายมาจากไต้หวันและฟิลิปปินส์ ดีเอ็นเอโบราณของคนลาปิตารุ่นแรกในวานูอาตูและตองกาแทบไม่มีเชื้อสายปาปัว ส่วนชาวปาปัวที่อยู่บนเกาะเหล่านี้มาก่อนหลายหมื่นปีมีเดนิโซวาราว 3–5%',
+  'These figures are for Lapita voyagers descended from Taiwan and the Philippines. Ancient DNA of the first Lapita people in Vanuatu and Tonga shows almost no Papuan ancestry, while the Papuans who had lived on these islands for tens of thousands of years carry about 3–5% Denisovan DNA.');
+
+/* auto mode does not make the same choice every time a decision comes back */
+let AP31=null;
+
+/* an early death puts "where do your descendants go?" first */
+function lin31(){try{const lb=document.getElementById('linBlock'),ep=document.getElementById('dEpi');if(!lb||lb.hidden||!ep)return;
+  if(S.age<15){if(lb.nextSibling!==ep)ep.parentNode.insertBefore(lb,ep);lb.classList.add('lin31')}else{const after=document.getElementById('dMs');if(lb.classList.contains('lin31')&&after){after.closest('.block').after(lb);lb.classList.remove('lin31')}}}catch(e){}}
+
+/* chapters still being translated go last for readers of other languages */
+const TRL31=()=>!['th','en'].includes(lang);
+LANG.th.chTrans31='บทที่ยังแปลไม่เสร็จ';LANG.en.chTrans31='Chapters still being translated';
+/* Pacific lives had no way to find a partner (the band-meeting scene is filtered out on the islands) */
+DEC.push({id:'p5_marry',ch:5,deck:'adult',w:5,a:[16,32],cond:S=>!S.partner,t:X('เรือจากเกาะใกล้ๆ','A canoe from the next island'),
+ x:X('เรือแคนูจากเกาะใกล้ๆ มาแลกหม้อดินกับเปลือกหอย มีคนหนึ่งจากหมู่บ้านนั้นหาเรื่องมาคุยกับคุณทุกวันจนเรือต้องกลับ','A canoe from the next island comes to trade pots for shell. Someone from that village finds a reason to talk with you every day until it must sail home.'),
+ n:X('ชุมชนออสโตรนีเซียนยุคแรกน่าจะแต่งงานข้ามหมู่บ้านและข้ามเกาะ ซึ่งช่วยผูกเครือข่ายแลกเปลี่ยนให้แน่นขึ้น นักวิจัยบางกลุ่มเสนอจากดีเอ็นเอว่าฝ่ายชายมักย้ายไปอยู่กับครอบครัวฝ่ายหญิง แต่เรื่องนี้ยังถกเถียง','Early Austronesian communities probably married between villages and islands, which bound trade networks together. Some researchers argue from DNA that men often moved to their wife’s family, but this is still debated.'),
+ o:[opt(X('ไปกับเรือลำนั้น','Sail away with them'),S=>{S.partner=1;fx({b:-3,so:2});ms(X('มีคู่ และย้ายไปอยู่อีกเกาะ','Found a partner and moved to another island'));return X('คุณลงเรือไปพร้อมของไม่กี่ชิ้น และเริ่มชีวิตกับครอบครัวใหม่ที่พูดสำเนียงต่างไปเล็กน้อย','You board with a few belongings and begin life with a new family who speak with a slightly different accent.')}),
+    opt(X('ชวนเขามาอยู่ที่นี่','Ask them to stay here'),S=>{if(rnd()<.7){S.partner=1;fx({b:6});ms(X('มีคู่ที่ข้ามทะเลมาอยู่ด้วยกัน','Found a partner who crossed the sea to stay'));return X('เมื่อเรือออก เขาไม่ได้อยู่บนเรือ','When the canoe leaves, they are not on it.')}fx({b:-2});return X('เขาลังเลอยู่นาน แล้วก็กลับไปกับเรือ','They hesitate a long time, then sail home.')}),
+    opt(X('ยังไม่ผูกพันกับใคร','Not yet'),S=>{S.later=1;return X('เรือแล่นหายไปทางขอบฟ้า','The canoe sails away over the horizon.')})]});
 
 function fig(ctx,x,y,o){if(GFX.hi){fig24(ctx,x,y,o||{});return}const R=(a,b,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(a|0,b|0,w|0,h|0)};x|=0;y|=0;
   const h=o.h||6,c=o.c||'#1e140e',hd=o.elder?'#cfc6b8':c,f=o.f||0,p=o.pose||'stand';
@@ -12215,8 +12285,8 @@ function renderHome(){
     marks.map(m=>'<li class="'+(m.hi?'hi':'')+'"><b class="num">'+(m.y?clockStr(m.y):'24:00:00')+'</b><span>'+t(m.k)+'</span></li>').join('');
   const rng=c=>fmt(CHAPS[c].old)+'–'+fmt(CHAPS[c].new),clk=c=>clockStr(CHAPS[c].old)+'–'+clockStr(CHAPS[c].new);
   const card=(n,lab,a,b,y,c,open,lin)=>'<button class="ch '+(open?(n===chap?'on':''):'off')+'" data-ch="'+n+'"'+(open?' aria-pressed="'+(n===chap)+'"':' disabled')+'><div class="n">'+lab+'</div><div><h3>'+t(a)+(open?(n===chap?'<span class="pick">'+t('chPick')+'</span>':''):'<span class="tag">'+t('soon')+'</span>')+'</h3><p>'+t(b)+'</p><div class="meta num">'+t('yearsAgo',{n:y})+' · '+c+(lin?' · '+t('linTag'):'')+'</div></div></button>';
-  $('#chap').innerHTML=card(1,'01','ch1t','ch1d',rng(1),clk(1),1)+card(2,'02','chMamT','chMamD',rng(2),clk(2),1)+card(3,'03','ch2t','ch2d',rng(3),clk(3),1)+card(4,'04','ch3t','ch3d',rng(4),clk(4),1)+card(6,'05','chEgT','chEgD',rng(6),clk(6),1)+card(8,'06','chInT','chInD',rng(8),clk(8),1)+card(10,'07','chAeT','chAeD',rng(10),clk(10),1)+card(12,'08','chShT','chShD',rng(12),clk(12),1)+card(14,'09','chOlT','chOlD',rng(14),clk(14),1)+card(16,'10','chGrT','chGrD',rng(16),clk(16),1)+card(18,'11','chRoT','chRoD',rng(18),clk(18),1)+card(20,'12','chGaT','chGaD',rng(20),clk(20),1)+card(22,'13','chSuT','chSuD',rng(22),clk(22),1)+card(24,'14','chIsT','chIsD',rng(24),clk(24),1)+card(26,'15','chMoT','chMoD',rng(26),clk(26),1)+card(28,'16','chNwT','chNwD',rng(28),clk(28),1)+card(5,'17','chPacT','chPacD',rng(5),clk(5),1,1)
-    +'<p class="chgroup">'+t('journeys')+'</p>'+card(9,'→','chJT','chJD',rng(9),clk(9),1,1);
+  $('#chap').innerHTML=card(1,'01','ch1t','ch1d',rng(1),clk(1),1)+card(2,'02','chMamT','chMamD',rng(2),clk(2),1)+card(3,'03','ch2t','ch2d',rng(3),clk(3),1)+card(4,'04','ch3t','ch3d',rng(4),clk(4),1)+card(6,'05','chEgT','chEgD',rng(6),clk(6),1)+card(8,'06','chInT','chInD',rng(8),clk(8),1)+card(10,'07','chAeT','chAeD',rng(10),clk(10),1)+card(12,'08','chShT','chShD',rng(12),clk(12),1)+card(14,'09','chOlT','chOlD',rng(14),clk(14),1)+card(16,'10','chGrT','chGrD',rng(16),clk(16),1)+card(18,'11','chRoT','chRoD',rng(18),clk(18),1)+card(20,'12','chGaT','chGaD',rng(20),clk(20),1)+card(22,'13','chSuT','chSuD',rng(22),clk(22),1)+(TRL31()?'':card(24,'14','chIsT','chIsD',rng(24),clk(24),1)+card(26,'15','chMoT','chMoD',rng(26),clk(26),1)+card(28,'16','chNwT','chNwD',rng(28),clk(28),1))+card(5,'17','chPacT','chPacD',rng(5),clk(5),1,1)
+    +'<p class="chgroup">'+t('journeys')+'</p>'+card(9,'→','chJT','chJD',rng(9),clk(9),1,1)+(TRL31()?'<p class="chgroup">'+t('chTrans31')+'</p>'+card(24,'14','chIsT','chIsD',rng(24),clk(24),1)+card(26,'15','chMoT','chMoD',rng(26),clk(26),1)+card(28,'16','chNwT','chNwD',rng(28),clk(28),1):'');
   document.querySelectorAll('#modeSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===mode));
   document.querySelectorAll('#paceSeg button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===+pace));
   document.querySelectorAll('#legSeg button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===+legOn));
@@ -12315,7 +12385,7 @@ function renderDeath(){
   $('#dTitle').textContent=L(S.title);
   $('#dLine').textContent=t('dLine',{sp:L(S.sp.n),a:S.age,c:L(CAUSE[S.cause])})+(S.kids.length?' · '+t('kids',{n:S.kids.length})+', '+t('kidsAlive',{n:S.kids.filter(k=>S.age-k.born>=15&&(k.dies==null||k.dies>=15)).length})+(S.kids.filter(k=>S.age-k.born<15&&(k.dies==null||k.born+k.dies>S.age)).length?', '+L(X('ยังเป็นเด็ก ','still children: '))+S.kids.filter(k=>S.age-k.born<15&&(k.dies==null||k.born+k.dies>S.age)).length:''):'');
   $('#dPath').textContent=t('path',{p:S.path.map(r=>L(REGIONS[r].n)).join(' → ')})+' · '+t('yearsAgo',{n:fmt(S.ya0)});
-  let epi=(S.age<5?L(INF5):'')+(S.ch===28?epiNw(S):S.ch===26?epiMg(S):S.ch===24?epi24(S):S.ch===22?epi22(S):S.ch===20?epi20(S):S.ch===18?epi18(S):S.ch===16?epi16(S):S.ch===14?epi14(S):S.ch===12?epi12(S):S.ch===10?epi10(S):S.ch===8?epi8(S):S.ch===6?epi6(S):S.ch===4?epi4(S):L((S.ch===3&&epi3(S))||(S.ch===5&&EPI5[S.sp.id])||(S.ch===2&&EPI2[S.sp.id])||EPI[S.sp.id])+(S.mixed?L(MIXED):''));
+  let epi=(S.age<5?inf531():'')+(S.ch===28?epiNw(S):S.ch===26?epiMg(S):S.ch===24?epi24(S):S.ch===22?epi22(S):S.ch===20?epi20(S):S.ch===18?epi18(S):S.ch===16?epi16(S):S.ch===14?epi14(S):S.ch===12?epi12(S):S.ch===10?epi10(S):S.ch===8?epi8(S):S.ch===6?epi6(S):S.ch===4?epi4(S):L((S.ch===3&&epi3(S))||(S.ch===5&&EPI5[S.sp.id])||(S.ch===2&&EPI2[S.sp.id])||EPI[S.sp.id])+(S.mixed?L(MIXED):''));
   if([4,6,8,10,12,14].includes(S.ch))epi+=metXLine(S);
   if(S.pioneer)epi+=L(X(' '+ANI[S.pioneer].n.th+'ที่คุณเลี้ยงจากสัตว์ป่าจะเป็นบรรพบุรุษของฝูงในหมู่บ้านไปอีกหลายร้อยปี',' The '+ANI[S.pioneer].n.en+' you raised from wild young will be ancestors of the village herds for centuries.'));
   if(S.cust.length)epi+=L(X(' เรื่องที่คุณพูดกลายเป็นธรรมเนียม: '+S.cust.map(c=>CUSTN[c].th).join(' และ ')+' ลูกหลานยังทำต่อไปอีกหลายรุ่น โดยไม่มีใครจำได้ว่าเริ่มจากคุณ',' Your words became custom: '+S.cust.map(c=>CUSTN[c].en).join(' and ')+'. Descendants keep it for generations, and no one remembers it began with you.'));
@@ -12338,7 +12408,7 @@ function renderDeath(){
     $('#linList').innerHTML=LIN.route.map(x=>'<li><b class="num">'+fmt(x.ya)+'</b><span>'+esc(L(REGIONS[x.rg].n))+'</span></li>').join('');
     $('#linOpts').innerHTML=S.linOpts.length?S.linOpts.map((o,i)=>'<button data-lin="'+i+'">'+esc(o.stay?t('linStay',{r:L(REGIONS[o.rg].n)}):t('linGo',{r:L(REGIONS[o.rg].n)}))+'<span class="small">'+t('yearsAgo',{n:fmt(o.ya)})+'</span></button>').join(''):'<p class="note">'+t('linEnd')+'</p>'}
   $('#shareText').value=t('shareTpl',{sp:L(S.sp.n),pl:L(REGIONS[S.path[0]].n),y:fmt(S.ya0),o:oddsStr(),ti:L(S.title),a:S.age,s:sec})+(isLin?t('linShare',{g:fmt(LIN.gen),k:fmt(linKm())}):'');
-  makeCard(sec);if(S.book29)deathExtra29(S,S.book29);
+  makeCard(sec);if(S.book29)deathExtra29(S,S.book29);lin31();
 }
 async function makeCard(sec){
   try{await Promise.race([Promise.all(['600 40px Pridi','400 22px Anuphan','600 22px Anuphan','12px Silkscreen'].map(f=>document.fonts.load(f))),sleep(1500)])}catch(e){}
