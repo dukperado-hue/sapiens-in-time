@@ -60,7 +60,7 @@ function toast29(a){try{toast29_(a)}catch(e){}}
 function toast29_(a){if(TEST)return;try{SND.ui('fame')}catch(e){}
   let el=document.getElementById('toast29');if(!el){el=document.createElement('div');el.id='toast29';document.body.appendChild(el);
     const st=document.createElement('style');st.textContent='#toast29{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 14px);transform:translate(-50%,-140%);z-index:90;background:var(--soot,#1b1511);border:1px solid var(--ember,#eba84b);color:var(--bone,#ede4d4);padding:10px 16px;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,1.4,.4,1);max-width:min(90vw,420px);font-size:14px}#toast29.on{transform:translate(-50%,0)}#toast29 b{color:var(--ember,#eba84b);display:block;font-family:var(--display);font-size:16px}';document.head.appendChild(st)}
-  el.innerHTML='<b>🏆 '+esc(L(a.n))+'</b>'+esc(L(a.d));el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),3800)}
+  el.innerHTML='<b>🏆 '+esc(L(a.n))+'</b>'+esc(L(a.d));el.classList.remove('on');void el.offsetWidth;el.classList.add('on');el.onclick=()=>el.classList.remove('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),3800)}
 function deathExtra29(S,res){try{deathExtra29_(S,res)}catch(e){}}
 function deathExtra29_(S,res){const box=document.createElement('div');box.className='goal29';box.id='goal29';
   const g=goalsDone29(S);let h='<h2>'+esc(L(X('เป้าหมายชีวิต','Life goals')))+'</h2>';

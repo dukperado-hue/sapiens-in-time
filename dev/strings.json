@@ -8897,7 +8897,27 @@
 "a fire",
 "Spin the drill",
 "Nurse the ember",
-"Blow"
+"Blow",
+"About to choose: ",
+"tap to choose yourself",
+"Many stone boundary markers in the northeast date from the Dvaravati period, roughly the 6th to 9th centuries, and some are carved with Jatakas such as the Vessantara. Old Mon inscriptions of this age are mostly short notes of donors and merit. Players of the Ganges chapter will remember the Vessantara carved on the Sanchi gate.",
+"The Thai topknot-cutting rite has roots in Brahmin ritual: children kept a topknot until adolescence, and its cutting marked growing up. The rite is known from much later times; there is no direct evidence that people of the Dvaravati period practised it, so this scene is a guess.",
+"Their children call you aunt as they grow up.",
+"Their children call you uncle as they grow up.",
+"a single bead on a cord",
+"a small pierced shell",
+"a little red stone polished smooth",
+"The baby cries less and will hardly feed.",
+"Lately you tire easily and do not want to run and play.",
+"Something that began mildly days ago does not go away. Your body will not listen any more.",
+"Lately you sleep longer each day, and dream of people who are gone.",
+"Letters learned on the sly",
+"Every morning your brother goes to the temple to learn letters from a monk. In the evening he writes them in the sand by the house to practise, and you sit beside him watching.",
+"For centuries temples were where boys in this region learned to read. Most girls did not study there, though some learned from brothers or parents at home.",
+"Ask him to teach you",
+"He laughs, but teaches you every evening. By the year’s end you can write your name in the sand.",
+"Watch quietly and remember",
+"No one knows you can read two words on the boundary stone."
 ],
 "tpls": [
 "an early keeper of {0}",
@@ -9111,6 +9131,14 @@
 "You make {0}, the finest you have ever made. People stop by your door to look.",
 "Made {0}, the finest of your life",
 "You are born in {0}.",
-"That night you watch the sky until you know {0} by heart."
+"That night you watch the sky until you know {0} by heart.",
+"{0}, your {1} and one of the people closest to you, dies suddenly. You never said goodbye.",
+"Your mother ties {0} round your wrist. It was your grandmother’s, she says; keep it safe.",
+"This same year, elsewhere · {0}",
+"Your {0} animals are divided among your kin.",
+"about {0} years ago",
+"CE {0}",
+"Born and died in {0}",
+"Born in {0}, died in {1}"
 ]
 }
