@@ -1,0 +1,53 @@
+S8977	buen resultado aprox. 
+S8978	Un viejo amigo te recomienda
+S8979	Ir adonde te manda tu amigo
+S8980	Agradecer, pero quedarte
+S8981	Un amigo en apuros
+S8982	Darle la mitad de lo que tienes
+S8983	Ayudar solo en lo que puedas
+S8984	El rival de siempre
+S8985	Tender la mano y acabar con la rivalidad
+S8986	Una encrucijada
+S8987	La vida ha llegado al punto en que debes elegir: seguir con tu oficio hasta la vejez o empezar de nuevo en otro.
+S8988	Tus manos recuerdan la mitad del trabajo viejo; la otra mitad tienes que aprenderla de nuevo como un niño.
+S8989	Seguir con tu oficio
+S8990	Vuelves al trabajo que tus manos conocen mejor.
+S8991	un gobernante cuyo nombre queda en los registros
+S8992	El viejo gobernante muere, y tu linaje y otros dos reclaman el derecho. La gente empieza a mirarte a ti.
+S8993	un capitán que llegó adonde nadie había ido
+S8994	Alguien ha reunido barcos y tripulación suficientes para un viaje más lejano que ningún otro, y quiere que tú lo dirijas.
+S8995	un general del que se habla durante siglos
+S8996	Se acerca una gran guerra, y los jefes necesitan a alguien a quien los soldados sigan hasta el final. Mandan a buscarte.
+S8997	un pensador cuya obra se copia durante siglos
+S8998	Empiezas a escribir lo que has pensado toda tu vida. Si lo terminas, quizá lo copien durante siglos, o quizá nadie lo lea nunca.
+S8999	un artesano cuya obra aún se contempla siglos después
+S9000	Imaginas una pieza que nadie ha hecho jamás. Te llevará años y todo lo que has ahorrado.
+S9001	Un nombre que podría recordarse
+S9002	A la mayoría de las personas de la historia no las recuerda nadie. En este juego muy pocas vidas llegan a esta encrucijada, y si lo logras serás alguien de ese tipo, no un personaje histórico real.
+S9003	Darle tu vida entera
+S9004	Funciona. La gente empieza a pronunciar tu nombre en lugares donde nunca has estado.
+S9005	Fracasa, y pagas el precio durante años.
+S9006	Quedarte con la vida que tienes
+S9007	Eliges una vida que nadie recordará, con la gente que quieres cerca.
+T224	Balance contra {0}: {1} ganadas, {2} perdidas
+T225	{0}, con quien juegas desde la infancia, dice que alguien busca trabajadores y ya le ha dicho que eres de fiar.
+T226	El trabajo es más duro de lo que esperabas, pero lo haces bien, y {0} está orgulloso de haber respondido por ti.
+T227	{0} se encoge de hombros, pero recuerda que dijiste que no.
+T228	{0} llega al anochecer, pálido. Este año su casa lo ha perdido todo, y no tiene a quién pedir salvo al amigo con quien creció.
+T229	{0} llora y promete no olvidarlo nunca.
+T230	{0} te da las gracias, aunque sus ojos esperaban más.
+T231	{0}, que compite contigo desde la adolescencia, te desafía otra vez a medir vuestra destreza delante de todos.
+T232	Ganas. {0} se inclina ante ti, algo que nunca había hecho.
+T233	{0} vuelve a ganar. La multitud ruge. Recuerdas exactamente cada error.
+T234	{0} mira tu mano un buen rato y luego la aprieta con fuerza.
+T235	{0} se ríe de ti y se marcha.
+T236	{0} te anima a probar otro trabajo: alguien como tú, dice, no debería quedarse atado al mismo oficio hasta la vejez.
+T237	Empezar de nuevo como: {0}
+T238	Cambió de oficio: {0}
+T239	En tu año difícil, {0} llama a tu puerta con una cesta llena. «Aquella vez me diste la mitad».
+T240	{0}, tu maestro, viene a ver la primera pieza que hiciste solo, le da vueltas largo rato y la deja sin decir nada, sonriendo.
+T241	En el funeral, {0} y {1} son quienes están más cerca.
+T242	En el funeral, {0} es quien está más cerca.
+T243	Incluso {0}, tu rival de toda la vida, está al fondo.
+T244	Tu nombre se contará durante mucho tiempo, como {0} (un personaje de este juego, no una persona real).
+T245	{0} ganadas, {1} perdidas
