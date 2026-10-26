@@ -530,7 +530,7 @@ body.dying .stage::before,body.dying .stage::after{height:12%}
       <p class="eyebrow" data-i18n="linPick"></p>
       <div class="opts" id="linOpts"></div>
     </div>
-    <div class="field">
+    <div class="field" hidden>
       <span data-i18n="finalMsg"></span>
       <textarea id="finalMsg" data-i18n-ph="finalPh"></textarea>
     </div>
@@ -1732,7 +1732,7 @@ const PDEC=[
  of:S=>[opt(herdVal()>=10?X('จัดงานเลี้ยงและแบ่งเนื้อให้ทุกบ้าน','Hold a feast and share meat with every house'):X('แบ่งอาหารและของที่มีให้คนอื่น','Share your food and things with others'),S=>{if(herdVal()>=10){const k=Object.keys(S.herd).sort((a,b)=>S.herd[b]-S.herd[a])[0];addHerd(k,-2)}else fx({f:-8});fx({b:7,p:2});return X('เสียงนินทาเงียบลง อย่างน้อยก็ในตอนนี้','The gossip falls quiet, at least for now.')}),
   opt(X('ไปคุยกับคนที่เริ่มพูด','Go and talk to whoever started it'),S=>{if(rnd()<.4+S.so/150){fx({p:3});return X('คุณพูดตรงไปตรงมาจนอีกฝ่ายยอมรับว่าพูดเกินไป','You speak so plainly that they admit they went too far.')}fx({b:-4});return X('การเผชิญหน้าทำให้ทุกอย่างแย่ลง','The confrontation only makes things worse.')}),
   opt(X('ไม่สนใจ','Ignore it'),S=>{fx({p:-3});return X('เรื่องเล่าที่ไม่มีใครแก้ จะกลายเป็นความจริงในสายตาคนฟัง','A story no one answers becomes true in the ears of those who hear it.')})]},
-{id:'p_rival',deck:'youth',w:1.6,cond:S=>!!pp('rival'),t:X('คู่แข่ง','Your rival'),
+{id:'p_rival',deck:'youth',w:1.6,cond:S=>false,t:X('คู่แข่ง','Your rival'),
  xf:S=>PX(pp('rival'),'{p}ท้าคุณแข่งวิ่งขึ้นเนินต่อหน้าทุกคน','{p} challenges you to a race up the hill in front of everyone.'),
  of:S=>{const r=pp('rival');return[opt(X('รับคำท้า','Accept'),S=>{if(rnd()<.35+(S.sv+S.tr)/220+(hasT('legs')?.2:0)){fx({p:6});r.tr+=8;return PX(r,'คุณถึงยอดเนินก่อน {p}หอบอยู่ข้างหลัง แต่ยิ้มให้คุณเป็นครั้งแรก','You reach the top first. {p} gasps behind you, and smiles at you for the first time.')}fx({p:-3});return PX(r,'{p}ชนะ และเยาะเย้ยคุณไปอีกหลายเดือน','{p} wins, and mocks you for months.')}),
   opt(X('ชวนให้มาเป็นเพื่อนกันแทน','Offer friendship instead'),S=>{if(rnd()<.3+S.so/120){r.k='friend';r.tr=60;return PX(r,'{p}อึ้งไปนาน แล้วหัวเราะ ตั้งแต่วันนั้นคุณสองคนไม่แข่งกันอีก','{p} is stunned, then laughs. From that day you two stop competing.')}r.tr-=3;return PX(r,'{p}คิดว่าคุณกลัว','{p} thinks you are afraid.')}),
@@ -2599,7 +2599,7 @@ async function yearStep(){
   if([5,13,20,45].includes(S.age))planStage(stageOf(S.age));
   makeOffer();
   if(!TEST)renderPlay();
-  if(REFLECT[S.age]&&!auto&&!TEST)await reflect(S.age);
+  /* v32: reflection prompt removed (notes were never shown) */
 }
 const ordEn=n=>n+(['th','st','nd','rd'][(n%100-20)%10]||['th','st','nd','rd'][n%100]||'th');
 
