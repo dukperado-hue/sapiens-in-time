@@ -1,1 +1,201 @@
-
+S8698	Live to the age of 50
+S8699	Raise at least two children to adulthood
+S8700	Meet or witness something history wrote down
+S8701	Make one thing as finely as you ever will
+S8702	Rise high in your trade
+S8703	Live somewhere other than where you were born
+S8704	Learn to read and write
+S8705	Become someone everyone respects
+S8706	Make at least three friends in other bands
+S8707	Be free before you die
+S8708	Read a whole constellation without a mistake
+S8709	Survive the day your city falls
+S8710	Life goals
+S8711	A first life
+S8712	Finish one life
+S8713	Ten lives
+S8714	Finish ten lives
+S8715	Elder
+S8716	Live to 60
+S8717	The one everyone comes to hear
+S8718	Live to 80
+S8719	A house full of children
+S8720	Raise five children to adulthood
+S8721	Someone who did what they set out to
+S8722	Complete both life goals
+S8723	Wrong place, right time
+S8724	Witness three famous moments in one life
+S8725	Collector of stories
+S8726	Have 10 entries in the book of lives
+S8727	A witness to history
+S8728	Have 40 entries in the book of lives
+S8729	Traveller through time
+S8730	Live in five different chapters
+S8731	Every age
+S8732	Live in every chapter
+S8733	Hands that remember
+S8734	Get a perfect result in a hands-on minigame
+S8735	Jack of all crafts
+S8736	Try pottery, knapping, fire and stars
+S8737	Reader of the sky
+S8738	Freedom
+S8739	Be born enslaved and become free
+S8740	Survivor
+S8741	Survive the fall of your city
+S8742	The top of the trade
+S8743	Reach the highest rank of a career
+S8744	The shortest life
+S8745	A life that ends before age one, like about one child in four before modern times
+S8746	New in your book of lives: 
+S8747	New achievements: 
+S8748	Chapters 04–09, the first civilisations
+S8749	Still to find: 
+S8750	Lives lived 
+S8751	Book of lives 
+S8752	Achievements 
+S8753	Book of lives and achievements
+S8754	✦ Star reading mode
+S8755	best 
+S8756	A friend’s wedding
+S8757	The friend you grew up with is getting married and asks you to help prepare, though your own work is piling up this year.
+S8758	Help with everything
+S8759	You barely sleep for three days, but your friend holds you tight on the day.
+S8760	Help as much as you can
+S8761	The wedding goes well and so does your own work.
+S8762	Parents growing old
+S8763	One of your parents walks more slowly each year, forgets the neighbours’ names, and wakes at night calling for people long dead.
+S8764	Take them in and care for them
+S8765	The house feels smaller, but the children hear stories no one else tells any more.
+S8766	Let a sibling care for them
+S8767	You visit every month and feel guilty every time you leave.
+S8768	Someone better than you
+S8769	Someone your age does the same work you do, and everyone talks only about them. Tonight someone dares you to compete in front of everyone.
+S8770	Accept the challenge
+S8771	You win by a hair, and they are the first to shake your hand.
+S8772	You lose, but learn more than in a year of practice.
+S8773	Ask to learn from them
+S8774	They are surprised, then teach you without holding back.
+S8775	Something lost
+S8776	The one thing you have from your mother is lost on the way home. Rain is coming.
+S8777	Go back and search
+S8778	You find it in the mud by the path, just before the rain.
+S8779	You search until dark and soaked, and never find it.
+S8780	You tell yourself that what she really gave you was never in the thing.
+S8781	A stranger at dusk
+S8782	A tired stranger asks for a place to sleep for one night. He speaks with an odd accent and will not say where he is from.
+S8783	Give him a bed and food
+S8784	In the morning he is gone, with the household’s spare food.
+S8785	He tells of faraway lands late into the night, and leaves a small gift when he goes.
+S8786	Turn him away
+S8787	It rains hard that night. You sleep badly.
+S8788	A child’s fever
+S8789	Your youngest has burned with fever for three days and will eat nothing. You have to decide what to do.
+S8790	Sit up with them all night
+S8791	The fever breaks at dawn and the child sleeps in your arms.
+S8792	Fetch a healer
+S8793	The healer gives a bitter drink and says to give plenty of water. Two days later the child is running about.
+S8794	Your children quarrel
+S8795	Two of your children quarrel bitterly over something you never thought mattered. Both come to you to decide.
+S8796	Side with the one who is right
+S8797	One smiles. The other does not speak to you for months.
+S8798	Make them settle it themselves
+S8799	Both are cross with you, but they make peace in the end.
+S8800	A youngster who wants to learn
+S8801	A child from nearby has watched you work every day. Today they finally come and ask if they can learn.
+S8802	Teach them
+S8803	Ten years later the child is better than you, and tells everyone who taught them.
+S8804	Tell them to wait until they are older
+S8805	The child never comes back. You see them learning from someone else.
+S8806	The night of the quarrel
+S8807	You and your partner quarrel bitterly about the old thing that never ends. Tonight one of you has to speak first.
+S8808	Apologise first
+S8809	Your partner is quiet a long time, then takes your hand.
+S8810	Wait for them to speak
+S8811	The whole house is silent for three days.
+S8812	A friend asks to borrow
+S8813	A neighbour who once helped you asks to borrow your spare food until the harvest. But no one has much this year.
+S8814	Lend it
+S8815	After the harvest, they return more than they borrowed.
+S8816	They cannot pay it back, but in your own bad year they are the first to help.
+S8817	Refuse politely
+S8818	They understand, but rarely stop by again.
+S8819	The dream that returns
+S8820	For three nights you dream the same dream: a path you have never walked, and someone waiting at the end of it.
+S8821	Tell an elder
+S8822	The elder listens and nods. Your grandmother, they say, dreamt the same.
+S8823	On the fourth night the dream does not come. You feel strangely empty.
+S8824	After the storm
+S8825	Last night’s storm tore off half your roof. The house next door fared worse.
+S8826	Fix your own house first
+S8827	The roof is done just before the next rain.
+S8828	Help next door first
+S8829	You sleep wet that night, but the next day the whole street comes to fix your house.
+S8830	Your feast
+S8831	A good year: you have enough to feed the whole neighbourhood once, or to save for next year.
+S8832	Hold the feast
+S8833	Laughter until late. People talk about it for years.
+S8834	Save it
+S8835	The next year is dry. You are glad you saved it.
+S8836	An old friend returns
+S8837	A friend who left in your youth comes back to visit. Both of you are grey. They recognise you before you recognise them.
+S8838	Talk all night
+S8839	You laugh at the old stories until you cry.
+S8840	Ask what the world out there is like
+S8841	Their stories make you long to travel, though your knees will not allow it.
+S8842	A friend’s death
+S8843	One of your closest friends dies suddenly. You never said goodbye.
+S8844	Look after their family
+S8845	Their children call you aunt or uncle as they grow up.
+S8846	Spend time alone
+S8847	Every evening until the season ends, you walk to the place you used to go together.
+S8848	Something overheard
+S8849	You overhear two people planning to cheat someone you know. They don’t know you heard.
+S8850	Warn the person
+S8851	The cheats find out who talked and make trouble for you for a long time.
+S8852	They thank you and never forget it.
+S8853	Stay out of it
+S8854	It happens just as you heard. You never tell anyone.
+S8855	Shape a pot
+S8856	Hold to draw the clay up; let go at the dotted line. Three times: height, belly, rim.
+S8857	Knap a spear point
+S8858	Tap as each ring closes on its mark on the stone. Every good strike sends a flake flying.
+S8859	Make fire with a hand drill
+S8860	Tap left and right in turn to spin the drill (or press A / D) until an ember forms, then tap to blow when it glows brightest.
+S8861	Read the stars
+S8862	Remember the shape, then tap its stars in order along the line.
+S8863	The Crocodile (the Big Dipper)
+S8864	Thais call this the Crocodile, Europeans the Big Dipper or Plough, the Chinese the Northern Ladle. Its last two stars point toward the north celestial pole, though which star sits near the pole changes over the ages, because Earth’s axis wobbles once every 26,000 years.
+S8865	Orion (the Thai Plough)
+S8866	The three stars in a row across Orion, with the line hanging below them, are what Thais call the Plough, for their shape. The red star at the shoulder is Betelgeuse, a red supergiant that will one day explode as a supernova.
+S8867	The Pleiades (Matariki)
+S8868	Nearly every culture has a name for the Pleiades. Māori call it Matariki, and its pre-dawn rising marks the new year. Thais tell of a mother hen and her chicks who leapt into the fire after her ✦
+S8869	Scorpius (Maui’s fishhook)
+S8870	Hawaiians saw this as the fishhook of the demigod Maui, who used it to haul islands from the sea. Polynesian navigators memorised where hundreds of stars rise and set on the horizon and used them as a compass ✦
+S8871	The Southern Cross
+S8872	The Southern Cross is best seen from the southern hemisphere, though from Thailand it can be seen low in the south. Its long arm points toward the south celestial pole. Many Aboriginal peoples see an Emu in the Sky traced by dark lanes in the Milky Way; its head is the dark patch beside the Cross.
+S8873	round 
+S8874	Perfect
+S8875	Very good
+S8876	Not bad
+S8877	Not this time
+S8878	Next
+S8879	Spot on!
+S8880	The clay sags
+S8881	height
+S8882	belly
+S8883	rim
+S8884	A clean flake!
+S8885	Good
+S8886	The stone chips badly
+S8887	Too late
+S8888	An ember! Blow when it glows brightest
+S8889	Fire!
+S8890	Too soon — the ember nearly dies
+S8891	Lost among the stars
+S8892	Remember this shape…
+S8893	Making fire with a hand drill
+S8894	a fire
+S8895	Spin the drill
+S8896	Nurse the ember
+S8897	Blow
+T211	That night you watch the sky until you know {0} by heart.
