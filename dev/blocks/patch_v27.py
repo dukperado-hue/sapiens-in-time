@@ -1,0 +1,106 @@
+B='/home/claude/sapiens-in-time/dev/blocks/'
+F='/home/claude/sapiens-in-time/dev/game.src.html'
+s=open(F,encoding='utf-8').read()
+if 'CAREERSMg' in s:raise SystemExit('already patched')
+def rep(old,new,cnt=1):
+    global s
+    n=s.count(old)
+    if n!=cnt:raise SystemExit('COUNT %d!=%d for: %s'%(n,cnt,old[:160]))
+    s=s.replace(old,new)
+
+# ---------- Corinth and Córdoba shared the key 'cor': give each chapter its own ----------
+rep("/* ================= v0.24 CHAPTER 24","const COR16={R:REGIONS.cor,N:NEIGH.cor,V:VR.cor,R3:R3.cor,C:COORD.cor};\n/* ================= v0.24 CHAPTER 24")
+rep("DEC.push(...DEC_IN24,...DEC_CAR24);EV.push(...EV24);","DEC.push(...DEC_IN24,...DEC_CAR24);EV.push(...EV24);\n{const C24={R:REGIONS.cor,N:NEIGH.cor,V:VR.cor,R3:R3.cor,C:COORD.cor};for(const [T,k] of [[REGIONS,'R'],[NEIGH,'N'],[VR,'V'],[R3,'R3'],[COORD,'C']]){const a=COR16[k],b=C24[k];Object.defineProperty(T,'cor',{get(){return (typeof S!=='undefined'&&S&&S.ch===24)?b:a},set(v){},configurable:true,enumerable:true})}}")
+
+# ---------- chapter 26 wiring (mirrors chapter 24) ----------
+rep("24:{old:1275,new:765},","24:{old:1275,new:765},26:{old:845,new:655},")
+rep("||ch===22||ch===24}","||ch===22||ch===24||ch===26}")
+rep("24:14,5:15};","24:14,26:15,5:16};")
+rep("chap===24?CAREERS24:CAREERS,ccH=","chap===24?CAREERS24:chap===26?CAREERSMg:CAREERS,ccH=")
+rep("chap===24?chosenCar24:chosenCar;","chap===24?chosenCar24:chap===26?chosenCarMg:chosenCar;")
+rep("&&chap!==22&&chap!==24;","&&chap!==22&&chap!==24&&chap!==26;")
+rep("if(ccb){if(chap===24){","if(ccb){if(chap===26){chosenCarMg=ccb.dataset.car;store.set('sit.car26',chosenCarMg)}else if(chap===24){")
+rep("const cc=chap===24?chosenCar24:","const cc=chap===26?chosenCarMg:chap===24?chosenCar24:")
+rep("const CS=chap===24?CAREERS24:","const CS=chap===26?CAREERSMg:chap===24?CAREERS24:")
+rep("  else if(chap===24){sp=SP.sap;const e24=pickEra24();ya=yaFor24(e24);rg=pickCity24(e24,ya)}",
+    "  else if(chap===24){sp=SP.sap;const e24=pickEra24();ya=yaFor24(e24);rg=pickCity24(e24,ya)}\n  else if(chap===26){sp=SP.sap;const eM=pickEraMg();ya=yaForMg(eM);rg=pickCityMg(eM,ya)}")
+rep("else if(chap===24)pw=pw24(rg,ya);","else if(chap===24)pw=pw24(rg,ya);else if(chap===26)pw=pwMg(rg,ya);")
+rep("  if(S.ch===24){init24();return}","  if(S.ch===24){init24();return}\n  if(S.ch===26){initMg();return}")
+rep("  if(R24[rg])return sp==='sap'","  if(RMg[rg]&&rg!=='vil')return sp==='sap'&&!!RMg[rg].pop[eraMg(ya)]&&(!RWMg[rg]||(ya<=RWMg[rg][0]&&ya>=RWMg[rg][1]));\n  if(R24[rg])return sp==='sap'")
+rep("const rn=r=>(S&&S.ch===24&&RNOTE24[r])||","const rn=r=>(S&&S.ch===26&&RNOTEMg[r])||(S&&S.ch===24&&RNOTE24[r])||")
+rep("if(S.ch===24)return L(S.age<13&&(A.c24||A.c)?(A.c24||A.c):(A.l24||A.l));","if(S.ch===26)return L(S.age<13&&(A.c26||A.c)?(A.c26||A.c):(A.l26||A.l));if(S.ch===24)return L(S.age<13&&(A.c24||A.c)?(A.c24||A.c):(A.l24||A.l));")
+rep("if(S.ch===24&&!ACT24.includes(id))continue;","if(S.ch===24&&!ACT24.includes(id))continue;if(S.ch===26&&!ACTMg.includes(id))continue;if(S.ch===26&&id==='herd'&&!steppeMg(S)&&!herdTot())continue;if(S.ch===26&&id==='sow'&&steppeMg(S))continue;")
+rep("if(S.ch===24){if(id==='sow'&&(S.field||S.rg==='vil'))x*=1.5;","if(S.ch===26){if(id==='herd'&&steppeMg(S))x*=1.8;if(id==='run'&&steppeMg(S))x*=1.3;if(id==='sow'&&S.field)x*=1.5;if(id==='trade'&&townMg(S))x*=1.3;if(id==='fish')x*=.5}if(S.ch===24){if(id==='sow'&&(S.field||S.rg==='vil'))x*=1.5;")
+rep("else if(S.ch===24)trade24Year();","else if(S.ch===24)trade24Year();else if(S.ch===26)tradeMgYear();")
+rep("S.ch===24?CARNOTE24:CARNOTE","S.ch===24?CARNOTE24:S.ch===26?CARNOTEMg:CARNOTE",3)
+rep("if(S.ch===24){if(k==='farmer'&&(S.field||S.rg==='vil'))s+=1.4;","if(S.ch===26){if(k==='herder'&&steppeMg(S))s+=1.6;if(k==='archer'&&S.peoMg==='mon')s+=1;if(k==='farmer'&&S.field)s+=1.4;if(k==='merchant'&&['sam','tab','caf','sar'].includes(S.rg))s+=.8;if(k==='artisan'&&S.varMg==='art')s+=1.5;if(k==='scribe'&&S.lit>=20)s+=.8}if(S.ch===24){if(k==='farmer'&&(S.field||S.rg==='vil'))s+=1.4;")
+rep("S&&S.ch===24?CAREERS24:CAREERS;","S&&S.ch===24?CAREERS24:S&&S.ch===26?CAREERSMg:CAREERS;")
+rep("v20Year(a);v22Year(a);v24Year(a);","v20Year(a);v22Year(a);v24Year(a);vMgYear(a);")
+rep("    log(S.ch===24?X24('ลูกคนหนึ่ง","    log(S.ch===26?XMg(steppeMg(S)?'ลูกคนหนึ่งของคุณป่วยและจากไป ทั้งค่ายเงียบไปหลายวัน':'ลูกคนหนึ่งของคุณป่วยและจากไป ทั้งบ้านเงียบไปหลายวัน'):S.ch===24?X24('ลูกคนหนึ่ง")
+rep("S.ch===24?amb24():","S.ch===26?ambMg():S.ch===24?amb24():")
+rep("  if(S.ch===24)return title24(S);","  if(S.ch===24)return title24(S);\n  if(S.ch===26)return titleMg(S);")
+rep("(S.ch===24&&REFLECT24[age])||","(S.ch===24&&REFLECT24[age])||(S.ch===26&&REFLECTMg[age])||")
+rep("(S.ch===24&&D.x24)||D.x,","(S.ch===24&&D.x24)||(S.ch===26&&D.xMg)||D.x,")
+rep("  if(S.ch===24)return fun24Note(S);","  if(S.ch===24)return fun24Note(S);\n  if(S.ch===26)return funMgNote(S);")
+rep("  if(S.ch===24){fun24Opts(S,o,done,lead);return o.slice(0,3)}","  if(S.ch===24){fun24Opts(S,o,done,lead);return o.slice(0,3)}\n  if(S.ch===26){funMgOpts(S,o,done,lead);return o.slice(0,3)}")
+rep("  if(a<5&&S.ch===24)return L(","  if(a<5&&S.ch===26)return L(XMg('ครอบครัวห่อร่างเล็กๆ ของคุณด้วยสักหลาด แล้วฝังไว้บนเนินก่อนย้ายค่าย'));\n  if(a<5&&S.ch===24)return L(")
+rep("  if(S.ch===24)parts.push(fun24Text(S));","  if(S.ch===26)parts.push(funMgText(S));\n  else if(S.ch===24)parts.push(fun24Text(S));")
+rep("  if(S.ch===24){const i=c.findIndex(x=>x[0]==='predator');",
+    "  if(S.ch===26){const i=c.findIndex(x=>x[0]==='predator');if(i>=0)c[i][1]=.2;const j=c.findIndex(x=>x[0]==='cold');if(j>=0)c[j][1]*=steppeMg(S)?.3:.15;if(steppeMg(S)&&a>=5)c.push(['horseMg',.35]);if(S.car==='archer'&&a>=16&&a<55)c.push(['warMg',1.2]);else if(S.sex==='m'&&a>=16&&a<50&&S.peoMg==='mon')c.push(['warMg',.5]);if(S.plagueMg&&S.ya>=670)c.push(['d_plagueMg',2])}\n  if(S.ch===24){const i=c.findIndex(x=>x[0]==='predator');")
+rep("isl24:S.ch===24,","mon26:S.ch===26,rgMg:S.ch===26?S.rg:null,fallMg:S.ch===26&&!!S.fallMg,yaMg:S.ch===26?ya:0,isl24:S.ch===24,")
+rep("  if(P.isl)drawIslam(ctx,gy,o,now);","  if(P.isl)drawIslam(ctx,gy,o,now);\n  if(P.mon26)drawMongol(ctx,gy,o,now);")
+rep("  if(o.isl24&&st!=='baby'){","  if(o.mon26&&st!=='baby'){const rM=drawActMg(ctx,o,act,gy,now,P);if(rM)return rM;if(['market','school','herb'].includes(act)){const r4=drawAct4(ctx,o,act,gy,now,P);if(r4)return r4}}\n  if(o.isl24&&st!=='baby'){")
+rep("    ...(S.ch===24?[[esc(L(X('ยุค','Era'))),",
+    "    ...(S.ch===26?[[esc(L(X('ยุค','Era'))),esc(L(ERAMg[eraMg(S.ya0)].n))+'<br><span class=\"small num\">'+esc(L(yrMg(S.ya0)))+'</span>'],[esc(L(X('ฐานะ','Station'))),esc(L(varMg(S)))+'<br><span class=\"small\">'+esc(L(VARNOTEMg))+'</span>'],[esc(L(X('ผู้คน','People'))),esc(L(PEOMg[S.peoMg]||PEOMg.mon))+'<br><span class=\"small\">'+esc(L(PEONOTEMg))+'</span>'],[esc(L(XMg('ศาสนา'))),esc(L(FAITHMg[S.faithMg]||FAITHMg.ten))+'<br><span class=\"small\">'+esc(L(FNOTEMg))+'</span>']]:[]),\n    ...(S.ch===24?[[esc(L(X('ยุค','Era'))),")
+rep("[t('kName'),S.ch===24?","[t('kName'),S.ch===26?'“'+nmL(S.name)+'”<br><span class=\"small\">'+esc(L(nameNoteMg(S)))+'</span>':S.ch===24?")
+rep("  if(S.ch===24){tech.push(",
+    "  if(S.ch===26){tech.push('<span class=\"tc\">'+esc(L(varMg(S)))+'</span>');tech.push('<span class=\"tc\">'+esc(L(PEOMg[S.peoMg]||PEOMg.mon))+'</span>');if(S.metMg&&S.metMg.length)tech.push('<span class=\"tc mam\">'+esc(L(XMg('ได้พบหรือเป็นพยาน')))+' ×'+S.metMg.length+'</span>');if(S.paizaMg)tech.push('<span class=\"tc mam\">'+esc(L(XMg('ถือไปซา')))+'</span>');if(S.lit>=30)tech.push('<span class=\"tc\">'+esc(L(X('อ่านออกเขียนได้','literate')))+'</span>')}\n  if(S.ch===24){tech.push(")
+rep("(S.ch===24?epi24(S):","(S.ch===26?epiMg(S):S.ch===24?epi24(S):")
+rep("$('#dTab').innerHTML='';if(S.ch===24){","$('#dTab').innerHTML='';if(S.ch===26){$('#tabH').textContent=L(XMg('แผ่นตราแห่งยุคของคุณ'));$('#dTab').appendChild(tileMgBlock(S))}if(S.ch===24){")
+rep("card(24,'14','chIsT','chIsD',rng(24),clk(24),1)+card(5,'15',","card(24,'14','chIsT','chIsD',rng(24),clk(24),1)+card(26,'15','chMoT','chMoD',rng(26),clk(26),1)+card(5,'16',")
+rep("chIsT:'ยุคทองอิสลาม","chMoT:'จักรวรรดิมองโกล: จากทุ่งหญ้าถึงกาฬโรค',chMoD:'เกิดในสองร้อยปีที่คนจากทุ่งหญ้าไม่ถึงล้านคนเปลี่ยนโลก ตั้งแต่เตมูจินรวมเผ่า คาราโครัม ต้าตู และหางโจว ถึงเคียฟ ตาบริซ คัฟฟา และวันที่กาฬโรคมาถึง เป็นคนเลี้ยงม้า ผู้ส่งสารแห่งระบบยาม ช่างที่ถูกกวาดต้อน พ่อค้า หรือชาวนาจีน แล้วดูว่าโลกที่เชื่อมถึงกันมีราคาเท่าไร (บทนี้มีเฉพาะภาษาไทย)',chIsT:'ยุคทองอิสลาม")
+rep("chIsT:'The Islamic golden age","chMoT:'The Mongol Empire: from the steppe to the Black Death (Thai only)',chMoD:'This chapter is in Thai only for now. Two hundred years in which fewer than a million people from the steppe changed the world, from Temüjin to Karakorum, Dadu, Hangzhou, Kyiv, Tabriz, Caffa and the plague.',chIsT:'The Islamic golden age")
+rep("<p>'+t('src21')+'</p><p>'+esc(L(X('เสียงสัตว์","<p>'+t('src21')+'</p><p>'+t('src22')+'</p><p>'+esc(L(X('เสียงสัตว์")
+rep("src21:'บท 14","src22:'บท 15 จักรวรรดิมองโกล: บันทึกลับของมองโกล อัลญุวัยนี ราชิดอัดดีน หยวนสื่อ บันทึกของการ์ปีนี วิลเลียมแห่งรูบรุค มาร์โค โปโล อิบน์ บัฏฏูเฏาะฮ์ และลูกศิษย์ของฉางชุน งานของ Thomas Allsen, Timothy May, Peter Jackson, Morris Rossabi, David Morgan, Denis Sinor และงานวิจัยดีเอ็นเอกาฬโรคของ Spyrou และคณะ (2022)',src21:'บท 14")
+rep("src21:'Chapter 14","src22:'Chapter 15, the Mongol Empire (Thai only): the Secret History of the Mongols, al-Juvayni, Rashid al-Din, the Yuan shi, Carpini, William of Rubruck, Marco Polo, Ibn Battuta and Changchun’s disciples; Thomas Allsen, Timothy May, Peter Jackson, Morris Rossabi, David Morgan, Denis Sinor; and the plague DNA study of Spyrou et al. (2022).',src21:'Chapter 14")
+rep("c24:S.ch===24?{","cMg:S.ch===26?{met:(S.metMg||[]).join(','),rg:S.rg,era:eraMg(S.ya0),car:S.car,peo:S.peoMg,faith:S.faithMg,var:S.varMg,fall:S.fallMg|0,plague:S.plagueMg|0}:null,c24:S.ch===24?{")
+rep("epi24,fun24Note,","epiMg,funMgNote,funMgText,titleMg,tileMgCanvas,nameNoteMg,gumpMg,drawMongol,epi24,fun24Note,")
+rep("const isl=F.ch===24,","const mon=F.ch===26,isl=F.ch===24,")
+rep("else if(isl){cl=","else if(mon){cl=F.cls==='slave'?'#8a7a60':F.cls==='elite'?'#3a5a9a':'#8a3a2a';cl2=F.cls==='elite'?'#c8a040':'#4a3a2a'}\n  else if(isl){cl=")
+rep("if(typeof R24!=='undefined'&&R24[rg])return","if(typeof RMg!=='undefined'&&RMg[rg]&&S&&S.ch===26)return ['kie','caf'].includes(rg)?[1,3]:['tab','sam'].includes(rg)?[3,5]:[2,4];if(typeof R24!=='undefined'&&R24[rg])return")
+rep("if(S.ch===24)return [4,6];","if(S.ch===26)return [2,4];if(S.ch===24)return [4,6];")
+rep("if(S.ch===22)return 'suv';if(S.ch===24)return 'isl';","if(S.ch===22)return 'suv';if(S.ch===24)return 'isl';if(S.ch===26)return 'mon';")
+rep("isl:[0,1,4,5,7,8,10]},ROOT={isl:196,","isl:[0,1,4,5,7,8,10],mon:[0,2,5,7,9]},ROOT={mon:174.61,isl:196,")
+rep("    isl:{mel:'pluck'","    mon:{mel:'reed',alt:'flute',dr:[1,0,1,1,0,1,1,0],df:75,drone:'reed'},\n    isl:{mel:'pluck'")
+rep("    paper24:(t,r)=>","    bow26:(t,r)=>{if(r()<.15)for(let i=0;i<3;i++)knock(t+i*.12,520,.04)},yam26:(t,r)=>{if(r()<.25)for(let i=0;i<4;i++)knock(t+i*.09,480,.045)},forge26:(t,r)=>{if(r()<.22)knock(t,1400,.05)},write26:(t,r)=>{if(r()<.08)scratch(t,.03)},drum26:(t,r)=>{if(r()<.3)drum(t,90,.12)},\n    paper24:(t,r)=>")
+rep("(o.isl24&&o.rg24!=='vil')||","(o.mon26&&!['stp','vil'].includes(o.rgMg||''))||(o.isl24&&o.rg24!=='vil')||")
+rep("  if(!d&&S.ch===24)d=gump24(a);","  if(!d&&S.ch===24)d=gump24(a);\n  if(!d&&S.ch===26)d=gumpMg(a);")
+rep("S.name=S.ch===24?mkName24(S):","S.name=S.ch===26?mkNameMg(S):S.ch===24?mkName24(S):")
+rep("S.ch===24?gn24X(sx):null}","S.ch===24?gn24X(sx):S.ch===26?gnMgX(sx):null}")
+
+# ---------- v0.26 systems learn about chapter 26 ----------
+rep("const AREA26C={4:'wea',","const AREA26C={26:'eas',4:'wea',")
+rep("uga:'wea',enk:'wea',jer:'wea'};","uga:'wea',enk:'wea',jer:'wea',kie:'eur',caf:'eur',sar:'eur',sam:'wea',tab:'wea'};")
+rep("!['ale','alx','cai','jud','uga','enk','jer'].includes(S.rg))","!['ale','alx','cai','jud','uga','enk','jer','kie','caf','sar','sam','tab'].includes(S.rg))")
+rep("  22:()=>{const e=pickEra22(),y=yaFor22(e);return[y,pickCity22(e,y)]},","  22:()=>{const e=pickEra22(),y=yaFor22(e);return[y,pickCity22(e,y)]},26:()=>{const e=pickEraMg(),y=yaForMg(e);return[y,pickCityMg(e,y)]},")
+rep("function gumps26(ch){return ch===16?GUMP16:","function gumps26(ch){return ch===26?GUMPMg:ch===16?GUMP16:")
+rep("for(const ch of [4,6,8,10,12,14,16,18,20,22,24])for(const e of gumps26(ch))","for(const ch of [4,6,8,10,12,14,16,18,20,22,24,26])for(const e of gumps26(ch))")
+rep(" [819,657,0,X('จักรวรรดิมองโกลแผ่"," [819,657,26,X('จักรวรรดิมองโกลแผ่")
+rep(" bead:{n:X('เจาะลูกปัดหินคาร์เนเลียน'"," felt:{n:XMg('ทำสักหลาด'),o:XMg('สักหลาดผืนหนึ่ง'),st:[XMg('ตีขนแกะให้ฟู'),XMg('ราดน้ำร้อน'),XMg('ม้วนแล้วให้ม้าลาก')]},\n bead:{n:X('เจาะลูกปัดหินคาร์เนเลียน'")
+rep("20:'rice',22:'dam',24:'paper'}[S.ch]||null}","20:'rice',22:'dam',24:'paper',26:['stp','kar','sar'].includes(S.rg)?'felt':S.rg==='hzh'?'cloth':S.rg==='caf'?'net':'pot'}[S.ch]||null}")
+rep("  else if(m.k==='bead'){","  else if(m.k==='felt'){R(x-14,y-3,22,3,'#e8e0cc');R(x-14,y-3,22,1,'#f4eede');R(x+6,y-8,8,8,'#d8d0bc');R(x+7,y-7,6,6,'#e8e0cc');R(x+9,y-5,2,2,'#b8b09c');if(q>=2)R(x-12,y-2,18,1,'#b8402a');if(q>=3){R(x-6,y-2,1,1,'#2a5a9a');R(x-2,y-2,1,1,'#2a5a9a')}}\n  else if(m.k==='bead'){")
+rep("    if(((ar==='sea'||ar==='pol')&&ya<3600)","    if(!(S.ch===26&&steppeMg(S))&&((ar==='sea'||ar==='pol')&&ya<3600)")
+
+# ---------- v0.27 scene surprises and the full-resolution foreground ----------
+rep("  fg22(ctx,o,P,gy,now,wx);\n  drawMade26(ctx,o,gy);","  fx27(ctx,o,P,gy,now,day);\n  if(GFX.hi)fg27(ctx,o,P,gy,now,wx);else fg22(ctx,o,P,gy,now,wx);\n  drawMade26(ctx,o,gy);")
+rep("  ctx.fillStyle='rgba(6,8,26,'+((1-day)*.58+(storm?.1:0))+')';ctx.fillRect(0,0,W,H);","  ctx.fillStyle='rgba(6,8,26,'+((1-day)*.58+(storm?.1:0))+')';ctx.fillRect(0,0,W,H);if(o.live)eyes27(ctx,o,gy,now);")
+rep("if(!TEST){renderLog();SND.onLog(x,c)}","if(!TEST){renderLog();SND.onLog(x,c);fxLog27(x,c)}")
+
+blk=''.join(open(B+f,encoding='utf-8').read()+'\n' for f in ['v27a.js','v27b.js','v27c.js','v27d.js'])
+blk+="DEC.push(...DEC_INMg,...DEC_CARMg);EV.push(...EVMg);\nlet chosenCarMg=store.get('sit.car26','');if(chosenCarMg&&!CAREERSMg[chosenCarMg])chosenCarMg='';\n"
+k="let chosenCar24=store.get('sit.car24','');if(chosenCar24&&!CAREERS24[chosenCar24])chosenCar24='';\n"
+rep(k,k+blk)
+g=open(B+'v27g.js',encoding='utf-8').read()+'\n'
+rep("function fig(ctx,x,y,o){",g+"function fig(ctx,x,y,o){")
+open(F,'w',encoding='utf-8').write(s)
+print('ok',len(s))

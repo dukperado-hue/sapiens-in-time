@@ -8696,7 +8696,8 @@
 "Drill the hole",
 "Your hands haven’t found the rhythm yet. The piece breaks before it is done, but next time your hands will know.",
 "Tap when the marker is inside the green band, 3 times (tap the screen or press Space)",
-"Now!"
+"Now!",
+"Animal and nature sounds: CC0 / public-domain recordings from Freesound and others (full list in dev/assets/sfx/credits.json). Used under CC BY 3.0:"
 ],
 "tpls": [
 "an early keeper of {0}",
