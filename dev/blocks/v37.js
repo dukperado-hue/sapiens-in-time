@@ -184,7 +184,7 @@ function eqOpen37(focus){try{eqCss37();const got=eqGot37list(),n=EQ37.filter(e=>
   const el=document.createElement('div');el.id='eq37';const w=document.createElement('div');w.className='w';el.appendChild(w);
   w.innerHTML='<h2>17 สมการที่เปลี่ยนโลก</h2><p class="small">ใช้ชีวิตจนเจอปัญหาที่สมการนั้นตอบ เพื่อเปิดการ์ด · '+n+'/17</p>';
   EQ37.forEach((E,i)=>{const on=!!got[E.k];const c=document.createElement('div');c.className='card '+(on?'on':'off');c.id='eqc_'+E.k;
-    c.innerHTML='<h3>'+(on?'':'🔒 ')+(i+1)+'. '+esc(L(E.n))+'</h3>';
+    let eqM={};try{eqM=book29().eqM||{}}catch(e){}c.innerHTML='<h3>'+(on?'':'🔒 ')+(i+1)+'. '+esc(L(E.n))+(eqM[E.k]?' ⭐ เชี่ยวชาญ':'')+'</h3>';
     if(on){c.appendChild(eqCanvas37(E.f,3,'#b8a8ff'));const who=document.createElement('div');who.className='e';who.textContent=L(E.who);c.appendChild(who);
       const px=document.createElement('p');px.textContent=L(E.x);c.appendChild(px);
       const ch=document.createElement('div');ch.className='chips';const mean=document.createElement('div');mean.className='mean';mean.textContent='แตะสัญลักษณ์เพื่อดูความหมาย';
@@ -205,7 +205,7 @@ function toyOpen37(k){try{eqCss37();const T=TOY37[k];if(!T)return;const old=docu
   const cv=el.querySelector('canvas'),x=cv.getContext('2d'),q=el.querySelector('.q'),r=el.querySelector('.r'),bt=el.querySelector('.bt');let alive=true;
   const pos=e=>{const b=cv.getBoundingClientRect();return [(e.clientX-b.left)*cv.width/b.width,(e.clientY-b.top)*cv.height/b.height]};
   const api={x,cv,W:640,H:400,q:t=>q.textContent=t,r:t=>r.textContent=t,btn:(t,f,pri)=>{const b=document.createElement('button');b.className='btn '+(pri?'btn-primary':'btn-ghost');b.textContent=t;b.onclick=f;bt.appendChild(b);return b},
-    win:t=>{r.textContent='✧ '+t;try{SND.ui('hit')}catch(e){};try{const B=book29();B.toys=B.toys||{};B.toys[k]=1;store.set('sit.book',B)}catch(e){}},alive:()=>alive,pos,font:(px,c)=>{x.font=px+'px "DejaVu Sans",sans-serif';x.fillStyle=c||'#e8e0ff'}};
+    win:t=>{r.textContent='✧ '+t;try{SND.ui('hit')}catch(e){};try{const B=book29();B.toys=B.toys||{};B.toys[k]=1;store.set('sit.book',B)}catch(e){}},alive:()=>alive,part:()=>{},fail:()=>{},pos,font:(px,c)=>{x.font=px+'px "DejaVu Sans",sans-serif';x.fillStyle=c||'#e8e0ff'}};
   const st=T(api);api.btn('ปิด',()=>{alive=false;el.remove()});
   cv.onpointerdown=e=>{cv.setPointerCapture(e.pointerId);st.down&&st.down(...pos(e))};cv.onpointermove=e=>{st.move&&st.move(...pos(e),e.buttons)};cv.onpointerup=e=>{st.up&&st.up(...pos(e))};
   const loop=now=>{if(!alive)return;try{st.draw(now)}catch(e){}requestAnimationFrame(loop)};requestAnimationFrame(loop)}catch(e){}}
@@ -221,14 +221,14 @@ const TOY37={
     x.strokeStyle='#fff';x.lineWidth=2;x.beginPath();x.moveTo(...P0);x.lineTo(...P1);x.lineTo(...P2);x.closePath();x.stroke();x.lineWidth=1;
     x.fillStyle='#ff9a3a';x.beginPath();x.arc(O[0]+b*u,O[1]-a*u,9,0,7);x.fill();
     A.font(18);x.fillText('a = '+a+'   b = '+b+'   c = √'+c2+' = '+(whole?Math.round(c):c.toFixed(3)),20,30);x.fillText(a*a+' + '+b*b+' = '+c2,20,56);
-    if(whole&&!found.has(Math.min(a,b)+'-'+Math.max(a,b))){found.add(Math.min(a,b)+'-'+Math.max(a,b));A.r('เจอแล้ว '+Math.min(a,b)+'–'+Math.max(a,b)+'–'+Math.round(c)+' · พบ '+found.size+' แบบ');if(found.size>=2)A.win('คุณหาสามเหลี่ยมเลขเต็มได้ '+found.size+' แบบ แผ่นดินเหนียวพลิมป์ตัน 322 มีชุดตัวเลขแบบนี้สิบห้าแถว')}}}},
+    if(whole&&!found.has(Math.min(a,b)+'-'+Math.max(a,b))){found.add(Math.min(a,b)+'-'+Math.max(a,b));A.r('เจอแล้ว '+Math.min(a,b)+'–'+Math.max(a,b)+'–'+Math.round(c)+' · พบ '+found.size+' แบบ');A.part(Math.min(2,found.size));if(found.size>=((A.opt&&A.opt.need)||2))A.win('คุณหาสามเหลี่ยมเลขเต็มได้ '+found.size+' แบบ แผ่นดินเหนียวพลิมป์ตัน 322 มีชุดตัวเลขแบบนี้สิบห้าแถว')}}}},
  /* 2. a slide rule: multiplication by sliding two log scales */
  slide(A){const x=A.x,L0=60,LW=520,lg=v=>L0+Math.log10(v)*LW;const tasks=[[2,3],[2,4],[1.5,6],[3,3]];let ti=0,off=0,drag=null,doneN=0;
   const setQ=()=>A.q('ไม้บรรทัดคำนวณ: ลากไม้ท่อนกลางให้เลข 1 ของมันตรงกับ '+tasks[ti][0]+' บนไม้ท่อนล่าง แล้วดูว่าใต้เลข '+tasks[ti][1]+' ของไม้ท่อนกลางคือเลขอะไร');setQ();
   const scale=(y,sh,col,up)=>{x.fillStyle=col;x.fillRect(sh+L0-20,y,LW+40,44);x.strokeStyle='#1a1a1a';x.fillStyle='#1a1a1a';x.font='12px "DejaVu Sans",sans-serif';
    for(let v=1;v<=10.001;v+=.1){const X=sh+lg(v),major=Math.abs(v-Math.round(v))<1e-6;x.beginPath();x.moveTo(X,up?y+44:y);x.lineTo(X,up?y+44-(major?16:7):y+(major?16:7));x.stroke();if(major)x.fillText(String(Math.round(v)),X-4,up?y+22:y+32)}};
   return {down:(mx,my)=>{if(my>150&&my<200)drag=mx-off},move:(mx,my,bs)=>{if(drag!=null&&bs)off=clamp(mx-drag,-LW,LW)},up:()=>{drag=null;const want=Math.log10(tasks[ti][0])*LW;if(Math.abs(off-want)<5){off=want;const ans=tasks[ti][0]*tasks[ti][1];
-     if(ans<=10){doneN++;A.r(tasks[ti][0]+' × '+tasks[ti][1]+' = '+ans+' (คุณบวกความยาว ไม่ได้คูณเลย)');ti=(ti+1)%tasks.length;if(doneN>=3)A.win('คุณคูณเลขด้วยการบวกความยาวได้ '+doneN+' ข้อ แบบที่วิศวกรทำกันมาสามร้อยปี');setTimeout(setQ,1400)}}},
+     if(ans<=10){doneN++;A.r(tasks[ti][0]+' × '+tasks[ti][1]+' = '+ans+' (คุณบวกความยาว ไม่ได้คูณเลย)');ti=(ti+1)%tasks.length;A.part&&A.part(Math.min(2,doneN));if(doneN>=((A.opt&&A.opt.need)||3))A.win('คุณคูณเลขด้วยการบวกความยาวได้ '+doneN+' ข้อ แบบที่วิศวกรทำกันมาสามร้อยปี');setTimeout(setQ,1400)}}},
    draw:()=>{x.fillStyle='#120f1e';x.fillRect(0,0,640,400);scale(110,0,'#e8dcb8',true);scale(156,off,'#f4ecd0',false);scale(202,0,'#e8dcb8',true);
     const cx=off+lg(tasks[ti][1]);x.fillStyle='#ff4a3a55';x.fillRect(cx-2,96,4,170);
     A.font(15);x.fillText('ระยะของ '+tasks[ti][0]+' = log '+tasks[ti][0]+' ≈ '+Math.log10(tasks[ti][0]).toFixed(3),20,40);x.fillText('ไม้ท่อนกลางเลื่อนไป '+(off/LW).toFixed(3),20,64);
@@ -241,8 +241,8 @@ const TOY37={
     x.fillStyle='#3a7ad8';x.beginPath();x.arc(C[0],C[1],26,0,7);x.fill();x.fillStyle='#5aa848';x.fillRect(C[0]-12,C[1]-8,10,8);x.fillRect(C[0]+4,C[1]+4,12,6);
     if(v[0]||v[1]){for(let s=0;s<4;s++){const dx=C[0]-p[0],dy=C[1]-p[1],r2=dx*dx+dy*dy,r=Math.sqrt(r2),a=GM/r2;v[0]+=a*dx/r*.25;v[1]+=a*dy/r*.25;p[0]+=v[0]*.25;p[1]+=v[1]*.25;
        const an=Math.atan2(p[1]-C[1],p[0]-C[0]);if(lastA!=null){let d=an-lastA;if(d>Math.PI)d-=2*Math.PI;if(d<-Math.PI)d+=2*Math.PI;ang+=d}lastA=an;
-       if(r<28){res='ตกใส่ดาวใหญ่ ส่งช้าเกินไป';v=[0,0]}else if(r>700){res='หลุดออกไปในอวกาศ ส่งเร็วเกินไป';v=[0,0]}}trail.push([p[0],p[1]]);if(trail.length>900)trail.shift();
-     if(Math.abs(ang)>=2*Math.PI*(turns+1)){turns++;A.win('โคจรครบ '+turns+' รอบ แรงเดียวกับที่ทำให้แอปเปิลตก ดึงดวงจันทร์ไว้ไม่ให้หลุดไป')}}
+       const ESC=A.opt&&A.opt.goal==='escape';if(r<28){res='ตกใส่ดาวใหญ่ ส่งช้าเกินไป';v=[0,0]}else if(r>700){v=[0,0];if(ESC)A.win('ยานเร็วกว่าความเร็วหลุดพ้น หลุดจากแรงดึงของโลกแล้ว มุ่งหน้าไปดวงจันทร์');else res='หลุดออกไปในอวกาศ ส่งเร็วเกินไป'}}trail.push([p[0],p[1]]);if(trail.length>900)trail.shift();
+     if(Math.abs(ang)>=2*Math.PI*(turns+1)){turns++;if(A.opt&&A.opt.goal==='escape'){A.part&&A.part(1);res='ยานยังวนอยู่รอบโลก ต้องเร็วกว่านี้'}else A.win('โคจรครบ '+turns+' รอบ แรงเดียวกับที่ทำให้แอปเปิลตก ดึงดวงจันทร์ไว้ไม่ให้หลุดไป')}}
     x.strokeStyle='#c8b8ff70';x.beginPath();trail.forEach(([a,b],i)=>i?x.lineTo(a,b):x.moveTo(a,b));x.stroke();x.fillStyle='#e8e0d0';x.beginPath();x.arc(p[0],p[1],7,0,7);x.fill();
     if(drag){x.strokeStyle='#ff9a3a';x.lineWidth=2;x.beginPath();x.moveTo(p[0],p[1]);x.lineTo(p[0]+(p[0]-drag[0]),p[1]+(p[1]-drag[1]));x.stroke();x.lineWidth=1}
     const r=Math.hypot(C[0]-p[0],C[1]-p[1]);A.font(15);x.fillText('F = G m₁m₂ / r²   ระยะ r = '+r.toFixed(0)+'   แรง ∝ '+(GM/(r*r)).toFixed(2),16,28);if(res){x.fillStyle='#ffe2a8';x.fillText(res,16,380)}}}},
