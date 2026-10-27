@@ -99,7 +99,8 @@ const LESMOL42=[
   fact:['ยูจีนอลเป็นสารหลักในน้ำมันกานพลู และยังใช้ในคลินิกทันตกรรมผสมกับซิงก์ออกไซด์ทำวัสดุอุดฟันชั่วคราว เพราะช่วยลดอาการปวด','กลิ่นของพริกไทยมาจากโมเลกุลพิเพอรีน ส่วนลูกจันทน์มีไมริสติซินและไอโซยูจีนอล ซึ่งมีโครงวงแหวนคล้ายกัน','อังกฤษเคยมีคนอยู่บนเกาะรัน นาธาเนียล คอร์ทโฮป กับคนราวสี่สิบคนต้านดัตช์ไว้ได้ 1,540 วัน จนเขาถูกยิงตายในปี 1620'],
   cost:'ก่อนหน้านั้นในปี 1621 บริษัทอินเดียตะวันออกของดัตช์ นำโดยยาน ปีเตอร์ซูน คุน บุกหมู่เกาะบันดาเพื่อผูกขาดลูกจันทน์ คนบันดาราว 15,000 คนเหลือรอดบนเกาะเพียงราวหนึ่งพัน ที่เหลือถูกฆ่า อดตาย ถูกจับเป็นทาส หรือถูกส่งไปปัตตาเวีย ดัตช์แบ่งเกาะเป็นสวนให้เจ้าของไร่ชาวดัตช์ แล้วนำทาสจากที่อื่นมาทำงาน กลิ่นหอมในครัวยุโรปมีราคาที่คนอีกฟากโลกจ่าย',
   note:'✦ เรื่อง "แลกเกาะรันกับแมนแฮตตัน" เป็นการเล่าแบบย่อ ในสนธิสัญญาเบรดาไม่มีข้อความว่าแลกกัน แต่เป็นการตกลงให้ต่างฝ่ายเก็บสิ่งที่ยึดอยู่ ซึ่งมีผลแบบเดียวกัน',
-  game:'ในเกมชีวิต: บท 16 โลกใหม่ (นิวอัมสเตอร์ดัม/นิวยอร์ก)',item:'🌰 ลูกจันทน์จากเกาะรัน'},
+  game:'ในเกมชีวิต: บท 16 โลกใหม่ (นิวอัมสเตอร์ดัม/นิวยอร์ก)',item:'🌰 ลูกจันทน์จากเกาะรัน',
+  src:[['Run (island) · Wikipedia','https://en.wikipedia.org/wiki/Run_(island)'],['Dutch conquest of the Banda Islands · Wikipedia','https://en.wikipedia.org/wiki/Dutch_conquest_of_the_Banda_Islands']]},
  {k:'vitc',n:1,t:'กะลาสีที่ฟันโยก',m:'ascorbic',mn:'กรดแอสคอร์บิก หรือวิตามินซี (C₆H₈O₆)',
   pov:'ฉันชื่อกรดแอสคอร์บิก สัตว์ส่วนใหญ่สร้างฉันได้เอง แต่คน ลิงหลายชนิด หนูตะเภา และค้างคาวบางชนิดทำไม่ได้ เพราะยีนที่ใช้สร้างฉันเสียไปนานแล้ว ถ้าร่างกายคุณขาดฉันหลายเดือน คอลลาเจนที่ยึดร่างกายไว้จะพัง เหงือกบวมเลือดออก ฟันโยก และแผลเก่าที่หายแล้วจะเปิดออกอีก',
   sc:'เดือนพฤษภาคม ปี 1747 บนเรือรบอังกฤษเอชเอ็มเอสซอลส์บรี คุณเป็นศัลยแพทย์ประจำเรือ กะลาสีสิบสองคนป่วยด้วยโรคลักปิดลักเปิด ทุกคนบนเรือมีความเห็นว่ายาอะไรรักษาได้ ทั้งน้ำแอปเปิลหมัก กรดกำมะถันเจือจาง น้ำส้มสายชู น้ำทะเล ส้มกับมะนาว และยาถ่าย คุณจะทำอย่างไร',
@@ -109,7 +110,8 @@ const LESMOL42=[
   fact:['ลินด์พิมพ์ผลการทดลองในหนังสือปี 1753 แต่ตัวเขาเองยังคิดว่าโรคนี้เกิดจากความชื้นและอาหารที่ย่อยยากด้วย และไม่ได้สรุปว่าผลไม้คือคำตอบเดียว','กองทัพเรืออังกฤษเริ่มแจกน้ำมะนาวเหลืองให้กะลาสีทุกวันในปี 1795 สี่สิบแปดปีหลังการทดลอง หลังจากเซอร์กิลเบิร์ต เบลน ผลักดัน','วิตามินซีถูกแยกได้ในช่วงปี 1928–1932 โดยอัลแบร์ต แซ็นต์-เจอร์จี และทีมอื่นๆ ก่อนหน้านั้นไม่มีใครรู้ว่าในผลไม้มีอะไรที่รักษาโรคนี้'],
   cost:'ก่อนมีคำตอบ โรคนี้คร่ากะลาสีไปมากในยุคเดินเรือไกล การเดินทางรอบโลกที่เริ่มโดยมาเจลลันในปี 1519 เสียลูกเรือไปจำนวนมากด้วยความอดอยากและโรคนี้ระหว่างข้ามมหาสมุทรแปซิฟิก ความรู้ที่มีอยู่แล้วต้องรอเกือบห้าสิบปีกว่าจะกลายเป็นนโยบาย',
   note:'คำว่า "ไลมีย์" ที่ใช้เรียกกะลาสีอังกฤษ มาจากน้ำมะนาวที่แจกบนเรือ ต่อมาเมื่อเปลี่ยนไปใช้มะนาวพันธุ์ที่มีวิตามินซีน้อยกว่า และน้ำผลไม้ถูกต้มหรือเก็บไว้นาน โรคนี้จึงกลับมาอีกในการสำรวจบางครั้งช่วงปลายศตวรรษที่ 19',
-  game:'ในเกมชีวิต: บท 16 โลกใหม่ (กะลาสีและนักล่าวาฬ)',item:'🍋 มะนาวในถังไม้ของเรือรบ'},
+  game:'ในเกมชีวิต: บท 16 โลกใหม่ (กะลาสีและนักล่าวาฬ)',item:'🍋 มะนาวในถังไม้ของเรือรบ',
+  src:[['The mysteries of James Lind and scurvy · Hektoen International','https://hekint.org/2017/01/29/the-mysteries-of-james-lind-and-scurvy/'],['The Genetics of Vitamin C Loss in Vertebrates · PMC','https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3145266/']]},
  {k:'cell',n:3,t:'น้ำตาลที่เรากินไม่ได้แต่สวมใส่ได้',m:'cellulose',mn:'เซลลูโลส (C₆H₁₀O₅)ₙ',
   pov:'ฉันชื่อเซลลูโลส ฉันคือน้ำตาลกลูโคสหลายพันโมเลกุลที่ต่อกันเป็นสายยาวและตรง แป้งในข้าวก็เป็นกลูโคสต่อกันเหมือนฉัน แต่มุมของข้อต่อต่างกันนิดเดียว ท้องคุณย่อยแป้งได้ แต่ย่อยฉันไม่ได้ ใยฝ้ายในเสื้อยืดที่คุณใส่อยู่ เกือบทั้งหมดคือฉัน',
   sc:'ราวปี 1846 ข่าวมาถึงอังกฤษว่านักเคมีชาวเยอรมันในเมืองบาเซิล คริสเตียน เชินไบน์ เอาฝ้ายแช่กรดไนตริกผสมกรดกำมะถัน แล้วได้ฝ้ายที่ลุกไหม้วูบเดียวโดยแทบไม่มีควัน แรงกว่าดินปืนดำ บริษัทหนึ่งเสนอให้คุณร่วมทุนสร้างโรงงาน "ฝ้ายดินปืน" ที่เมืองเฟเวอร์แชม คุณจะทำอย่างไร',
@@ -119,8 +121,9 @@ const LESMOL42=[
   fact:['กลูโคสในแป้งต่อกันด้วยข้อต่อแบบแอลฟา ส่วนในเซลลูโลสเป็นแบบบีตา สายของเซลลูโลสจึงยืดตรงและเกาะกันแน่นเป็นเส้นใย ร่างกายคนไม่มีเอนไซม์ตัดข้อต่อแบบนี้ วัวและปลวกย่อยได้เพราะมีจุลินทรีย์ในท้องช่วย','เซลลูโลสเป็นสารอินทรีย์ที่มีมากที่สุดในโลก อยู่ในผนังเซลล์ของพืชทุกชนิด ทั้งไม้ กระดาษ ฝ้าย และผ้าลินิน','ใยฝ้ายเกือบทั้งหมดคือเซลลูโลส ฝ้ายจึงเป็นหนึ่งในเซลลูโลสที่บริสุทธิ์ที่สุดในธรรมชาติ'],
   cost:'ฝ้ายดินปืนและดินปืนไร้ควันทำให้ปืนยิงได้ไกลขึ้นและสนามรบไม่มีม่านควันบัง สงครามในศตวรรษที่ 20 ใช้วัตถุระเบิดจากเซลลูโลสเป็นจำนวนมหาศาล ส่วนโรงงานเซลลูลอยด์และโรงหนังยุคฟิล์มไนเตรตก็เกิดไฟไหม้ครั้งใหญ่หลายครั้ง',
   note:'✦ เรื่องที่เชินไบน์ทำกรดหกในครัว แล้วเอาผ้ากันเปื้อนฝ้ายของภรรยามาเช็ด ตากไว้ข้างเตาจนผ้าลุกวาบหายไปโดยไม่มีควัน เป็นเรื่องที่เล่าต่อกันมาและน่าจะแต่งเติมบางส่วน',
-  game:'ในเกมชีวิต: บท 18 ยุคเครื่องจักร (โรงปั่นฝ้ายแมนเชสเตอร์)',item:'🧶 ใยฝ้ายหนึ่งปุย'}];
-const MOLNOTE42='"17 โมเลกุลที่เปลี่ยนประวัติศาสตร์" ใช้แนวคิดจากหนังสือ Napoleon\'s Buttons (2003) และ Molecules That Changed the World (2008) เนื้อหาในเกมเขียนใหม่ทั้งหมดและตรวจกับแหล่งอื่น ✦ ชื่อหนังสือเล่มแรกมาจากตำนานว่ากระดุมดีบุกในเครื่องแบบทหารของนโปเลียนแตกเป็นผงในความหนาวของรัสเซียปี 1812 ดีบุกบริสุทธิ์เปลี่ยนเป็นผงเทาได้จริงเมื่อเย็นต่ำกว่า 13.2 องศา แต่ต้องใช้เวลานานมาก และไม่มีบันทึกของทหารที่รอดกลับมาคนไหนเล่าเรื่องกระดุมแตกเลย';
+  game:'ในเกมชีวิต: บท 18 ยุคเครื่องจักร (โรงปั่นฝ้ายแมนเชสเตอร์)',item:'🧶 ใยฝ้ายหนึ่งปุย',
+  src:[['Faversham explosives industry · Wikipedia','https://en.wikipedia.org/wiki/Faversham_explosives_industry'],['Schönbein and guncotton · McGill OSS','https://www.mcgill.ca/oss/node/10242'],['Cellulose · New World Encyclopedia','https://www.newworldencyclopedia.org/entry/Cellulose']]}];
+const MOLNOTE42='"17 โมเลกุลที่เปลี่ยนประวัติศาสตร์" ใช้แนวคิดจากหนังสือ Napoleon\'s Buttons (2003) และ Molecules That Changed the World (2008) เนื้อหาในเกมเขียนใหม่ทั้งหมดและตรวจกับแหล่งอื่น ✦ ชื่อหนังสือเล่มแรกมาจากตำนานว่ากระดุมดีบุกในเครื่องแบบทหารของนโปเลียนแตกเป็นผงในความหนาวของรัสเซียปี 1812 ดีบุกบริสุทธิ์เปลี่ยนเป็นผงเทาได้จริงเมื่อเย็นต่ำกว่า 13.2 องศา แต่ต้องใช้เวลานานมาก และไม่มีบันทึกของทหารที่รอดกลับมาคนไหนเล่าเรื่องกระดุมแตกเลย (ที่มา: Tin pest · Wikipedia)';
 
 /* ---------- progress ---------- */
 const stB42=()=>{try{const b=book29();b.stuff=b.stuff||{done:{},mus:{}};b.stuff.done=b.stuff.done||{};b.stuff.mus=b.stuff.mus||{};return b}catch(e){return {stuff:{done:{},mus:{}},eqM:{},eq:{}}}};
@@ -147,7 +150,7 @@ function stCss42(){eqCss37();if(document.getElementById('st42css'))return;const 
   '#st42 .pov{font-size:16px;line-height:1.75;color:#ffe2a8;border-left:3px solid #8a7ad8;padding:6px 12px;margin:12px 0}#st42 .sc{font-size:15px;line-height:1.7;margin:10px 0}#st42 .op{display:block;width:100%;text-align:left;margin:8px 0;background:#1e1838;border:1px solid #4a3a8a;color:#e8e0ff;border-radius:8px;padding:10px 12px;font-size:14.5px;cursor:pointer;line-height:1.5}#st42 .op.r{border-color:#6a9a5a;background:#1a2a18}#st42 .op.x{border-color:#9a4a4a;background:#2a1414}'+
   '#st42 .fb{font-size:14.5px;line-height:1.7;margin:10px 0;padding:10px 12px;border-radius:8px;background:#141018;border:1px solid var(--line)}#st42 .tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:9px;margin-right:6px}#st42 .tag.real{background:#2a4a2a;color:#cfe8c0}#st42 .tag.sim{background:#4a3a1a;color:#ffe2a8}'+
   '#st42 ul.fa{padding-left:18px;margin:6px 0}#st42 ul.fa li{font-size:14px;line-height:1.65;margin:4px 0}#st42 .cost{font-size:14px;line-height:1.7;border-left:3px solid #9a4a4a;padding:4px 10px;margin:10px 0;color:#f0d8d0}#st42 .nt{font-size:12.5px;color:var(--ash);border-left:2px solid var(--line);padding-left:8px;line-height:1.6}'+
-  '#st42 .mus{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0}#st42 .mus div{background:var(--soot);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12.5px}#st42 .nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}#st42 .step{font-size:12px;color:#8a7ad8;letter-spacing:.05em}#st42 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}#st42 .chips button{background:#1e1838;border:1px solid #4a3a8a;color:#e8e0ff;border-radius:8px;padding:4px 10px;font-size:14px;cursor:pointer}#st42 .chips button.on{background:#4a3a8a}#st42 .mean{font-size:13.5px;color:#ffe2a8;min-height:1.4em}';document.head.appendChild(st)}
+  '#st42 .mus{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0}#st42 .mus div{background:var(--soot);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12.5px}#st42 .nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}#st42 .step{font-size:12px;color:#8a7ad8;letter-spacing:.05em}#st42 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}#st42 .chips button{background:#1e1838;border:1px solid #4a3a8a;color:#e8e0ff;border-radius:8px;padding:4px 10px;font-size:14px;cursor:pointer}#st42 .chips button.on{background:#4a3a8a}#st42 .mean{font-size:13.5px;color:#ffe2a8;min-height:1.4em}#st42 .btn:disabled{opacity:.38;cursor:not-allowed;filter:grayscale(.6)}#st42 .op.h{border-style:dashed;border-color:#8ac87a}#st42 .src a{color:#c8b8ff;font-size:12.5px}#st42 .src{font-size:12.5px;color:var(--ash);margin:8px 0}#st42 details.soon summary{cursor:pointer;color:var(--ash);font-size:14px;margin:14px 0 4px}';document.head.appendChild(st)}
 function stShell42(){stCss42();let el=document.getElementById('st42');if(!el){el=document.createElement('div');el.id='st42';document.body.appendChild(el)}el.innerHTML='';el.scrollTop=0;const w=document.createElement('div');w.className='w';el.appendChild(w);return w}
 const stBtn42=(w,t,f,pri)=>{const b=document.createElement('button');b.className='btn '+(pri?'btn-primary':'btn-ghost');b.textContent=t;b.onclick=f;w.appendChild(b);return b};
 const stP42=(w,cls,txt,tag)=>{const p=document.createElement(tag||'p');if(cls)p.className=cls;p.textContent=txt;w.appendChild(p);return p};
@@ -155,16 +158,17 @@ function stClose42(){const el=document.getElementById('st42');if(el)el.remove();
 
 function stOpen42(){try{const w=stShell42();
   w.innerHTML='<h2>📚 History of Stuff · ห้องเรียนของสิ่งของ</h2><p class="sub">ทุกอย่างมีประวัติ ทุกอย่างมีราคา · เลือกวิชา แล้วให้สิ่งของเล่าเรื่องของมันเอง</p>';
-  for(const C of STUFF42){const b=document.createElement('button');b.className='crs'+(C.soon?' soon':'');const n=stLes42(C.k).length,d=stDone42(C.k);
+  const soon=document.createElement('details');soon.className='soon';soon.innerHTML='<summary>วิชาที่กำลังสร้าง · '+STUFF42.filter(c=>c.soon).length+' วิชา</summary>';
+  for(const C of STUFF42.filter(c=>!c.soon).concat(STUFF42.filter(c=>c.soon))){const b=document.createElement('button');b.className='crs'+(C.soon?' soon':'');const n=stLes42(C.k).length,d=stDone42(C.k);
     b.innerHTML='<span class="ic">'+C.ic+'</span><span><b>'+esc(C.t)+'</b><div class="d">'+esc(C.s)+'</div><div class="pr">'+(C.soon?'กำลังสร้าง':(C.k==='mol'?d+'/17 บทเรียน · เปิดแล้ว '+n:d+'/'+n+' บทเรียน'))+'</div></span>';
-    if(!C.soon)b.onclick=()=>stCourse42(C.k);w.appendChild(b)}
+    if(!C.soon){b.onclick=()=>stCourse42(C.k);w.appendChild(b)}else soon.appendChild(b)}w.appendChild(soon);
   const B=stB42(),mus=Object.values(B.stuff.mus);stP42(w,'','พิพิธภัณฑ์ของฉัน · '+mus.length+' ชิ้น','h3').style.cssText='font-size:15px;margin:16px 0 4px;color:var(--bone)';
   const g=document.createElement('div');g.className='mus';if(!mus.length)stP42(w,'nt','เรียนจบหนึ่งบท ได้ของหนึ่งชิ้นมาตั้งในพิพิธภัณฑ์');else mus.forEach(m=>{const d=document.createElement('div');d.textContent=m;g.appendChild(d)});w.appendChild(g);
   const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);stBtn42(nv,'ปิด',stClose42,1)}catch(e){}}
 
 function stCourse42(c){try{const C=STUFF42.find(z=>z.k===c);const w=stShell42();const done=stB42().stuff.done;
   w.innerHTML='<h2>'+C.ic+' '+esc(C.t)+'</h2><p class="sub">'+esc(C.src)+'</p>';
-  if(c==='eq'){let got={};try{got=book29().eq||{}}catch(e){}
+  if(c==='eq'){let got={};try{got=book29().eq||{}}catch(e){}stP42(w,'nt','ห้องเรียนกับเกมชีวิตใช้ของร่วมกันสองอย่าง ทำภารกิจที่นี่สำเร็จได้ดาวเชี่ยวชาญ ซึ่งในเกมชีวิตจะเปิดทางเลือก "ใช้ความรู้ที่เคยเรียนมา" ส่วนการ์ดในสมุด 17 สมการต้องเปิดด้วยการใช้ชีวิตจนเจอ');
     stLes42('eq').forEach((l,i)=>{const b=document.createElement('button');b.className='les'+(done['eq.'+l.k]?' ok':'');b.innerHTML='<span>'+(done['eq.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(l.t)+'</span><i>'+(l.D.mis?'🧪 ภารกิจ':'')+(got[l.k]?' · เจอในชีวิตแล้ว':'')+'</i>';b.onclick=()=>stLesson42('eq',i);w.appendChild(b)})}
   else if(c==='mol'){MOLLIST42.forEach((nm,i)=>{const l=LESMOL42.find(z=>z.n===i);const b=document.createElement('button');b.className='les'+(l?(done['mol.'+l.k]?' ok':''):' off');
       b.innerHTML='<span>'+(l&&done['mol.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(nm)+'</span><i>'+(l?esc(l.t):'กำลังสร้าง')+'</i>';if(l)b.onclick=()=>stLesson42('mol',LESMOL42.indexOf(l));w.appendChild(b)});
@@ -181,11 +185,14 @@ function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const
       stP42(w,'pov','“'+(c==='eq'?l.D.pov:l.pov)+'”');nav(w,'ต่อ')}
     else if(pg===1){head(w,c==='eq'?'ลองใช้':'คุณจะทำอย่างไร');
       if(c==='eq'){const [q,os]=l.D.use;stP42(w,'sc',q);const fb=document.createElement('div');let solved=false;
-        os.forEach(([t,ok,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;b.onclick=()=>{if(solved)return;b.classList.add(ok?'r':'x');fb.className='fb';fb.textContent=(ok?'✓ ':'✗ ')+f;if(ok){solved=true;nb.disabled=false}};w.appendChild(b)});
-        w.appendChild(fb);const nv=nav(w,'ต่อ');const nb=nv.firstChild;nb.disabled=true}
+        let miss=0;const bs=[];os.forEach(([t,ok,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push([b,ok]);b.onclick=()=>{if(solved||b.classList.contains('x'))return;b.classList.add(ok?'r':'x');fb.className='fb';fb.textContent=(ok?'✓ ':'✗ ')+f;
+          if(ok){solved=true;nb.disabled=false;nb.textContent='ต่อ'}else if(++miss>=2){bs.forEach(([z,k])=>{if(k)z.classList.add('h')});fb.textContent+=' · ข้อที่มีกรอบเส้นประคือคำตอบ ลองแตะอ่านเหตุผล'}};w.appendChild(b)});
+        w.appendChild(fb);const nv=nav(w,'เลือกคำตอบที่ถูกก่อน');const nb=nv.firstChild;nb.disabled=true}
       else{stP42(w,'sc',l.sc);const fb=document.createElement('div');let picked=false;
-        l.o.forEach(([t,tag,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;b.onclick=()=>{b.classList.add('r');fb.className='fb';fb.innerHTML='<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f);picked=true;nb.disabled=false};w.appendChild(b)});
-        w.appendChild(fb);stP42(w,'nt','ลองเลือกทางอื่นดูได้ ทุกทางจะบอกว่าเป็นเรื่องจริงหรือการจำลอง');const nv=nav(w,'ต่อ');const nb=nv.firstChild;nb.disabled=true}}
+        const bs=[];let seen=false;l.o.forEach(([t,tag,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push([b,tag]);b.onclick=()=>{bs.forEach(([z])=>z.classList.remove('r','x'));b.classList.add(tag==='real'?'r':'x');fb.className='fb';
+            fb.innerHTML=(picked?'':'<div class="nt" style="border:0;padding:0;margin-bottom:6px">คุณเลือกโดยไม่รู้อนาคต เหมือนคนในยุคนั้น</div>')+'<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f)+(tag==='real'?'':'<br><b>แล้วในประวัติศาสตร์จริง คนเลือกทางไหน</b> ลองเลือกทางที่มีกรอบเส้นประ');picked=true;
+            if(tag==='real'){seen=true;nb.disabled=false;nb.textContent='ต่อ'}else bs.forEach(([z,g])=>{if(g==='real')z.classList.add('h')})};w.appendChild(b)});
+        w.appendChild(fb);stP42(w,'nt','เลือกทางที่คุณจะทำ แล้วดูว่าในประวัติศาสตร์จริงเกิดอะไรขึ้น ทุกทางบอกว่าเป็นเรื่องจริงหรือการจำลอง');const nv=nav(w,'ดูว่าเกิดอะไรขึ้นจริงก่อน');const nb=nv.firstChild;nb.disabled=true}}
     else if(pg===2){if(c!=='eq'||!l.D.mis||typeof MIS38==='undefined'||!MIS38[l.D.mis]){pg=3;show();return}
       const M=MIS38[l.D.mis];head(w,'ภารกิจ');stP42(w,'',L(M.t),'h3');stP42(w,'sc',L(M.x));const fb=document.createElement('div');w.appendChild(fb);
       const nv=nav(w,'🧪 ลงมือ',()=>{toyRun38(M.toy,Object.assign({title:M.title},M.opt)).then(r=>{if(r.q>=3){try{const B=stB42();B.eqM=B.eqM||{};B.eqM[M.eq]=1;stSave42(B)}catch(e){}fb.className='fb';fb.textContent='✓ สำเร็จ คุณได้ดาวเชี่ยวชาญของสมการนี้ ในเกมชีวิต ถ้าเจอปัญหาแบบนี้ จะมีทางเลือก "ใช้ความรู้ที่เคยเรียนมา"'}else{fb.className='fb';fb.textContent='ยังไม่สำเร็จ ลองอีกครั้งได้ หรือข้ามไปก่อนก็ได้'}nb.textContent='🧪 ลองอีกครั้ง'})});
@@ -195,7 +202,8 @@ function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const
         E.p.forEach(([s,m])=>{const b=document.createElement('button');b.textContent=s;b.onclick=()=>{ch.querySelectorAll('button').forEach(z=>z.classList.remove('on'));b.classList.add('on');mean.textContent=s+' — '+m};ch.appendChild(b)});w.appendChild(ch);w.appendChild(mean);
         const af=document.createElement('p');af.className='sc';af.innerHTML='<b>โลกหลังจากนั้น</b> '+esc(L(E.after));w.appendChild(af);if(E.note)stP42(w,'nt',L(E.note))}
       else{const u=document.createElement('ul');u.className='fa';l.fact.forEach(f=>{const li=document.createElement('li');li.textContent=f;u.appendChild(li)});w.appendChild(u);
-        const cs=document.createElement('div');cs.className='cost';cs.innerHTML='<b>ราคาที่ซ่อนอยู่</b> '+esc(l.cost);w.appendChild(cs);if(l.note)stP42(w,'nt',l.note)}
+        const cs=document.createElement('div');cs.className='cost';cs.innerHTML='<b>ราคาที่ซ่อนอยู่</b> '+esc(l.cost);w.appendChild(cs);if(l.note)stP42(w,'nt',l.note);
+        if(l.src){const d=document.createElement('div');d.className='src';d.innerHTML='<b>ที่มา</b> '+l.src.map(([t,u])=>'<a href="'+u+'" target="_blank" rel="noopener">'+esc(t)+'</a>').join(' · ');w.appendChild(d)}}
       nav(w,'ต่อ')}
     else{const item=c==='eq'?l.D.item:l.item;stMark42(c,l.k,item);head(w,'จบบทเรียน');
       stP42(w,'pov','ของชิ้นใหม่ในพิพิธภัณฑ์: '+item);stP42(w,'sc',c==='eq'?'ในเกมชีวิต: เจอสมการนี้ได้ใน '+L(l.E.where):l.game);
@@ -208,5 +216,6 @@ function stHome42(re){try{let sec=document.getElementById('st42home');if(!sec){c
   else if(!re)return;
   const all=STUFF42.filter(c=>!c.soon).reduce((s,c)=>s+stDone42(c.k),0);
   sec.innerHTML='<h2>📚 History of Stuff</h2><p class="note">โหมดเรียนรู้ ให้สิ่งของเล่าเรื่องของมันเอง สมการ โมเลกุล เสื้อยืด เครื่องเทศ ปลาค็อด และอีกมาก ค่อยๆ เพิ่มทีละวิชา</p><button class="btn btn-primary" id="st42go">เข้าห้องเรียนของสิ่งของ'+(all?' · เรียนแล้ว '+all+' บท':'')+'</button>';
-  document.getElementById('st42go').onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()}}catch(e){}}
+  document.getElementById('st42go').onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()};
+  const bar=document.querySelector('#home header.bar');if(bar&&!document.getElementById('st42top')){const t=document.createElement('button');t.id='st42top';t.className='btn btn-ghost';t.textContent='📚 ห้องเรียนของสิ่งของ';t.style.cssText='margin-left:auto;padding:4px 10px;font-size:13px;min-height:0;width:auto';t.onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()};bar.style.display='flex';bar.style.alignItems='center';bar.appendChild(t)}}catch(e){}}
 if(typeof window!=='undefined')window.__v42={STUFF42,LESEQ42,LESMOL42,stOpen42,stCourse42,stLesson42,molCanvas42};
