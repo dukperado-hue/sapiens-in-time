@@ -135,9 +135,11 @@ function plAct45(i){const A=PLG45[i];if(!A)return;let pg=0;
     if(pg<A.intro.length){stP42(w,'sc',A.intro[pg]);nav('ต่อ',()=>{pg++;show()})}
     else if(pg===A.intro.length){stP42(w,'pov',A.q);
       if(A.toy==='snow'){let nb;const host=document.createElement('div');w.appendChild(host);snowToy45(host,ok=>{if(ok){nb.disabled=false;nb.textContent='ต่อ'}});nb=nav('หาปั๊มให้เจอก่อน',()=>{pg++;show()},true)}
-      else{const fb=document.createElement('div');let nb;A.o.forEach(([t,tag,f],j)=>{const b=document.createElement('button');b.className='op';b.textContent=t;b.onclick=()=>{w.querySelectorAll('.op').forEach(z=>z.classList.remove('r'));b.classList.add('r');fb.className='fb';
-          fb.innerHTML='<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f);const B=plB45();if(B.plg.pick[A.k]==null||!B.plg._lock){B.plg.pick[A.k]=j}stSave42(B);nb.disabled=false;nb.textContent='ต่อ'};w.appendChild(b)});
-        w.appendChild(fb);stP42(w,'nt','เลือกแล้วจะรู้ว่าทางนั้นเกิดขึ้นจริงหรือเป็นการจำลอง ลองเลือกทางอื่นดูได้ ทางที่คุณเลือกล่าสุดจะถูกจำไว้');nb=nav('เลือกก่อน',()=>{pg++;show()},true)}}
+      else{const fb=document.createElement('div');let nb;const j0=plB45().plg.pick[A.k];const bs=[];
+        const reveal=(j,first)=>{const [t,tag,f]=A.o[j];bs.forEach((z,k)=>{z.disabled=true;z.classList.toggle('r',k===j);if(k!==j)z.style.opacity='.4'});fb.className='fb';
+          fb.innerHTML='<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f)+'<div class="nt" style="border:0;padding:0;margin-top:8px">'+(first?'คุณเลือกแล้ว และในประวัติศาสตร์ ไม่มีใครย้อนกลับไปเลือกใหม่ได้':'คุณเคยเลือกทางนี้ไว้แล้ว ทางที่เลือกเปลี่ยนไม่ได้')+'</div>';if(nb){nb.disabled=false;nb.textContent='ต่อ'}};
+        A.o.forEach(([t,tag,f],j)=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push(b);b.onclick=()=>{if(b.disabled)return;const B=plB45();B.plg.pick[A.k]=j;stSave42(B);reveal(j,true)};w.appendChild(b)});
+        w.appendChild(fb);stP42(w,'nt','เลือกได้ครั้งเดียว คิดให้ดี เหมือนคนในยุคนั้นที่ไม่รู้อนาคต');nb=nav('เลือกก่อน',()=>{pg++;show()},true);if(j0!=null)reveal(j0,false)}}
     else{const u=document.createElement('ul');u.className='fa';A.fact.forEach(f=>{const li=document.createElement('li');li.textContent=f;u.appendChild(li)});w.appendChild(u);
       const l=document.createElement('div');l.className='les45';l.textContent='บทเรียนของโลก: '+A.les;w.appendChild(l);if(A.note)stP42(w,'nt',A.note);
       const d=document.createElement('div');d.className='src';d.innerHTML='<b>ที่มา</b> '+A.src.map(([t,u2])=>'<a href="'+u2+'" target="_blank" rel="noopener">'+esc(t)+'</a>').join(' · ');w.appendChild(d);
