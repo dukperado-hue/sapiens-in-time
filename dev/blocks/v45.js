@@ -122,23 +122,56 @@ const plB45=()=>{try{const b=book29();b.plg=b.plg||{done:{},pick:{}};return b}ca
 function plShell45(){stCss42();let el=document.getElementById('st42');if(!el){el=document.createElement('div');el.id='st42';document.body.appendChild(el)}el.innerHTML='';el.scrollTop=0;
   if(!document.getElementById('pl45css')){const st=document.createElement('style');st.id='pl45css';st.textContent='#st42 .stage45{width:100%;image-rendering:pixelated;display:block;border:1px solid #2a2440;border-radius:6px;aspect-ratio:16/9;background:#000}#st42 .yr45{font-size:12px;color:#ffb070;letter-spacing:.06em;margin:10px 0 2px}#st42 .tl45{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--soot);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;width:100%;color:inherit;font:inherit;text-align:left}#st42 .tl45.ok{border-color:#6a8a5a}#st42 .tl45 b{font-size:14.5px;color:#e8dcc8}#st42 .tl45 i{font-style:normal;font-size:12px;color:var(--ash);display:block}#st42 .tl45 .n{font-family:var(--display);color:#ffb070;font-size:18px;min-width:22px}#st42 .les45{display:inline-block;background:#2a2440;border:1px solid #6a5ab8;color:#e8e0ff;border-radius:14px;padding:4px 12px;font-size:13px;margin:4px 0}';document.head.appendChild(st)}
   const w=document.createElement('div');w.className='w';el.appendChild(w);return w}
+/* ---------- a family line through five hundred years: each choice changes what the next scene inherits ---------- */
+const EFF45={
+ issyk:[{d:{coin:1},c:'ครอบครัวของคุณตามคาราวานมาถึงชายฝั่งทะเลดำ เรื่องเล่าของปู่ทวดเรื่องป้ายหลุมศพริมทะเลสาบ ยังเล่าต่อกันในบ้าน',m:'คุณรอดจากฤดูหนาวนั้น และได้งานขนของในกองคาราวาน'},
+  {d:{kind:1,know:1},c:'ในครอบครัวของคุณ มีธรรมเนียมจดชื่อคนตายทุกคนไว้ ไม่ให้ใครถูกลืม ธรรมเนียมนี้เริ่มจากบรรพบุรุษที่สลักป้ายหลุมศพริมทะเลสาบ',m:'มือของคุณด้านจากการสลักหิน แต่คุณจำชื่อทุกคนได้'},
+  {d:{fam:-1},c:'เรื่องเล่าในครอบครัวของคุณเริ่มจากบ้านที่ปิดตายริมทะเลสาบ ซึ่งก็ไม่รอดอยู่ดี มีเด็กคนเดียวที่ออกมาได้',m:'บ้านที่ปิดตายไม่ได้กันโรค น้องชายของคุณจากไปในเดือนนั้น'}],
+ caffa:[{d:{coin:-1},c:'บรรพบุรุษของคุณกลับจากทะเลดำด้วยเรือลำหนึ่ง และไม่เคยเล่าว่าบนเรือมีคนตายกี่คน',m:'คุณหนีจากการล้อมได้ แต่สามคนบนเรือเริ่มมีไข้ก่อนถึงอิตาลี'},
+  {d:{fam:-1,kind:1},c:'ครอบครัวของคุณอยู่กับเมืองคัฟฟาจนการล้อมสลาย แล้วจึงย้ายมาอิตาลีทีหลัง พร้อมกับคนที่เหลือน้อยลง',m:'คุณอยู่จนการล้อมสลาย แต่เสียพ่อไปในเดือนนั้น'},
+  {d:{know:1},c:'ในหีบของครอบครัวคุณ มีจดหมายเก่าฉบับหนึ่งที่เตือนว่าอย่ารับเรือจากทะเลดำ จดหมายไปถึงช้ากว่าเรือ แต่มีคนเก็บไว้',m:'จดหมายของคุณไปถึงเจนัวช้ากว่าเรือหนึ่งเดือน'}],
+ florence:[{d:{kind:2,fam:-1},c:'ทุกคนในครอบครัวของคุณรู้เรื่องที่ย่าทวดอยู่ดูแลพี่ชายในปีที่เมืองทิ้งกัน แม้นางเองจะติดโรคตามไป',m:'พี่ชายของคุณหายได้ แต่คุณติดโรคและจากไปในเดือนต่อมา ลูกของคุณโตมากับเรื่องนี้'},
+  {d:{coin:-1,kind:-1},c:'ครอบครัวของคุณรอดเพราะมีวิลลานอกเมือง แต่ไม่มีใครพูดถึงลุงที่ถูกทิ้งไว้ในฟลอเรนซ์',m:'ครอบครัวรอดในวิลลา พี่ชายตายคนเดียวในเมือง'},
+  {d:{fam:-1},c:'ในบ้านของครอบครัวคุณ ยังมีถุงสมุนไพรแห้งแขวนไว้หน้าประตูทุกครั้งที่มีข่าวโรคระบาด',m:'กลิ่นหอมไม่ได้กันหมัด แม่ของคุณติดโรคในปีนั้น'}],
+ stras:[{d:{kind:2,fam:-1},c:'ในครอบครัวของคุณ มีเรื่องเล่าที่ไม่มีหลักฐาน ว่าบรรพบุรุษเคยซ่อนเพื่อนบ้านไว้ใต้หลังคา และเพราะเรื่องนั้นจึงต้องย้ายเมือง',m:'คุณถูกเพื่อนบ้านด่าว่าทรยศ และต้องย้ายออกจากเมือง'},
+  {d:{kind:-1},c:'ครอบครัวของคุณไม่เคยพูดถึงเดือนกุมภาพันธ์ปีนั้นในสตราสบูร์ก',m:'คุณจำกลิ่นควันวันนั้นได้จนวันตาย'},
+  {d:{kind:1,coin:-1},c:'ครอบครัวของคุณเคยถูกขับออกจากสมาคมช่าง เพราะบรรพบุรุษคนหนึ่งพูดในวันที่ไม่มีใครอยากฟัง',m:'คุณถูกปรับและถูกขับออกจากสมาคมช่าง'}],
+ manor:[{d:{coin:2},c:'ค่าแรงสองเท่าในปีหลังโรคระบาด ทำให้ครอบครัวของคุณมีวัวตัวแรก และได้เช่าที่ดินของตัวเอง',m:'ครอบครัวของคุณเริ่มมีที่ดินเช่าเป็นของตัวเอง'},
+  {d:{fam:1},c:'ครอบครัวของคุณอยู่หมู่บ้านเดิมมาหลายชั่วคน ทุกคนรู้จักชื่อกันหมด',m:'คุณอยู่ที่เดิม และแต่งงานกับลูกสาวเพื่อนบ้าน'},
+  {d:{kind:1,know:1,coin:1},c:'ในครอบครัวของคุณ มีคำสอนว่า เมื่อแรงงานหายาก ให้ต่อรองร่วมกัน ไม่ใช่คนเดียว',m:'คนงานในหมู่บ้านได้ค่าแรงเพิ่มนิดหน่อย และคุณถูกจับตามองจากเจ้าของที่ดิน'}],
+ ragusa:[{d:{know:2,fam:1},c:'ระลอกต่อมาของโรคระบาด เมืองของบรรพบุรุษคุณมีคนตายน้อยกว่าเมืองข้างเคียง และครอบครัวของคุณก็รอดมาได้ครบ',m:'ในระลอกต่อมา เมืองของคุณมีคนตายน้อยกว่าเมืองอื่น'},
+  {d:{coin:1,fam:-1},c:'บรรพบุรุษของคุณร่ำรวยจากการค้าในปีที่ท่าเรืออื่นปิด แต่ระลอกต่อมาก็พรากคนในบ้านไปสองคน',m:'การค้าดี แต่ระลอกต่อมาพรากคนในบ้านไปสองคน'},
+  {d:{coin:-2},c:'ครอบครัวของคุณยากจนลงในปีที่ท่าเรือปิด เรื่องนั้นเล่ากันว่าเป็นปีที่กินแต่ปลาเค็ม',m:'ท่าเรือปิดสามเดือน ครอบครัวของคุณขายเรือไปลำหนึ่ง'}],
+ eyam:[{d:{kind:2,fam:-1},c:'ชื่อของบรรพบุรุษคุณอยู่ในรายชื่อคนตายของหมู่บ้านที่ปิดตัวเอง เพื่อไม่ให้โรคไปถึงหมู่บ้านอื่น',m:'หมู่บ้านอื่นรอด คุณเสียลูกไปหนึ่งคน'},
+  {d:{kind:-2},c:'ครอบครัวของคุณรอดเพราะหนีออกจากหมู่บ้านในคืนหนึ่ง และไม่เคยกลับไปอีก',m:'หมู่บ้านของญาติไม่มีใครป่วย คุณโชคดี แต่ไม่มีใครรู้ว่าเพราะอะไร'},
+  {d:{kind:3,fam:-1},c:'ครอบครัวของคุณเล่าถึงคนที่เดินไปรับอาหารที่หินเขตแดนทุกวัน จนวันที่เขาเองก็ไม่ได้กลับมา',m:'คุณเดินไปหินเขตแดนทุกเช้าจนถึงวันที่ป่วย'}],
+ hk:[{d:{know:2},c:'',m:'ชื่อของคุณไม่อยู่ในรายงานของเยร์แซ็ง แต่คุณรู้ว่าตัวอย่างนั้นผ่านมือคุณ'},
+  {d:{know:-1},c:'',m:'เยร์แซ็งพยักหน้าแล้วกลับไปที่กล้องจุลทรรศน์'},
+  {d:{know:2},c:'',m:'สิ่งที่คุณสังเกตเรื่องหนูตาย จะกลายเป็นคำถามที่คนอื่นตอบได้ในอีกสี่ปี'}]};
+const LIN0_45={fam:4,know:0,kind:0,coin:1};
+const lin45=()=>{const B=plB45();B.plg.lin=B.plg.lin||Object.assign({},LIN0_45);return B};
+function linApply45(k,j){const B=lin45(),E=(EFF45[k]||[])[j];if(!E||B.plg.app&&B.plg.app[k])return;B.plg.app=B.plg.app||{};B.plg.app[k]=1;for(const z in E.d)B.plg.lin[z]=(B.plg.lin[z]||0)+E.d[z];B.plg.lin.fam=Math.max(1,B.plg.lin.fam);stSave42(B)}
+function linBar45(w){const L=lin45().plg.lin;const d=document.createElement('div');d.className='nt';d.style.cssText='border:0;padding:0;margin:4px 0;color:#c8b8a0';d.textContent='ครอบครัวของคุณ · คนที่ยังอยู่ '+L.fam+' · ความรู้ '+L.know+' · ความเมตตา '+L.kind+' · ทรัพย์ '+L.coin;w.appendChild(d)}
+function linReset45(){const B=plB45();B.plg.pick={};B.plg.done={};B.plg.app={};B.plg.lin=Object.assign({},LIN0_45);stSave42(B)}
 function plOpen45(){try{const w=plShell45(),B=plB45();
   w.innerHTML='<h2>🐀 กาฬโรค: ห้าร้อยปีของโรคระบาด</h2><p class="sub">เรื่องยาว 9 ฉาก จากหลุมศพริมทะเลสาบในเอเชียกลางปี 1338 ถึงปั๊มน้ำในลอนดอนปี 1854 · ทุกฉากคุณเป็นคนธรรมดาคนหนึ่งในยุคนั้น</p>';
   const c=document.createElement('canvas');c.width=320;c.height=180;c.className='stage45';w.appendChild(c);g45stage(c,'florence');
-  PLG45.forEach((A,i)=>{const b=document.createElement('button');b.className='tl45'+(B.plg.done[A.k]?' ok':'');b.innerHTML='<span class="n">'+(B.plg.done[A.k]?'✓':(i+1))+'</span><span><b>'+esc(A.t)+'</b><i>'+esc(A.yr+' · '+A.pl)+'</i></span>';b.onclick=()=>plAct45(i);w.appendChild(b)});
+  PLG45.forEach((A,i)=>{const b=document.createElement('button');b.className='tl45'+(B.plg.done[A.k]?' ok':'');b.innerHTML='<span class="n">'+(B.plg.done[A.k]?'✓':(i+1))+'</span><span><b>'+esc(A.t)+'</b><i>'+esc(A.yr+' · '+A.pl)+'</i></span>';const nxt=PLG45.findIndex(z=>!B.plg.done[z.k]);if(nxt>=0&&i>nxt){b.style.opacity='.45';b.querySelector('.n').textContent='🔒';b.onclick=()=>{}}else b.onclick=()=>plAct45(i);w.appendChild(b)});linBar45(w);
   if(PLG45.every(A=>B.plg.done[A.k]))stBtn42(w,'อ่านบทส่งท้ายอีกครั้ง',plEnd45);
-  const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);const first=PLG45.findIndex(A=>!B.plg.done[A.k]);stBtn42(nv,first<0?'เริ่มใหม่ตั้งแต่ฉากแรก':first===0?'เริ่มเรื่อง':'เล่นต่อ ฉากที่ '+(first+1),()=>plAct45(Math.max(0,first)),1);stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
+  const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);const first=PLG45.findIndex(A=>!B.plg.done[A.k]);stBtn42(nv,first<0?'เริ่มชีวิตใหม่ตั้งแต่ฉากแรก':first===0?'เริ่มเรื่อง':'เล่นต่อ ฉากที่ '+(first+1),()=>{if(first<0)linReset45();plAct45(Math.max(0,first))},1);if(first>0){const rb=stBtn42(nv,'ล้างทางที่เลือก เริ่มเรื่องใหม่',()=>{if(rb.dataset.k){linReset45();plOpen45()}else{rb.dataset.k=1;rb.textContent='แตะอีกครั้งเพื่อล้างทุกทางที่เลือก'}})}stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
 function plAct45(i){const A=PLG45[i];if(!A)return;let pg=0;
   const show=()=>{try{const w=plShell45();const c=document.createElement('canvas');c.width=320;c.height=180;c.className='stage45';w.appendChild(c);g45stage(c,A.sc);
-    stP42(w,'yr45','ฉากที่ '+(i+1)+' จาก '+PLG45.length+' · '+A.yr+' · '+A.pl);stP42(w,'',A.t,'h2');
+    stP42(w,'yr45','ฉากที่ '+(i+1)+' จาก '+PLG45.length+' · '+A.yr+' · '+A.pl);stP42(w,'',A.t,'h2');linBar45(w);
+    if(pg===0&&i>0){const P=PLG45[i-1],pj=plB45().plg.pick[P.k],E=pj!=null&&EFF45[P.k]&&EFF45[P.k][pj];if(E&&E.c){const d=document.createElement('div');d.className='fb';d.innerHTML='<b>สิ่งที่ตกทอดมาจากฉากก่อน</b><br>'+esc(E.c);w.appendChild(d)}}
     const nav=(lab,f,dis)=>{const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);const b=stBtn42(nv,lab,f,1);if(dis)b.disabled=true;stBtn42(nv,'← ทุกฉาก',plOpen45);return b};
     if(pg<A.intro.length){stP42(w,'sc',A.intro[pg]);nav('ต่อ',()=>{pg++;show()})}
     else if(pg===A.intro.length){stP42(w,'pov',A.q);
-      if(A.toy==='snow'){let nb;const host=document.createElement('div');w.appendChild(host);snowToy45(host,ok=>{if(ok){nb.disabled=false;nb.textContent='ต่อ'}});nb=nav('หาปั๊มให้เจอก่อน',()=>{pg++;show()},true)}
+      if(A.toy==='snow'){let nb;const host=document.createElement('div');w.appendChild(host);snowToy45(host,ok=>{if(ok){nb.disabled=false;nb.textContent='ต่อ';const B=lin45();if(!(B.plg.app||{}).soho){B.plg.app=B.plg.app||{};B.plg.app.soho=1;B.plg.lin.know+=2;stSave42(B)}}});nb=nav('หาปั๊มให้เจอก่อน',()=>{pg++;show()},true)}
       else{const fb=document.createElement('div');let nb;const j0=plB45().plg.pick[A.k];const bs=[];
         const reveal=(j,first)=>{const [t,tag,f]=A.o[j];bs.forEach((z,k)=>{z.disabled=true;z.classList.toggle('r',k===j);if(k!==j)z.style.opacity='.4'});fb.className='fb';
-          fb.innerHTML='<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f)+'<div class="nt" style="border:0;padding:0;margin-top:8px">'+(first?'คุณเลือกแล้ว และในประวัติศาสตร์ ไม่มีใครย้อนกลับไปเลือกใหม่ได้':'คุณเคยเลือกทางนี้ไว้แล้ว ทางที่เลือกเปลี่ยนไม่ได้')+'</div>';if(nb){nb.disabled=false;nb.textContent='ต่อ'}};
-        A.o.forEach(([t,tag,f],j)=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push(b);b.onclick=()=>{if(b.disabled)return;const B=plB45();B.plg.pick[A.k]=j;stSave42(B);reveal(j,true)};w.appendChild(b)});
+          const E=(EFF45[A.k]||[])[j],dd=E?Object.entries(E.d).map(([z,v])=>({fam:'คนในครอบครัว',know:'ความรู้',kind:'ความเมตตา',coin:'ทรัพย์'}[z]+(v>0?' +':' ')+v)).join(' · '):'';
+          fb.innerHTML='<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f)+(E?'<div style="margin-top:8px;color:#ffe2a8"><b>เรื่องของคุณ</b> '+esc(E.m)+(dd?' ('+esc(dd)+')':'')+'</div>':'')+'<div class="nt" style="border:0;padding:0;margin-top:8px">'+(first?'คุณเลือกแล้ว และในประวัติศาสตร์ ไม่มีใครย้อนกลับไปเลือกใหม่ได้':'คุณเคยเลือกทางนี้ไว้แล้ว ทางที่เลือกเปลี่ยนไม่ได้')+'</div>';if(nb){nb.disabled=false;nb.textContent='ต่อ'}};
+        A.o.forEach(([t,tag,f],j)=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push(b);b.onclick=()=>{if(b.disabled)return;const B=plB45();B.plg.pick[A.k]=j;stSave42(B);linApply45(A.k,j);reveal(j,true)};w.appendChild(b)});
         w.appendChild(fb);stP42(w,'nt','เลือกได้ครั้งเดียว คิดให้ดี เหมือนคนในยุคนั้นที่ไม่รู้อนาคต');nb=nav('เลือกก่อน',()=>{pg++;show()},true);if(j0!=null)reveal(j0,false)}}
     else{const u=document.createElement('ul');u.className='fa';A.fact.forEach(f=>{const li=document.createElement('li');li.textContent=f;u.appendChild(li)});w.appendChild(u);
       const l=document.createElement('div');l.className='les45';l.textContent='บทเรียนของโลก: '+A.les;w.appendChild(l);if(A.note)stP42(w,'nt',A.note);
@@ -147,12 +180,14 @@ function plAct45(i){const A=PLG45[i];if(!A)return;let pg=0;
       const nx=PLG45[i+1];nav(nx?'ฉากต่อไป: '+nx.yr:'บทส่งท้าย',()=>nx?plAct45(i+1):plEnd45())}
   }catch(e){}};show()}
 function plEnd45(){try{const w=plShell45(),B=plB45();const c=document.createElement('canvas');c.width=320;c.height=180;c.className='stage45';w.appendChild(c);g45stage(c,'issyk');
-  stP42(w,'','ห้าร้อยปีต่อมา','h2');PLGEND45.forEach(p=>stP42(w,'sc',p));
+  stP42(w,'','ห้าร้อยปีต่อมา','h2');PLGEND45.forEach(p=>stP42(w,'sc',p));{const L=lin45().plg.lin;const top=Object.entries({know:L.know,kind:L.kind,coin:L.coin}).sort((a,b)=>b[1]-a[1])[0][0];
+    const T={know:'สิ่งที่ครอบครัวของคุณส่งต่อมามากที่สุดคือความรู้ จากป้ายหลุมศพ จดหมายเตือน จนถึงการนับและจดของสโนว์ ลูกหลานของคุณเชื่อสิ่งที่นับได้มากกว่าข่าวลือ',kind:'สิ่งที่ครอบครัวของคุณส่งต่อมามากที่สุดคือการไม่ทิ้งกัน มันมีราคา คนในครอบครัวคุณหลายคนตายเพราะอยู่ดูแลคนอื่น แต่เรื่องของพวกเขาคือเรื่องที่ลูกหลานเล่าต่อ',coin:'สิ่งที่ครอบครัวของคุณส่งต่อมามากที่สุดคือทรัพย์ คุณรอดมาได้หลายครั้งเพราะมีทางหนีและมีที่ไป ซึ่งคนส่วนใหญ่ในยุคนั้นไม่มี'};
+    const d=document.createElement('div');d.className='fb';d.innerHTML='<b>ครอบครัวของคุณหลังห้าร้อยปี</b><br>คนที่ยังอยู่ '+L.fam+' · ความรู้ '+L.know+' · ความเมตตา '+L.kind+' · ทรัพย์ '+L.coin+'<br>'+esc(T[top]);w.appendChild(d)}
   stP42(w,'','ทางที่คุณเลือก','h3').style.cssText='font-size:15px;margin:14px 0 4px;color:var(--bone)';const u=document.createElement('ul');u.className='fa';
   PLG45.forEach(A=>{const j=B.plg.pick[A.k];const li=document.createElement('li');li.textContent=A.yr+' · '+A.pl+': '+(A.toy?'ช่วยสโนว์หาปั๊มต้นเหตุ':j!=null?A.o[j][0]+' ('+(A.o[j][1]==='real'?'เกิดขึ้นจริง':'จำลอง')+')':'ยังไม่ได้เลือก');u.appendChild(li)});w.appendChild(u);
   stP42(w,'','บทเรียนที่โลกเรียนรู้','h3').style.cssText='font-size:15px;margin:14px 0 4px;color:var(--bone)';PLG45.forEach(A=>{const l=document.createElement('div');l.className='les45';l.textContent=A.les;w.appendChild(l);w.appendChild(document.createElement('br'))});
   stP42(w,'nt','ฉากและตัวละครในเรื่องนี้เป็นคนธรรมดาที่แต่งขึ้น ส่วนเหตุการณ์ วันที่ และตัวเลขตรวจกับแหล่งที่ให้ไว้ในแต่ละฉาก เรื่องที่ยังถกเถียงหรือเป็นตำนานติดป้าย ✦');
-  const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);stBtn42(nv,'กลับไปที่ทุกฉาก',plOpen45,1);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
+  const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);stBtn42(nv,'กลับไปที่ทุกฉาก',plOpen45,1);stBtn42(nv,'เริ่มชีวิตใหม่ตั้งแต่ฉากแรก',()=>{linReset45();plAct45(0)});stBtn42(nv,'ปิด',stClose42)}catch(e){}}
 
 /* ---------- on the shelf and on the home screen ---------- */
 STUFF42.splice(2,0,{k:'plague',ic:'🐀',t:'กาฬโรค: ห้าร้อยปีของโรคระบาด',s:'เรื่องยาว 9 ฉาก จากทุ่งหญ้ามองโกลถึงปั๊มน้ำของจอห์น สโนว์',src:'เรื่องยาว',open:plOpen45,prog:()=>{const d=plB45().plg.done;return PLG45.filter(A=>d[A.k]).length+'/'+PLG45.length+' ฉาก · ภาพแบบใหม่'}});

@@ -188,11 +188,11 @@ function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const
       stP42(w,'pov','“'+(c==='eq'?l.D.pov:l.pov)+'”');nav(w,'ต่อ')}
     else if(pg===1){head(w,c==='eq'?'ลองใช้':'คุณจะทำอย่างไร');
       if(c==='eq'){const [q,os]=l.D.use;stP42(w,'sc',q);const fb=document.createElement('div');let solved=false;
-        let miss=0;const bs=[];os.forEach(([t,ok,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push([b,ok]);b.onclick=()=>{if(solved||b.classList.contains('x'))return;b.classList.add(ok?'r':'x');fb.className='fb';fb.textContent=(ok?'✓ ':'✗ ')+f;
+        let miss=0;const bs=[];os.slice().sort(()=>Math.random()-.5).forEach(([t,ok,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push([b,ok]);b.onclick=()=>{if(solved||b.classList.contains('x'))return;b.classList.add(ok?'r':'x');fb.className='fb';fb.textContent=(ok?'✓ ':'✗ ')+f;
           if(ok){solved=true;nb.disabled=false;nb.textContent='ต่อ'}else if(++miss>=2){bs.forEach(([z,k])=>{if(k)z.classList.add('h')});fb.textContent+=' · ข้อที่มีกรอบเส้นประคือคำตอบ ลองแตะอ่านเหตุผล'}};w.appendChild(b)});
         w.appendChild(fb);const nv=nav(w,'เลือกคำตอบที่ถูกก่อน');const nb=nv.firstChild;nb.disabled=true}
       else{stP42(w,'sc',l.sc);const fb=document.createElement('div');let picked=false;
-        const bs=[];let seen=false;l.o.forEach(([t,tag,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push([b,tag]);b.onclick=()=>{bs.forEach(([z])=>z.classList.remove('r','x'));b.classList.add(tag==='real'?'r':'x');fb.className='fb';
+        const bs=[];let seen=false;l.o.slice().sort(()=>Math.random()-.5).forEach(([t,tag,f])=>{const b=document.createElement('button');b.className='op';b.textContent=t;bs.push([b,tag]);b.onclick=()=>{bs.forEach(([z])=>z.classList.remove('r','x'));b.classList.add(tag==='real'?'r':'x');fb.className='fb';
             fb.innerHTML=(picked?'':'<div class="nt" style="border:0;padding:0;margin-bottom:6px">คุณเลือกโดยไม่รู้อนาคต เหมือนคนในยุคนั้น</div>')+'<span class="tag '+tag+'">'+(tag==='real'?'เกิดขึ้นจริง':'จำลอง')+'</span>'+esc(f)+(tag==='real'?'':'<br><b>แล้วในประวัติศาสตร์จริง คนเลือกทางไหน</b> ลองเลือกทางที่มีกรอบเส้นประ');picked=true;
             if(tag==='real'){seen=true;nb.disabled=false;nb.textContent='ต่อ'}else bs.forEach(([z,g])=>{if(g==='real')z.classList.add('h')})};w.appendChild(b)});
         w.appendChild(fb);stP42(w,'nt','เลือกทางที่คุณจะทำ แล้วดูว่าในประวัติศาสตร์จริงเกิดอะไรขึ้น ทุกทางบอกว่าเป็นเรื่องจริงหรือการจำลอง');const nv=nav(w,'ดูว่าเกิดอะไรขึ้นจริงก่อน');const nb=nv.firstChild;nb.disabled=true}}
