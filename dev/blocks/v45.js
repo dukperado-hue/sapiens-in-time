@@ -160,10 +160,11 @@ function plOpen45(){try{const w=plShell45(),B=plB45();
   if(PLG45.every(A=>B.plg.done[A.k]))stBtn42(w,'อ่านบทส่งท้ายอีกครั้ง',plEnd45);
   const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);const first=PLG45.findIndex(A=>!B.plg.done[A.k]);stBtn42(nv,first<0?'เริ่มชีวิตใหม่ตั้งแต่ฉากแรก':first===0?'เริ่มเรื่อง':'เล่นต่อ ฉากที่ '+(first+1),()=>{if(first<0)linReset45();plAct45(Math.max(0,first))},1);if(first>0){const rb=stBtn42(nv,'ล้างทางที่เลือก เริ่มเรื่องใหม่',()=>{if(rb.dataset.k){linReset45();plOpen45()}else{rb.dataset.k=1;rb.textContent='แตะอีกครั้งเพื่อล้างทุกทางที่เลือก'}})}stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
 function plAct45(i){const A=PLG45[i];if(!A)return;let pg=0;
-  const show=()=>{try{const w=plShell45();const c=document.createElement('canvas');c.width=320;c.height=180;c.className='stage45';w.appendChild(c);g45stage(c,A.sc);
+  const show=()=>{try{const w=plShell45();const ex=document.createElement('button');ex.className='btn btn-ghost';ex.textContent='✕ ออกจากฉาก';ex.style.cssText='float:right;min-height:40px;padding:4px 12px;font-size:13px;width:auto;margin:0 0 6px';ex.onclick=()=>{if(ex.dataset.k)plOpen45();else{ex.dataset.k=1;ex.textContent='แตะอีกครั้งเพื่อออก';setTimeout(()=>{if(ex.isConnected){delete ex.dataset.k;ex.textContent='✕ ออกจากฉาก'}},3000)}};w.appendChild(ex);
+    const c=document.createElement('canvas');c.width=320;c.height=180;c.className='stage45';c.style.clear='both';w.appendChild(c);g45stage(c,A.sc);
     stP42(w,'yr45','ฉากที่ '+(i+1)+' จาก '+PLG45.length+' · '+A.yr+' · '+A.pl);stP42(w,'',A.t,'h2');linBar45(w);
     if(pg===0&&i>0){const P=PLG45[i-1],pj=plB45().plg.pick[P.k],E=pj!=null&&EFF45[P.k]&&EFF45[P.k][pj];if(E&&E.c){const d=document.createElement('div');d.className='fb';d.innerHTML='<b>สิ่งที่ตกทอดมาจากฉากก่อน</b><br>'+esc(E.c);w.appendChild(d)}}
-    const nav=(lab,f,dis)=>{const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);const b=stBtn42(nv,lab,f,1);if(dis)b.disabled=true;stBtn42(nv,'← ทุกฉาก',plOpen45);return b};
+    const nav=(lab,f,dis)=>{const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);const b=stBtn42(nv,lab,f,1);if(dis)b.disabled=true;return b};
     if(pg<A.intro.length){stP42(w,'sc',A.intro[pg]);nav('ต่อ',()=>{pg++;show()})}
     else if(pg===A.intro.length){stP42(w,'pov',A.q);
       if(A.toy==='snow'){let nb;const host=document.createElement('div');w.appendChild(host);snowToy45(host,ok=>{if(ok){nb.disabled=false;nb.textContent='ต่อ';const B=lin45();if(!(B.plg.app||{}).soho){B.plg.app=B.plg.app||{};B.plg.app.soho=1;B.plg.lin.know+=2;stSave42(B)}}});nb=nav('หาปั๊มให้เจอก่อน',()=>{pg++;show()},true)}

@@ -1,0 +1,5 @@
+/* ===================== v0.48 fixes for the classroom pages: a continue button that stays put, and keys ===================== */
+try{const st=document.createElement('style');st.textContent='#st42 .nav{position:sticky;bottom:0;z-index:3;background:linear-gradient(rgba(11,9,7,0),#0b0907 35%);padding:16px 0 10px;margin-bottom:0}#st42 .nav .btn-primary{min-height:52px}';document.head.appendChild(st)}catch(e){}
+try{document.addEventListener('keydown',e=>{try{const el=document.getElementById('st42');if(!el||document.getElementById('jr48'))return;if(el.querySelector('.hud46'))return;const tg=e.target;if(tg&&(tg.tagName==='INPUT'||tg.tagName==='TEXTAREA'))return;
+  if([' ','Enter','ArrowRight'].includes(e.key)){const b=el.querySelector('.nav .btn-primary');if(b&&!b.disabled){e.preventDefault();b.click()}}
+  else if(e.key==='ArrowDown'||e.key==='ArrowUp'){const ops=[...el.querySelectorAll('.op:not([disabled])')];if(!ops.length)return;e.preventDefault();let i=ops.indexOf(document.activeElement);i=e.key==='ArrowDown'?(i+1)%ops.length:(i<=0?ops.length-1:i-1);ops[i].focus()}}catch(err){}});}catch(e){}
