@@ -38,35 +38,40 @@ function jrStart48(){try{PLM47.stop()}catch(e){}const D=jrLoad48();if(!PARTY48.b
   const lead=()=>PARTY48.byK[D.lead],other=()=>PARTY48.byK[D.lead==='bene'?'luca':'bene'];
   const near=()=>{let b=null,bd=26;for(const s of PRO48.spots){const d=Math.abs(s.x-S.px);if(d<bd){bd=d;b=s}}return b};
   const seenN=()=>PRO48.spots.filter(s=>!s.end&&(D.seen['pro.'+s.k+'.bene']||D.seen['pro.'+s.k+'.luca'])).length;
-  const goalTxt=()=>{const n=seenN(),tot=PRO48.spots.filter(s=>!s.end).length;UI.goal.innerHTML='<b>เป้าหมาย</b> '+esc(PRO48.goal)+' · ดูแล้ว '+n+'/'+tot+' · ตอนนี้เล่นเป็น <b>'+esc(lead().short)+'</b>'};
-  const bar=()=>{UI.bar.innerHTML='';const mk=(t,cls,down,up,click)=>{const b=document.createElement('button');b.textContent=t;if(cls)b.className=cls;if(down){b.onpointerdown=e=>{e.preventDefault();down()};b.onpointerup=b.onpointerleave=b.onpointercancel=up}if(click)b.onclick=click;UI.bar.appendChild(b);return b};
-    mk('◀ เดินซ้าย','',()=>{S.hold=-1;S.goto=null},()=>{S.hold=0});mk('🔄 เป็น'+other().short,'',null,null,swap);mk('เดินขวา ▶','',()=>{S.hold=1;S.goto=null},()=>{S.hold=0});
-    const h=near();const a=mk(h?(h.end?'⛵ ขึ้นเรือ':'✋ '+(h.k==='crates'||h.k==='rat'?'ดู':'คุยกับ')+' '+h.n):'เดินไปใกล้คนหรือสิ่งของ แล้วกดที่นี่','act',null,null,()=>act());a.disabled=!h};
+  const goalTxt=()=>{const n=seenN(),tot=PRO48.spots.filter(s=>!s.end).length;UI.goal.innerHTML='<b>'+esc(lead().short)+'</b> · ดูแล้ว '+n+'/'+tot+(n>=4?' · ไปที่ทางขึ้นเรือได้ ⛵':'')+'<br><span style="opacity:.85">'+esc(PRO48.goal)+'</span>'};
+  const bar=()=>{UI.bar.innerHTML='';const mk=(t,cls,down,up,click)=>{const b=document.createElement('button');b.innerHTML=t;b.className='win'+(cls?' '+cls:'');if(down){b.onpointerdown=e=>{e.preventDefault();down()};b.onpointerup=b.onpointerleave=b.onpointercancel=up}if(click)b.onclick=click;UI.bar.appendChild(b);return b};
+    const port=UI.el.classList.contains('port');const h=near();const atx=h?(h.end?'⛵ ขึ้นเรือ':'✋ '+(h.k==='crates'||h.k==='rat'?'ดู':h.k==='baker'?'ซื้อของจาก':'คุยกับ')+' '+esc(h.n))+'<kbd>Enter</kbd>':'เดินไปใกล้คนหรือของ';
+    const bl=mk('◀ ซ้าย','',()=>{S.hold=-1;S.goto=null},()=>{S.hold=0}),br=mk('ขวา ▶','',()=>{S.hold=1;S.goto=null},()=>{S.hold=0});const a=mk(atx,'act',null,null,()=>act());a.disabled=!h;const sw=mk('🔄 เป็น'+esc(other().short)+'<kbd>Q</kbd>','',null,null,swap);
+    if(port){UI.bar.append(a,bl,sw,br)}};
+  /* lines may hold a choice: {ch:[{t,flag,then:[lines]}]}; the flag is kept and the chosen lines follow */
+  async function sayFlow(lines){let buf=[];for(const l of lines){if(l.ch){const v=await jrSay48(UI,buf.concat([l]));buf=[];const c=l.ch[v]||l.ch[0];if(c.flag){D.flags[c.flag]=1;jrSave48(D)}await sayFlow((c.then||[]).filter(z=>!z.needFlag||D.flags[z.needFlag]))}else buf.push(l)}if(buf.length)await jrSay48(UI,buf)}
   function swap(){if(S.busy)return;D.lead=D.lead==='bene'?'luca':'bene';jrSave48(D);goalTxt();bar();jrToast48('ตอนนี้คุณเป็น '+lead().short)}
   async function act(){const h=near();if(!h||S.busy)return;S.busy=true;S.hold=0;bar();
     if(h.end){if(seenN()<4){await jrSay48(UI,[{who:'bene',face:'w',t:'ยังขึ้นไม่ได้ ลูก้า เรายังไม่ได้ดูของกับคนให้ครบ ดูอีกหน่อย'}]);S.busy=false;bar();return}
-      const lines=PRO48.ending.filter(l=>!l.needFlag||D.flags[l.needFlag]);await jrSay48(UI,lines);D.flags.prologue_done=1;D.flags.met_yusuf=D.flags.met_yusuf||0;jrSave48(D);finish();return}
-    const lines=(h.by[D.lead]||[]).map(l=>Object.assign({},l));await jrSay48(UI,lines);const key='pro.'+h.k+'.'+D.lead,first=!D.seen[key];D.seen[key]=1;
+      const lines=PRO48.ending.filter(l=>!l.needFlag||D.flags[l.needFlag]);await sayFlow(lines);D.flags.prologue_done=1;D.flags.met_yusuf=D.flags.met_yusuf||0;jrSave48(D);finish();return}
+    const key='pro.'+h.k+'.'+D.lead,first=!D.seen[key];const src=(!first&&h.after&&h.after[D.lead])||h.by[D.lead]||[];const lines=src.filter(l=>!l.needFlag||D.flags[l.needFlag]).map(l=>Object.assign({},l));await sayFlow(lines);D.seen[key]=1;
+    const fi=(h.flagIf||{})[D.lead];if(fi&&D.flags[fi.need])D.flags[fi.flag]=1;
     const g=(h.give||{})[D.lead];if(g&&first){if(g.journal&&!D.journal.includes(g.journal)){D.journal.push(g.journal);jrToast48('📓 ลูก้าจดลงสมุด · '+D.journal.length+' หน้า')}if(g.met){D.flags['met_'+g.met]=1;jrToast48('👥 พบ '+PARTY48.byK[g.met].short)}if(g.flag){D.flags[g.flag]=1;if(g.flag==='bribe')D.flags.secret_bene=1;if(g.flag==='luca_saw_office')D.flags.secret_luca=1}}
-    if(first&&!D.seen['pro.'+h.k+'.'+(D.lead==='bene'?'luca':'bene')])setTimeout(()=>jrToast48('ลองเป็น'+other().short+' แล้วมาที่นี่อีกครั้ง เรื่องจะไม่เหมือนกัน'),900);
+    if(first&&!D.seen['pro.'+h.k+'.'+(D.lead==='bene'?'luca':'bene')])setTimeout(()=>{if(UI.el.isConnected)jrToast48('ลองเป็น'+other().short+' แล้วมาที่นี่อีกครั้ง เรื่องจะไม่เหมือนกัน')},900);
     jrSave48(D);S.busy=false;goalTxt();bar()}
-  function finish(){alive=false;UI.bar.innerHTML='';const mk=(t,f,cls)=>{const b=document.createElement('button');b.textContent=t;if(cls)b.className=cls;b.onclick=f;UI.bar.appendChild(b)};UI.goal.innerHTML='<b>จบบทนำ</b> · ลูก้าจดไว้ '+D.journal.length+' หน้า · พบแล้ว '+['yusuf','togen'].filter(k=>D.flags['met_'+k]).length+' คน';
+  function finish(){alive=false;UI.bar.innerHTML='';const mk=(t,f,cls)=>{const b=document.createElement('button');b.textContent=t;b.className='win'+(cls?' '+cls:'');b.onclick=f;UI.bar.appendChild(b)};UI.goal.innerHTML='<b>จบบทนำ</b> · ลูก้าจดไว้ '+D.journal.length+' หน้า · พบแล้ว '+['yusuf','togen'].filter(k=>D.flags['met_'+k]).length+' คน';
     mk('เล่นบทนำอีกครั้ง',()=>jrStart48());mk('👥 ดูทีม',()=>jrTeam48());mk('กลับไปหน้ากาฬโรค',()=>{document.getElementById('jr48').remove();plIntro46()},'act')}
   const key=e=>{if(!UI.el.isConnected){document.removeEventListener('keydown',key);document.removeEventListener('keyup',kup);return}if(document.querySelector('#jr48 .pane')){if(e.key==='Escape')document.querySelector('#jr48 .pane').remove();return}if(S.busy||!alive)return;
     if(e.key==='ArrowLeft'||e.key==='a'){S.hold=-1;S.goto=null}else if(e.key==='ArrowRight'||e.key==='d'){S.hold=1;S.goto=null}else if(e.key===' '||e.key==='Enter'){e.preventDefault();act()}else if(e.key==='q'||e.key==='Tab'){e.preventDefault();swap()}};
   const kup=e=>{if(['ArrowLeft','ArrowRight','a','d'].includes(e.key))S.hold=0};document.addEventListener('keydown',key);document.addEventListener('keyup',kup);
-  UI.cv.onclick=e=>{if(S.busy||!alive)return;const r=UI.cv.getBoundingClientRect(),cam=Math.max(0,Math.min(PRO48.w-320,S.px-160));S.goto=jrClamp48(PRO48.mask,cam+(e.clientX-r.left)*320/r.width)};
-  let lastN=null;
+  addEventListener('resize',()=>{if(UI.el.isConnected&&!S.busy&&alive)bar()});UI.cv.onclick=e=>{if(S.busy||!alive)return;const r=UI.cv.getBoundingClientRect(),cam=Math.max(0,Math.min(PRO48.w-320,S.px-160));S.goto=jrClamp48(PRO48.mask,cam+(e.clientX-r.left)*320/r.width)};
+  let lastN=null;const tag=document.createElement('div');tag.className='win';tag.style.cssText='position:absolute;z-index:2;font-size:.8em;padding:.1em .6em;white-space:nowrap;display:none;pointer-events:none';UI.fr.appendChild(tag);
   const fr=now=>{if(!UI.el.isConnected){alive=false;return}const dt=Math.min(.05,(now-last)/1000);last=now;const t=(now-t0)/1000;
     if(alive&&!S.busy){if(S.hold){S.dir=S.hold;S.px+=S.hold*72*dt}else if(S.goto!=null){const d=S.goto-S.px;if(Math.abs(d)<2)S.goto=null;else{S.dir=Math.sign(d);S.px+=Math.sign(d)*Math.min(Math.abs(d),72*dt)}}S.px=jrClamp48(PRO48.mask,S.px)}
     const n=near();if(n!==lastN&&!S.busy){lastN=n;bar()}
-    const cam=Math.max(0,Math.min(PRO48.w-320,S.px-160));x.clearRect(0,0,320,180);const L=jrHarbour48(x,t,cam,D);
-    const NP={yusuf:{x:168,o:Object.assign({},PARTY48.byK.yusuf.look,{dir:-1,ph:2})},togen:{x:248,o:Object.assign({},PARTY48.byK.togen.look,{dir:1,ph:4})},officer:{x:356,o:Object.assign({},NPC48.officer.look,{dir:-1,ph:1,bot:'#2a2a3a'})},sailor:{x:420,o:Object.assign({},NPC48.sailor.look,{dir:-1,ph:3,bot:'#3a3a3a'})}};
-    for(const k in NP){const p=NP[k];if(p.x-cam<-20||p.x-cam>340)continue;g45person(x,p.x-cam,k==='togen'?150:172,p.o,t)}
-    const ot=other(),fx=S.px-S.dir*20;g45person(x,fx-cam,172,Object.assign({},ot.look,{dir:S.dir,ph:7}),S.hold||S.goto!=null?t*3:t);
-    const pl=g45person(x,S.px-cam,172,Object.assign({},lead().look,{dir:S.dir,ph:5,hold:'lamp'}),S.hold||S.goto!=null?t*3:t);if(pl)L.push(pl);
-    g45light(x,LL,.62,L);
-    if(n&&!S.busy&&alive){x.fillStyle='rgba(10,8,16,.8)';x.font='9px "DejaVu Sans",sans-serif';const tw=x.measureText(n.n).width+12;x.fillRect(n.x-cam-tw/2,20,tw,13);x.fillStyle='#ffe2a8';x.textAlign='center';x.fillText(n.n,n.x-cam,30);x.textAlign='left';G45R(x,n.x-cam-2,36,4,4,'#ffe2a8')}
+    const cam=Math.max(0,Math.min(PRO48.w-320,S.px-160));x.clearRect(0,0,320,180);const mv=S.hold||S.goto!=null;
+    D._pen=y=>{person49(y,'kip1',{skin:'#d0986a',hair:'#1a1210',top:'#5a4a3a',bot:'#3a2a1a'},222,140,{dir:1});person49(y,'kip2',{skin:'#c88e60',hair:'#2a1a12',top:'#4a3a2a',bot:'#3a2a1a'},272,140,{dir:-1});person49(y,'togen',PARTY48.byK.togen.look,248,141,{dir:-1})};
+    const L=harbour49(x,t,cam,D);x.save();x.translate(-cam,0);
+    person49(x,'guard',NPC48.guard.look,40,147,{dir:1});person49(x,'baker',NPC48.baker.look,132,145,{dir:1});person49(x,'yusuf',PARTY48.byK.yusuf.look,170,146,{dir:-1});person49(x,'officer',NPC48.officer.look,356,141,{dir:-1});person49(x,'sailor',NPC48.sailor.look,422,148,{dir:-1});
+    const ot=other(),fx=S.px-S.dir*16,wk=mv?t*8:null;person49(x,ot.k,ot.look,fx,150,{dir:S.dir,walk:wk!=null?wk+2:null,hold:ot.k==='luca'?'book':null});
+    const pl=person49(x,lead().k,lead().look,S.px,152,{dir:S.dir,walk:wk,hold:'lamp'});x.restore();if(pl)L.push(Object.assign({},pl,{x:pl.x-cam}));
+    harbourFront49(x,t,cam);g45light(x,LL,.5,L);
+    if(n&&!S.busy&&alive){const X=n.x-cam,bob=Math.round(Math.sin(t*5));P49(x,X-2,29+bob,5,1,'#fff');P49(x,X-1,30+bob,3,1,'#fff');P49(x,X,31+bob,1,1,'#fff');const c=UI.cv,fw=UI.fr.clientWidth,lx=c.offsetLeft+X*c.offsetWidth/320,ty=c.offsetTop+27*c.offsetHeight/180;if(tag.textContent!==n.n)tag.textContent=n.n;tag.style.display='';const w=tag.offsetWidth;tag.style.left=Math.max(4,Math.min(fw-w-4,lx-w/2))+'px';tag.style.top=Math.max(4,ty-tag.offsetHeight)+'px'}else tag.style.display='none';
     requestAnimationFrame(fr)};requestAnimationFrame(fr);
   goalTxt();bar();(async()=>{if(!D.flags.prologue_seen_intro){await jrSay48(UI,PRO48.intro);D.flags.prologue_seen_intro=1;jrSave48(D)}S.busy=false;bar()})()}
 /* a third door on the plague's opening page */

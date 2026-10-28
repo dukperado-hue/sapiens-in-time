@@ -1,0 +1,583 @@
+{
+ "note": "16x24 field sprites facing right, drawn by hand. letters: s skin k skin-dark S skin-light · h hair j hair-dark H hair-light · t top u top-dark T top-light · b bottom n bottom-dark B bottom-light · c hat/cloth q dark C light · a accent · f shoes · e eye · w white · m mouth · '.' empty · in layers '.' keeps what is under and 'x' erases. The black outline is added by the program.",
+ "head": [
+  "................",
+  "................",
+  ".....ssssss.....",
+  "....sssssssS....",
+  "...sssssssssS...",
+  "...ssssssssss...",
+  "...ksssssseSs...",
+  "...ksssssseSss..",
+  "...kssssssssss..",
+  "....kssssssmk...",
+  ".....kkssssk....",
+  "......kkkk......"
+ ],
+ "bodies": {
+  "man": {
+   "rows": [
+    ".....uttTTt.....",
+    "....uuttTTTt....",
+    "....uuttuTTt....",
+    "....uuttuttt....",
+    "....uuttuttt....",
+    "....uaaaskaa....",
+    "....uuttsstt....",
+    "....nnbbbbbb....",
+    ".....nnb.bbb....",
+    ".....nnb.bbb....",
+    ".....ff..fff....",
+    "....fff..ffff..."
+   ],
+   "walk": [
+    [
+     "....nnbbbbbb....",
+     "....nnb..bbb....",
+     "...nnb....bbb...",
+     "...ff......ff...",
+     "..fff......fff.."
+    ],
+    [
+     "....nnbbbbbb....",
+     ".....nbbbbb.....",
+     ".....nnbbbb.....",
+     ".....ffffff.....",
+     "....fffffff....."
+    ]
+   ]
+  },
+  "robe": {
+   "rows": [
+    ".....uttTTt.....",
+    "....uuttTTTt....",
+    "....uuttuTTt....",
+    "....uuttuttt....",
+    "....uuttuttt....",
+    "....uaaaskaa....",
+    "....uuttsstt....",
+    "....uutttttt....",
+    "...uuuttttttt...",
+    "...uuutttttttt..",
+    "...uuuuttttttt..",
+    "....ff....fff..."
+   ],
+   "walk": [
+    [
+     "....uutttttt....",
+     "...uuuttttttt...",
+     "..uuuutttttttt..",
+     "..uuuuuttttttt..",
+     "..ff........fff."
+    ],
+    [
+     "....uutttttt....",
+     "...uuuttttttt...",
+     "...uuutttttttt..",
+     "...uuuuttttttt..",
+     ".....ffffff....."
+    ]
+   ]
+  },
+  "dress": {
+   "rows": [
+    ".....uttTTt.....",
+    "....uuttTTTt....",
+    "....uuttuTTt....",
+    "....uuttuttt....",
+    "....uaaaaaaa....",
+    "....uubbskbb....",
+    "....nnbbssbb....",
+    "...nnnbbbbbbb...",
+    "...nnnbbbbbBb...",
+    "..nnnnbbbbbbBb..",
+    "..nnnnnbbbbbbb..",
+    "....ff....fff..."
+   ],
+   "walk": [
+    [
+     "...nnnbbbbbbb...",
+     "...nnnbbbbbBb...",
+     "..nnnnnbbbbbBb..",
+     "..nnnnnbbbbbbb..",
+     "..ff........fff."
+    ],
+    [
+     "...nnnbbbbbbb...",
+     "...nnnbbbbbBb...",
+     "...nnnbbbbbbBb..",
+     "...nnnnbbbbbbb..",
+     ".....ffffff....."
+    ]
+   ]
+  }
+ },
+ "hair": {
+  "short": [
+   ".....hhhhh......",
+   "...hhhhhhhhh....",
+   "..hhhHHHhhhhh...",
+   "..hhHHhhhhhhhj..",
+   "..hhhhhhhjj.hj..",
+   "..hhhhjk........",
+   "..hhhjkk........",
+   "..hhjj..........",
+   "...j............"
+  ],
+  "messy": [
+   "....h.hhh.h.....",
+   "...hhhhhhhhhh...",
+   "..hhHHHhhhhhhh..",
+   ".hhHHhhhhhhhhhj.",
+   "..hhhhhhjhj.hhj.",
+   ".hhhhhjk....j...",
+   "..hhhjkk........",
+   ".hhhjj..........",
+   "..hj............"
+  ],
+  "long": [
+   ".....hhhhh......",
+   "...hhhhhhhhh....",
+   "..hhhHHHhhhhh...",
+   "..hhHHhhhhhhhj..",
+   "..hhhhhhhjj.hj..",
+   "..hhhhhjk.......",
+   "..hhhhjkk.......",
+   "..hhhhj.........",
+   "..hhhjj.........",
+   "..hhhj..........",
+   "...hhj..........",
+   "....j..........."
+  ]
+ },
+ "hats": {
+  "cap": [
+   "................",
+   "....cccccc......",
+   "...cCCcccccq....",
+   "..cCcccccccqq...",
+   "..qqqqqqqqqqqq.."
+  ],
+  "turban": [
+   "....cCCCcc......",
+   "...cCCcccccc....",
+   "..cCcqqcccccq...",
+   "..ccqccqqcccq...",
+   "..cqcccccqqcq...",
+   "...qqqqqqqqq....",
+   "..hhhj.........."
+  ],
+  "hood": [
+   "....cccccc......",
+   "...cCCccccqq....",
+   "..cCcccccccqq...",
+   ".cCccqqqqqqcq...",
+   ".cCcq.......q...",
+   ".ccq............",
+   ".ccq............",
+   ".ccq............",
+   ".cqq............",
+   ".cqq............",
+   "..qq............",
+   "..qq............"
+  ],
+  "veil": [
+   "....cccccc......",
+   "...cCCcccccq....",
+   "..cCcccccccqq...",
+   ".cCccqqqqqqcq...",
+   ".cCcq.......q...",
+   ".ccq............",
+   ".ccq............",
+   ".ccq............",
+   ".cqq............",
+   "..qq............"
+  ]
+ },
+ "beards": {
+  "full": [
+   "...kssssssss....",
+   "...kssssssssss..",
+   "...kjhhhhssss...",
+   "....jhhhhhhhh...",
+   ".....jjhhhhj....",
+   "......jjjj......"
+  ],
+  "stub": [
+   "...kssssssss....",
+   "...kssssssssss..",
+   "...ksssssssss...",
+   "....kkkssskmk...",
+   ".....kkkkkkk....",
+   "......kkkk......"
+  ]
+ },
+ "chars": {
+  "bene": {
+   "body": "man",
+   "hair": "short",
+   "hat": "cap",
+   "beard": "full",
+   "acc": "#c8a040"
+  },
+  "luca": {
+   "body": "man",
+   "hair": "messy",
+   "child": 1,
+   "acc": "#8a6a40",
+   "hold": "book"
+  },
+  "yusuf": {
+   "body": "robe",
+   "hair": "short",
+   "hat": "turban",
+   "beard": "full",
+   "acc": "#a8883a"
+  },
+  "togen": {
+   "body": "man",
+   "hair": "long",
+   "acc": "#8a3a2a"
+  },
+  "miriam": {
+   "body": "dress",
+   "hair": "long",
+   "hat": "veil",
+   "acc": "#c8b070"
+  },
+  "bartolo": {
+   "body": "man",
+   "hair": "short",
+   "hat": "cap",
+   "beard": "stub",
+   "acc": "#6a4a2a"
+  },
+  "anna": {
+   "body": "robe",
+   "hair": "short",
+   "hat": "hood",
+   "acc": "#e8e4d8"
+  },
+  "officer": {
+   "body": "robe",
+   "hair": "short",
+   "hat": "cap",
+   "beard": "stub",
+   "acc": "#a8883a"
+  },
+  "sailor": {
+   "body": "man",
+   "hair": "messy",
+   "beard": "stub",
+   "acc": "#6a4a2a"
+  },
+  "guard": {
+   "body": "man",
+   "hair": "short",
+   "hat": "cap",
+   "beard": "full",
+   "acc": "#6a5a3a"
+  },
+  "baker": {
+   "body": "dress",
+   "hair": "long",
+   "hat": "veil",
+   "acc": "#a87a40"
+  }
+ },
+ "face": {
+  "base": [
+   "................................",
+   "................................",
+   "................................",
+   "............ssssss..............",
+   "..........ssssssssss............",
+   ".........ssssssssssss...........",
+   "........ssssssssssssss..........",
+   "........sssssssssssssss.........",
+   ".......ksssssssssssssss.........",
+   ".......kssssssssssssssS.........",
+   ".......kssssssssssssssS.........",
+   ".......ksssssssssssssSs.........",
+   ".......kkssssssssssssSs.........",
+   ".......kkssssssssssssss.........",
+   ".......kksssssssssssssss........",
+   "......skksssssssssssssss........",
+   "......skksssssssssssssSss.......",
+   "......skkssssssssssssssss.......",
+   ".......kksssssssssssskss........",
+   "........kksssssssssssss.........",
+   "........kkssssssssssss..........",
+   ".........kkssssssssss...........",
+   "..........kkkssssssk............",
+   "...........kkkkkkkk.............",
+   "............kkkkkk..............",
+   "............kkkkkk..............",
+   ".........uuuuKKkkttttt..........",
+   "......uuuuuuuttttttttTTTt.......",
+   "....uuuuuuuuttttttttTTTTTTt.....",
+   "...uuuuuuuutttttttttTTTTTTTt....",
+   "..UuuuuuuuuttttttttttTTTTTtt....",
+   "..UUuuuuuuttttttttttttTTTTttt..."
+  ],
+  "eyes": {
+   "n": {
+    "y": 12,
+    "rows": [
+     "......jjjj...jjj",
+     "......eeee...eee",
+     "......wwee...wee",
+     ".......kk.....k."
+    ]
+   },
+   "h": {
+    "y": 12,
+    "rows": [
+     "......jjjj...jjj",
+     "................",
+     "......eeee...eee",
+     ".....k....k....."
+    ]
+   },
+   "w": {
+    "y": 11,
+    "rows": [
+     ".........j.....j",
+     "......jj....jj..",
+     "......eeee...eee",
+     "......wwee...wee",
+     ".......kk.....k."
+    ]
+   },
+   "s": {
+    "y": 11,
+    "rows": [
+     "......j.......j.",
+     ".......jj...jj..",
+     "......eeee...eee",
+     "......wwee...wee",
+     "......k.kk...k.."
+    ]
+   }
+  },
+  "nose": {
+   "y": 15,
+   "rows": [
+    "..............k.",
+    "..............kS",
+    ".............kk."
+   ]
+  },
+  "mouth": {
+   "n": {
+    "y": 20,
+    "rows": [
+     ".........mmmm..."
+    ]
+   },
+   "h": {
+    "y": 19,
+    "rows": [
+     "........m....m..",
+     ".........mmmm..."
+    ]
+   },
+   "w": {
+    "y": 20,
+    "rows": [
+     "..........mm....",
+     "..........KK...."
+    ]
+   },
+   "s": {
+    "y": 20,
+    "rows": [
+     "..........mm....",
+     ".........m..m..."
+    ]
+   }
+  },
+  "hair": {
+   "short": {
+    "y": 2,
+    "rows": [
+     "..........hhhhhhhh..............",
+     "........hhhhhhhhhhhh............",
+     ".......hhhHHHhhhhhhhhh..........",
+     "......hhhHHhhhhhhhhhhhh.........",
+     "......hhHHhhhhhhhhhhhhhj........",
+     "......hhhhhhhhhhhhhhhhhjj.......",
+     "......hhhhhhhjhhhhhjhhhjj.......",
+     "......hhhhhhj.jhhj..jhj.........",
+     "......hhhhhj...jj....j..........",
+     "......hhhhj.....................",
+     "......hhhhj.....................",
+     "......hhhj......................",
+     "......hhj.......................",
+     "......jj........................"
+    ]
+   },
+   "messy": {
+    "y": 1,
+    "rows": [
+     "...........h..h...h.............",
+     ".........hhhhhhhhhhh............",
+     ".......hhhhhhhhhhhhhhh..........",
+     "......hhhHHHhhhhhhhhhhh.........",
+     ".....hhhHHhhhhhhhhhhhhhh........",
+     "....hhhHHhhhhhhhhhhhhhhhj.......",
+     ".....hhhhhhhhhhhhhhhhhhhjj......",
+     "......hhhhhhjhhhhjhhhhjhj.......",
+     ".....hhhhhhj.jhhj.jhhj.hj.......",
+     "......hhhhj...jj...jj...j.......",
+     ".....hhhhj.......j..............",
+     "......hhhj......................",
+     "......hhj.......................",
+     "......hj........................"
+    ]
+   },
+   "long": {
+    "y": 2,
+    "rows": [
+     "..........hhhhhhhh..............",
+     "........hhhhhhhhhhhh............",
+     ".......hhhHHHhhhhhhhhh..........",
+     "......hhhHHhhhhhhhhhhhh.........",
+     ".....hhhHHhhhhhhhhhhhhhj........",
+     ".....hhhhhhhhhhhhhhhhhhjj.......",
+     ".....hhhhhhhhjhhhhjhhhhjj.......",
+     ".....hhhhhhhj.jhhj.jhhj.........",
+     "....hhhhhhhj...jj...j...........",
+     "....hhhhhhj.....................",
+     "....hhhhhhj.....................",
+     "....hhhhhj......................",
+     "....hhhhhj......................",
+     "....hhhhhj......................",
+     "....hhhhjj......................",
+     "....hhhhj.......................",
+     "....hhhhj.......................",
+     "....jhhhj.......................",
+     "....jhhhj.......................",
+     ".....jhhj.......................",
+     ".....jhj........................",
+     "......j........................."
+    ]
+   }
+  },
+  "beard": {
+   "full": {
+    "y": 17,
+    "rows": [
+     "........jh..............h.......",
+     "........jhh............hh.......",
+     ".........jhhhhhhhhhhhhhh........",
+     ".........jhhhhh....hhhh.........",
+     "..........jhhhhhhhhhhhh.........",
+     "..........jjhhhhhhhhhj..........",
+     "...........jjhhhhhhjj...........",
+     ".............jjjjjj............."
+    ]
+   },
+   "stub": {
+    "y": 19,
+    "rows": [
+     "..........K.k.k.k.k.K...........",
+     ".........kKkkkkkkkkkKk..........",
+     "..........kKkkkkkkkKk...........",
+     "...........kkKkKkKkk............"
+    ]
+   }
+  },
+  "hat": {
+   "cap": {
+    "y": 1,
+    "rows": [
+     "..........cccccccc..............",
+     "........ccCCCcccccccc...........",
+     ".......cCCCccccccccccc..........",
+     "......cCCcccccccccccccq.........",
+     "......cCccccccccccccccqq........",
+     "......qqqqqqqqqqqqqqqqqqq.......",
+     "......qqqqqqqqqqqqqqqqqq........"
+    ]
+   },
+   "turban": {
+    "y": 0,
+    "rows": [
+     "...........cccccccc.............",
+     ".........ccCCCCccccccc..........",
+     ".......cCCCCcccqqcccccc.........",
+     "......cCCcccqqqccccccccq........",
+     ".....cCCccqqcccccqqqccccq.......",
+     ".....cCcqqcccccqqcccccccq.......",
+     ".....cccccccqqqccccccqqcq.......",
+     "......cqqqcccccccqqqcccq........",
+     "......qcccccqqqqqcccccq.........",
+     ".......qqqqqq.....qqqq.........."
+    ]
+   },
+   "hood": {
+    "y": 2,
+    "rows": [
+     "..........cccccccc..............",
+     "........ccCCCCcccccc............",
+     ".......cCCCcccccccccc...........",
+     "......cCCcccccccccccccq.........",
+     "......cCcccccccccccccccq........",
+     ".....cCcccqqqqqqqqqqqcccq.......",
+     ".....cCccq...........qccq.......",
+     ".....cccq.............qcq.......",
+     ".....cccq..............cq.......",
+     ".....cccq..............cqq......",
+     ".....cccq..............ccq......",
+     ".....cccq..............ccq......",
+     ".....cccq...............cq......",
+     ".....cccq...............cq......",
+     ".....cccq..............cq.......",
+     ".....cccq..............cq.......",
+     ".....cccq..............cq.......",
+     ".....cccq.............qcq.......",
+     ".....ccccq............qcq.......",
+     ".....ccccq...........qccq.......",
+     "......ccccqq.......qqccq........",
+     ".......cccccqqqqqqqcccq.........",
+     "........ccccccccccccq...........",
+     ".........qqqqqqqqqq............."
+    ]
+   },
+   "veil": {
+    "y": 2,
+    "rows": [
+     "..........cccccccc..............",
+     "........ccCCCCcccccc............",
+     ".......cCCCcccccccccc...........",
+     "......cCCcccccccccccccq.........",
+     "......cCcccccccccccccccq........",
+     ".....cCcccqqqqqqqqqqqccq........",
+     ".....cCccq...........qcq........",
+     ".....cccq.............q.........",
+     "....cccq........................",
+     "....cccq........................",
+     "....cccq........................",
+     "....cccq........................",
+     "....cccq........................",
+     "....cccq........................",
+     "....cccq........................",
+     "...ccccq........................",
+     "...ccccq........................",
+     "...ccccq........................",
+     "...cccqq........................",
+     "...cccq.........................",
+     "..ccccq.........................",
+     "..cccqq.........................",
+     "..cccq..........................",
+     "..ccqq..........................",
+     "..ccq...........................",
+     "..cqq...........................",
+     "..cq............................",
+     "..qq............................"
+    ]
+   }
+  }
+ }
+}
