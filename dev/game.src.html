@@ -2967,7 +2967,7 @@ const DEC4=[
     Object.assign(opt(X('จ่ายเงินให้คนอื่นไปแทน','Pay someone to go in your place'),S=>{S.ag-=3;fx({b:-2});return X('คุณไม่ได้ไปรบ แต่คนในย่านรู้ว่าทำไม','You stay home, and the quarter knows why.')}),{lockF:S=>S.ag<3,lockT:X('ต้องมีเงินสามเชเคิล','You need three shekels')})]},
 {id:'y4_straw',deck:'youth',w:2,ch:4,t:X('หลอดดูดเบียร์','The drinking straws'),
  x:X('ในงานเทศกาล ทุกคนนั่งล้อมโถเบียร์ใบใหญ่ใบเดียว เสียบหลอดยาวลงไปดูดพร้อมกัน','At the festival everyone sits around one great jar of beer, dipping long straws into it to drink together.'),
- n:X('เบียร์เมโสโปเตเมียมีกากข้าวลอยอยู่ คนจึงดื่มด้วยหลอดยาว ในหลุมศพของราชินีปูอาบีที่อูร์ พบหลอดดูดเบียร์ทำด้วยทองและลาพิสลาซูลี ภาพบนตราประทับหลายชิ้นแสดงคนดื่มเบียร์จากโถเดียวกัน','Mesopotamian beer had husks floating in it, so people drank through long straws. Queen Puabi’s tomb at Ur held a drinking straw of gold and lapis lazuli, and many seals show people drinking from a shared jar.'),
+ n:X('คำอธิบายที่พบบ่อยคือเบียร์เมโสโปเตเมียมีกากข้าวลอยอยู่ คนจึงดื่มด้วยหลอดยาว แต่บางคนแย้งว่าเบียร์ถูกกรองแล้ว และหลอดเป็นธรรมเนียมการดื่มร่วมโถ ในหลุมศพของราชินีปูอาบีที่อูร์ พบหลอดดูดเบียร์ทำด้วยทองและลาพิสลาซูลี ภาพบนตราประทับหลายชิ้นแสดงคนดื่มเบียร์จากโถเดียวกัน','Mesopotamian beer had husks floating in it, so people drank through long straws. Queen Puabi’s tomb at Ur held a drinking straw of gold and lapis lazuli, and many seals show people drinking from a shared jar.'),
  o:[opt(X('ดูดให้นานที่สุด','Drink as long as you can'),S=>{fx({b:4,h:-1});return X('ทุกคนเชียร์ แล้วคุณก็หลับไปข้างโถ','Everyone cheers, and then you fall asleep beside the jar.')}),
     opt(X('ร้องเพลงสรรเสริญเทพีนินกาซี','Sing the hymn to Ninkasi'),S=>{fx({so:4,b:3});return X('ทั้งวงร้องตาม เพลงนี้บอกวิธีหมักเบียร์ทีละขั้น','The whole circle joins in; the song tells how to brew beer step by step.')})]},
 /* ----- adulthood ----- */
@@ -13496,7 +13496,9 @@ const MOLNOTE42='"17 โมเลกุลที่เปลี่ยนปร�
 /* ---------- progress ---------- */
 const stB42=()=>{try{const b=book29();b.stuff=b.stuff||{done:{},mus:{}};b.stuff.done=b.stuff.done||{};b.stuff.mus=b.stuff.mus||{};return b}catch(e){return {stuff:{done:{},mus:{}},eqM:{},eq:{}}}};
 const stSave42=b=>{try{if(!TEST)store.set('sit.book',b)}catch(e){}};
-const stLes42=c=>c==='eq'?EQ37.map((E,i)=>({k:E.k,n:i,t:L(E.n),E,D:LESEQ42[E.k]})):c==='mol'?LESMOL42:[];
+const LESX42={mol:{list:MOLLIST42,les:LESMOL42,note:()=>MOLNOTE42}};
+const stLes42=c=>c==='eq'?EQ37.map((E,i)=>({k:E.k,n:i,t:L(E.n),E,D:LESEQ42[E.k]})):LESX42[c]?LESX42[c].les:[];
+const stSeen42=()=>{try{return (book29().stuff||{}).seen||{}}catch(e){return {}}};
 const stDone42=c=>{const d=stB42().stuff.done;return stLes42(c).filter(l=>d[c+'.'+l.k]).length};
 function stMark42(c,l,item){const B=stB42();B.stuff.done[c+'.'+l]=1;if(item)B.stuff.mus[c+'.'+l]=item;stSave42(B)}
 
@@ -13528,7 +13530,7 @@ function stOpen42(){try{const w=stShell42();
   w.innerHTML='<h2>📚 History of Stuff · ห้องเรียนของสิ่งของ</h2><p class="sub">ทุกอย่างมีประวัติ ทุกอย่างมีราคา · เลือกวิชา แล้วให้สิ่งของเล่าเรื่องของมันเอง</p>';
   const soon=document.createElement('details');soon.className='soon';soon.innerHTML='<summary>วิชาที่กำลังสร้าง · '+STUFF42.filter(c=>c.soon).length+' วิชา</summary>';
   for(const C of STUFF42.filter(c=>!c.soon).concat(STUFF42.filter(c=>c.soon))){const b=document.createElement('button');b.className='crs'+(C.soon?' soon':'');const n=stLes42(C.k).length,d=stDone42(C.k);
-    b.innerHTML='<span class="ic">'+C.ic+'</span><span><b>'+esc(C.t)+'</b><div class="d">'+esc(C.s)+'</div><div class="pr">'+(C.soon?'กำลังสร้าง':(C.k==='mol'?d+'/17 บทเรียน · เปิดแล้ว '+n:d+'/'+n+' บทเรียน'))+'</div></span>';
+    b.innerHTML='<span class="ic">'+C.ic+'</span><span><b>'+esc(C.t)+'</b><div class="d">'+esc(C.s)+'</div><div class="pr">'+(C.soon?'กำลังสร้าง':(LESX42[C.k]?d+'/'+LESX42[C.k].list.length+' บทเรียน · เปิดแล้ว '+n:d+'/'+n+' บทเรียน')+(()=>{const sn=stSeen42(),dn=stB42().stuff.done;const m=stLes42(C.k).filter(l=>sn[C.k+'.'+l.k]&&!dn[C.k+'.'+l.k]).length;return m?' · ✨ '+m+' บทจากชีวิตของคุณ':''})())+'</div></span>';
     if(!C.soon){b.onclick=()=>stCourse42(C.k);w.appendChild(b)}else soon.appendChild(b)}w.appendChild(soon);
   const B=stB42(),mus=Object.values(B.stuff.mus);stP42(w,'','พิพิธภัณฑ์ของฉัน · '+mus.length+' ชิ้น','h3').style.cssText='font-size:15px;margin:16px 0 4px;color:var(--bone)';
   const g=document.createElement('div');g.className='mus';if(!mus.length)stP42(w,'nt','เรียนจบหนึ่งบท ได้ของหนึ่งชิ้นมาตั้งในพิพิธภัณฑ์');else mus.forEach(m=>{const d=document.createElement('div');d.textContent=m;g.appendChild(d)});w.appendChild(g);
@@ -13538,18 +13540,19 @@ function stCourse42(c){try{const C=STUFF42.find(z=>z.k===c);const w=stShell42();
   w.innerHTML='<h2>'+C.ic+' '+esc(C.t)+'</h2><p class="sub">'+esc(C.src)+'</p>';
   if(c==='eq'){let got={};try{got=book29().eq||{}}catch(e){}stP42(w,'nt','ห้องเรียนกับเกมชีวิตใช้ของร่วมกันสองอย่าง ทำภารกิจที่นี่สำเร็จได้ดาวเชี่ยวชาญ ซึ่งในเกมชีวิตจะเปิดทางเลือก "ใช้ความรู้ที่เคยเรียนมา" ส่วนการ์ดในสมุด 17 สมการต้องเปิดด้วยการใช้ชีวิตจนเจอ');
     stLes42('eq').forEach((l,i)=>{const b=document.createElement('button');b.className='les'+(done['eq.'+l.k]?' ok':'');b.innerHTML='<span>'+(done['eq.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(l.t)+'</span><i>'+(l.D.mis?'🧪 ภารกิจ':'')+(got[l.k]?' · เจอในชีวิตแล้ว':'')+'</i>';b.onclick=()=>stLesson42('eq',i);w.appendChild(b)})}
-  else if(c==='mol'){MOLLIST42.forEach((nm,i)=>{const l=LESMOL42.find(z=>z.n===i);const b=document.createElement('button');b.className='les'+(l?(done['mol.'+l.k]?' ok':''):' off');
-      b.innerHTML='<span>'+(l&&done['mol.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(nm)+'</span><i>'+(l?esc(l.t):'กำลังสร้าง')+'</i>';if(l)b.onclick=()=>stLesson42('mol',LESMOL42.indexOf(l));w.appendChild(b)});
-    stP42(w,'nt',MOLNOTE42)}
+  else if(LESX42[c]){const X=LESX42[c],sn=stSeen42();if(X.intro)stP42(w,'nt',X.intro);X.list.forEach((nm,i)=>{const l=X.les.find(z=>z.n===i);const b=document.createElement('button');b.className='les'+(l?(done[c+'.'+l.k]?' ok':''):' off');
+      b.innerHTML='<span>'+(l&&done[c+'.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(nm)+'</span><i>'+(l?(sn[c+'.'+l.k]&&!done[c+'.'+l.k]?'✨ เจอในชีวิตแล้ว · ':'')+esc(l.t):'กำลังสร้าง')+'</i>';if(l)b.onclick=()=>stLesson42(c,X.les.indexOf(l));w.appendChild(b)});
+    if(X.note)stP42(w,'nt',X.note())}
   if(c==='eq')stP42(w,'nt',L(EQNOTE37));
   const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
 
 /* a lesson: 1 the thing speaks · 2 a situation, you choose · 3 (equations) the mission · 4 what is true · 5 the museum */
 function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const C=STUFF42.find(z=>z.k===c);
   const next=()=>{pg++;show()},nav=(w,lab,f)=>{const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);if(lab)stBtn42(nv,lab,f||next,1);stBtn42(nv,'← รายการบทเรียน',()=>stCourse42(c));return nv};
-  const head=(w,s)=>{stP42(w,'step',C.ic+' '+C.t+' · บทที่ '+(c==='mol'?l.n+1:i+1)+' · '+s);stP42(w,'',c==='eq'?l.t:l.t,'h2')};
+  const head=(w,s)=>{stP42(w,'step',C.ic+' '+C.t+' · บทที่ '+(LESX42[c]?l.n+1:i+1)+' · '+s);stP42(w,'',c==='eq'?l.t:l.t,'h2')};
   const show=()=>{try{const w=stShell42();
-    if(pg===0){head(w,'ฉันคือใคร');if(c==='eq')w.appendChild(eqCanvas37(l.E.f,Math.max(3,Math.min(7,Math.floor(Math.min(innerWidth*.9,640)/eqPix37(l.E.f,12).w))),'#c8b8ff'));else{w.appendChild(molCanvas42(l.m));stP42(w,'nt',l.mn).style.cssText='text-align:center;border:0;padding:0'}
+    if(pg===0){head(w,'ฉันคือใคร');if(c==='eq')w.appendChild(eqCanvas37(l.E.f,Math.max(3,Math.min(7,Math.floor(Math.min(innerWidth*.9,640)/eqPix37(l.E.f,12).w))),'#c8b8ff'));else{w.appendChild(l.sp&&typeof sprCanvas44==='function'?sprCanvas44(l.sp):molCanvas42(l.m));stP42(w,'nt',l.mn).style.cssText='text-align:center;border:0;padding:0';
+        const sv=stSeen42()[c+'.'+l.k];if(sv)stP42(w,'fb','✨ คุณเคยเจอสิ่งนี้ในเกมชีวิต '+(sv.nm?'ตอนเป็น '+sv.nm+' ':'')+(sv.a!=null?'อายุ '+sv.a+' ปี':''))}
       stP42(w,'pov','“'+(c==='eq'?l.D.pov:l.pov)+'”');nav(w,'ต่อ')}
     else if(pg===1){head(w,c==='eq'?'ลองใช้':'คุณจะทำอย่างไร');
       if(c==='eq'){const [q,os]=l.D.use;stP42(w,'sc',q);const fb=document.createElement('div');let solved=false;
@@ -13582,11 +13585,11 @@ function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const
 /* ---------- the door on the home screen ---------- */
 function stHome42(re){try{let sec=document.getElementById('st42home');if(!sec){const ch=document.getElementById('chap');if(!ch)return;const blk=ch.closest('section');sec=document.createElement('section');sec.className='block';sec.id='st42home';blk.parentNode.insertBefore(sec,blk)}
   else if(!re)return;
-  const all=STUFF42.filter(c=>!c.soon).reduce((s,c)=>s+stDone42(c.k),0);
-  sec.innerHTML='<h2>📚 History of Stuff</h2><p class="note">โหมดเรียนรู้ ให้สิ่งของเล่าเรื่องของมันเอง สมการ โมเลกุล เสื้อยืด เครื่องเทศ ปลาค็อด และอีกมาก ค่อยๆ เพิ่มทีละวิชา</p><button class="btn btn-primary" id="st42go">เข้าห้องเรียนของสิ่งของ'+(all?' · เรียนแล้ว '+all+' บท':'')+'</button>';
+  const all=STUFF42.filter(c=>!c.soon).reduce((s,c)=>s+stDone42(c.k),0);const sn=stSeen42(),dn=stB42().stuff.done,fresh=Object.keys(sn).filter(k=>!dn[k]).length;
+  sec.innerHTML='<h2>📚 History of Stuff</h2><p class="note">โหมดเรียนรู้ ให้สิ่งของเล่าเรื่องของมันเอง สมการ โมเลกุล เสื้อยืด เครื่องเทศ ปลาค็อด และอีกมาก ค่อยๆ เพิ่มทีละวิชา</p><button class="btn btn-primary" id="st42go">เข้าห้องเรียนของสิ่งของ'+(all?' · เรียนแล้ว '+all+' บท':'')+'</button>'+(fresh?'<p class="note" style="color:#ffe2a8">✨ มี '+fresh+' บทเรียนเรื่องของที่คุณเพิ่งเจอในชีวิต</p>':'');
   document.getElementById('st42go').onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()};
   const bar=document.querySelector('#home header.bar');if(bar&&!document.getElementById('st42top')){const t=document.createElement('button');t.id='st42top';t.className='btn btn-ghost';t.textContent='📚 ห้องเรียนของสิ่งของ';t.style.cssText='margin-left:auto;padding:4px 10px;font-size:13px;min-height:0;width:auto';t.onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()};bar.style.display='flex';bar.style.alignItems='center';bar.appendChild(t)}}catch(e){}}
-if(typeof window!=='undefined')window.__v42={STUFF42,LESEQ42,LESMOL42,stOpen42,stCourse42,stLesson42,molCanvas42};
+if(typeof window!=='undefined')window.__v42={STUFF42,LESEQ42,LESMOL42,LESX42,stOpen42,stCourse42,stLesson42,molCanvas42};
 
 /* ===================== v0.43: fixes from two playtest reports — the two modes as one world (Thai only) ===================== */
 const XF=t=>X(t,t);
@@ -13615,6 +13618,91 @@ const MISKNOW43={field:'คุณไม่ต้องลองผิดลอ�
 {const _o=eqOpen37;eqOpen37=function(f){_o(f);try{document.querySelectorAll('#eq37 .card.on').forEach(c=>{const k=c.id.replace('eqc_','');const i=EQ37.findIndex(e=>e.k===k);if(i<0||c.querySelector('.st43'))return;
   const b=document.createElement('button');b.className='btn btn-ghost st43';b.textContent='📚 เรียนบทนี้ในห้องเรียน';b.onclick=()=>{const el=document.getElementById('eq37');if(el)el.remove();stLesson42('eq',i)};c.appendChild(b)})}catch(e){}}}
 if(typeof window!=='undefined')window.__v43={FALL43,MISKNOW43,survive:S=>(GOALS29.find(z=>z.k==='survive')).c(S),toy:(k,o)=>toyRun38(k,o),eqOpen:f=>eqOpen37(f)};
+
+/* ===================== v0.44: "28 things" opens with four objects players already meet in their lives (Thai only) ===================== */
+/* the classroom notices what you met in a life, and offers that lesson; all text our own and checked */
+const XT=t=>X(t,t);
+
+/* ---------- small pixel pictures of objects ---------- */
+const SPR44={
+ tokens(x){x.fillStyle='#2a2018';x.fillRect(0,52,96,12);
+  x.fillStyle='#a8784a';x.beginPath();x.arc(30,32,18,0,7);x.fill();x.fillStyle='#c8945a';x.beginPath();x.arc(26,27,12,0,7);x.fill();
+  x.fillStyle='#6a4a2a';[[22,24],[30,22],[34,30],[24,34],[30,38]].forEach(([a,b])=>{x.fillRect(a,b,3,3)});
+  x.fillStyle='#d8a86a';x.beginPath();x.moveTo(60,50);x.lineTo(64,38);x.lineTo(68,50);x.fill();x.beginPath();x.arc(76,46,4,0,7);x.fill();x.fillRect(82,46,9,4);x.beginPath();x.moveTo(54,50);x.lineTo(57,42);x.lineTo(60,50);x.fill();
+  x.fillStyle='#b88a5a';x.fillRect(62,8,28,22);x.fillStyle='#5a3a1a';for(let i=0;i<4;i++){x.fillRect(66+i*6,12,3,6)}x.fillRect(66,22,8,2);x.fillRect(66,26,14,2)},
+ seal(x){x.fillStyle='#2a2018';x.fillRect(0,52,96,12);
+  x.fillStyle='#c8945a';x.fillRect(4,36,88,14);x.fillStyle='#7a5432';for(let i=0;i<4;i++){const o=8+i*22;x.fillRect(o,39,2,8);x.fillRect(o-2,41,6,2);x.fillRect(o+8,40,6,7);x.fillRect(o+16,39,2,8)}
+  x.fillStyle='#2a4a8a';x.fillRect(30,8,34,22);x.fillStyle='#3a6ac8';x.beginPath();x.ellipse(30,19,4,11,0,0,7);x.fill();x.fillStyle='#1a2a5a';x.beginPath();x.ellipse(64,19,4,11,0,0,7);x.fill();
+  x.fillStyle='#e8c860';[[36,12],[44,22],[52,14],[58,24],[40,26]].forEach(([a,b])=>x.fillRect(a,b,2,2))},
+ beer(x){x.fillStyle='#2a2018';x.fillRect(0,52,96,12);
+  x.fillStyle='#8a5a32';x.beginPath();x.ellipse(48,36,20,18,0,0,7);x.fill();x.fillRect(36,14,24,10);x.fillStyle='#a8784a';x.beginPath();x.ellipse(44,32,12,10,0,0,7);x.fill();
+  x.fillStyle='#e8c870';x.fillRect(38,14,20,3);x.strokeStyle='#e8c860';x.lineWidth=2;x.beginPath();x.moveTo(44,16);x.lineTo(16,2);x.moveTo(52,16);x.lineTo(82,4);x.moveTo(48,16);x.lineTo(50,0);x.stroke();
+  x.fillStyle='#fff3';[[42,12],[52,10],[47,8]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,1.5,0,7);x.fill()})},
+ paper(x){x.fillStyle='#2a2018';x.fillRect(0,52,96,12);
+  x.fillStyle='#d8ccaa';x.fillRect(14,14,44,36);x.fillStyle='#efe6cc';x.fillRect(10,10,44,36);x.fillStyle='#3a2a2a';for(let i=0;i<6;i++){const ww=16+((i*7)%18);x.fillRect(50-ww,16+i*5,ww,2)}
+  x.fillStyle='#1a1a2a';x.fillRect(70,38,14,12);x.fillStyle='#3a3a5a';x.fillRect(72,36,10,3);x.strokeStyle='#c8a868';x.lineWidth=2;x.beginPath();x.moveTo(76,36);x.lineTo(90,8);x.stroke()}};
+function sprCanvas44(k){const c=document.createElement('canvas');c.width=96;c.height=64;const x=c.getContext('2d');x.fillStyle='#120f1e';x.fillRect(0,0,96,64);try{SPR44[k](x)}catch(e){}
+  c.style.cssText='image-rendering:pixelated;display:block;margin:8px auto;max-width:100%;width:'+Math.min(96*5,560)+'px;border:1px solid #3a3060;border-radius:6px';return c}
+
+/* ---------- the course: 28 things ---------- */
+const LIST44=['เบี้ยดินเผาและตัวอักษร','ตราประทับทรงกระบอก','เบียร์และขนมปัง','กระดาษ','เกลือ','น้ำตาล','ข้าว','กาแฟและชา','มันฝรั่ง','ไหม','ขนแกะ','ไฟและฟืน','สำริด','เหล็ก','ถ่านหิน','น้ำมัน','แก้ว','ม้า','เรือ','รถไฟ','รถยนต์','แท่นพิมพ์','นาฬิกา','โทรเลข','กาฬโรค','ไข้ทรพิษ','มาลาเรียและควินิน','วัณโรค'];
+const LESSTUFF44=[
+ {k:'tokens',n:0,t:'ก้อนดินที่กลายเป็นตัวอักษร',sp:'tokens',mn:'เบี้ยดินเผา ลูกบอลดินเหนียว และแผ่นจารึกยุคแรก',
+  pov:'ฉันเป็นแค่ก้อนดินปั้นเล็กๆ รูปกรวย รูปลูกกลม รูปจาน หนึ่งเม็ดแทนแกะหนึ่งตัว หรือข้าวหนึ่งถัง คนใช้ฉันนับของมาหลายพันปี ก่อนที่ใครสักคนจะคิดว่า รอยกดบนดินก็นับแทนฉันได้',
+  sc:'ราว 3500 ปีก่อน ค.ศ. ที่เมืองอูรุก วิหารฝากแกะสามสิบตัวให้คนเลี้ยงแกะพาออกไปทุ่งหลายเดือน คุณใส่เบี้ยสามสิบเม็ดไว้ในลูกบอลดินเหนียวแล้วปิดผนึก ตอนเขากลับมา ทั้งสองฝ่ายต้องรู้ว่าข้างในมีกี่เม็ด โดยไม่มีใครสงสัยว่าอีกฝ่ายโกง คุณจะทำอย่างไร',
+  o:[['กดเบี้ยแต่ละเม็ดลงบนผิวลูกบอลก่อนปิด จะได้นับรอยข้างนอกได้โดยไม่ต้องทุบ','real','นี่ใกล้กับสิ่งที่นักโบราณคดีพบ ลูกบอลดินหลายลูกจากราว 3500 ปีก่อน ค.ศ. มีรอยกดข้างนอกที่ตรงกับเบี้ยข้างใน แล้วไม่นานคนก็เข้าใจว่าไม่ต้องมีเบี้ยข้างในเลย แค่กดรอยลงบนแผ่นดินก็พอ แผ่นจารึกที่มีรอยกดแบบนี้มีอายุราว 3200–3100 ปีก่อน ค.ศ. และค่อยๆ กลายเป็นตัวอักษรรูปลิ่ม'],
+   ['ทุบลูกบอลต่อหน้าทั้งสองฝ่ายแล้วนับเบี้ยข้างใน','sim','นี่คือการจำลอง คุณได้คำตอบ แต่หลักฐานหายไปทันที ถ้าวันหลังมีคนเถียงว่านับผิด ก็ไม่มีอะไรเหลือให้ตรวจ'],
+   ['ให้คนเลี้ยงแกะสาบานต่อเทพว่าจะคืนครบ','sim','นี่คือการจำลอง คำสาบานมีน้ำหนักจริงในเมโสโปเตเมีย แต่ถ้าแกะตายระหว่างทาง ก็ไม่มีใครรู้ว่าตอนแรกมีกี่ตัว']],
+  fact:['เบี้ยดินเผาที่ใช้นับของเก่าได้ถึงราว 8000 ปีก่อน ค.ศ. และลูกบอลดินที่ใส่เบี้ยไว้ข้างในมีตั้งแต่ราว 3500 ปีก่อน ค.ศ.','ตัวอักษรยุคแรกของสุเมเรียนใช้ทำบัญชีเกือบทั้งหมด จดตัวเลข ชื่อสิ่งของ และชื่อคน ยังไม่ได้ใช้เล่าเรื่องหรือแต่งกลอน','แผ่นจารึกจากอูรุกราว 3100–3000 ปีก่อน ค.ศ. บันทึกข้าวบาร์เลย์ 29,086 หน่วยตลอด 37 เดือน ลงท้ายด้วยคำว่า "คูชิม" ซึ่งอาจเป็นชื่อคนที่เก่าที่สุดที่ถูกเขียนไว้ หรืออาจเป็นตำแหน่ง'],
+  cost:'ตัวอักษรเกิดขึ้นเพื่อนับของที่คนต้องส่งให้วิหารและวัง บัญชีที่ละเอียดช่วยให้ผู้ปกครองเก็บข้าวและเกณฑ์แรงงานได้แม่นขึ้น และคนส่วนใหญ่ที่อ่านไม่ออก ต้องเชื่อตัวเลขของอาลักษณ์ไม่กี่คน',
+  note:'✦ แนวคิดว่าตัวอักษรรูปลิ่มพัฒนามาจากเบี้ยดินเผาเป็นของนักโบราณคดี เดนิส ชมันด์-เบสเซอรา มีผู้อ้างถึงมาก แต่นักวิชาการบางคนเห็นว่าเรื่องจริงซับซ้อนกว่านั้น และมีรากมาจากหลายทาง',
+  game:'ในเกมชีวิต: บท 4 เมโสโปเตเมีย ยุคอูรุก (เบี้ยดินเผา · ชื่อบนแผ่นดินเหนียว · อาลักษณ์)',item:'🏺 ลูกบอลดินที่มีรอยกดข้างนอก',
+  seen:S=>['c4_tokens','gx4_kushim','k4_kushim'].some(k=>S.done&&S.done[k]!=null),
+  src:[['Sumerian writing · Britannica','https://www.britannica.com/topic/writing/Sumerian-writing']]},
+ {k:'seal',n:1,t:'ลายเซ็นที่กลิ้งได้',sp:'seal',mn:'ตราประทับทรงกระบอก และรอยที่กลิ้งบนดินเหนียว',
+  pov:'ฉันเป็นหินทรงกระบอกยาวเท่านิ้วโป้ง มีลายแกะกลับด้านอยู่รอบตัว กลิ้งฉันบนดินเหนียวเปียก ลายจะคลี่ออกเป็นแถบยาวไม่สิ้นสุด ใครเห็นลายฉันก็รู้ว่าใครเป็นเจ้าของ และรู้ว่ามีใครแอบเปิดของที่ฉันปิดไว้หรือไม่',
+  sc:'เช้าวันหนึ่ง ห้องเก็บข้าวของวิหารถูกเปิดตอนกลางคืน ข้าวหายไปสามกระสอบ ก้อนดินเหนียวที่ปิดสลักประตูไว้แตกอยู่บนพื้น คุณเป็นผู้ดูแลห้องนี้ จะทำอย่างไร',
+  o:[['เก็บเศษดินทุกชิ้นมาต่อกัน ดูว่าลายตราบนก้อนดินเป็นของใคร และใครปิดประตูครั้งสุดท้าย','real','นี่คือวิธีที่ระบบตราทำงาน นักโบราณคดีพบเศษดินปิดประตู ปากโถ กระสอบ และตะกร้าจำนวนมากที่มีรอยตรา บางก้อนประทับซ้ำหลายครั้งหรือหลายตรา เพื่อบอกว่าใครปิด ใครเปิด และเมื่อไร'],
+   ['สั่งทำตราใหม่ให้ทุกคนที่มีกุญแจห้องนี้','sim','นี่คือการจำลอง ตราใหม่ป้องกันครั้งหน้าได้ แต่ไม่ได้บอกว่าข้าวสามกระสอบนั้นหายไปไหน'],
+   ['โทษคนเฝ้ายามคืนนั้นทันที','sim','นี่คือการจำลอง ถ้าเขาไม่ได้ทำ คนที่ทำจริงก็ยังอยู่ในวิหาร และคืนต่อไปก็จะเกิดอีก']],
+  fact:['ตราประทับทรงกระบอกปรากฏราว 3600 ปีก่อน ค.ศ. ในยุคอูรุกกลาง ทางใต้ของเมโสโปเตเมียและตะวันตกเฉียงใต้ของอิหร่าน ค่อยๆ แทนที่ตราแบบกดที่ใช้มาก่อน','ตรายุคแรกส่วนใหญ่ทำจากหินปูนและหินเนื้ออ่อน บางอันทำจากเปลือกหอย งาช้าง หรือหินลาพิสลาซูลีที่ขนมาไกลจากภูเขาในอัฟกานิสถาน ต่อมานิยมหินเฮมาไทต์','ตราบางอันมีห่วงสำหรับร้อยเชือก จึงพกติดตัวได้ ภาพบนตรามีทั้งงานเลี้ยง คนดื่มเบียร์จากโถเดียวกัน สัตว์ต่อสู้กัน และคนเข้าเฝ้าเทพ'],
+  cost:'ตราทำให้วิหารและวังรู้ว่าใครเปิดคลังเมื่อไร ระบบตรวจสอบแบบนี้ช่วยให้รวบรวมของจากคนจำนวนมากไว้ที่ศูนย์กลางได้ และคนที่ต้องส่งของเข้าคลังก็ถูกตรวจสอบละเอียดขึ้นเช่นกัน',
+  note:'ในเกมชีวิต ตราประทับที่ปู่ให้เป็นของในครอบครัว ส่วนการใช้ตราปิดประตูและคลังเป็นงานของเจ้าหน้าที่ ทั้งสองแบบมีจริงในยุคเดียวกัน',
+  game:'ในเกมชีวิต: บท 4 เมโสโปเตเมีย (ตราประทับทรงกระบอกที่ปู่ให้)',item:'🔵 ตราประทับหินสีน้ำเงิน',
+  seen:S=>!!(S.done&&S.done.c4_seal!=null),
+  src:[['Ancient Near Eastern seals and sealing practices · Wikipedia','https://en.wikipedia.org/wiki/Ancient_Near_Eastern_seals_and_sealing_practices']]},
+ {k:'beer',n:2,t:'ค่าแรงที่ดื่มได้',sp:'beer',mn:'โถเบียร์ใบใหญ่ กับหลอดดูดยาว',
+  pov:'ฉันเกิดจากข้าวบาร์เลย์ ขนมปังที่อบสองครั้ง และน้ำ คนงานที่ขุดคลองและก่อกำแพงได้ฉันเป็นส่วนหนึ่งของค่าแรงทุกวัน ฉันเป็นทั้งอาหาร เครื่องดื่ม และเงินเดือนในคราวเดียว',
+  sc:'คุณเป็นหัวหน้าคนงานห้าสิบคนที่ขุดคลองให้วิหาร วิหารส่งข้าวบาร์เลย์มากองหนึ่งเป็นค่าแรงของทั้งเดือน คุณจะแจกอย่างไร',
+  o:[['แจกเป็นขนมปังกับเบียร์ทุกวันตามส่วน ตามที่วิหารกำหนด','real','นี่คือสิ่งที่ทำกันจริง ในเมโสโปเตเมียและอียิปต์ คนงานได้ปันส่วนเป็นข้าว ขนมปัง และเบียร์ ตามวันที่ทำงาน แผ่นจารึกจำนวนมากเป็นบัญชีปันส่วนแบบนี้'],
+   ['แจกข้าวทั้งหมดในวันแรก ให้แต่ละคนจัดการเอง','sim','นี่คือการจำลอง บางครอบครัวจัดการได้ดี บางครอบครัวหมดก่อนสิ้นเดือน และสัปดาห์สุดท้ายก็ไม่มีแรงขุด'],
+   ['เก็บข้าวไว้ส่วนหนึ่ง เผื่อเดือนหน้าวิหารส่งมาน้อย','sim','นี่คือการจำลอง คุณอาจช่วยคนงานได้ในเดือนที่ขาดแคลน แต่ถ้าอาลักษณ์ของวิหารตรวจบัญชีแล้วตัวเลขไม่ตรง คุณจะถูกถามก่อนใคร']],
+  fact:['บทสวดถึงนินกาซี เทพีแห่งเบียร์ ถูกเขียนลงแผ่นดินเหนียวราว 1800 ปีก่อน ค.ศ. แต่น่าจะเก่ากว่านั้นมาก บทสวดเล่าขั้นตอนทำเบียร์ ตั้งแต่อบขนมปังข้าวบาร์เลย์ ผสมน้ำผึ้งและอินทผลัม หมัก กรอง จนเทใส่โถ','แผ่นจารึกจากเมืองอูร์ราว 2050 ปีก่อน ค.ศ. เป็นใบรับเบียร์ที่คนทำเบียร์ส่งให้ แสดงว่าเบียร์เป็นสินค้าที่ซื้อขายและทำบัญชี','ในหลุมศพของราชินีปูอาบีที่อูร์ พบหลอดดูดทำด้วยทองและหินลาพิสลาซูลี'],
+  cost:'เมื่อค่าแรงเป็นอาหารที่แจกจากคลังของวิหาร คนงานก็ผูกอยู่กับคลังนั้น ปีไหนข้าวเสียหาย คนที่ไม่มีที่ดินของตัวเองเดือดร้อนก่อน',
+  note:'✦ ทำไมคนสุเมเรียนดื่มเบียร์ด้วยหลอด คำอธิบายที่พบบ่อยคือในเบียร์มีกากข้าวลอยอยู่ แต่นักเขียนบางคนแย้งว่าเบียร์ถูกกรองแล้ว และหลอดอาจเป็นธรรมเนียมการดื่มร่วมโถเดียวกันมากกว่า',
+  game:'ในเกมชีวิต: บท 4 เมโสโปเตเมีย (ขนมปังเบียร์ · หลอดดูดเบียร์ · ร้านเบียร์) และบท 5 อียิปต์',item:'🍺 หลอดดูดเบียร์ยาวหนึ่งแขน',
+  seen:S=>['c4_beerbread','y4_tavern','y4_straw','k4_sour','k6_beer','k6_tomb'].some(k=>S.done&&S.done[k]!=null),
+  src:[['The Hymn to Ninkasi · World History Encyclopedia','https://www.worldhistory.org/article/222/']]},
+ {k:'paper',n:3,t:'แผ่นบางที่ทำให้ทุกคนเริ่มจด',sp:'paper',mn:'กระดาษ หมึก และปากกาด้ามอ้อ',
+  pov:'ฉันเกิดในจีน ทำจากเปลือกไม้ เศษผ้า และแหเก่าที่ทุบจนเป็นเยื่อ เมื่อมาถึงซามาร์คันด์และแบกแดด คนทำฉันจากเศษผ้าเก่า ฉันถูกกว่าหนังสัตว์และกระดาษปาปิรุสมาก และเมื่อของเขียนราคาถูกลง ทุกคนก็เริ่มจด',
+  sc:'ราวปี 800 ในแบกแดด คุณเป็นเสมียนในสำนักงานบัญชีของรัฐ ปาปิรุสต้องสั่งมาจากอียิปต์ หนังสัตว์ก็แพง ตลาดเริ่มมีร้านขายแผ่นบางสีขาวที่เรียกว่ากระดาษ หัวหน้าถามความเห็นคุณ',
+  o:[['เปลี่ยนมาใช้กระดาษ ราคาถูกและหาง่ายกว่า','real','นี่คือทางที่โลกมุสลิมเลือก ราวปลายศตวรรษที่ 8 แบกแดดมีโรงทำกระดาษ (มักอ้างปี 794) และในศตวรรษต่อมา กระดาษกลายเป็นของใช้ทั้งในสำนักงานรัฐ ตลาดหนังสือ และบ้านของคนทั่วไป'],
+   ['ใช้หนังสัตว์ต่อไป เพราะทนกว่าและลบเขียนใหม่ได้','real','นี่ก็เกิดขึ้นจริงที่อื่น ยุโรปส่วนใหญ่ยังเขียนหนังสือบนหนังสัตว์ในอารามอีกหลายร้อยปี กระดาษไปถึงยุโรปผ่านสเปนที่ปกครองโดยมุสลิม และแพร่หลายช้ากว่ามาก']],
+  fact:['ในจีนพบเศษกระดาษที่เก่ากว่าศตวรรษที่ 1 ตำราจีนเล่าว่าขุนนางไช่หลุนปรับปรุงวิธีทำกระดาษและถวายจักรพรรดิในปี ค.ศ. 105','✦ เรื่องที่เล่ากันว่าเชลยชาวจีนจากศึกตาลาสปี 751 สอนชาวอาหรับทำกระดาษ เป็นเรื่องเล่าที่นักประวัติศาสตร์หลายคนสงสัย เพราะมีหลักฐานว่าคนในเอเชียกลางใช้กระดาษมาก่อนปี 751 หลายสิบปี','กระดาษของโลกมุสลิมทำจากเศษผ้าเก่าที่แช่น้ำแล้วทุบ ต่างจากกระดาษจีนที่ใช้เปลือกไม้'],
+  cost:'ในปี 1258 เมื่อกองทัพมองโกลยึดแบกแดด หอสมุดหลายแห่งถูกทำลาย ความรู้ที่จดไว้บนกระดาษเปราะบางพอๆ กับที่มันแพร่ได้ง่าย ✦ เรื่องแม่น้ำไทกริสกลายเป็นสีดำเพราะหมึกมาจากบันทึกยุคหลัง',
+  note:'ในเกมชีวิต บท 14 โลกมุสลิม คุณอาจเห็นร้านขายกระดาษในตลาดแบกแดดช่วงปี 750–830 หรืออยู่ในเมืองวันที่หอสมุดถูกเผาในปี 1258',
+  game:'ในเกมชีวิต: บท 14 โลกมุสลิม (กระดาษในตลาด · แม่น้ำที่เปลี่ยนสี)',item:'📜 กระดาษเศษผ้าจากแบกแดด',
+  seen:S=>!!(S.tp34paper||(S.done&&S.done.g24_baghdad!=null)),
+  src:[['Did Chinese prisoners of war convey papermaking after Talas? · History of Information','https://www.historyofinformation.com/detail.php?id=5028'],['Review of Bloom, Paper Before Print · The Medieval Review','https://scholarworks.iu.edu/journals/index.php/tmr/article/view/15725']]}];
+LESX42.stuff={list:LIST44,les:LESSTUFF44,intro:'ของธรรมดา 28 อย่างที่เปลี่ยนชีวิตคนทั้งโลก บทเรียนชุดแรกเป็นของที่คุณเจอได้อยู่แล้วในเกมชีวิต เจอแล้ว ห้องเรียนจะเตือนว่ามีบทเรียนรออยู่',note:()=>'แนวคิดการเล่าประวัติศาสตร์ผ่านสิ่งของธรรมดา มาจากหนังสือหลายเล่มที่เล่าโลกผ่านของชิ้นเดียว เนื้อหาในเกมเขียนใหม่ทั้งหมดและตรวจกับแหล่งที่ให้ไว้ท้ายแต่ละบท'};
+{const C=STUFF42.find(c=>c.k==='stuff');if(C){C.soon=0;C.src='ของที่คุณเจอในเกมชีวิต กลายเป็นบทเรียนในห้องนี้';C.s='เบี้ยดินเผา ตราประทับ เบียร์ กระดาษ แล้วต่อด้วยเกลือ น้ำตาล ม้า ถ่านหิน และเชื้อโรค'}}
+
+/* ---------- the life game tells the classroom what you met ---------- */
+function stSeen44(){try{if(!S||TEST)return;const B=stB42();B.stuff.seen=B.stuff.seen||{};let nw=null;
+  for(const l of LESSTUFF44){const key='stuff.'+l.k;if(B.stuff.seen[key]||!l.seen(S))continue;let nm='';try{nm=nmL(S.name)}catch(e){}B.stuff.seen[key]={a:S.age,nm,ch:S.ch};nw=nw||l}
+  if(nw){stSave42(B);log(XT('📚 ห้องเรียนของสิ่งของมีบทเรียนเรื่อง "'+nw.t+'" รอคุณอยู่ เปิดได้จากหน้าแรกหลังจบชีวิตนี้'),null,'it')}}catch(e){}}
+{const _m=monYear41;monYear41=function(a){_m(a);stSeen44()}}
+if(typeof window!=='undefined')window.__v44={LESSTUFF44,LIST44,sprCanvas44,stSeen44};
 
 function fig(ctx,x,y,o){if(GFX.hi){fig24(ctx,x,y,o||{});return}const R=(a,b,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(a|0,b|0,w|0,h|0)};x|=0;y|=0;
   const h=o.h||6,c=o.c||'#1e140e',hd=o.elder?'#cfc6b8':c,f=o.f||0,p=o.pose||'stand';

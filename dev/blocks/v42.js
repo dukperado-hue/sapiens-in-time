@@ -128,7 +128,9 @@ const MOLNOTE42='"17 โมเลกุลที่เปลี่ยนปร�
 /* ---------- progress ---------- */
 const stB42=()=>{try{const b=book29();b.stuff=b.stuff||{done:{},mus:{}};b.stuff.done=b.stuff.done||{};b.stuff.mus=b.stuff.mus||{};return b}catch(e){return {stuff:{done:{},mus:{}},eqM:{},eq:{}}}};
 const stSave42=b=>{try{if(!TEST)store.set('sit.book',b)}catch(e){}};
-const stLes42=c=>c==='eq'?EQ37.map((E,i)=>({k:E.k,n:i,t:L(E.n),E,D:LESEQ42[E.k]})):c==='mol'?LESMOL42:[];
+const LESX42={mol:{list:MOLLIST42,les:LESMOL42,note:()=>MOLNOTE42}};
+const stLes42=c=>c==='eq'?EQ37.map((E,i)=>({k:E.k,n:i,t:L(E.n),E,D:LESEQ42[E.k]})):LESX42[c]?LESX42[c].les:[];
+const stSeen42=()=>{try{return (book29().stuff||{}).seen||{}}catch(e){return {}}};
 const stDone42=c=>{const d=stB42().stuff.done;return stLes42(c).filter(l=>d[c+'.'+l.k]).length};
 function stMark42(c,l,item){const B=stB42();B.stuff.done[c+'.'+l]=1;if(item)B.stuff.mus[c+'.'+l]=item;stSave42(B)}
 
@@ -160,7 +162,7 @@ function stOpen42(){try{const w=stShell42();
   w.innerHTML='<h2>📚 History of Stuff · ห้องเรียนของสิ่งของ</h2><p class="sub">ทุกอย่างมีประวัติ ทุกอย่างมีราคา · เลือกวิชา แล้วให้สิ่งของเล่าเรื่องของมันเอง</p>';
   const soon=document.createElement('details');soon.className='soon';soon.innerHTML='<summary>วิชาที่กำลังสร้าง · '+STUFF42.filter(c=>c.soon).length+' วิชา</summary>';
   for(const C of STUFF42.filter(c=>!c.soon).concat(STUFF42.filter(c=>c.soon))){const b=document.createElement('button');b.className='crs'+(C.soon?' soon':'');const n=stLes42(C.k).length,d=stDone42(C.k);
-    b.innerHTML='<span class="ic">'+C.ic+'</span><span><b>'+esc(C.t)+'</b><div class="d">'+esc(C.s)+'</div><div class="pr">'+(C.soon?'กำลังสร้าง':(C.k==='mol'?d+'/17 บทเรียน · เปิดแล้ว '+n:d+'/'+n+' บทเรียน'))+'</div></span>';
+    b.innerHTML='<span class="ic">'+C.ic+'</span><span><b>'+esc(C.t)+'</b><div class="d">'+esc(C.s)+'</div><div class="pr">'+(C.soon?'กำลังสร้าง':(LESX42[C.k]?d+'/'+LESX42[C.k].list.length+' บทเรียน · เปิดแล้ว '+n:d+'/'+n+' บทเรียน')+(()=>{const sn=stSeen42(),dn=stB42().stuff.done;const m=stLes42(C.k).filter(l=>sn[C.k+'.'+l.k]&&!dn[C.k+'.'+l.k]).length;return m?' · ✨ '+m+' บทจากชีวิตของคุณ':''})())+'</div></span>';
     if(!C.soon){b.onclick=()=>stCourse42(C.k);w.appendChild(b)}else soon.appendChild(b)}w.appendChild(soon);
   const B=stB42(),mus=Object.values(B.stuff.mus);stP42(w,'','พิพิธภัณฑ์ของฉัน · '+mus.length+' ชิ้น','h3').style.cssText='font-size:15px;margin:16px 0 4px;color:var(--bone)';
   const g=document.createElement('div');g.className='mus';if(!mus.length)stP42(w,'nt','เรียนจบหนึ่งบท ได้ของหนึ่งชิ้นมาตั้งในพิพิธภัณฑ์');else mus.forEach(m=>{const d=document.createElement('div');d.textContent=m;g.appendChild(d)});w.appendChild(g);
@@ -170,18 +172,19 @@ function stCourse42(c){try{const C=STUFF42.find(z=>z.k===c);const w=stShell42();
   w.innerHTML='<h2>'+C.ic+' '+esc(C.t)+'</h2><p class="sub">'+esc(C.src)+'</p>';
   if(c==='eq'){let got={};try{got=book29().eq||{}}catch(e){}stP42(w,'nt','ห้องเรียนกับเกมชีวิตใช้ของร่วมกันสองอย่าง ทำภารกิจที่นี่สำเร็จได้ดาวเชี่ยวชาญ ซึ่งในเกมชีวิตจะเปิดทางเลือก "ใช้ความรู้ที่เคยเรียนมา" ส่วนการ์ดในสมุด 17 สมการต้องเปิดด้วยการใช้ชีวิตจนเจอ');
     stLes42('eq').forEach((l,i)=>{const b=document.createElement('button');b.className='les'+(done['eq.'+l.k]?' ok':'');b.innerHTML='<span>'+(done['eq.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(l.t)+'</span><i>'+(l.D.mis?'🧪 ภารกิจ':'')+(got[l.k]?' · เจอในชีวิตแล้ว':'')+'</i>';b.onclick=()=>stLesson42('eq',i);w.appendChild(b)})}
-  else if(c==='mol'){MOLLIST42.forEach((nm,i)=>{const l=LESMOL42.find(z=>z.n===i);const b=document.createElement('button');b.className='les'+(l?(done['mol.'+l.k]?' ok':''):' off');
-      b.innerHTML='<span>'+(l&&done['mol.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(nm)+'</span><i>'+(l?esc(l.t):'กำลังสร้าง')+'</i>';if(l)b.onclick=()=>stLesson42('mol',LESMOL42.indexOf(l));w.appendChild(b)});
-    stP42(w,'nt',MOLNOTE42)}
+  else if(LESX42[c]){const X=LESX42[c],sn=stSeen42();if(X.intro)stP42(w,'nt',X.intro);X.list.forEach((nm,i)=>{const l=X.les.find(z=>z.n===i);const b=document.createElement('button');b.className='les'+(l?(done[c+'.'+l.k]?' ok':''):' off');
+      b.innerHTML='<span>'+(l&&done[c+'.'+l.k]?'✓ ':'')+(i+1)+'. '+esc(nm)+'</span><i>'+(l?(sn[c+'.'+l.k]&&!done[c+'.'+l.k]?'✨ เจอในชีวิตแล้ว · ':'')+esc(l.t):'กำลังสร้าง')+'</i>';if(l)b.onclick=()=>stLesson42(c,X.les.indexOf(l));w.appendChild(b)});
+    if(X.note)stP42(w,'nt',X.note())}
   if(c==='eq')stP42(w,'nt',L(EQNOTE37));
   const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
 
 /* a lesson: 1 the thing speaks · 2 a situation, you choose · 3 (equations) the mission · 4 what is true · 5 the museum */
 function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const C=STUFF42.find(z=>z.k===c);
   const next=()=>{pg++;show()},nav=(w,lab,f)=>{const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);if(lab)stBtn42(nv,lab,f||next,1);stBtn42(nv,'← รายการบทเรียน',()=>stCourse42(c));return nv};
-  const head=(w,s)=>{stP42(w,'step',C.ic+' '+C.t+' · บทที่ '+(c==='mol'?l.n+1:i+1)+' · '+s);stP42(w,'',c==='eq'?l.t:l.t,'h2')};
+  const head=(w,s)=>{stP42(w,'step',C.ic+' '+C.t+' · บทที่ '+(LESX42[c]?l.n+1:i+1)+' · '+s);stP42(w,'',c==='eq'?l.t:l.t,'h2')};
   const show=()=>{try{const w=stShell42();
-    if(pg===0){head(w,'ฉันคือใคร');if(c==='eq')w.appendChild(eqCanvas37(l.E.f,Math.max(3,Math.min(7,Math.floor(Math.min(innerWidth*.9,640)/eqPix37(l.E.f,12).w))),'#c8b8ff'));else{w.appendChild(molCanvas42(l.m));stP42(w,'nt',l.mn).style.cssText='text-align:center;border:0;padding:0'}
+    if(pg===0){head(w,'ฉันคือใคร');if(c==='eq')w.appendChild(eqCanvas37(l.E.f,Math.max(3,Math.min(7,Math.floor(Math.min(innerWidth*.9,640)/eqPix37(l.E.f,12).w))),'#c8b8ff'));else{w.appendChild(l.sp&&typeof sprCanvas44==='function'?sprCanvas44(l.sp):molCanvas42(l.m));stP42(w,'nt',l.mn).style.cssText='text-align:center;border:0;padding:0';
+        const sv=stSeen42()[c+'.'+l.k];if(sv)stP42(w,'fb','✨ คุณเคยเจอสิ่งนี้ในเกมชีวิต '+(sv.nm?'ตอนเป็น '+sv.nm+' ':'')+(sv.a!=null?'อายุ '+sv.a+' ปี':''))}
       stP42(w,'pov','“'+(c==='eq'?l.D.pov:l.pov)+'”');nav(w,'ต่อ')}
     else if(pg===1){head(w,c==='eq'?'ลองใช้':'คุณจะทำอย่างไร');
       if(c==='eq'){const [q,os]=l.D.use;stP42(w,'sc',q);const fb=document.createElement('div');let solved=false;
@@ -214,8 +217,8 @@ function stLesson42(c,i){const ls=stLes42(c),l=ls[i];if(!l)return;let pg=0;const
 /* ---------- the door on the home screen ---------- */
 function stHome42(re){try{let sec=document.getElementById('st42home');if(!sec){const ch=document.getElementById('chap');if(!ch)return;const blk=ch.closest('section');sec=document.createElement('section');sec.className='block';sec.id='st42home';blk.parentNode.insertBefore(sec,blk)}
   else if(!re)return;
-  const all=STUFF42.filter(c=>!c.soon).reduce((s,c)=>s+stDone42(c.k),0);
-  sec.innerHTML='<h2>📚 History of Stuff</h2><p class="note">โหมดเรียนรู้ ให้สิ่งของเล่าเรื่องของมันเอง สมการ โมเลกุล เสื้อยืด เครื่องเทศ ปลาค็อด และอีกมาก ค่อยๆ เพิ่มทีละวิชา</p><button class="btn btn-primary" id="st42go">เข้าห้องเรียนของสิ่งของ'+(all?' · เรียนแล้ว '+all+' บท':'')+'</button>';
+  const all=STUFF42.filter(c=>!c.soon).reduce((s,c)=>s+stDone42(c.k),0);const sn=stSeen42(),dn=stB42().stuff.done,fresh=Object.keys(sn).filter(k=>!dn[k]).length;
+  sec.innerHTML='<h2>📚 History of Stuff</h2><p class="note">โหมดเรียนรู้ ให้สิ่งของเล่าเรื่องของมันเอง สมการ โมเลกุล เสื้อยืด เครื่องเทศ ปลาค็อด และอีกมาก ค่อยๆ เพิ่มทีละวิชา</p><button class="btn btn-primary" id="st42go">เข้าห้องเรียนของสิ่งของ'+(all?' · เรียนแล้ว '+all+' บท':'')+'</button>'+(fresh?'<p class="note" style="color:#ffe2a8">✨ มี '+fresh+' บทเรียนเรื่องของที่คุณเพิ่งเจอในชีวิต</p>':'');
   document.getElementById('st42go').onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()};
   const bar=document.querySelector('#home header.bar');if(bar&&!document.getElementById('st42top')){const t=document.createElement('button');t.id='st42top';t.className='btn btn-ghost';t.textContent='📚 ห้องเรียนของสิ่งของ';t.style.cssText='margin-left:auto;padding:4px 10px;font-size:13px;min-height:0;width:auto';t.onclick=()=>{try{SND.unlock()}catch(e){}stOpen42()};bar.style.display='flex';bar.style.alignItems='center';bar.appendChild(t)}}catch(e){}}
-if(typeof window!=='undefined')window.__v42={STUFF42,LESEQ42,LESMOL42,stOpen42,stCourse42,stLesson42,molCanvas42};
+if(typeof window!=='undefined')window.__v42={STUFF42,LESEQ42,LESMOL42,LESX42,stOpen42,stCourse42,stLesson42,molCanvas42};
