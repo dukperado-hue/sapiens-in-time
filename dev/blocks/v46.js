@@ -48,7 +48,10 @@ function plIntro46(){try{const w=plShell45();const c=document.createElement('can
   mk('📖','ไปเรียนรู้','เรื่องยาว 9 ฉาก จากเอเชียกลางปี 1338 ถึงลอนดอนปี 1854 ทุกฉากเลือกได้ครั้งเดียว',plOpen45);
   mk('🕯️','ไปใช้ชีวิต','สี่สิบวันในเมืองคัฟฟาที่ถูกกองทัพมองโกลล้อม เดินไปทั่วเมือง หาอาหาร หาน้ำ หาไม้ ดูแลคนป่วย และตัดสินใจว่าจะอยู่หรือหนี ความรู้จากห้องเรียนติดตัวไปด้วย',sv46Start);
   w.appendChild(doors);w.appendChild(nt);setTimeout(()=>{doors.style.opacity='1'},600+PLQ46.length*2200);
-  const nv=document.createElement('div');nv.className='nav';w.appendChild(nv);stBtn42(nv,'ข้าม',()=>{q.querySelectorAll('p').forEach(p=>p.style.opacity='1');doors.style.opacity='1'});stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42)}catch(e){}}
+  /* v0.52: "skip" shows everything at once on the first tap and goes away; the row of buttons stays small and does not stick over the page */
+  const nv=document.createElement('div');nv.className='nav pl46nav';nv.style.cssText='position:static;display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 18px';w.insertBefore(nv,q);
+  const sk=stBtn42(nv,'ข้าม',()=>{q.querySelectorAll('p').forEach(p=>{p.style.transition='none';p.style.opacity='1'});doors.style.transition='none';doors.style.opacity='1';sk.remove();doors.scrollIntoView({block:'start',behavior:'smooth'})});stBtn42(nv,'← ชั้นวิชา',stOpen42);stBtn42(nv,'ปิด',stClose42);
+  if(!document.getElementById('pl46navcss')){const st=document.createElement('style');st.id='pl46navcss';st.textContent='#st42 .pl46nav{position:static!important;padding:0!important;background:none!important}#st42 .pl46nav .btn{flex:0 0 auto!important;width:auto!important;min-height:40px;padding:6px 14px;font-size:14px}';document.head.appendChild(st)}setTimeout(()=>{if(sk.isConnected)sk.remove()},600+PLQ46.length*2200)}catch(e){}}
 {const C=STUFF42.find(c=>c.k==='plague');if(C){C.open=plIntro46;C.s='หมอกาฬโรคในสายฝน · ไปเรียนรู้ 9 ฉาก หรือไปใช้ชีวิตสี่สิบวันในเมืองที่ถูกล้อม'}}
 {const _h=stHome42;stHome42=function(re){_h(re);try{const b=document.getElementById('pl45go');if(b)b.onclick=()=>{try{SND.unlock()}catch(e){}plIntro46()}}catch(e){}}}
 

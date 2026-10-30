@@ -33,16 +33,16 @@ function hvRender(cv,S,t,dt){const x=cv.getContext('2d'),W=cv.width,H=cv.height,
   const bx=b=>b&&{x0:(b.x0-cam)*sc,x1:(b.x1-cam)*sc},pb=bx(S.pbox),db=bx(S.dbox);let hit=[];const fdt=Math.min(.1,dt||.016);
   for(const o of fr){const ox=(o.x-cam*o.p)*sc,ow=(o.w||60)*sc;if(ox+ow<-40||ox-ow>W+40)continue;
     /* each front thing is drawn (blurred) onto its own small canvas, and redrawn only a few times a second when it moves: blur is costly on phones */
-    const pad=30,bw=(o.w||60)+pad*2,key=sc+'|'+(S.lowfx?1:0);S._fn=(S._fn||0);if(!o._c||o._k!==key||(o.anim&&(S._fn+o.x)%5===0)){const c=o._c||(o._c=document.createElement('canvas'));c.width=Math.ceil(bw*sc);c.height=Math.ceil(400*sc);const y=c.getContext('2d');y.setTransform(sc,0,0,sc,(bw/2)*sc,20*sc);if(HVCAN.filter&&!S.lowfx)y.filter='blur('+Math.max(1,sc*.9).toFixed(1)+'px)';y.fillStyle=o.col||'#1d1611';y.strokeStyle=o.col||'#1d1611';o.draw(y,t,S);o._k=key}
+    const pad=30,bw=(o.w||60)+pad*2,key=sc+'|'+(S.lowfx?1:0);S._fn=(S._fn||0);if(!o._c||o._k!==key||(o.anim&&(S._fn+o.x)%5===0)){const c=o._c||(o._c=document.createElement('canvas'));c.width=Math.ceil(bw*sc);c.height=Math.ceil(400*sc);const y=c.getContext('2d');y.setTransform(sc,0,0,sc,(bw/2)*sc,20*sc);if(HVCAN.filter&&!S.lowfx)y.filter='blur('+Math.max(1,sc*.9).toFixed(1)+'px)';y.fillStyle=o.col||'#3b2a1e';y.strokeStyle=o.col||'#3b2a1e';o.draw(y,t,S);o._k=key}
     /* when it stands in front of Peter or the dog it fades smoothly to 0.35, then comes back */
-    const ov=b=>b&&ox-ow*.5<b.x1&&ox+ow*.5>b.x0,full=o.a||.94,cover=ov(pb)||ov(db);if(o._a==null)o._a=full;o._a+=((cover?.35:full)-o._a)*Math.min(1,fdt*6);
+    const ov=b=>b&&ox-ow*.5<b.x1&&ox+ow*.5>b.x0,full=o.a||.8,cover=ov(pb)||ov(db);if(o._a==null)o._a=full;o._a+=((cover?.35:full)-o._a)*Math.min(1,fdt*6);
     x.globalAlpha=o._a;x.drawImage(o._c,Math.round(ox-bw/2*sc),Math.round(S.camY*sc*o.p-20*sc));x.globalAlpha=1;
     S.stats.front.push(o.kind);if(ov(pb)){hit.push(o);S.stats.fade=Math.min(S.stats.fade==null?1:S.stats.fade,o._a)}}
   /* when something in front hides the walker, show the walker's outline through it */
   S.stats.through=0;if(hit.length&&S.silo){const m=S._mask||(S._mask=document.createElement('canvas'));if(m.width!==W||m.height!==H){m.width=W;m.height=H}const y=m.getContext('2d');y.setTransform(1,0,0,1,0,0);y.globalCompositeOperation='source-over';y.clearRect(0,0,W,H);
     for(const o of hit){y.save();y.setTransform(sc,0,0,sc,(o.x-cam*o.p)*sc,S.camY*sc*o.p);y.fillStyle='#fff';y.strokeStyle='#fff';y.globalAlpha=1;o.draw(y,t,S);y.restore()}
     const c2=S._mask2||(S._mask2=document.createElement('canvas'));if(c2.width!==W||c2.height!==H){c2.width=W;c2.height=H}const z=c2.getContext('2d');z.setTransform(1,0,0,1,0,0);z.globalCompositeOperation='source-over';z.clearRect(0,0,W,H);z.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);S.silo(z);z.setTransform(1,0,0,1,0,0);z.globalCompositeOperation='source-in';z.fillStyle='#ffe9c4';z.fillRect(0,0,W,H);
-    y.globalCompositeOperation='source-in';y.setTransform(1,0,0,1,0,0);y.drawImage(c2,0,0);const k=Math.max(...hit.map(o=>((o._a||.94)-.35)/.59));x.globalAlpha=.55*Math.max(.25,k);x.drawImage(m,0,0);x.globalAlpha=1;S.stats.through=hit.length}
+    y.globalCompositeOperation='source-in';y.setTransform(1,0,0,1,0,0);y.drawImage(c2,0,0);const k=Math.max(...hit.map(o=>((o._a||.8)-.35)/.45));x.globalAlpha=.55*Math.max(.25,k);x.drawImage(m,0,0);x.globalAlpha=1;S.stats.through=hit.length}
   S._fn=(S._fn||0)+1;
   if(sn.over){x.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);sn.over(x,S,t,{x0:cam,x1:cam+vw})}
   if(S.overFx){x.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);S.overFx(x,t)}
