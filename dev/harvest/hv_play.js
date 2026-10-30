@@ -6,11 +6,18 @@ const HVBAG=6;
 const HVSPOT=[
   {k:'crates',x:560,kind:'search',n:'กองลังไม้พัง',dur:1.4,loot:[['plank',1],['wood',1]],say:'ปีเตอร์งัดลังที่พังออกทีละแผ่น เหมือนที่เห็นพ่อทำ'},
   {k:'stall',x:1000,kind:'search',n:'แผงลอยร้าง',dur:1.2,loot:[['bread',1]],say:'ใต้ผ้าคลุมแผงมีขนมปังแข็งๆ ตกอยู่ เจ้าของไม่กลับมาหลายวันแล้ว'},
+  {k:'corpse',x:1215,kind:'corpse',n:'ศพคลุมผ้าริมถนน',dur:2.2,loots:[[['bread',2]],[['herb',2]]],say:'ปีเตอร์กลั้นหายใจ แล้วค่อยๆ ยกชายผ้าขึ้น'},
   {k:'door',x:1400,kind:'search',n:'ประตูบ้านที่ถูกตอกไม้ปิด',dur:1.8,loot:[['plank',1],['herb',1]],say:'ปีเตอร์ดึงตะปูออกหนึ่งตัว ไม้แผ่นหนึ่งหลุดลงมา หลังประตูมีช่อสมุนไพรแห้งแขวนอยู่'},
   {k:'cart',x:1760,kind:'dog',n:'โพรงใต้ซากเกวียน',loot:[['bread',1]],say:'ช่องแคบเกินกว่าปีเตอร์จะมุดเข้าไป'},
   {k:'rats',x:1990,kind:'rats',n:'ฝูงหนูกลางทาง',say:'หนูเต็มทาง ปีเตอร์ไม่อยากเดินผ่าน'},
   {k:'window',x:2110,kind:'moral',n:'บ้านที่มีคนเคาะหน้าต่าง'},
-  {k:'home',x:2290,kind:'home',n:'บ้านของปีเตอร์'}];
+  {k:'home',x:2290,kind:'home',n:'บ้านของปีเตอร์'},
+  {k:'barrier',x:1880,kind:'barrier',n:'ทางที่ถูกกั้นไว้',only:'deadend',say:'ไม้กั้นถนนไว้ หลังไม้มีรถเข็นศพจอดอยู่ ✦ เมืองนี้กั้นถนนไม่ให้คนเข้าออกย่านที่มีคนป่วย'}];
+/* what is said when a place has already been emptied by someone else */
+const HVEMPTY=['ไม่มีอะไรเหลือแล้ว…','ถูกรื้อไปหมดแล้ว','มีคนมาค้นก่อน เหลือแต่เศษผ้า','ว่างเปล่า มีแต่ฝุ่นกับรอยมือ'];
+/* people who may stand in the street later: kept as data only for now.
+   The beaked plague-doctor mask belongs to the 17th century; if he comes, he must be marked ✦ or be a doctor of 1349 instead. */
+const HVNPC=[{k:'doctor',on:false,note:'ยังไม่ใช้ · หน้ากากจะงอยปากเป็นของศตวรรษที่ 17'}];
 /* ---------- small vector icons for the bag ---------- */
 function hvIcon(x,k,s){x.save();x.scale(s/40,s/40);x.lineJoin='round';x.lineCap='round';
   if(k==='bread'){hvEll(x,20,23,15,9);hvInk(x,'#c98a44',2.4);x.strokeStyle='#7a4a20';x.lineWidth=1.8;[[13,18,17,26],[19,16,23,25],[25,17,29,25]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke()});hvEll(x,16,19,5,2);x.fillStyle='#e8b070';x.fill()}
@@ -29,6 +36,16 @@ function hvDrawSpots(x,S,t,rg){for(const sp of S.spots){if(sp.x<rg.x0-160||sp.x>
     hvRRect(x,X-26,G-104,52,104,22);hvInk(x,'#5a3a26',2.4);x.strokeStyle='rgba(30,16,10,.5)';x.lineWidth=1.2;for(let i=-20;i<26;i+=8){x.beginPath();x.moveTo(X+i,G-96);x.lineTo(X+i,G-2);x.stroke()}
     const boards=sp.done?[[0,-70,.3],[0,-30,-.25]]:[[0,-80,.35],[0,-50,-.3],[0,-22,.25]];boards.forEach(([a,b,r])=>{x.save();x.translate(X+a,G+b);x.rotate(r);hvRRect(x,-36,-6,72,12,2);hvInk(x,'#a8804c',2);x.fillStyle='#2a1a10';x.fillRect(-31,-1,2.5,2.5);x.fillRect(29,-1,2.5,2.5);x.restore()});
     x.save();x.translate(X-36,G-90);x.rotate(.1);x.lineWidth=2.6;x.strokeStyle='#e8e0d0';x.beginPath();x.moveTo(-8,-8);x.lineTo(8,8);x.moveTo(8,-8);x.lineTo(-8,8);x.stroke();x.restore()}
+  else if(sp.k==='corpse'){/* a body under a cloth: only a still shape, never a wound */x.save();x.translate(X,G+8);hvEll(x,0,4,46,6);x.fillStyle='rgba(30,20,14,.3)';x.fill();
+    x.beginPath();x.moveTo(-44,2);x.quadraticCurveTo(-46,-12,-34,-14);x.quadraticCurveTo(-26,-20,-18,-13);x.quadraticCurveTo(-2,-18,14,-15);x.quadraticCurveTo(30,-14,36,-8);x.quadraticCurveTo(44,-10,46,-2);x.quadraticCurveTo(48,4,40,4);x.lineTo(-40,4);x.closePath();hvInk(x,sp.done?'#a8a090':'#c8bea8',2.4);
+    x.strokeStyle='rgba(80,64,50,.45)';x.lineWidth=1.2;[[-20,-12,-14,2],[0,-15,4,2],[22,-13,18,2]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+c)/2+3,(b+d)/2,c,d);x.stroke()});
+    if(sp.done){x.save();x.translate(-38,-10);x.rotate(-.5);hvPath(x,[0,0,10,-4,14,4,4,8]);hvInk(x,'#b8ae98',1.6);x.restore()}x.restore();
+    /* a few wildflowers someone left */hvEll(x,X-50,G+6,2.2,2.2);x.fillStyle='#d8c060';x.fill();hvEll(x,X-46,G+9,2,2);x.fillStyle='#c8a0c0';x.fill()}
+  else if(sp.k==='barrier'){/* the street is shut: crossed planks, a rope, and the dead-cart waiting behind */
+    x.save();x.translate(X+40,G-6);hvRRect(x,-38,-40,76,26,3);hvInk(x,'#7a5a3a',2.4);[[-26,-48],[-4,-50],[18,-47]].forEach(([a,b])=>{hvEll(x,a,b,14,8);hvInk(x,'#bdb3a0',2)});hvEll(x,-30,-8,14,14);hvInk(x,'#6a4a2a',2.4);hvEll(x,30,-8,14,14);hvInk(x,'#6a4a2a',2.4);x.beginPath();x.moveTo(38,-30);x.lineTo(64,-38);x.lineWidth=3;x.strokeStyle=HV.INK;x.stroke();x.restore();
+    [[-34,0],[34,0]].forEach(([a])=>{x.fillStyle='#5a3a22';x.fillRect(X+a-4,G-96,8,96);x.strokeStyle=HV.INK;x.lineWidth=2;x.strokeRect(X+a-4,G-96,8,96)});
+    [[.62],[-.62]].forEach(([r])=>{x.save();x.translate(X,G-48);x.rotate(r);hvRRect(x,-48,-6,96,12,2);hvInk(x,'#a8804c',2.2);x.fillStyle='#2a1a10';x.fillRect(-42,-1,3,3);x.fillRect(39,-1,3,3);x.restore()});
+    x.beginPath();x.moveTo(X-34,G-88);x.quadraticCurveTo(X,G-76,X+34,G-88);x.lineWidth=1.6;x.strokeStyle='#c8b088';x.stroke();hvPath(x,[X-4,G-82,X+6,G-82,X+8,G-66,X-6,G-66]);hvInk(x,'#efe6d4',1.4)}
   else if(sp.k==='cart'){hvEll(x,X+4,G-4,30,8);x.fillStyle='#0e0806';x.fill();if(!sp.done){const g=.5+.5*Math.sin(t*3);x.globalAlpha=g;hvEll(x,X+12,G-6,2.2,1.6);x.fillStyle='#fff2c0';x.fill();x.globalAlpha=1}
     x.save();x.translate(X,G-14);x.rotate(-.16);hvRRect(x,-56,-30,104,18,2);hvInk(x,'#7a5030',2.4);x.strokeStyle=HV.INK;x.lineWidth=1.4;for(let i=-44;i<44;i+=14){x.beginPath();x.moveTo(i,-30);x.lineTo(i,-12);x.stroke()}x.restore();
     x.save();x.translate(X-48,G-8);x.rotate(.9);hvEll(x,0,0,20,20);x.lineWidth=5;x.strokeStyle=HV.INK;x.stroke();x.lineWidth=2.4;x.strokeStyle='#7a5030';x.stroke();for(let a=0;a<6;a+=1.2){x.beginPath();x.moveTo(0,0);x.lineTo(Math.cos(a)*18,Math.sin(a)*18);x.lineWidth=2;x.strokeStyle='#5a3a20';x.stroke()}x.restore();
@@ -65,21 +82,30 @@ function hvUiIcon(x,k){if(HVITEM[k])return hvIcon(x,k,48);x.save();x.scale(48/40
   else if(k==='paw'){hvEll(x,20,25,7,6);x.fill();[[10,16],[16,10],[24,10],[30,16]].forEach(([a,b])=>{hvEll(x,a,b,3,3.8);x.fill()})}
   else if(k==='walk'){hvEll(x,22,8,4,4);x.fill();x.beginPath();x.moveTo(21,13);x.lineTo(18,24);x.lineTo(12,34);x.moveTo(18,24);x.lineTo(25,34);x.moveTo(20,16);x.lineTo(28,21);x.moveTo(20,16);x.lineTo(13,20);x.stroke()}
   else if(k==='home'){hvPath(x,[6,20,20,7,34,20]);x.stroke();x.strokeRect(10,19,20,15);x.fillRect(18,25,5,9)}
+  else if(k==='hand'){x.lineWidth=2.6;x.beginPath();x.moveTo(12,34);x.lineTo(10,20);x.quadraticCurveTo(9,16,12,17);x.lineTo(14,24);x.lineTo(14,9);x.quadraticCurveTo(16,6,18,9);x.lineTo(18,22);x.lineTo(19,7);x.quadraticCurveTo(21,4,23,7);x.lineTo(23,22);x.lineTo(25,10);x.quadraticCurveTo(27,8,29,11);x.lineTo(28,26);x.quadraticCurveTo(27,34,20,35);x.closePath();x.stroke()}
   x.restore()}
 /* little sounds: a knock, a bark, a found thing */
 const hvSnd=(()=>{let ac=null;return k=>{try{if(+store.get('sit.snd',2)===0)return;const C=window.AudioContext||window.webkitAudioContext;if(!C)return;ac=ac||new C();const n=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);
-  if(k==='knock'){o.type='triangle';o.frequency.setValueAtTime(140,n);g.gain.setValueAtTime(.12,n);g.gain.exponentialRampToValueAtTime(.0001,n+.08);o.start(n);o.stop(n+.1)}
+  if(k==='whine'){o.type='sine';o.frequency.setValueAtTime(820,n);o.frequency.linearRampToValueAtTime(560,n+.45);g.gain.setValueAtTime(.0001,n);g.gain.linearRampToValueAtTime(.03,n+.08);g.gain.exponentialRampToValueAtTime(.0001,n+.5);o.start(n);o.stop(n+.52)}
+  else if(k==='thud'){o.type='sine';o.frequency.setValueAtTime(70,n);g.gain.setValueAtTime(.18,n);g.gain.exponentialRampToValueAtTime(.0001,n+.6);o.start(n);o.stop(n+.62)}
+  else if(k==='knock'){o.type='triangle';o.frequency.setValueAtTime(140,n);g.gain.setValueAtTime(.12,n);g.gain.exponentialRampToValueAtTime(.0001,n+.08);o.start(n);o.stop(n+.1)}
   else if(k==='bark'){o.type='sawtooth';o.frequency.setValueAtTime(420,n);o.frequency.exponentialRampToValueAtTime(240,n+.12);g.gain.setValueAtTime(.06,n);g.gain.exponentialRampToValueAtTime(.0001,n+.15);o.start(n);o.stop(n+.16)}
   else{o.type='sine';o.frequency.setValueAtTime(660,n);o.frequency.setValueAtTime(880,n+.08);g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.0001,n+.3);o.start(n);o.stop(n+.32)}}catch(e){}}})();
 /* ---------- the rules ---------- */
-function hvPlayInit(S){S.spots=HVSPOT.map(s=>Object.assign({},s,{done:false,state:s.kind==='moral'?'ask':null,flee:[]}));S.inv={};S.full=78;S.tired=10;S.mind=70;S.exp=0;S.fx=[];S.happyT=0;S.flags={};S.busy=null;S.lock=0}
+/* each walk is a different day: sometimes the street is closed, sometimes the town has been picked clean */
+function hvRunPick(o){o=o||{};const r=hvRng(o.seed!=null?o.seed:(Math.random()*1e9|0));const run={deadend:o.run==='deadend'?true:o.run?false:r()<.3,empty:o.run==='empty'?true:o.run?false:r()<.15};run.r=r;return run}
+function hvPlayInit(S,o){const run=S.run=hvRunPick(o);S.spots=HVSPOT.filter(s=>!s.only||(s.only==='deadend'&&run.deadend)).filter(s=>!(run.deadend&&s.x>1880&&s.kind!=='barrier')).map(s=>{const z=Object.assign({},s,{done:false,state:s.kind==='moral'?'ask':null,flee:[]});
+    if((s.kind==='search'||s.kind==='dog'))z.empty=run.empty||run.r()<(o&&o.emptyChance!=null?o.emptyChance:.35);if(s.kind==='corpse')z.loot=s.loots[run.r()*s.loots.length|0];return z});
+  if(run.deadend){S.scene.mask=[[70,1850]]}S.petN=0;S.boost=0;S.plagueBase=S.plague||0;S.inv={};S.full=78;S.tired=10;S.mind=70;S.exp=0;S.fx=[];S.happyT=0;S.flags={};S.busy=null;S.lock=0}
 const hvBagN=S=>Object.values(S.inv).reduce((a,b)=>a+b,0);
 function hvAdd(S,k,n,X){const room=HVBAG-hvBagN(S),m=Math.min(room,n);if(m>0){S.inv[k]=(S.inv[k]||0)+m;hvFloat(S,'+ '+HVITEM[k].n,X)}if(m<n)hvFloat(S,'กระเป๋าเต็ม',X,1);return m}
 function hvFloat(S,txt,X,warn){S.fx.push({txt,x:X==null?S.p.x:X,y:HV.GY-62-S.fx.filter(f=>f.t<.6).length*20,t:0,warn})}
-function hvNear(S){let b=null,bd=64;for(const sp of S.spots){const d=Math.abs(sp.x-S.p.x);if(d<bd&&!(sp.kind==='search'&&sp.done&&sp.empty)){bd=d;b=sp}}return b}
+function hvNear(S){let b=null,bd=64;for(const sp of S.spots){const d=Math.abs(sp.x-S.p.x);if(d<bd){bd=d;b=sp}}return b}
+const hvDogNear=S=>{const D=S.dog;return !D.task&&!D.hide&&!S.p.moving&&Math.abs(D.x-S.p.x)<80};
 /* the main action at the place Peter stands */
 function hvAct(S,api){if(S.busy||S.lock>0)return;const sp=hvNear(S);if(!sp)return;
-  if(sp.kind==='search'){if(sp.done){hvFloat(S,'ไม่เหลืออะไรแล้ว',sp.x,1);sp.tries=(sp.tries||0)+1;S.lock=.25;return}S.busy={k:'search',sp,t:0,dur:sp.dur};S.p.dir=Math.sign(sp.x-S.p.x)||S.p.dir;api.say(sp.say);return}
+  if(sp.kind==='search'||sp.kind==='corpse'){if(sp.done){hvFloat(S,'ไม่เหลืออะไรแล้ว',sp.x,1);sp.tries=(sp.tries||0)+1;S.lock=.25;return}S.busy={k:sp.kind==='corpse'?'corpse':'search',sp,t:0,dur:sp.dur};S.p.dir=Math.sign(sp.x-S.p.x)||S.p.dir;api.say(sp.kind==='search'&&sp.empty?'ปีเตอร์ค้นอยู่นาน…':sp.say);return}
+  if(sp.kind==='barrier'){api.home('alley');return}
   if(sp.kind==='dog'){api.say(sp.done?'ใต้เกวียนไม่มีอะไรเหลือแล้ว':sp.say+' · ลองสั่งหมาดู');return}
   if(sp.kind==='rats'){api.say(sp.cleared?'ทางโล่งแล้ว':sp.say+' · ลองสั่งหมาเห่าไล่');return}
   if(sp.kind==='moral'&&sp.state==='ask')hvGive(S,api);if(sp.kind==='home')api.home()}
@@ -89,12 +115,14 @@ function hvDogCmd(S,api,mode){if(S.busy||S.dog.task||S.lock>0)return;const sp=hv
   if(sp.kind==='dog'&&!sp.done&&mode!=='bark'){D.task={k:'fetch',sp,ph:'go',t:0};api.say('ปีเตอร์ชี้ไปที่ช่องใต้เกวียน หมามุดเข้าไปทันที');return}
   if((ratSp||roam.length)&&mode!=='fetch'){D.task={k:'bark',sp:ratSp,ph:'go',t:0};api.say('หมาวิ่งไปเห่าใส่ฝูงหนู');return}
   D.task={k:'sit',ph:'sit',t:0};api.say('หมานั่งลงแล้วมองหน้าปีเตอร์ ไม่มีอะไรให้ทำตรงนี้')}
+/* Peter pets the dog: costs a little food and strength, helps the heart; less each time */
+function hvPet(S,api){if(S.busy||S.auto||!hvDogNear(S))return;S.p.dir=Math.sign(S.dog.x-S.p.x)||S.p.dir;S.busy={k:'pet',t:0,dur:1}}
 /* the woman at the window asks for bread or herbs */
 /* Peter first walks to stand beside the window, so the woman behind it stays in sight */
 const hvBeside=sp=>sp.x+46;
 function hvGive(S,api,item){const sp=S.spots.find(s=>s.k==='window');if(!sp||sp.state!=='ask'||S.busy||S.auto)return;const k=item&&S.inv[item]?item:S.inv.bread?'bread':S.inv.herb?'herb':null;if(!k){api.say('ปีเตอร์ไม่มีอะไรจะให้ ถ้าหาขนมปังหรือสมุนไพรได้ ค่อยกลับมา');return}
   S.auto={x:hvBeside(sp),face:-1,then:()=>{S.busy={k:'give',sp,t:0,dur:1.3,item:k}}}}
-function hvLeave(S,api,walk){const sp=S.spots.find(s=>s.k==='window');if(!sp||sp.state!=='ask')return;if(walk){if(S.busy||S.auto)return;S.auto={x:hvBeside(sp)+70,face:1,slow:1,then:()=>hvLeave(S,api)};return}sp.state='left';S.mind=Math.max(0,S.mind-20);S.plague=Math.min(1,(S.plague||0)+.15);S.flags.left_window=1;api.say('ปีเตอร์ก้มหน้าแล้วเดินต่อ เสียงเคาะหน้าต่างเงียบไป ม่านในบ้านหลังนั้นถูกดึงปิด');api.mood()}
+function hvLeave(S,api,walk){const sp=S.spots.find(s=>s.k==='window');if(!sp||sp.state!=='ask')return;if(walk){if(S.busy||S.auto)return;S.auto={x:hvBeside(sp)+70,face:1,slow:1,then:()=>hvLeave(S,api)};return}sp.state='left';S.mind=Math.max(0,S.mind-20);S.plagueBase=Math.min(1,(S.plagueBase!=null?S.plagueBase:S.plague||0)+.15);S.plague=Math.min(1,S.plague+.15);S.flags.left_window=1;api.say('ปีเตอร์ก้มหน้าแล้วเดินต่อ เสียงเคาะหน้าต่างเงียบไป ม่านในบ้านหลังนั้นถูกดึงปิด');api.mood()}
 function hvPlayTick(S,dt,t,api){const P=S.p,D=S.dog;S.lock=Math.max(0,S.lock-dt);S.happyT=Math.max(0,S.happyT-dt);
   /* body: hunger slowly, tired when running, the heart follows both */
   /* walking is moving: Peter is pulled along by S.auto when he goes to stand beside something */
@@ -103,18 +131,22 @@ function hvPlayTick(S,dt,t,api){const P=S.p,D=S.dog;S.lock=Math.max(0,S.lock-dt)
   /* rats near Peter: the hidden risk goes up */
   const rs=S.spots.find(s=>s.k==='rats');if(rs&&!rs.cleared&&Math.abs(rs.x-P.x)<80)S.exp+=dt*6;for(const r of S.rats)if(Math.abs(r.x-P.x)<40)S.exp+=dt*3;
   /* a search takes time; Peter crouches and works */
-  if(S.busy){const b=S.busy;b.t+=dt;if(b.t>=b.dur){if(b.k==='search'){const sp=b.sp;sp.done=true;let got=0;for(const [k,n] of sp.loot)got+=hvAdd(S,k,n,sp.x);if(got)hvSnd('get');S.mind=Math.min(100,S.mind+2)}
+  if(S.busy){const b=S.busy;b.t+=dt;if(b.t>=b.dur){if(b.k==='search'){const sp=b.sp;sp.done=true;if(sp.empty){const m=HVEMPTY[(sp.x/7|0)%HVEMPTY.length];hvFloat(S,m,sp.x,1);api.say(m);S.mind=Math.max(0,S.mind-3)}else{let got=0;for(const [k,n] of sp.loot)got+=hvAdd(S,k,n,sp.x);if(got)hvSnd('get');S.mind=Math.min(100,S.mind+2)}}
+      else if(b.k==='corpse'){/* the dead keep good things; taking them costs Peter dearly */const sp=b.sp;sp.done=true;for(const [k,n] of sp.loot)hvAdd(S,k,n,sp.x);S.mind=Math.max(0,S.mind-30);S.exp+=25;S.boost=Math.min(.6,(S.boost||0)+.45);S.flags.corpse=1;hvSnd('thud');api.say('ปีเตอร์ได้ของไป แต่มือของเขาสั่นไม่หยุด เขาไม่กล้ามองใต้ผ้าอีก')}
+      else if(b.k==='pet'){const g=[14,10,7,5,3,2][S.petN]||1;S.petN++;S.mind=Math.min(100,S.mind+g);S.full=Math.max(0,S.full-2);S.tired=Math.min(100,S.tired+1);S.dog.happyT=8;S.dog.heart=2;S.flags.pet=1;hvFloat(S,'+ ใจ',S.dog.x);api.say(g>5?'ปีเตอร์ลูบหัวหมาช้าๆ หมาเอาหัวดันมือเขา':'ปีเตอร์ลูบหัวหมาอีกครั้ง')}
       else if(b.k==='give'){const sp=b.sp;S.inv[b.item]--;if(!S.inv[b.item])delete S.inv[b.item];sp.state='given';S.mind=Math.min(100,S.mind+20);S.happyT=4;S.flags.gave_window=1;hvSnd('get');api.say('ปีเตอร์ยื่น'+HVITEM[b.item].n+'ผ่านช่องหน้าต่าง หญิงคนนั้นแนบมือกับกระจก แล้วตะเกียงในบ้านก็ถูกจุดขึ้น')}
       S.busy=null;S.lock=.25;api.mood()}}
   /* the window: knocking when Peter is close; walking away with something to give counts as a choice */
   const w=S.spots.find(s=>s.k==='window');if(w&&w.state==='ask'){const d=Math.abs(w.x-P.x);if(d<300){w.seen=1;w.kt=(w.kt||0)+dt;if(w.kt>1.3){w.kt=0;hvSnd('knock');setTimeout(()=>hvSnd('knock'),160)}}if(w.seen&&d>420&&(S.inv.bread||S.inv.herb)&&w.near)hvLeave(S,api);if(d<90)w.near=1}
   /* the dog's errands */
   const T=D.task;if(T){T.t+=dt;const goTo=(tx,v)=>{const dd=tx-D.x;if(Math.abs(dd)<6)return true;D.dir=Math.sign(dd);D.x+=Math.sign(dd)*Math.min(Math.abs(dd),v*dt);D.walk+=dt*12;D.moving=true;return false};
-    if(T.k==='fetch'){if(T.ph==='go'){if(goTo(T.sp.x+4,240)){T.ph='in';T.t=0;D.hide=1;D.moving=false}}else if(T.ph==='in'){T.sp.rustle=1;if(T.t>1.6){T.sp.rustle=0;D.hide=0;T.ph='back';D.carry=T.sp.loot[0][0];T.sp.done=true}}else if(goTo(P.x-P.dir*30,220)){for(const [k,n] of T.sp.loot)hvAdd(S,k,n,D.x);hvSnd('get');D.carry=null;D.task=null;D.happy=2;api.say('หมาคาบ'+HVITEM[T.sp.loot[0][0]].n+'ออกมาวางที่เท้าปีเตอร์ แล้วกระดิกหาง')}}
+    if(T.k==='fetch'){if(T.ph==='go'){if(goTo(T.sp.x+4,240)){T.ph='in';T.t=0;D.hide=1;D.moving=false}}else if(T.ph==='in'){T.sp.rustle=1;if(T.t>1.6){T.sp.rustle=0;D.hide=0;T.ph='back';D.carry=T.sp.empty?null:T.sp.loot[0][0];T.sp.done=true}}else if(goTo(P.x-P.dir*30,220)){D.carry=null;D.task=null;if(T.sp.empty){api.say('หมาออกมาตัวเปล่า มีแต่ใยแมงมุมติดหัว ใต้เกวียนไม่มีอะไรแล้ว');hvSnd('whine')}else{for(const [k,n] of T.sp.loot)hvAdd(S,k,n,D.x);hvSnd('get');D.happy=2;api.say('หมาคาบ'+HVITEM[T.sp.loot[0][0]].n+'ออกมาวางที่เท้าปีเตอร์ แล้วกระดิกหาง')}}}
     else if(T.k==='bark'){const tx=T.sp?T.sp.x-50*Math.sign(T.sp.x-P.x||1):P.x+P.dir*60;if(T.ph==='go'){if(goTo(tx,260)){T.ph='bark';T.t=0}}else if(T.ph==='bark'){D.bark=1;D.moving=false;if((T.t*4|0)!==(T._b||0)){T._b=T.t*4|0;hvSnd('bark')}
         if(T.sp&&!T.sp.cleared&&T.t>.4){T.sp.cleared=true;for(let i=0;i<7;i++)T.sp.flee.push({x:T.sp.x+(i-3)*10,y:HV.GY+24+(i%3)*4,d:i%2?1:-1,v:220+i*30})}S.rats.forEach(r=>{r.d=Math.sign(r.x-D.x)||1;r.v=420});S.ratCalm=45;if(T.t>1.2){D.bark=0;T.ph='back'}}
       else if(goTo(P.x-P.dir*40,200)){D.task=null;api.say('หนูวิ่งหนีไปจนหมด หมาเดินกลับมาอย่างภูมิใจ')}}
     else if(T.k==='sit'){D.sit=1;if(T.t>1.5){D.sit=0;D.task=null}}}
+  {const f=S.spots.filter(s=>(s.kind==='corpse'||s.kind==='barrier')&&Math.abs(s.x-D.x)<170).length||S.spots.some(s=>s.kind==='rats'&&!s.cleared&&Math.abs(s.x-D.x)<110)||S.sad>.75;D.happyT=Math.max(0,(D.happyT||0)-dt);D.heart=Math.max(0,(D.heart||0)-dt);
+    D.emo=D.happyT>0&&!(S.spots.some(s=>s.kind==='corpse'&&Math.abs(s.x-D.x)<120))?'happy':f?'scared':'normal';if(D.emo==='scared'){D.wt=(D.wt||0)+dt;if(D.wt>3.2){D.wt=0;hvSnd('whine')}}else D.wt=2.5}
   for(const s of S.spots)if(s.flee){s.flee.forEach(r=>r.x+=r.d*r.v*dt);s.flee=s.flee.filter(r=>Math.abs(r.x-s.x)<500)}S.ratCalm=Math.max(0,(S.ratCalm||0)-dt);
   S.fx.forEach(f=>f.t+=dt);S.fx=S.fx.filter(f=>f.t<2.2)}
 /* floating words drawn over the picture */

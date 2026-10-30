@@ -42,17 +42,21 @@ function hvKid(x,o){const L=HVLOOK.peter,d=o.dir||1,t=o.t||0,wk=o.walk,run=o.run
   x.restore();x.restore();
   return {x0:o.X-24,x1:o.X+24,y0:o.Y-122,y1:o.Y}}
 /* the little stray dog that follows Peter */
-function hvDog(x,o){if(o.hide)return;const d=o.dir||1,t=o.t||0,wk=o.walk,sw=wk!=null?Math.sin(wk*1.4):0,by=(wk!=null?-Math.abs(Math.sin(wk*1.4))*1.6:Math.sin(t*3)*.4)+(o.sit?3:0)-(o.bark?Math.abs(Math.sin(t*14))*2:0);x.save();x.translate(o.X,o.Y);
+function hvDog(x,o){if(o.hide)return;const d=o.dir||1,t=o.t||0,wk=o.walk,sw=wk!=null?Math.sin(wk*1.4):0,by=(wk!=null?-Math.abs(Math.sin(wk*1.4))*1.6:Math.sin(t*3)*.4)+(o.sit?3:0)-(o.bark?Math.abs(Math.sin(t*14))*2:0)+(o.emo==='scared'?2.5:0);const shv=o.emo==='scared'?Math.sin(t*38)*.7:0;x.save();x.translate(o.X+shv,o.Y);
   hvEll(x,0,0,16,3.4);x.fillStyle='rgba(40,24,14,.28)';x.fill();x.scale(d,1);const fur='#d99a5a',furD='#b0743c';
   [[-9,sw],[ -4,-sw],[7,-sw],[11,sw]].forEach(([X,s],i)=>{x.save();x.translate(X,-10+by);x.rotate(s*.5);x.beginPath();x.moveTo(0,0);x.lineTo(0,10);x.lineWidth=7.4;x.strokeStyle=HV.INK;x.lineCap='round';x.stroke();x.lineWidth=3.6;x.strokeStyle=i%2?furD:fur;x.stroke();x.restore()});
-  const wag=Math.sin(t*(o.happy?14:7))*.5;x.save();x.translate(-14,-18+by);x.rotate(-.8+wag);x.beginPath();x.moveTo(0,0);x.quadraticCurveTo(-4,-8,2,-13);x.lineWidth=7;x.strokeStyle=HV.INK;x.stroke();x.lineWidth=3.4;x.strokeStyle=fur;x.stroke();x.restore();
+  const sc=o.emo==='scared',wag=sc?Math.sin(t*3)*.05:Math.sin(t*(o.happy||o.emo==='happy'?16:7))*.5;x.save();x.translate(-14,-18+by);x.rotate(sc?1.9:-.8+wag);x.beginPath();x.moveTo(0,0);x.quadraticCurveTo(-4,-8,2,-13);x.lineWidth=7;x.strokeStyle=HV.INK;x.stroke();x.lineWidth=3.4;x.strokeStyle=fur;x.stroke();x.restore();
   hvEll(x,0,-17+by,16,10);x.fillStyle=fur;x.fill();x.save();x.clip();hvEll(x,4,-10+by,10,6);x.fillStyle='#f4e2c8';x.fill();hvEll(x,-8,-24+by,9,6);x.fillStyle=furD;x.fill();x.restore();hvEll(x,0,-17+by,16,10);hvInk(x,null,2.4);
-  x.save();x.translate(15,-27+by);x.rotate(o.bark?-.25:o.tilt||Math.sin(t*.7)*.08);hvEll(x,0,0,10,9);hvInk(x,fur,2.4);
+  x.save();x.translate(15,-27+by+(sc?4:0));x.rotate(o.bark?-.25:sc?.32:o.tilt||Math.sin(t*.7)*.08);hvEll(x,0,0,10,9);hvInk(x,fur,2.4);
   if(o.bark){x.lineWidth=1.8;x.strokeStyle=HV.INK;for(let i=0;i<3;i++){x.beginPath();x.arc(14,0,6+i*4,-.6,.6);x.stroke()}}
   if(o.carry&&typeof hvIcon==='function'){x.save();x.translate(8,2);hvIcon(x,o.carry,14);x.restore()}
-  x.beginPath();x.moveTo(-6,-6);x.quadraticCurveTo(-13,-2,-8,8);x.quadraticCurveTo(-4,2,-2,-6);x.closePath();hvInk(x,'#8a5428',2);
-  hvEll(x,9,2,3.2,2.6);hvInk(x,'#f4e2c8',1.6);hvEll(x,11.6,1,1.5,1.3);x.fillStyle='#2a170e';x.fill();hvEll(x,4,-2,1.6,2.1);x.fillStyle='#2a170e';x.fill();x.restore();
-  x.restore()}
+  if(sc){x.beginPath();x.moveTo(-6,-5);x.quadraticCurveTo(-15,-4,-14,6);x.quadraticCurveTo(-8,0,-2,-5);x.closePath();hvInk(x,'#8a5428',2)}else{x.beginPath();x.moveTo(-6,-6);x.quadraticCurveTo(-13,-2,-8,8);x.quadraticCurveTo(-4,2,-2,-6);x.closePath();hvInk(x,'#8a5428',2)}
+  hvEll(x,9,2,3.2,2.6);hvInk(x,'#f4e2c8',1.6);hvEll(x,11.6,1,1.5,1.3);x.fillStyle='#2a170e';x.fill();hvEll(x,4,-2,1.6,sc?1.4:2.1);x.fillStyle='#2a170e';x.fill();if(sc){x.lineWidth=1.3;x.strokeStyle='#2a170e';x.beginPath();x.moveTo(1.5,-5.5);x.lineTo(6,-4.2);x.stroke()}x.restore();
+  x.restore();
+  /* a thought above the dog: shivering lines when afraid, a heart when comforted (drawn, never emoji) */
+  if(sc||(o.heart||0)>0){const Y=o.Y-58-(sc?0:(2-(o.heart||0))*10),X=o.X+8*d;x.save();x.globalAlpha=sc?1:Math.min(1,o.heart);hvEll(x,X,Y,11,10);hvInk(x,'#f8ecd0',2);hvPath(x,[X-5,Y+8,X-9,Y+16,X+1,Y+9]);hvInk(x,'#f8ecd0',1.6);hvEll(x,X,Y,9.6,8.6);x.fillStyle='#f8ecd0';x.fill();
+    if(sc){x.strokeStyle=HV.INK;x.lineWidth=1.6;for(let i=-1;i<=1;i++){x.beginPath();x.moveTo(X+i*4,Y-5);for(let k=0;k<4;k++)x.lineTo(X+i*4+(k%2?2:-2),Y-5+k*3.4);x.stroke()}}
+    else{x.beginPath();x.moveTo(X,Y+5);x.bezierCurveTo(X-9,Y-1,X-5,Y-8,X,Y-3);x.bezierCurveTo(X+5,Y-8,X+9,Y-1,X,Y+5);x.fillStyle='#d84a4a';x.fill();x.lineWidth=1.2;x.strokeStyle=HV.INK;x.stroke()}x.restore()}}
 /* a rat: grey, quick, a pink tail; there are more of them as the plague grows */
 function hvRat(x,X,Y,d,t,s){s=s||1;x.save();x.translate(X,Y);x.scale(d*s,s);const k=Math.sin(t*24)*1.2;
   x.beginPath();x.moveTo(-8,-3);x.quadraticCurveTo(-18,-4+k,-24,-1);x.lineWidth=1.6;x.strokeStyle='#c88a8a';x.stroke();

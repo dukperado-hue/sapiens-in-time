@@ -17,9 +17,9 @@ let th=0;for(let k=0;k<160&&!th;k++){await p.keyboard.down('ArrowRight');await p
 // colour: saturation of the picture vs the hat
 const sat=()=>p.evaluate(()=>{const S=window.__hvS,cv=document.querySelector('#hv canvas'),x=cv.getContext('2d'),W=cv.width,H=cv.height;const s=(d)=>{let t=0,n=0;for(let i=0;i<d.length;i+=16){const r=d[i],g=d[i+1],b=d[i+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b);t+=mx?(mx-mn)/mx:0;n++}return t/n};
   const bg=s(x.getImageData(0,Math.round(H*.15),W,Math.round(H*.4)).data);const hx=Math.round((S.p.x+3*S.p.dir-S.cam)*S.sc),hy=Math.round((window.__hv.HV.GY+12-86-26+S.camY)*S.sc);const hat=s(x.getImageData(hx-6,hy-3,12,6).data);return{bg:+bg.toFixed(3),hat:+hat.toFixed(3)}});
-await p.evaluate(()=>{const S=window.__hvS;S.p.x=420;S.cam=null;S.tod=1;S.plague=0});await p.waitForTimeout(500);const s0=await sat();await p.evaluate(()=>{window.__hvS.plague=1});await p.waitForTimeout(500);const s1=await sat();await p.screenshot({path:OUT+'/hva_plague1.png'});
+await p.evaluate(()=>{const S=window.__hvS;S.p.x=420;S.cam=null;S.tod=1;S.plague=S.plagueBase=0});await p.waitForTimeout(500);const s0=await sat();await p.evaluate(()=>{window.__hvS.plague=window.__hvS.plagueBase=1});await p.waitForTimeout(500);const s1=await sat();await p.screenshot({path:OUT+'/hva_plague1.png'});
 ok(s1.bg<s0.bg*.4,'plague 0→1 fades the town: saturation '+s0.bg+' → '+s1.bg);ok(s1.hat>s0.hat*.7,'Peter\'s hat keeps its colour: '+s0.hat+' → '+s1.hat);
-for(const [i,n] of [[0,'morning'],[2,'evening'],[3,'night']]){await p.evaluate(i=>{window.__hvS.tod=i;window.__hvS.plague=.3},i);await p.waitForTimeout(300);await p.screenshot({path:OUT+'/hva_'+n+'.png'})}
+for(const [i,n] of [[0,'morning'],[2,'evening'],[3,'night']]){await p.evaluate(i=>{window.__hvS.tod=i;window.__hvS.plague=window.__hvS.plagueBase=.3},i);await p.waitForTimeout(300);await p.screenshot({path:OUT+'/hva_'+n+'.png'})}
 // click on the street to walk there
 const x0=(await st()).x;await p.mouse.click(1100,400);await p.waitForTimeout(2200);ok((await st()).x>x0+80,'clicking the street walks there');
 const perf=await p.evaluate(()=>{const f=window.__hvS.perf;return f.reduce((a,b)=>a+b,0)/f.length});console.log('     average draw time per frame (headless, no GPU): '+perf.toFixed(1)+' ms');
