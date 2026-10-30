@@ -14652,6 +14652,259 @@ function harbourFront49(x,t,cam){x.save();x.translate(-cam*1.3,0);for(let X=40;X
   const look={skin:o.skin,hair:o.hair,top:o.top,bot:o.bot,hatc:o.hatc,dress:o.dress};const L=person49(x,'g'+JSON.stringify(ex),look,X,by+2,{dir:o.dir||1,scale:o.child?1.6:2,extra:ex,hold:o.hold==='lamp'||o.hold==='torch'?'lamp':null});
   return L||(o.hold==='torch'?{x:X,y:by-30,r:60,c:'#ffa040',i:1}:null)}}
 
+/* ===================== The Last Harvest · engine: side-scrolling scenes in layers, drawn as vector paths (v0.50, Thai only) =====================
+   World units: the picture is always 360 units tall; the ground line is y=300. A scene is a list of layers, each with its own parallax.
+   Layers that never move inside themselves are drawn once onto an offscreen canvas and only slid sideways each frame. */
+const HV={H:360,GY:300,INK:'#3b2418'};
+/* the canvas matches the screen's real pixels (devicePixelRatio), capped so big screens stay fast */
+function hvFitCanvas(cv){const dpr=Math.min(2,window.devicePixelRatio||1),r=cv.getBoundingClientRect();let w=Math.max(2,Math.round(r.width*dpr)),h=Math.max(2,Math.round(r.height*dpr));const cap=900;if(h>cap){const k=cap/h;w=Math.round(w*k);h=cap}if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;return true}return false}
+/* small helpers for drawing in world units */
+const hvRng=s=>()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296};
+const hvMix=(a,b,k)=>{const p=h=>{h=h.replace('#','');const n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255]};const A=p(a),B=p(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*k).toString(16).padStart(2,'0')).join('')};
+function hvPath(x,pts,close){x.beginPath();x.moveTo(pts[0],pts[1]);for(let i=2;i<pts.length;i+=2)x.lineTo(pts[i],pts[i+1]);if(close!==false)x.closePath()}
+function hvInk(x,fill,w){if(fill){x.fillStyle=fill;x.fill()}x.lineWidth=w||2.4;x.strokeStyle=HV.INK;x.lineJoin='round';x.lineCap='round';x.stroke()}
+function hvRRect(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+const HVCAN=(()=>{try{const c=document.createElement('canvas').getContext('2d');return{filter:'filter' in c,sat:(()=>{c.globalCompositeOperation='saturation';return c.globalCompositeOperation==='saturation'})()}}catch(e){return{filter:false,sat:false}}})();
+/* the camera: follows the walker, leads a little in the direction of walking, and breathes */
+function hvCamera(S,vw,dt,t){const lead=S.p.dir*vw*.12*(S.p.moving?1:.5);const target=Math.max(0,Math.min(S.scene.W-vw,S.p.x-vw*.5+lead));S.cam=S.cam==null?target:S.cam+(target-S.cam)*Math.min(1,dt*3.2);S.camY=Math.sin(t*.55)*1.3}
+/* draw one frame of a scene */
+function hvRender(cv,S,t,dt){const x=cv.getContext('2d'),W=cv.width,H=cv.height,sc=H/HV.H,vw=W/sc,sn=S.scene;S.vw=vw;S.sc=sc;hvCamera(S,vw,dt,t);const cam=S.cam,pl=S.plague||0;
+  x.setTransform(1,0,0,1,0,0);x.globalCompositeOperation='source-over';x.globalAlpha=1;x.filter='none';x.clearRect(0,0,W,H);
+  const key=W+'x'+H+'|'+sn.k+'|'+(sn.ver||0);if(S._ck!==key){S._ck=key;S._cache={}}
+  S.stats={layers:[]};const loved=[];S.loved=loved;
+  for(const L of sn.layers){const off=cam*L.p;
+    if(L.cache){let c=S._cache[L.id];if(!c){c=document.createElement('canvas');const lw=Math.ceil((vw+(sn.W-vw)*L.p)*sc)+4;c.width=Math.min(16000,lw);c.height=H;const y=c.getContext('2d');y.setTransform(sc,0,0,sc,0,0);L.draw(y,S,0,{x0:0,x1:lw/sc});S._cache[L.id]=c}
+      x.setTransform(1,0,0,1,0,0);x.drawImage(c,Math.round(-off*sc),Math.round(S.camY*sc*L.p))}
+    if(L.live){x.setTransform(sc,0,0,sc,-off*sc,S.camY*sc*L.p);L.live(x,S,t,{x0:off,x1:off+vw})}
+    S.stats.layers.push({id:L.id,p:L.p,off:Math.round(off*10)/10});
+    if(L.id==='play'){/* the plague takes the colour out of the world; what the characters love keeps it */
+      x.setTransform(1,0,0,1,0,0);if(pl>0){if(HVCAN.sat){x.globalCompositeOperation='saturation';x.globalAlpha=Math.min(.92,pl*.92);x.fillStyle='#808080';x.fillRect(0,0,W,H);x.globalAlpha=1}else{x.globalAlpha=pl*.5;x.fillStyle='#8a8478';x.fillRect(0,0,W,H);x.globalAlpha=1}
+        x.globalCompositeOperation='source-over';x.globalAlpha=pl*.18;x.fillStyle='#2a2620';x.fillRect(0,0,W,H);x.globalAlpha=1}
+      x.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);for(const f of loved)f(x);
+      hvLight(x,S,t,cam,sc,W,H)}}
+  /* the front layer: dark shapes that pass in front of the camera, a little blurred */
+  x.setTransform(1,0,0,1,0,0);const fr=sn.front||[];S.stats.front=[];
+  const pb=S.pbox&&{x0:(S.pbox.x0-cam)*sc,x1:(S.pbox.x1-cam)*sc,y0:(S.pbox.y0+S.camY)*sc,y1:(S.pbox.y1+S.camY)*sc};let hit=[];
+  for(const o of fr){const ox=(o.x-cam*o.p)*sc,ow=(o.w||60)*sc;if(ox+ow<-40||ox-ow>W+40)continue;
+    /* each front thing is drawn (blurred) onto its own small canvas, and redrawn only a few times a second when it moves: blur is costly on phones */
+    const pad=30,bw=(o.w||60)+pad*2,key=sc+'|'+(S.lowfx?1:0);S._fn=(S._fn||0);if(!o._c||o._k!==key||(o.anim&&(S._fn+o.x)%5===0)){const c=o._c||(o._c=document.createElement('canvas'));c.width=Math.ceil(bw*sc);c.height=Math.ceil(400*sc);const y=c.getContext('2d');y.setTransform(sc,0,0,sc,(bw/2)*sc,20*sc);if(HVCAN.filter&&!S.lowfx)y.filter='blur('+Math.max(1,sc*.9).toFixed(1)+'px)';y.fillStyle=o.col||'#1d1611';y.strokeStyle=o.col||'#1d1611';o.draw(y,t,S);o._k=key}
+    x.globalAlpha=o.a||.94;x.drawImage(o._c,Math.round(ox-bw/2*sc),Math.round(S.camY*sc*o.p-20*sc));x.globalAlpha=1;
+    S.stats.front.push(o.kind);if(pb&&ox-ow*.5<pb.x1&&ox+ow*.5>pb.x0)hit.push(o)}
+  /* when something in front hides the walker, show the walker's outline through it */
+  S.stats.through=0;if(hit.length&&S.silo){const m=S._mask||(S._mask=document.createElement('canvas'));if(m.width!==W||m.height!==H){m.width=W;m.height=H}const y=m.getContext('2d');y.setTransform(1,0,0,1,0,0);y.globalCompositeOperation='source-over';y.clearRect(0,0,W,H);
+    for(const o of hit){y.save();y.setTransform(sc,0,0,sc,(o.x-cam*o.p)*sc,S.camY*sc*o.p);y.fillStyle='#fff';y.strokeStyle='#fff';y.globalAlpha=1;o.draw(y,t,S);y.restore()}
+    const c2=S._mask2||(S._mask2=document.createElement('canvas'));if(c2.width!==W||c2.height!==H){c2.width=W;c2.height=H}const z=c2.getContext('2d');z.setTransform(1,0,0,1,0,0);z.globalCompositeOperation='source-over';z.clearRect(0,0,W,H);z.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);S.silo(z);z.setTransform(1,0,0,1,0,0);z.globalCompositeOperation='source-in';z.fillStyle='#ffe9c4';z.fillRect(0,0,W,H);
+    y.globalCompositeOperation='source-in';y.setTransform(1,0,0,1,0,0);y.drawImage(c2,0,0);x.globalAlpha=.55;x.drawImage(m,0,0);x.globalAlpha=1;S.stats.through=hit.length}
+  S._fn=(S._fn||0)+1;
+  if(sn.over){x.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);sn.over(x,S,t,{x0:cam,x1:cam+vw})}
+  /* paper and vignette: the page of a picture book */
+  x.setTransform(1,0,0,1,0,0);const g=x.createRadialGradient(W/2,H*.55,H*.35,W/2,H*.55,Math.max(W,H)*.75);g.addColorStop(0,'rgba(40,24,16,0)');g.addColorStop(1,'rgba(40,24,16,'+(.38+pl*.25)+')');x.fillStyle=g;x.fillRect(0,0,W,H);
+  if(!S._paper){const p=document.createElement('canvas');p.width=p.height=128;const y=p.getContext('2d'),r=hvRng(5);for(let i=0;i<1400;i++){y.fillStyle='rgba('+(r()>.5?'255,240,210':'60,40,20')+','+(r()*.06).toFixed(3)+')';y.fillRect(r()*128|0,r()*128|0,1+(r()*2|0),1)}S._paper=x.createPattern(p,'repeat')}x.fillStyle=S._paper;x.fillRect(0,0,W,H);
+  if(S.iris!=null&&S.iris<1){const r=Math.hypot(W,H)*.6*S.iris;x.save();x.fillStyle='#120c08';x.beginPath();x.rect(0,0,W,H);x.arc(W/2,H*.62,Math.max(0,r),0,Math.PI*2,true);x.fill('evenodd');x.restore()}}
+/* light by the time of day: morning cool, noon clear, evening gold, night by candle; multiply darkens, screen adds glow */
+const HVTOD=[{n:'เช้า',mul:'#e6ecf6',a:.35,glow:'#fff4e0',ga:.08},{n:'กลางวัน',mul:'#fff8ee',a:.12,glow:'#fff',ga:0},{n:'เย็น',mul:'#f6b878',a:.42,glow:'#ffc070',ga:.16},{n:'กลางคืน',mul:'#232a58',a:.8,glow:'#ffa850',ga:0}];
+function hvLight(x,S,t,cam,sc,W,H){const T=HVTOD[S.tod||0];x.save();x.setTransform(1,0,0,1,0,0);x.globalCompositeOperation='multiply';x.globalAlpha=T.a;x.fillStyle=T.mul;x.fillRect(0,0,W,H);x.globalAlpha=1;
+  if(T.ga){x.globalCompositeOperation='screen';const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,T.glow);g.addColorStop(.6,'rgba(0,0,0,0)');x.globalAlpha=T.ga*3;x.fillStyle=g;x.fillRect(0,0,W,H);x.globalAlpha=1}
+  if(S.tod===3){x.globalCompositeOperation='screen';for(const L of (S.lights||[])){const X=(L.x-cam*L.p)*sc,Y=(L.y+S.camY*L.p)*sc,R=L.r*sc;if(X<-R||X>W+R)continue;const fl=1+Math.sin(t*9+L.x)*.05;const g=x.createRadialGradient(X,Y,0,X,Y,R*fl);g.addColorStop(0,'rgba(255,170,80,'+(L.i||.7)+')');g.addColorStop(1,'rgba(255,120,40,0)');x.fillStyle=g;x.fillRect(X-R*1.1,Y-R*1.1,R*2.2,R*2.2)}}
+  x.restore()}
+if(typeof window!=='undefined')window.__hv={HV,hvRender,hvFitCanvas,HVCAN,HVTOD};
+
+/* ===================== The Last Harvest · people and animals: picture-book figures with big heads, no mouths, thick brown lines (v0.50) =====================
+   Feelings are shown by brows, dot eyes and the tilt of the head. Illness shows only as colour: paler skin, darker round the eyes, slower moves. Never wounds. */
+function hvEll(x,X,Y,rx,ry){x.beginPath();x.ellipse(X,Y,Math.max(.1,rx),Math.max(.1,ry),0,0,Math.PI*2)}
+function hvLimb(x,X,Y,ang,len,w,col,foot){x.save();x.translate(X,Y);x.rotate(ang);x.beginPath();x.moveTo(0,0);x.lineTo(0,len);x.lineCap='round';x.lineWidth=w+4.6;x.strokeStyle=HV.INK;x.stroke();x.lineWidth=w;x.strokeStyle=col;x.stroke();
+  if(foot){hvEll(x,foot*2.5,len+1,6.2,3.6);hvInk(x,'#4a2c1c',2.2)}else{hvEll(x,0,len+1,3.6,3.6);hvInk(x,foot===0?col:'#f0c8a0',2)}x.restore()}
+/* brows and eyes for each mood: n calm · h glad · w worried · s sad · f fevered */
+function hvFace(x,hx,hy,mood,sick,t){const ink='#2a170e',e=(X,Y)=>{hvEll(x,X,Y,1.9,2.6);x.fillStyle=ink;x.fill();hvEll(x,X+.6,Y-.9,.6,.6);x.fillStyle='#fff8e8';x.fill()};
+  const blink=(Math.sin(t*1.7)+Math.sin(t*.43))>1.86;const E=[[hx+3,hy+1],[hx+11,hy+1]];
+  if(sick>.3){x.globalAlpha=Math.min(.5,sick*.55);E.forEach(([X,Y])=>{hvEll(x,X,Y+1,3.6,3.4);x.fillStyle='#6a5a6a';x.fill()});x.globalAlpha=1}
+  if(blink||mood==='h'){x.lineWidth=1.8;x.strokeStyle=ink;E.forEach(([X,Y])=>{x.beginPath();if(mood==='h'&&!blink)x.arc(X,Y+1.4,2.4,Math.PI*1.1,Math.PI*1.9);else{x.moveTo(X-2,Y+.5);x.lineTo(X+2,Y+.5)}x.stroke()})}else E.forEach(([X,Y])=>e(X,Y));
+  const bw={n:[0,0],h:[-1.6,-1.6],w:[-2.6,.9],s:[-3,1.6],f:[-2.2,1.2]}[mood]||[0,0];x.lineWidth=1.9;x.strokeStyle=ink;x.lineCap='round';
+  E.forEach(([X,Y],i)=>{const by=Y-5.2,l=i===0?bw[1]:bw[0],r=i===0?bw[0]:bw[1];x.beginPath();x.moveTo(X-2.6,by+l);x.quadraticCurveTo(X,by+(l+r)/2-(mood==='h'?1.2:0),X+2.6,by+r);x.stroke()});
+  x.globalAlpha=.32+(mood==='h'?.15:0)-sick*.25;hvEll(x,hx+15,hy+6,3.4,2.2);x.fillStyle='#e8806a';x.fill();x.globalAlpha=1}
+/* Peter, 12: small, quick, a hat too big for his head with a yellow flower in the band (what he loves keeps its colour) */
+const HVLOOK={peter:{skin:'#f2cfa0',hair:'#7a4a26',tunic:'#5f86ad',tunicD:'#46698e',hose:'#6a4a34',hat:'#b8542e',hatD:'#8a3a1e',band:'#5a2a14',flower:'#f6c636'}};
+function hvKid(x,o){const L=HVLOOK.peter,d=o.dir||1,t=o.t||0,wk=o.walk,run=o.run,sick=o.sick||0,pass=o.pass||'all';
+  const bob=wk!=null?-Math.abs(Math.sin(wk))*(run?3.2:2):Math.sin(t*2.1)*.9,sw=wk!=null?Math.sin(wk)*(run?.85:.55):Math.sin(t*1.05)*.05,lean=run?.08:wk!=null?.03:0;
+  const skin=hvMix(L.skin,'#c9c6b0',Math.min(.7,sick*.7)),tunic=L.tunic,tunicD=L.tunicD;
+  x.save();x.translate(o.X,o.Y);
+  if(pass!=='loved'){const sl=o.shadow||1;x.save();x.scale(sl,1);hvEll(x,(o.sx||0)/sl,0,20,4.4);x.fillStyle='rgba(40,24,14,.3)';x.fill();x.restore()}
+  x.scale(d,1);x.rotate(lean);const by=bob;
+  if(pass!=='loved'){
+    hvLimb(x,-3,-56+by,-sw*.9+.15,17,6.5,tunicD,0);
+    hvLimb(x,-5,-32+by,sw,26,7.2,L.hose,1);hvLimb(x,5,-32+by,-sw,26,7.2,hvMix(L.hose,'#000',.12),1);
+    /* the body: a drop shape, one flat shadow on the far side */
+    const body=()=>{x.beginPath();x.moveTo(1,-68+by);x.bezierCurveTo(15,-66+by,21,-42+by,19,-31+by);x.quadraticCurveTo(1,-23+by,-17,-31+by);x.bezierCurveTo(-19,-42+by,-13,-66+by,1,-68+by);x.closePath()};body();x.fillStyle=tunic;x.fill();
+    x.save();x.clip();hvEll(x,-16,-42+by,13,30);x.fillStyle=tunicD;x.fill();x.fillStyle='#4a3020';x.fillRect(-20,-38+by,42,4);x.restore();body();hvInk(x,null,2.6);
+    hvLimb(x,6,-56+by,sw*.9-.1,17,6.5,tunic,0);
+    /* the head: a third of him */
+    x.save();x.translate(3,-86+by);x.rotate((o.tilt||0)*d);
+    hvEll(x,-11,-2,9,11);x.fillStyle=L.hair;x.fill();
+    hvEll(x,0,0,19,18.5);x.fillStyle=skin;x.fill();x.save();x.clip();hvEll(x,-14,4,12,20);x.fillStyle=hvMix(skin,'#b07050',.25);x.fill();x.restore();hvEll(x,0,0,19,18.5);hvInk(x,null,2.6);
+    hvEll(x,-15,1,4,5);hvInk(x,hvMix(skin,'#c08060',.2),2);
+    x.beginPath();x.moveTo(-18,-6);x.quadraticCurveTo(-8,-14,6,-12);x.quadraticCurveTo(-6,-6,-18,-2);x.closePath();hvInk(x,L.hair,2);
+    hvFace(x,0,4,o.mood||'n',sick,t);x.restore()}
+  /* the hat */
+  x.save();x.translate(3,-86+by);x.rotate((o.tilt||0)*d);
+  hvEll(x,1,-14,31,7);hvInk(x,L.hatD,2.6);
+  x.beginPath();x.moveTo(-15,-15);x.bezierCurveTo(-15,-35,17,-37,17,-15);x.closePath();hvInk(x,L.hat,2.6);
+  x.beginPath();x.moveTo(-15,-19);x.quadraticCurveTo(1,-16,17,-19);x.lineTo(17,-15);x.quadraticCurveTo(1,-12,-15,-15);x.closePath();x.fillStyle=L.band;x.fill();
+  x.save();x.translate(12,-20);for(let i=0;i<5;i++){x.rotate(Math.PI*2/5);hvEll(x,0,-3.2,2,3.2);x.fillStyle=L.flower;x.fill();x.lineWidth=.9;x.strokeStyle=HV.INK;x.stroke()}hvEll(x,0,0,1.8,1.8);x.fillStyle='#c0702a';x.fill();x.restore();
+  x.restore();x.restore();
+  return {x0:o.X-24,x1:o.X+24,y0:o.Y-122,y1:o.Y}}
+/* the little stray dog that follows Peter */
+function hvDog(x,o){const d=o.dir||1,t=o.t||0,wk=o.walk,sw=wk!=null?Math.sin(wk*1.4):0,by=wk!=null?-Math.abs(Math.sin(wk*1.4))*1.6:Math.sin(t*3)*.4;x.save();x.translate(o.X,o.Y);
+  hvEll(x,0,0,16,3.4);x.fillStyle='rgba(40,24,14,.28)';x.fill();x.scale(d,1);const fur='#d99a5a',furD='#b0743c';
+  [[-9,sw],[ -4,-sw],[7,-sw],[11,sw]].forEach(([X,s],i)=>{x.save();x.translate(X,-10+by);x.rotate(s*.5);x.beginPath();x.moveTo(0,0);x.lineTo(0,10);x.lineWidth=7.4;x.strokeStyle=HV.INK;x.lineCap='round';x.stroke();x.lineWidth=3.6;x.strokeStyle=i%2?furD:fur;x.stroke();x.restore()});
+  const wag=Math.sin(t*(o.happy?14:7))*.5;x.save();x.translate(-14,-18+by);x.rotate(-.8+wag);x.beginPath();x.moveTo(0,0);x.quadraticCurveTo(-4,-8,2,-13);x.lineWidth=7;x.strokeStyle=HV.INK;x.stroke();x.lineWidth=3.4;x.strokeStyle=fur;x.stroke();x.restore();
+  hvEll(x,0,-17+by,16,10);x.fillStyle=fur;x.fill();x.save();x.clip();hvEll(x,4,-10+by,10,6);x.fillStyle='#f4e2c8';x.fill();hvEll(x,-8,-24+by,9,6);x.fillStyle=furD;x.fill();x.restore();hvEll(x,0,-17+by,16,10);hvInk(x,null,2.4);
+  x.save();x.translate(15,-27+by);x.rotate(o.tilt||Math.sin(t*.7)*.08);hvEll(x,0,0,10,9);hvInk(x,fur,2.4);
+  x.beginPath();x.moveTo(-6,-6);x.quadraticCurveTo(-13,-2,-8,8);x.quadraticCurveTo(-4,2,-2,-6);x.closePath();hvInk(x,'#8a5428',2);
+  hvEll(x,9,2,3.2,2.6);hvInk(x,'#f4e2c8',1.6);hvEll(x,11.6,1,1.5,1.3);x.fillStyle='#2a170e';x.fill();hvEll(x,4,-2,1.6,2.1);x.fillStyle='#2a170e';x.fill();x.restore();
+  x.restore()}
+/* a rat: grey, quick, a pink tail; there are more of them as the plague grows */
+function hvRat(x,X,Y,d,t,s){s=s||1;x.save();x.translate(X,Y);x.scale(d*s,s);const k=Math.sin(t*24)*1.2;
+  x.beginPath();x.moveTo(-8,-3);x.quadraticCurveTo(-18,-4+k,-24,-1);x.lineWidth=1.6;x.strokeStyle='#c88a8a';x.stroke();
+  x.beginPath();x.moveTo(-9,-1);x.quadraticCurveTo(-8,-9,1,-8);x.quadraticCurveTo(8,-7,10,-2);x.quadraticCurveTo(4,0,-9,-1);x.closePath();hvInk(x,'#6e6a72',1.8);
+  hvEll(x,1,-8.5,2.2,2.6);hvInk(x,'#b8a0a8',1.2);hvEll(x,6,-5,1,1);x.fillStyle='#120c0a';x.fill();x.restore()}
+
+/* ===================== The Last Harvest · the street: a Rhine town, autumn 1348 (fictional town ✦) — seven layers + things in front (v0.50) ===================== */
+function hvStreet(){const W=2400,GY=HV.GY,lights=[];
+  /* half-timbered houses along the street (middle layer, parallax .5) */
+  const R=hvRng(11),houses=[];let hx=-20;while(hx<W*.5+700){const w=78+R()*52|0,h=96+R()*64|0;houses.push({x:hx,w,h,wall:['#f1dcb4','#ecc79a','#f2d2c0','#e6d3a8','#f0c8a4'][R()*5|0],roof:['#a9553a','#94503c','#b06a42','#8a4a3a'][R()*4|0],sign:R()<.45?['bread','shoe','barrel','scissors'][R()*4|0]:null,seed:R()*1e6|0,jetty:R()<.6});hx+=w+4+(R()*10|0)}
+  houses.forEach(H=>{const base=270,top=base-H.h,rows=Math.max(2,Math.floor((H.h-40)/44)),cols=Math.max(2,Math.floor(H.w/40));for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){const r2=hvRng(H.seed+j*31+i);if(r2()<.5){lights.push({x:H.x+H.w*(i+.5)/cols,y:top+30+j*44+14,r:26,p:.5,i:.55})}}});
+  const sky={id:'sky',p:0,cache:true,draw(x,S,t,rg){const g=x.createLinearGradient(0,0,0,250);g.addColorStop(0,'#eeb36c');g.addColorStop(.45,'#f3a88c');g.addColorStop(.8,'#f8d2a8');g.addColorStop(1,'#fbe6c0');x.fillStyle=g;x.fillRect(rg.x0-10,-10,rg.x1-rg.x0+20,380);
+      /* the sun low and soft */const sg=x.createRadialGradient(rg.x1*.72,150,4,rg.x1*.72,150,90);sg.addColorStop(0,'rgba(255,246,220,.95)');sg.addColorStop(.25,'rgba(255,230,180,.5)');sg.addColorStop(1,'rgba(255,220,170,0)');x.fillStyle=sg;x.fillRect(rg.x1*.72-90,60,180,180)},
+    live(x,S,t,rg){const vw=rg.x1-rg.x0;/* clouds drift */for(let i=0;i<5;i++){const cx=((i*173+t*(3+i))%(vw+260))-130+rg.x0,cy=36+i*17%60;x.globalAlpha=.55;x.fillStyle='#fff1dc';[[0,0,34,10],[22,-6,24,10],[-22,-3,22,8],[40,2,18,7]].forEach(([a,b,c,d])=>{hvEll(x,cx+a,cy+b,c,d);x.fill()});x.globalAlpha=1}
+      /* crows: small V marks that flap */for(let i=0;i<7;i++){const k=(t*.04+i*.13)%1.4-.2,X=rg.x0+vw*k+Math.sin(t+i)*6,Y=70+i*7+Math.sin(t*.8+i*2)*5,f=Math.sin(t*9+i)*3;x.beginPath();x.moveTo(X-6,Y-f);x.quadraticCurveTo(X-2,Y-1,X,Y+1);x.quadraticCurveTo(X+2,Y-1,X+6,Y-f);x.lineWidth=1.6;x.strokeStyle='#3a2a2a';x.stroke()}
+      /* far smoke from the fires where the dead are burned; grows with the plague */if((S.plague||0)>.2){const a=Math.min(.5,(S.plague-.2)*.7);for(let i=0;i<9;i++){const k=((t*.05+i/9)%1),X=rg.x0+vw*.18+Math.sin(k*5+i)*12*k+k*40,Y=232-k*170;x.globalAlpha=a*(1-k);hvEll(x,X,Y,8+k*30,6+k*18);x.fillStyle='#6a6066';x.fill()}x.globalAlpha=1}}};
+  const far={id:'far',p:.2,cache:true,draw(x,S,t,rg){const w=rg.x1;
+      /* hills with rows of vines */x.fillStyle='#d6a88a';x.beginPath();x.moveTo(-10,250);for(let X=-10;X<=w+20;X+=20)x.lineTo(X,190+Math.sin(X*.006)*22+Math.sin(X*.017)*8);x.lineTo(w+20,300);x.lineTo(-10,300);x.fill();
+      x.strokeStyle='rgba(150,110,120,.45)';x.lineWidth=1.4;for(let X=0;X<w;X+=7){const y=196+Math.sin(X*.006)*22+Math.sin(X*.017)*8;x.beginPath();x.moveTo(X,y+6);x.lineTo(X-14,y+42);x.stroke()}
+      x.fillStyle='#c4948a';x.beginPath();x.moveTo(-10,260);for(let X=-10;X<=w+20;X+=24)x.lineTo(X,222+Math.sin(X*.009+2)*12);x.lineTo(w+20,300);x.lineTo(-10,300);x.fill();
+      /* town wall and towers */const wc='#b48a8e';x.fillStyle=wc;x.fillRect(-10,228,w+20,40);for(let X=0;X<w;X+=10)x.fillRect(X,223,6,6);
+      for(let X=60;X<w;X+=260){x.fillRect(X,196,26,60);hvPath(x,[X-3,197,X+13,174,X+29,197]);x.fillStyle='#a07276';x.fill();x.fillStyle=wc}
+      /* church spires and the great cathedral tower in the distance */const sp=(X,h,wd)=>{x.fillStyle='#a68088';x.fillRect(X-wd/2,232-h*.55,wd,h*.55);hvPath(x,[X-wd/2-2,232-h*.55,X,232-h,X+wd/2+2,232-h*.55]);x.fill();x.fillRect(X-1,232-h-8,2,10);x.fillRect(X-4,232-h-5,8,2)};
+      sp(w*.22,90,16);sp(w*.55,70,14);sp(w*.8,84,15);
+      /* the cathedral: one tall tower with a lace spire */const cx=w*.4;x.fillStyle='#9c7680';x.fillRect(cx-40,150,80,90);x.fillRect(cx-16,96,32,60);hvPath(x,[cx-16,98,cx,38,cx+16,98]);x.fill();x.fillStyle='rgba(255,230,200,.25)';for(let i=0;i<4;i++)x.fillRect(cx-10+i*6,104,2,44);hvEll(x,cx,178,12,12);x.fill()}};
+  const fog={id:'fog',p:.35,live(x,S,t,rg){const a=.22+(S.plague||0)*.25;for(let i=0;i<4;i++){const X=rg.x0+((i*240+t*(6+i*2))%(rg.x1-rg.x0+400))-200,Y=236+i*6;const g=x.createLinearGradient(0,Y-18,0,Y+18);g.addColorStop(0,'rgba(255,236,214,0)');g.addColorStop(.5,'rgba(255,236,214,'+a+')');g.addColorStop(1,'rgba(255,236,214,0)');x.fillStyle=g;x.fillRect(X,Y-18,420,36)}}};
+  const mid={id:'mid',p:.5,cache:true,draw(x,S,t,rg){
+      houses.forEach(H=>{const base=270,top=base-H.h,X=H.x,w=H.w,r=hvRng(H.seed);
+        /* wall, then the dark timbers in crosses */hvRRect(x,X,top,w,H.h,2);hvInk(x,H.wall,2.4);const tim='#5a3a28';x.save();hvRRect(x,X,top,w,H.h,2);x.clip();x.strokeStyle=tim;x.lineWidth=4.2;
+        for(let y=top+40;y<base;y+=44){x.beginPath();x.moveTo(X,y);x.lineTo(X+w,y);x.stroke()}const cols=Math.max(2,Math.floor(w/40));for(let i=0;i<=cols;i++){const cx=X+w*i/cols;x.beginPath();x.moveTo(cx,top);x.lineTo(cx,base);x.stroke()}
+        for(let y=top+40;y+44<=base;y+=44)for(let i=0;i<cols;i++){if(r()<.45){const a=X+w*i/cols,b=X+w*(i+1)/cols;x.lineWidth=3;x.beginPath();x.moveTo(a,y);x.lineTo(b,y+44);x.moveTo(b,y);x.lineTo(a,y+44);x.stroke()}}
+        /* one flat shadow down the right side */x.fillStyle='rgba(90,50,40,.18)';x.fillRect(X+w-14,top,14,H.h);x.restore();
+        /* windows with shutters */const rows=Math.max(2,Math.floor((H.h-40)/44));for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){const r2=hvRng(H.seed+j*31+i);if(r2()<.5){const wx=X+w*(i+.5)/cols,wy=top+30+j*44+6;hvRRect(x,wx-7,wy,14,17,3);hvInk(x,'#6a4a52',2);x.fillStyle='rgba(255,226,170,.55)';x.fillRect(wx-5,wy+2,10,6);hvRRect(x,wx-14,wy,7,17,1.5);hvInk(x,'#7a5a3a',1.6);hvRRect(x,wx+7,wy,7,17,1.5);hvInk(x,'#7a5a3a',1.6)}}
+        /* steep roof of tiles */const rh=48+(H.w%30);hvPath(x,[X-8,top+2,X+w/2,top-rh,X+w+8,top+2]);hvInk(x,H.roof,2.6);x.save();hvPath(x,[X-8,top+2,X+w/2,top-rh,X+w+8,top+2]);x.clip();x.strokeStyle=hvMix(H.roof,'#3a1a10',.35);x.lineWidth=1.2;for(let y=top-rh+8;y<top;y+=7){x.beginPath();x.moveTo(X-10,y);x.lineTo(X+w+10,y);x.stroke()}x.fillStyle='rgba(60,20,10,.22)';hvPath(x,[X+w/2,top-rh,X+w+8,top+2,X+w/2,top+2]);x.fill();x.restore();
+        if(r()<.5){x.fillRect(X+w*.7,top-rh*.6-14,10,18);hvRRect(x,X+w*.7,top-rh*.6-14,10,18,1);hvInk(x,'#7a5a4a',2)}
+        /* a hanging shop sign */if(H.sign){const sx=X+w*.25,sy=top+H.h-62;x.beginPath();x.moveTo(sx-2,sy);x.lineTo(sx+26,sy);x.lineWidth=2.4;x.strokeStyle=HV.INK;x.stroke();hvRRect(x,sx+4,sy+5,20,15,3);hvInk(x,'#d8b070',2);x.fillStyle='#7a4a2a';
+          if(H.sign==='bread'){hvEll(x,sx+14,sy+12.5,7,4);x.fill()}else if(H.sign==='shoe'){hvPath(x,[sx+8,sy+16,sx+8,sy+9,sx+13,sy+9,sx+20,sy+16]);x.fill()}else if(H.sign==='barrel'){hvEll(x,sx+14,sy+12.5,5,6);x.fill()}else{x.beginPath();x.arc(sx+11,sy+15,2.4,0,7);x.arc(sx+17,sy+15,2.4,0,7);x.fill();x.fillRect(sx+12,sy+8,4,6)}}
+        /* door at the street */if(H.w>90){hvRRect(x,X+w*.6,base-38,20,38,9);hvInk(x,'#6a4028',2.2)}});
+      x.fillStyle='#7a6658';x.fillRect(-10,268,rg.x1+20,6)}};
+  /* near layer (parallax .8): stalls, a cart, barrels, crates */
+  const near={id:'near',p:.8,cache:true,draw(x,S,t,rg){const r=hvRng(23);for(let X=60;X<rg.x1;X+=210+r()*140){const k=r();const b=292;
+      if(k<.35){/* a market stall with a striped awning */for(let i=0;i<6;i++){hvPath(x,[X+i*16,b-70,X+i*16+16,b-70,X+i*16+16,b-58,X+i*16,b-58]);hvInk(x,i%2?'#f2e4c8':'#b84a3a',1.6)}x.fillStyle='#6a4428';x.fillRect(X+2,b-58,4,58);x.fillRect(X+90,b-58,4,58);hvRRect(x,X-4,b-28,104,10,2);hvInk(x,'#9a6a40',2);[[14,'#e0a050'],[30,'#c8d070'],[50,'#d06040'],[70,'#e0b060'],[84,'#a8c060']].forEach(([a,c])=>{hvEll(x,X+a,b-31,6,4.5);hvInk(x,c,1.4)})}
+      else if(k<.6){/* a cart */hvRRect(x,X,b-34,70,16,2);hvInk(x,'#8a5a34',2.2);x.beginPath();x.moveTo(X+70,b-26);x.lineTo(X+108,b-20);x.lineWidth=3;x.strokeStyle=HV.INK;x.stroke();hvEll(x,X+22,b-14,14,14);hvInk(x,'#7a5030',2.4);x.strokeStyle=HV.INK;x.lineWidth=1.4;for(let a=0;a<6;a++){x.beginPath();x.moveTo(X+22,b-14);x.lineTo(X+22+Math.cos(a)*13,b-14+Math.sin(a)*13);x.stroke()}hvEll(x,X+20,b-40,16,9);hvInk(x,'#d8c090',2);hvEll(x,X+44,b-40,14,8);hvInk(x,'#c8b080',2)}
+      else{/* barrels and crates */hvRRect(x,X,b-30,22,30,6);hvInk(x,'#8a5a34',2.2);x.strokeStyle=HV.INK;x.lineWidth=1.6;[b-22,b-9].forEach(y=>{x.beginPath();x.moveTo(X,y);x.lineTo(X+22,y);x.stroke()});hvRRect(x,X+24,b-26,26,26,2);hvInk(x,'#a07040',2.2);x.beginPath();x.moveTo(X+24,b-26);x.lineTo(X+50,b);x.stroke();hvRRect(x,X+8,b-50,26,20,2);hvInk(x,'#9a6a3c',2.2)}}}};
+  /* the street itself: warm stones above, grey-brown and moss below, a gutter with a gleam of water */
+  const play={id:'play',p:1,live(x,S,t,rg){const x0=Math.floor(rg.x0/14)*14-28,x1=rg.x1+28;
+      const g=x.createLinearGradient(0,276,0,360);g.addColorStop(0,'#b89a7a');g.addColorStop(.35,'#9a8470');g.addColorStop(1,'#6a6450');x.fillStyle=g;x.fillRect(x0,274,x1-x0,90);
+      for(let row=0;row<6;row++){const y=282+row*11+row*row*.6,h=4+row*.9;for(let X=x0+(row%2)*7;X<x1;X+=14+row){const v=((X*7+row*13)%9)/9;hvEll(x,X,y,5.5+row*.5,h*.6);x.fillStyle=hvMix('#a89078','#6a6050',row/6*.7+v*.15);x.fill();x.lineWidth=.9;x.strokeStyle='rgba(60,40,30,.5)';x.stroke()}}
+      x.fillStyle='#5f6b48';x.fillRect(x0,338,x1-x0,8);x.fillStyle='#4a5236';x.fillRect(x0,344,x1-x0,3);x.fillStyle='rgba(220,230,210,.35)';for(let X=x0;X<x1;X+=60){const w=Math.sin(t*1.2+X)*6;x.fillRect(X+w,340,18,1.4)}
+      x.fillStyle='#7a6a54';x.fillRect(x0,347,x1-x0,16);
+      if(S.drawActors)S.drawActors(x,t,rg)}};
+  /* things in front of the camera: a lantern post, washing on a line, a cart wheel, a bucket, a dead branch, a chicken coop, an arch */
+  const front=[
+    {kind:'post',x:460,p:1.4,w:20,draw(x,t,S){x.fillRect(-5,150,10,230);x.fillRect(-16,150,32,6);hvRRect(x,-10,156,20,26,4);x.fill();x.globalAlpha=.6;x.fillStyle='#ffcf80';x.fillRect(-6,161,12,16)}},
+    {kind:'washing',anim:1,x:905,p:1.3,w:240,draw(x,t,S){x.fillRect(-120,165,8,215);x.fillRect(112,165,8,215);x.lineWidth=2;x.beginPath();x.moveTo(-116,172);x.quadraticCurveTo(0,194,116,172);x.stroke();
+      for(let i=0;i<4;i++){const cx=-80+i*52,cy=178+Math.sin((cx+116)/232*Math.PI)*18,wv=Math.sin(t*2.4+i)*5;x.beginPath();x.moveTo(cx-16,cy);x.lineTo(cx+16,cy);x.quadraticCurveTo(cx+18+wv,cy+30,cx+14+wv*1.6,cy+56);x.quadraticCurveTo(cx+wv,cy+50+wv,cx-14+wv*1.4,cy+56);x.quadraticCurveTo(cx-18+wv,cy+30,cx-16,cy);x.fill()}}},
+    {kind:'wheel',x:1520,p:1.5,w:120,draw(x,t,S){x.lineWidth=9;x.beginPath();x.arc(0,330,62,0,Math.PI*2);x.stroke();x.lineWidth=5;for(let a=0;a<8;a++){x.beginPath();x.moveTo(0,330);x.lineTo(Math.cos(a*Math.PI/4)*62,330+Math.sin(a*Math.PI/4)*62);x.stroke()}hvEll(x,0,330,10,10);x.fill()}},
+    {kind:'bucket',x:1915,p:1.45,w:60,draw(x,t,S){hvPath(x,[-26,300,26,300,20,360,-20,360]);x.fill();x.lineWidth=3;x.beginPath();x.arc(0,300,26,Math.PI,0);x.stroke()}},
+    {kind:'branch',anim:1,x:2480,p:1.6,w:260,draw(x,t,S){const s=Math.sin(t*.9)*.03;x.save();x.rotate(s);x.lineWidth=7;x.lineCap='round';x.beginPath();x.moveTo(-120,-10);x.quadraticCurveTo(-40,40,20,60);x.stroke();x.lineWidth=4;[[-70,22,-40,80],[-20,45,10,110],[10,55,60,90],[-50,30,-90,70]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+c)/2+6,(b+d)/2,c,d);x.stroke()});x.restore()}},
+    {kind:'coop',x:2412,p:1.35,w:120,draw(x,t,S){x.fillRect(-60,276,120,90);x.globalAlpha=.4;x.fillStyle='#000';for(let i=-50;i<60;i+=12)x.fillRect(i,286,3,60);x.globalAlpha=1;hvPath(x,[-66,280,0,250,66,280]);x.fill()}},
+    {kind:'arch',x:2530,p:1.3,w:300,draw(x,t,S){x.beginPath();x.moveTo(-150,380);x.lineTo(-150,60);x.quadraticCurveTo(0,-40,150,60);x.lineTo(150,380);x.lineTo(120,380);x.lineTo(120,70);x.quadraticCurveTo(0,0,-120,70);x.lineTo(-120,380);x.closePath();x.fill()}}];
+  /* dust in front: a few larger motes */
+  const over=(x,S,t,rg)=>{const vw=rg.x1-rg.x0;x.save();for(let i=0;i<14;i++){const k=(t*.02*(1+i%3)+i*.071)%1,X=rg.x0+((i*97+t*(4+i%5))%(vw+40))-20,Y=60+((i*53+k*260)%260);x.globalAlpha=.28*(.5+.5*Math.sin(t+i));hvEll(x,X,Y,1.6+i%3,1.6+i%3);x.fillStyle='#fff2d8';x.fill()}x.restore()};
+  return {k:'street',W,GY,layers:[sky,far,fog,mid,near,play],front,over,lights,mask:[[40,W-40]],ver:1}}
+
+/* ===================== The Last Harvest · the screen, controls and the door in (v0.50 step A: walk one street, Thai only) ===================== */
+const HVK='sit.harvest';
+const hvLoad=()=>{let d=null;try{d=store.get(HVK,null)}catch(e){}d=d||{};d.v=1;d.opt=Object.assign({low:0},d.opt||{});return d};
+const hvSave=d=>{try{if(!TEST)store.set(HVK,d)}catch(e){}};
+function hvCss(){if(document.getElementById('hvcss'))return;const st=document.createElement('style');st.id='hvcss';st.textContent=
+ 'html:has(#hv),body:has(#hv){overflow:hidden!important}#hv{position:fixed;inset:0;z-index:95;background:#120c08;color:#3b2418;font-family:Pridi,"Noto Serif Thai",serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none;font-size:var(--hfs,16px)}'+
+ '#hv .fr{position:absolute;left:0;top:0;right:0;overflow:hidden}#hv canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:pointer}'+
+ '#hv .pp{background:#f4e6c8;border:2.5px solid #3b2418;border-radius:12px;box-shadow:0 3px 0 #3b241866,inset 0 0 0 3px #f9efd9,inset 0 0 18px #c9a46a55;color:#3b2418}'+
+ '#hv button.pp{font:inherit;cursor:pointer;padding:.25em .8em;min-height:44px}#hv button.pp:active{transform:translateY(2px);box-shadow:0 1px 0 #3b241866}#hv button.pp.on{background:#e8c98a}'+
+ '#hv .top{position:absolute;top:10px;right:10px;display:flex;gap:8px;z-index:5}#hv .top button{font-size:.85em;min-height:40px}'+
+ '#hv .cap{position:absolute;top:10px;left:10px;max-width:min(62%,30em);padding:.45em .9em;font-size:.9em;line-height:1.55;z-index:4;transition:opacity .8s}#hv .cap b{color:#8a3a1e}'+
+ '#hv .pad{position:absolute;left:0;right:0;bottom:0;display:flex;gap:10px;padding:10px;z-index:4;align-items:flex-end;pointer-events:none}#hv .pad button{pointer-events:auto;min-width:64px;min-height:56px;font-size:1.05em}#hv .pad .sp{flex:1}#hv .pad .hint{pointer-events:none;font-size:.78em;padding:.3em .8em;align-self:center;opacity:.9}'+
+ '#hv.port .pad{position:absolute;top:auto;background:#24180f;border-top:3px solid #3b2418}#hv.port .pad .hint{display:none}#hv.port .cap{position:absolute;left:8px;right:8px;max-width:none;top:auto}'+
+ '#hv .lab{position:absolute;right:10px;top:60px;z-index:6;padding:.6em .9em;width:min(19em,80vw);font-size:.86em;line-height:1.5;display:none}#hv .lab.on{display:block}#hv .lab input{width:100%}#hv .lab .row{display:flex;flex-wrap:wrap;gap:4px;margin:.2em 0 .5em}#hv .lab .row button{min-height:34px;font-size:.9em;padding:.1em .55em}'+
+ '#hv .warnc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:9;background:#120c08ee;padding:16px}#hv .warnc .pp{max-width:30em;padding:1.2em 1.4em;line-height:1.75}#hv .warnc h2{margin:0 0 .3em;font-size:1.3em;color:#8a3a1e}';document.head.appendChild(st)}
+/* fit: any wide window gets the whole picture (the scene is drawn for any width); a tall phone puts the controls under the picture */
+function hvLayout(el){const vw=el.clientWidth,vh=el.clientHeight,port=vh>vw*1.1;el.classList.toggle('port',port);const fr=el.querySelector('.fr'),pad=el.querySelector('.pad'),cap=el.querySelector('.cap');
+  if(port){const ph=Math.max(190,Math.min(vh*.34,270));fr.style.height=(vh-ph)+'px';pad.style.height=ph+'px';cap.style.top=(vh-ph+8)+'px';cap.style.bottom='auto';cap.style.zIndex=5}else{let h=vh;if(vw/vh>2.3)h=vh;fr.style.height=h+'px';pad.style.height='auto';cap.style.top='10px';cap.style.bottom='auto';cap.style.zIndex=4}
+  el.style.setProperty('--hfs',(port?Math.max(14,Math.min(17,vw*.042)):Math.max(14,Math.min(22,vh*.03)))+'px')}
+function hvStart(){try{PLM47.stop()}catch(e){}hvCss();let el=document.getElementById('hv');if(el)el.remove();el=document.createElement('div');el.id='hv';document.body.appendChild(el);const D=hvLoad();
+  el.innerHTML='<div class="fr"><canvas></canvas></div><div class="cap pp"></div><div class="top"><button class="pp" data-a="lab">🎨 ทดลองภาพ</button><button class="pp" data-a="exit">✕ ออก</button></div><div class="lab pp"></div><div class="pad"></div>';
+  const cv=el.querySelector('canvas'),cap=el.querySelector('.cap'),pad=el.querySelector('.pad'),lab=el.querySelector('.lab');
+  const scene=hvStreet();const S={scene,cam:null,plague:0,tod:2,lights:scene.lights.concat([]),p:{x:260,dir:1,moving:false,walk:0,idle:0},dog:{x:200,dir:1,walk:0},rats:[],bigRat:null,iris:0,mood:null,sick:0,lowfx:D.opt.low};
+  const alive=()=>el.isConnected;
+  /* exit asks twice */const ex=el.querySelector('[data-a=exit]');ex.onclick=()=>{if(ex.dataset.k){el.remove();try{plIntro46()}catch(e){}}else{ex.dataset.k=1;ex.textContent='แตะอีกครั้งเพื่อออก';setTimeout(()=>{if(ex.isConnected){delete ex.dataset.k;ex.textContent='✕ ออก'}},3000)}};
+  el.querySelector('[data-a=lab]').onclick=()=>{lab.classList.toggle('on');drawLab()};
+  function drawLab(){lab.innerHTML='<b>ทดลองภาพ</b> <span style="font-size:.85em">(สำหรับตรวจงานขั้นนี้)</span>'+
+    '<div>โรคระบาด (plagueLevel) <b>'+S.plague.toFixed(2)+'</b></div><input type="range" min="0" max="1" step="0.05" value="'+S.plague+'" data-a="pl">'+
+    '<div>เวลา</div><div class="row">'+HVTOD.map((T,i)=>'<button class="pp'+(S.tod===i?' on':'')+'" data-t="'+i+'">'+T.n+'</button>').join('')+'</div>'+
+    '<div>อารมณ์ของปีเตอร์ (ไม่มีปาก)</div><div class="row">'+[[null,'ตามเรื่อง'],['n','เฉยๆ'],['h','ดีใจ'],['w','กังวล'],['s','เศร้า']].map(([m,n])=>'<button class="pp'+(S.mood===m?' on':'')+'" data-m="'+m+'">'+n+'</button>').join('')+'</div>'+
+    '<div>อาการป่วย (สีผิวและรอบตา) <b>'+S.sick.toFixed(2)+'</b></div><input type="range" min="0" max="1" step="0.1" value="'+S.sick+'" data-a="sk">'+
+    '<div class="row"><button class="pp'+(S.lowfx?' on':'')+'" data-a="low">โหมดเครื่องช้า (ไม่เบลอ)</button></div>';
+    lab.querySelector('[data-a=pl]').oninput=e=>{S.plague=+e.target.value;lab.querySelector('b+span+div b, div b')};lab.querySelector('[data-a=pl]').onchange=drawLab;lab.querySelector('[data-a=sk]').oninput=e=>{S.sick=+e.target.value};lab.querySelector('[data-a=sk]').onchange=drawLab;
+    lab.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{S.tod=+b.dataset.t;drawLab()});lab.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{S.mood=b.dataset.m==='null'?null:b.dataset.m;drawLab()});lab.querySelector('[data-a=low]').onclick=()=>{S.lowfx=D.opt.low=S.lowfx?0:1;hvSave(D);drawLab()}}
+  /* controls: hold to walk, a run toggle; arrows and Shift on the keyboard; click the street to walk there */
+  let hold=0,run=false,goto=null;const touch=matchMedia('(pointer:coarse)').matches;
+  const mk=(t,cls)=>{const b=document.createElement('button');b.className='pp'+(cls?' '+cls:'');b.textContent=t;pad.appendChild(b);return b};
+  const bl=mk('◀'),br=mk('▶');const hint=document.createElement('div');hint.className='pp hint';hint.textContent='← → เดิน · Shift วิ่ง · คลิกที่ถนนเพื่อเดินไป · Esc เมนู';pad.appendChild(hint);const sp=document.createElement('div');sp.className='sp';pad.appendChild(sp);const brun=mk('🏃 วิ่ง');
+  [[bl,-1],[br,1]].forEach(([b,d])=>{b.onpointerdown=e=>{e.preventDefault();hold=d;goto=null;try{b.setPointerCapture(e.pointerId)}catch(_){}};b.onpointerup=b.onpointercancel=b.onlostpointercapture=()=>{if(hold===d)hold=0}});
+  brun.onclick=()=>{run=!run;brun.classList.toggle('on',run)};
+  cv.addEventListener('pointerdown',e=>{if(S.iris<1)return;const r=cv.getBoundingClientRect();const wx=(S.cam||0)+(e.clientX-r.left)/r.width*(S.vw||640);goto=Math.max(scene.mask[0][0],Math.min(scene.mask[0][1],wx));hold=0});
+  const kd=e=>{if(!alive()){document.removeEventListener('keydown',kd);document.removeEventListener('keyup',ku);return}if(e.key==='ArrowLeft'||e.key==='a'){hold=-1;goto=null;e.preventDefault()}else if(e.key==='ArrowRight'||e.key==='d'){hold=1;goto=null;e.preventDefault()}else if(e.key==='Shift'){run=true;brun.classList.add('on')}else if(e.key==='Escape'){lab.classList.toggle('on');drawLab()}},
+    ku=e=>{if(['ArrowLeft','ArrowRight','a','d'].includes(e.key)){hold=0}else if(e.key==='Shift'){run=false;brun.classList.remove('on')}};
+  document.addEventListener('keydown',kd);document.addEventListener('keyup',ku);
+  /* the walker, the dog and the rats are drawn in the play layer; what Peter loves is drawn again after the colour fades */
+  const P=S.p;
+  S.drawActors=(x,t,rg)=>{for(const r of S.rats)hvRat(x,r.x,r.y,r.d,t,1);
+    const dg=S.dog,dog=()=>hvDog(x,{X:dg.x,Y:HV.GY+6,dir:dg.dir,walk:dg.moving?dg.walk:null,t,happy:!P.moving&&P.idle<2});S.loved.push(dog);
+    const mood=S.mood||(S.plague>.6?'w':P.idle>4?'n':'n'),tilt=S.mood?0:(P.idle>4?-.16:0);const o={X:P.x,Y:HV.GY+12,dir:P.dir,walk:P.moving?P.walk:null,run:run&&P.moving,t,mood,tilt,sick:S.sick,shadow:S.tod===2?1.6:1,sx:S.tod===2?-14:0};
+    S.pbox=hvKid(x,o);S.loved.push(()=>hvKid(x,Object.assign({},o,{pass:'loved'})));S.silo=y=>{hvKid(y,o)}};
+  /* a big rat that runs across the front of the camera now and then */
+  scene.front.push({kind:'bigrat',anim:1,x:-999,p:1.5,w:200,draw(x,t,S){const r=S.bigRat;if(!r)return;x.save();x.translate(0,348);x.scale(r.d*3.2,3.2);x.beginPath();x.moveTo(-8,-3);x.quadraticCurveTo(-18,-4+Math.sin(t*24),-26,-1);x.lineWidth=1.4;x.stroke();x.beginPath();x.moveTo(-9,-1);x.quadraticCurveTo(-8,-9,1,-8);x.quadraticCurveTo(8,-7,10,-2);x.quadraticCurveTo(4,0,-9,-1);x.fill();x.restore()}});const BR=scene.front[scene.front.length-1];
+  /* opening words */const caps=['<b>เมืองเล็กริมแม่น้ำไรน์ ใกล้สตราสบูร์ก</b><br>ฤดูใบไม้ร่วง ค.ศ. 1348 · ตลาดยังคึกคัก เรือสินค้ายังเข้ามา<br><span style="font-size:.85em">✦ เมืองนี้แต่งขึ้น ส่วนยุคและภูมิภาคเป็นของจริง</span>','<b>ปีเตอร์</b> อายุ 12 ปี ลูกช่างไม้ หมวกของเขาใหญ่เกินหัว เพราะเป็นของพ่อ<br><span style="font-size:.85em">หมาจรตัวเล็กเดินตามเขามาสามวันแล้ว</span>'];let ci=0;cap.innerHTML=caps[0];
+  const nextCap=()=>{ci++;if(ci<caps.length){cap.style.opacity=0;setTimeout(()=>{if(!alive())return;cap.innerHTML=caps[ci];cap.style.opacity=1},800)}else{cap.style.opacity=0}};setTimeout(nextCap,7000);setTimeout(nextCap,15000);
+  const fit=()=>{if(!alive()){removeEventListener('resize',fit);return}hvLayout(el);hvFitCanvas(cv)};addEventListener('resize',fit);fit();
+  let last=performance.now(),t0=last,ft=[];S.perf=ft;
+  const loop=now=>{if(!alive())return;const dt=Math.min(.1,(now-last)/1000);last=now;const t=(now-t0)/1000;
+    S.iris=Math.min(1,S.iris+dt/0.9);
+    /* move: walk 120, run 240 units a second; never leave the walkable strip */
+    let v=0;if(hold)v=hold;else if(goto!=null){const d=goto-P.x;if(Math.abs(d)<4)goto=null;else v=Math.sign(d)}
+    const spd=(run?240:120)*(1-S.sick*.45);if(v){P.dir=v;P.x+=v*spd*dt;P.walk+=dt*(run?13:9);P.moving=true;P.idle=0}else{P.moving=false;P.idle+=dt}
+    P.x=Math.max(scene.mask[0][0],Math.min(scene.mask[0][1],P.x));
+    const dg=S.dog,tx=P.x-P.dir*52,dd=tx-dg.x;if(Math.abs(dd)>8){dg.dir=Math.sign(dd);dg.x+=Math.sign(dd)*Math.min(Math.abs(dd),(Math.abs(dd)>90?260:140)*dt);dg.walk+=dt*10;dg.moving=true}else{dg.moving=false;dg.dir=P.dir}
+    /* rats: more of them as the plague grows */if(Math.random()<dt*(.08+S.plague*.9)&&S.rats.length<2+S.plague*8){const d=Math.random()<.5?1:-1,vw=S.vw||640;S.rats.push({x:(S.cam||0)+(d>0?-30:vw+30),y:328+Math.random()*12,d,v:150+Math.random()*90})}
+    S.rats.forEach(r=>r.x+=r.d*r.v*dt);S.rats=S.rats.filter(r=>r.x>(S.cam||0)-60&&r.x<(S.cam||0)+(S.vw||640)+60);
+    if(!S.bigRat&&Math.random()<dt*(.02+S.plague*.06))S.bigRat={sx:0,d:Math.random()<.5?1:-1,k:0};if(S.bigRat){const r=S.bigRat;r.k+=dt*.55;const vw=S.vw||640;BR.x=(S.cam||0)*BR.p+(r.d>0?-80+r.k*(vw+160):vw+80-r.k*(vw+160));if(r.k>1){S.bigRat=null;BR.x=-999}}
+    S.lights=scene.lights.concat([{x:P.x,y:HV.GY-40,r:90,p:1,i:.28}]);
+    if(hvFitCanvas(cv))S._ck=null;const a=performance.now();hvRender(cv,S,t,dt);ft.push(performance.now()-a);if(ft.length>120)ft.shift();
+    requestAnimationFrame(loop)};requestAnimationFrame(loop);
+  window.__hvS=S;return S}
+/* a short warning first, as in the other chapters */
+function hvIntro(){hvCss();let el=document.getElementById('hv');if(el)el.remove();el=document.createElement('div');el.id='hv';document.body.appendChild(el);
+  el.innerHTML='<div class="warnc"><div class="pp"><h2>🌾 The Last Harvest</h2><p>เรื่องของครอบครัวช่างไม้ในเมืองเล็กริมแม่น้ำไรน์ ช่วงที่กาฬโรคค่อยๆ มาถึง ค.ศ. 1348–1349</p><p style="font-size:.9em"><b>ก่อนเริ่ม:</b> เกมนี้พูดถึงโรคระบาด ความตาย และการสูญเสียในครอบครัว ไม่มีภาพเลือดหรือบาดแผล</p><p style="font-size:.85em;opacity:.85">ตอนนี้เป็นขั้นทดลองแรก: เดินดูถนนของเมือง และลองปรับภาพ</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pp" data-a="go">เข้าใจแล้ว เริ่ม</button><button class="pp" data-a="back">กลับ</button></div></div></div>';
+  el.querySelector('[data-a=go]').onclick=hvStart;el.querySelector('[data-a=back]').onclick=()=>{el.remove()}}
+/* a fourth door on the plague page */
+{const _i=plIntro46;plIntro46=function(){_i();try{const d=document.getElementById('jr48door');if(d&&!document.getElementById('hv50door')){const b=document.createElement('button');b.className='crs';b.id='hv50door';b.innerHTML='<span class="ic">🌾</span><span><b>The Last Harvest (ทดลอง)</b><div class="d">เกมใหม่แบบหนังสือภาพ ครอบครัวช่างไม้ในเมืองริมแม่น้ำไรน์ ค.ศ. 1348 · ตอนนี้เดินดูถนนได้</div></span>';b.onclick=hvIntro;d.parentNode.insertBefore(b,d)}}catch(e){}}}
+if(typeof window!=='undefined')window.__v50={hvStart,hvIntro,hvStreet,hvKid,hvDog};
+
 function fig(ctx,x,y,o){if(GFX.hi){fig24(ctx,x,y,o||{});return}const R=(a,b,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(a|0,b|0,w|0,h|0)};x|=0;y|=0;
   const h=o.h||6,c=o.c||'#1e140e',hd=o.elder?'#cfc6b8':c,f=o.f||0,p=o.pose||'stand';
   if(p!=='lie'){ctx.fillStyle='rgba(0,0,0,.22)';ctx.fillRect(x-1,y,5,1)}
