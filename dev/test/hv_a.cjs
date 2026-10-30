@@ -4,7 +4,7 @@
 const {chromium}=require('playwright');const OUT=process.env.OUT||'/tmp';
 (async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'ok   ':'FAIL ')+m);if(!c)bad++};const errs=[];
 const open=async(w,h,touch)=>{const p=await b.newPage({viewport:{width:w,height:h},hasTouch:!!touch,isMobile:!!touch,deviceScaleFactor:touch?2:1});p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
-  await p.addInitScript(()=>{localStorage.setItem('sit.seen','true');localStorage.setItem('sit.lang',JSON.stringify('th'))});await p.goto('http://localhost:8765/index.html?lang=th');await p.waitForTimeout(800);return p};
+  await p.addInitScript(()=>{localStorage.setItem('sit.seen','true');localStorage.setItem('sit.lang',JSON.stringify('th'));window.__hvOpt={run:'normal'}});await p.goto('http://localhost:8765/index.html?lang=th');await p.waitForTimeout(800);return p};
 const p=await open(1280,720);const book0=await p.evaluate(()=>localStorage.getItem('sit.book'));
 await p.evaluate(()=>document.getElementById('pl45go').click());await p.waitForTimeout(300);ok(!!await p.$('#hv50door'),'The Last Harvest door on the plague page');ok(!!await p.$('#jr48door'),'JRPG door still there');
 await p.click('#hv50door');await p.waitForTimeout(200);ok((await p.$eval('#hv',e=>e.innerText)).includes('ไม่มีภาพเลือด'),'a short content warning comes first');await p.click('#hv [data-a=go]');await p.waitForTimeout(1300);

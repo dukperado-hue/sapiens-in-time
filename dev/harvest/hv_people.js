@@ -62,3 +62,37 @@ function hvRat(x,X,Y,d,t,s){s=s||1;x.save();x.translate(X,Y);x.scale(d*s,s);cons
   x.beginPath();x.moveTo(-8,-3);x.quadraticCurveTo(-18,-4+k,-24,-1);x.lineWidth=1.6;x.strokeStyle='#c88a8a';x.stroke();
   x.beginPath();x.moveTo(-9,-1);x.quadraticCurveTo(-8,-9,1,-8);x.quadraticCurveTo(8,-7,10,-2);x.quadraticCurveTo(4,0,-9,-1);x.closePath();hvInk(x,'#6e6a72',1.8);
   hvEll(x,1,-8.5,2.2,2.6);hvInk(x,'#b8a0a8',1.2);hvEll(x,6,-5,1,1);x.fillStyle='#120c0a';x.fill();x.restore()}
+/* ---------- the grown-ups: Thomas the carpenter (apron, a pencil behind his ear) and Anna (a wine-red headscarf that keeps its colour) ---------- */
+HVLOOK.thomas={skin:'#e8bf94',hair:'#5a3a22',beard:'#5a3a22',tunic:'#7a6a4a',tunicD:'#5e5036',hose:'#4a3a2a',apron:'#e2d2b0',apronD:'#c4b28c',sc:1.18};
+HVLOOK.anna={skin:'#f0caa4',hair:'#6a3a20',tunic:'#4f6a5a',tunicD:'#3c5446',hose:'#3c5446',scarf:'#8e2f3a',scarfD:'#6e1f2a',sc:1.12,dress:1};
+/* poses: idle · walk · work (hands moving) · sit (on a stool) · lie (in bed) · cough · cry (shoulders shake, no tears) · hug */
+function hvAdult(x,o){const L=HVLOOK[o.k]||HVLOOK.thomas,d=o.dir||1,t=o.t||0,pose=o.pose||'idle',sick=o.sick||0,pass=o.pass||'all',s=L.sc;
+  const slow=1-sick*.5,wk=pose==='walk'?(o.walk||t*8)*slow:null,cough=pose==='cough'?Math.max(0,Math.sin(t*9))*2.5:0,cry=pose==='cry'?Math.sin(t*22)*.8:0;
+  const bob=wk!=null?-Math.abs(Math.sin(wk))*2:Math.sin(t*1.8*slow)*.8,sw=wk!=null?Math.sin(wk)*.5:0;
+  const skin=hvMix(L.skin,'#c9c6b0',Math.min(.7,sick*.7));x.save();x.translate(o.X,o.Y);
+  if(pose==='lie'){x.rotate(-Math.PI/2*d);x.translate(0,0)}
+  if(pass!=='loved'&&pose!=='lie'){hvEll(x,0,0,24*s,5);x.fillStyle='rgba(40,24,14,.28)';x.fill()}
+  x.scale(d*s,s);const sit=pose==='sit',by=bob+(sit?18:0)+cough*.4;
+  if(pass!=='loved'){
+    /* legs (Anna's dress covers hers) */
+    if(sit){hvLimb(x,-4,-36+by,-1.45,20,7.4,L.hose,0);hvLimb(x,6,-36+by,-1.45,20,7.4,L.hose,0);x.save();x.translate(14,-36+by);hvLimb(x,6,0,0,18,7,L.hose,1);x.restore()}
+    else if(!L.dress){hvLimb(x,-6,-36+by,sw,34,7.6,L.hose,1);hvLimb(x,6,-36+by,-sw,34,7.6,hvMix(L.hose,'#000',.12),1)}
+    else{hvEll(x,-6,0,7,3.6);hvInk(x,'#4a2c1c',2);hvEll(x,8,0,7,3.6);hvInk(x,'#4a2c1c',2)}
+    const wkA=pose==='work'?Math.sin(t*7)*.5:0;hvLimb(x,-4,-92+by,pose==='hug'?-1.2:-sw*.8+.12+wkA*.3,22,7,L.tunicD,0);
+    /* the body: a long drop; Anna's dress reaches the ground */
+    const top=-100+by,bot=L.dress&&!sit?-2:-34+by;const body=()=>{x.beginPath();x.moveTo(1,top);x.bezierCurveTo(19,top+2,24,bot-34,22,bot);x.quadraticCurveTo(1,bot+8,-20,bot);x.bezierCurveTo(-22,bot-34,-17,top+2,1,top);x.closePath()};
+    body();x.fillStyle=L.tunic;x.fill();x.save();x.clip();hvEll(x,-20,(top+bot)/2,15,(bot-top)*.6);x.fillStyle=L.tunicD;x.fill();
+    if(L.apron){x.fillStyle=L.apron;x.fillRect(-4,top+26,28,bot-top-20);x.fillStyle=L.apronD;x.fillRect(-4,top+26,4,bot-top-20);x.strokeStyle=HV.INK;x.lineWidth=1.4;x.strokeRect(-4,top+26,28,bot-top-20);x.beginPath();x.moveTo(-2,top+26);x.lineTo(4,top+6);x.stroke()}
+    x.fillStyle='rgba(60,36,20,.55)';x.fillRect(-24,top+44,50,3.5);x.restore();body();hvInk(x,null,2.6);
+    hvLimb(x,7,-92+by,pose==='hug'?-1.5:pose==='work'?-1.1+wkA:(sw*.8-.1)+(cough?-.9:0),22,7,L.tunic,0);
+    /* the head */x.save();x.translate(3,-118+by+cough*.3);x.rotate((o.tilt||0)+(pose==='cry'?.18:0)+(cough?.12:0)+cry*.02);
+    if(!L.scarf){hvEll(x,-11,-3,10,12);x.fillStyle=L.hair;x.fill()}
+    hvEll(x,0,0,21,20);x.fillStyle=skin;x.fill();x.save();x.clip();hvEll(x,-16,4,13,22);x.fillStyle=hvMix(skin,'#b07050',.25);x.fill();x.restore();hvEll(x,0,0,21,20);hvInk(x,null,2.6);
+    if(!L.scarf){x.beginPath();x.moveTo(-20,-6);x.quadraticCurveTo(-10,-22,8,-18);x.quadraticCurveTo(16,-15,18,-8);x.quadraticCurveTo(4,-12,-20,-2);x.closePath();hvInk(x,L.hair,2);hvEll(x,-17,2,4.4,5.4);hvInk(x,hvMix(skin,'#c08060',.2),2);
+      /* the pencil behind his ear */x.save();x.translate(-17,-6);x.rotate(-.5);x.fillStyle='#d8a838';x.fillRect(-1.6,-9,3.2,16);x.strokeStyle=HV.INK;x.lineWidth=1;x.strokeRect(-1.6,-9,3.2,16);x.fillStyle='#3a2a1a';x.beginPath();x.moveTo(-1.6,7);x.lineTo(0,10);x.lineTo(1.6,7);x.fill();x.restore()}
+    if(L.beard){x.beginPath();x.moveTo(-14,6);x.quadraticCurveTo(-8,22,6,20);x.quadraticCurveTo(18,16,19,6);x.quadraticCurveTo(8,12,-14,6);x.closePath();hvInk(x,L.beard,2)}
+    hvFace(x,0,2,pose==='cry'?'s':o.mood||'n',sick,t);x.restore()}
+  /* Anna's scarf, drawn last so it keeps its colour after the plague fades the world */
+  if(L.scarf){x.save();x.translate(3,-118+by+cough*.3);x.rotate((o.tilt||0)+(pose==='cry'?.18:0));x.beginPath();x.moveTo(-23,8);x.quadraticCurveTo(-26,-22,0,-24);x.quadraticCurveTo(20,-24,22,-6);x.quadraticCurveTo(10,-14,-6,-10);x.quadraticCurveTo(-14,4,-10,18);x.quadraticCurveTo(-18,22,-23,8);x.closePath();hvInk(x,L.scarf,2.4);
+    x.beginPath();x.moveTo(-14,6);x.quadraticCurveTo(-20,24,-8,30);x.lineWidth=5;x.strokeStyle=L.scarfD;x.stroke();x.restore()}
+  x.restore();return {x0:o.X-26*s,x1:o.X+26*s,y0:o.Y-150*s,y1:o.Y}}
