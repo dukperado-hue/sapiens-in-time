@@ -1,4 +1,4 @@
-/* ===================== The Last Harvest · the street: a Rhine town, autumn 1348 (fictional town ✦) — seven layers + things in front (v0.50) ===================== */
+/* ===================== The Last Harvest · the street: a Rhine town, summer 1349 (fictional town ✦) — seven layers + things in front (v0.50) ===================== */
 function hvStreet(){const W=2400,GY=HV.GY,lights=[];
   /* half-timbered houses along the street (middle layer, parallax .5) */
   const R=hvRng(11),houses=[];let hx=-20;while(hx<W*.5+700){const w=78+R()*52|0,h=96+R()*64|0;houses.push({x:hx,w,h,wall:['#f1dcb4','#ecc79a','#f2d2c0','#e6d3a8','#f0c8a4'][R()*5|0],roof:['#a9553a','#94503c','#b06a42','#8a4a3a'][R()*4|0],sign:R()<.45?['bread','shoe','barrel','scissors'][R()*4|0]:null,seed:R()*1e6|0,jetty:R()<.6});hx+=w+4+(R()*10|0)}

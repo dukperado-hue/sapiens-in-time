@@ -1,4 +1,4 @@
-/* ===================== The Last Harvest · the life around: cats, pigeons, swallows, bats, candles, and the sounds of day and night (v0.54, Thai only) =====================
+/* ===================== The Last Harvest · the life around: cats, pigeons, swallows, bats, candles, and the sounds of day and night (v0.55, Thai only) =====================
    Everything here is drawn and synthesised in the page: no image or sound files. */
 /* a cat: sits on sills and roofs, sometimes walks the street; eyes blink, the tail moves */
 function hvCat(x,o){const t=o.t||0,d=o.dir||1,c=o.col||'#7a7680',cd=hvMix(c,'#1a1410',.35),s=o.s||1;x.save();x.translate(o.X,o.Y);x.scale(d*s,s);
@@ -28,8 +28,13 @@ function hvAmbInit(S){const R=hvRng(S.run&&S.run.r?(S.run.r()*1e6|0):77);const A
 function hvAmbTick(S,dt,t){const A=S.amb;if(!A)return;A.t+=dt;const P=S.p,D=S.dog;
   for(const b of A.pigeons){if(!b.fly&&(Math.abs(b.x-P.x)<80||Math.abs(b.x-D.x)<70||(S.rats||[]).some(r=>Math.abs(r.x-b.x)<30))){b.fly=1;b.vx=(b.x>P.x?1:-1)*(120+Math.random()*80);b.vy=-(140+Math.random()*80);b.d=Math.sign(b.vx);if(!A.flap||A.t-A.flap>.4){A.flap=A.t;hvAmbSnd('flap')}}
     if(b.fly){b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy+=30*dt;if(b.y<-40){b.fly=2;b.back=20+Math.random()*20}}if(b.fly===2){b.back-=dt;if(b.back<=0&&Math.abs(b.home-P.x)>260){b.fly=0;b.x=b.home+Math.random()*70-35;b.y=HV.GY+18+Math.random()*20}}else if(!b.fly&&Math.random()<dt*.3)b.x+=b.d*(Math.random()*6)}
-  /* now and then a cat crosses the street */if(!A.walker&&Math.random()<dt*.025){const vw=S.vw||640,d=Math.random()<.5?1:-1;A.walker={x:(S.cam||0)+(d>0?-40:vw+40),d,col:['#2e2a30','#d0884a','#7a7680'][Math.random()*3|0],sit:0}}
-  if(A.walker){const w=A.walker;const near=Math.abs(w.x-D.x)<90;if(near&&!w.run){w.run=1;w.d=Math.sign(w.x-D.x)||w.d;hvAmbSnd('hiss')}w.x+=w.d*(w.run?260:46)*dt;if(w.x<(S.cam||0)-80||w.x>(S.cam||0)+(S.vw||640)+80)A.walker=null}}
+  /* now and then a cat crosses the street; more often when there are rats about */if(!A.walker&&Math.random()<dt*((S.rats||[]).length?.07:.025)){const vw=S.vw||640,d=Math.random()<.5?1:-1;A.walker={x:(S.cam||0)+(d>0?-40:vw+40),d,col:['#2e2a30','#d0884a','#7a7680'][Math.random()*3|0],sit:0}}
+  if(A.walker){const w=A.walker;const near=Math.abs(w.x-D.x)<90;if(near&&!w.run){w.run=1;w.hunt=0;w.d=Math.sign(w.x-D.x)||w.d;hvAmbSnd('hiss')}
+    /* the cat and the rats: a rat the cat can see is chased off the screen, and for a while no new ones come */
+    if(!w.run){let tg=null,bd=200;for(const r of S.rats||[]){const dd=Math.abs(r.x-w.x);if(dd<bd&&!r.cat){bd=dd;tg=r}}
+      if(tg){w.hunt=1;w.d=Math.sign(tg.x-w.x)||w.d;tg.cat=1;tg.d=Math.sign(tg.x-w.x)||tg.d;tg.v=Math.max(tg.v||0,380);S.ratCalm=Math.max(S.ratCalm||0,12);if(!w.hissed){w.hissed=1;hvAmbSnd('hiss')}}
+      const rs=(S.spots||[]).find(s=>s.k==='rats'&&!s.cleared);if(rs&&Math.abs(rs.x-w.x)<200){w.hunt=1;w.d=Math.sign(rs.x-w.x)||w.d;if(Math.abs(rs.x-w.x)<40){rs.cleared=true;rs.byCat=1;for(let i=0;i<7;i++)rs.flee.push({x:rs.x+(i-3)*10,y:HV.GY+24+(i%3)*4,d:Math.sign(rs.x-w.x+(i-3))||1,v:240+i*30});S.ratCalm=Math.max(S.ratCalm||0,20);hvAmbSnd('hiss')}}}
+    w.x+=w.d*(w.run?260:w.hunt?210:46)*dt;if(w.x<(S.cam||0)-80||w.x>(S.cam||0)+(S.vw||640)+80)A.walker=null}}
 function hvAmbDrawPlay(x,S,t){const A=S.amb;if(!A)return;for(const b of A.pigeons){if(b.fly===2)continue;hvPigeon(x,b.x,b.y,b.d,t+b.home,!!b.fly)}if(A.walker){const w=A.walker;hvCat(x,{X:w.x,Y:HV.GY+16,dir:w.d,t,pose:'walk',walk:t*(w.run?18:7),col:w.col,s:1.1})}}
 function hvAmbDrawMid(x,S,t){const A=S.amb;if(!A)return;for(const c of A.cats)hvCat(x,{X:c.x,Y:c.y,dir:c.dir,t:t+c.x,col:c.col,s:.7})}
 function hvAmbDrawSky(x,S,t,rg){const vw=rg.x1-rg.x0;if(S.tod===3){for(let i=0;i<5;i++){const k=(t*.05+i*.21)%1,X=rg.x0+vw*(.2+.6*((Math.sin(t*.4+i*2)+1)/2)),Y=60+Math.sin(t*1.3+i)*30+i*12;hvBat(x,X,Y,t,i)}}

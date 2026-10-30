@@ -1,7 +1,7 @@
 /* ===================== The Last Harvest · things to do on the street: search, send the dog, one knock at a window (v0.51, Thai only) =====================
    Story data (places, what they hold, words) is kept apart from the drawing code below it, so content can grow without touching the pictures.
    Nothing here says which choice is right; the player sees what happens and the notes at the end of a chapter explain. */
-const HVITEM={bread:{n:'เศษขนมปัง',tip:'กินแล้วอิ่มขึ้น หรือแบ่งให้หมาก็ได้'},wood:{n:'ฟืน',tip:'เก็บไว้ให้แม่ก่อไฟ (ใช้ได้ในบ้าน ขั้นต่อไป)'},herb:{n:'สมุนไพร',tip:'ดมแล้วใจสงบลง แต่ไม่ได้กันโรค'},plank:{n:'ไม้กระดาน',tip:'พ่อใช้ซ่อมบ้านหรือตีปิดหน้าต่างได้ (ขั้นต่อไป)'}};
+const HVITEM={bread:{n:'เศษขนมปัง',tip:'กินแล้วอิ่มขึ้น หรือแบ่งให้หมาก็ได้'},wood:{n:'ฟืน',tip:'เอากลับบ้านให้แม่ก่อไฟ ต้มซุป และเผาฟูกคนป่วย'},herb:{n:'สมุนไพร',tip:'ดมแล้วใจสงบลง ไม่ได้กันโรค · เก็บกลับบ้านไว้ต้มยาให้คนป่วย'},plank:{n:'ไม้กระดาน',tip:'พ่อใช้ตีปิดหน้าต่าง หรือทำกับดักหนู'}};
 const HVBAG=6;
 const HVSPOT=[
   {k:'crates',x:560,kind:'search',n:'กองลังไม้พัง',dur:1.4,loot:[['plank',1],['wood',1]],say:'ปีเตอร์งัดลังที่พังออกทีละแผ่น เหมือนที่เห็นพ่อทำ'},
@@ -13,6 +13,8 @@ const HVSPOT=[
   {k:'window',x:2110,kind:'moral',n:'บ้านที่มีคนเคาะหน้าต่าง'},
   {k:'home',x:2290,kind:'home',n:'บ้านของปีเตอร์'},
   {k:'barrier',x:1880,kind:'barrier',n:'ทางที่ถูกกั้นไว้',only:'deadend',say:'ไม้กั้นถนนไว้ หลังไม้มีรถเข็นศพจอดอยู่ ✦ เมืองนี้กั้นถนนไม่ให้คนเข้าออกย่านที่มีคนป่วย'}];
+/* the dead on the street do not all look alike: a cloth over a body, someone sitting against a wall, a heap of torn cloth. Never a face, never a wound */
+const HVCORPSE=[{k:'cloth',n:'ศพคลุมผ้าริมถนน',say:'ปีเตอร์กลั้นหายใจ แล้วค่อยๆ ยกชายผ้าขึ้น'},{k:'wall',n:'คนที่นั่งพิงกำแพงไม่ขยับ',say:'ปีเตอร์ย่อตัวลงข้างคนที่นั่งพิงกำแพง ผ้าคลุมหัวปิดหน้าไว้หมด เขาไม่ตอบเมื่อปีเตอร์เรียก'},{k:'rags',n:'กองผ้าขาดข้างกำแพง',say:'ใต้กองผ้าขาดมีรองเท้าโผล่ออกมาข้างหนึ่ง ปีเตอร์ค่อยๆ ดึงผ้าขึ้น'}];
 /* what is said when a place has already been emptied by someone else */
 const HVEMPTY=['ไม่มีอะไรเหลือแล้ว…','ถูกรื้อไปหมดแล้ว','มีคนมาค้นก่อน เหลือแต่เศษผ้า','ว่างเปล่า มีแต่ฝุ่นกับรอยมือ'];
 /* people who may stand in the street later: kept as data only for now.
@@ -36,11 +38,7 @@ function hvDrawSpots(x,S,t,rg){for(const sp of S.spots){if(sp.x<rg.x0-160||sp.x>
     hvRRect(x,X-26,G-104,52,104,22);hvInk(x,'#5a3a26',2.4);x.strokeStyle='rgba(30,16,10,.5)';x.lineWidth=1.2;for(let i=-20;i<26;i+=8){x.beginPath();x.moveTo(X+i,G-96);x.lineTo(X+i,G-2);x.stroke()}
     const boards=sp.done?[[0,-70,.3],[0,-30,-.25]]:[[0,-80,.35],[0,-50,-.3],[0,-22,.25]];boards.forEach(([a,b,r])=>{x.save();x.translate(X+a,G+b);x.rotate(r);hvRRect(x,-36,-6,72,12,2);hvInk(x,'#a8804c',2);x.fillStyle='#2a1a10';x.fillRect(-31,-1,2.5,2.5);x.fillRect(29,-1,2.5,2.5);x.restore()});
     x.save();x.translate(X-36,G-90);x.rotate(.1);x.lineWidth=2.6;x.strokeStyle='#e8e0d0';x.beginPath();x.moveTo(-8,-8);x.lineTo(8,8);x.moveTo(8,-8);x.lineTo(-8,8);x.stroke();x.restore()}
-  else if(sp.k==='corpse'){/* a body under a cloth: only a still shape, never a wound */x.save();x.translate(X,G+8);hvEll(x,0,4,46,6);x.fillStyle='rgba(30,20,14,.3)';x.fill();
-    x.beginPath();x.moveTo(-44,2);x.quadraticCurveTo(-46,-12,-34,-14);x.quadraticCurveTo(-26,-20,-18,-13);x.quadraticCurveTo(-2,-18,14,-15);x.quadraticCurveTo(30,-14,36,-8);x.quadraticCurveTo(44,-10,46,-2);x.quadraticCurveTo(48,4,40,4);x.lineTo(-40,4);x.closePath();hvInk(x,sp.done?'#a8a090':'#c8bea8',2.4);
-    x.strokeStyle='rgba(80,64,50,.45)';x.lineWidth=1.2;[[-20,-12,-14,2],[0,-15,4,2],[22,-13,18,2]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+c)/2+3,(b+d)/2,c,d);x.stroke()});
-    if(sp.done){x.save();x.translate(-38,-10);x.rotate(-.5);hvPath(x,[0,0,10,-4,14,4,4,8]);hvInk(x,'#b8ae98',1.6);x.restore()}x.restore();
-    /* a few wildflowers someone left */hvEll(x,X-50,G+6,2.2,2.2);x.fillStyle='#d8c060';x.fill();hvEll(x,X-46,G+9,2,2);x.fillStyle='#c8a0c0';x.fill()}
+  else if(sp.k==='corpse')hvBody(x,X,G,sp.look||'cloth',sp.done,1);
   else if(sp.k==='barrier'){/* the street is shut: crossed planks, a rope, and the dead-cart waiting behind */
     x.save();x.translate(X+40,G-6);hvRRect(x,-38,-40,76,26,3);hvInk(x,'#7a5a3a',2.4);[[-26,-48],[-4,-50],[18,-47]].forEach(([a,b])=>{hvEll(x,a,b,14,8);hvInk(x,'#bdb3a0',2)});hvEll(x,-30,-8,14,14);hvInk(x,'#6a4a2a',2.4);hvEll(x,30,-8,14,14);hvInk(x,'#6a4a2a',2.4);x.beginPath();x.moveTo(38,-30);x.lineTo(64,-38);x.lineWidth=3;x.strokeStyle=HV.INK;x.stroke();x.restore();
     [[-34,0],[34,0]].forEach(([a])=>{x.fillStyle='#5a3a22';x.fillRect(X+a-4,G-96,8,96);x.strokeStyle=HV.INK;x.lineWidth=2;x.strokeRect(X+a-4,G-96,8,96)});
@@ -66,6 +64,35 @@ function hvDrawSpots(x,S,t,rg){for(const sp of S.spots){if(sp.x<rg.x0-160||sp.x>
       if(sp.state!=='given'){const k=Math.max(0,Math.sin(t*5))*3;hvEll(x,wx+14,wy+20-k,4.6,4.6);hvInk(x,'#d8d0bc',1.6)}x.restore()}
     x.strokeStyle='rgba(255,255,255,.35)';x.lineWidth=1.2;x.beginPath();x.moveTo(wx-18,wy+8);x.lineTo(wx-8,wy+2);x.moveTo(wx-18,wy+16);x.lineTo(wx-2,wy+4);x.stroke();x.strokeStyle=HV.INK;x.lineWidth=2;x.beginPath();x.moveTo(wx,wy-2);x.lineTo(wx,wy+44);x.moveTo(wx-26,wy+20);x.lineTo(wx+26,wy+20);x.stroke();
     if(sp.state==='left'){x.fillStyle='#4a3a3a';x.fillRect(wx-24,wy,48,42);x.strokeStyle=HV.INK;x.lineWidth=1.2;for(let i=-20;i<24;i+=6){x.beginPath();x.moveTo(wx+i,wy);x.lineTo(wx+i,wy+42);x.stroke()}}}}}
+/* one of the dead, in three looks (s = scale) */
+function hvBody(x,X,G,look,done,s){x.save();x.translate(X,G+8);x.scale(s,s);hvEll(x,0,4,look==='wall'?30:46,look==='wall'?5:6);x.fillStyle='rgba(30,20,14,.3)';x.fill();
+  if(look==='wall'){/* sitting against the wall, hood down over the face, legs out under the cloak */
+    hvPath(x,[2,0,34,-1,36,-9,6,-12]);hvInk(x,'#5a4e44',2.2);hvEll(x,36,-5,4,5);hvInk(x,'#3a2a20',1.8);
+    x.beginPath();x.moveTo(-20,2);x.quadraticCurveTo(-26,-30,-16,-52);x.quadraticCurveTo(-6,-66,8,-58);x.quadraticCurveTo(16,-44,13,-26);x.quadraticCurveTo(18,-10,22,2);x.closePath();hvInk(x,done?'#8a7e6c':'#9a8a6e',2.4);
+    hvEll(x,5,-50,6,8);x.fillStyle='#2a2018';x.fill();x.strokeStyle='rgba(60,46,34,.5)';x.lineWidth=1.2;[[-12,-40,-14,0],[0,-34,2,0],[10,-22,14,0]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+c)/2-3,(b+d)/2,c,d);x.stroke()});
+    if(done){x.save();x.translate(-24,-6);x.rotate(.4);hvPath(x,[0,0,10,-3,12,5,2,6]);hvInk(x,'#b8ae98',1.6);x.restore()}}
+  else if(look==='rags'){/* a heap of torn cloth, one shoe showing */
+    x.beginPath();x.moveTo(-38,3);x.quadraticCurveTo(-36,-14,-22,-16);x.quadraticCurveTo(-12,-28,4,-19);x.quadraticCurveTo(18,-26,28,-13);x.quadraticCurveTo(40,-8,37,3);x.closePath();hvInk(x,done?'#7e7666':'#8a8070',2.4);
+    hvPath(x,[-20,-15,-8,-22,2,-12,-10,-6]);hvInk(x,'#a0907a',1.6);x.strokeStyle='rgba(50,40,30,.55)';x.lineWidth=1.2;x.beginPath();x.moveTo(-30,-6);x.lineTo(-26,-2);x.lineTo(-22,-7);x.lineTo(-18,-1);x.moveTo(12,-16);x.lineTo(16,-10);x.lineTo(20,-15);x.lineTo(24,-9);x.stroke();
+    hvPath(x,[30,2,44,1,46,-5,36,-7]);hvInk(x,'#3a2a1e',1.8);if(done){hvPath(x,[-30,-10,-46,-16,-44,-4]);hvInk(x,'#9a907c',1.6)}}
+  else{/* a body under a cloth: only a still shape */
+    x.beginPath();x.moveTo(-44,2);x.quadraticCurveTo(-46,-12,-34,-14);x.quadraticCurveTo(-26,-20,-18,-13);x.quadraticCurveTo(-2,-18,14,-15);x.quadraticCurveTo(30,-14,36,-8);x.quadraticCurveTo(44,-10,46,-2);x.quadraticCurveTo(48,4,40,4);x.lineTo(-40,4);x.closePath();hvInk(x,done?'#a8a090':'#c8bea8',2.4);
+    x.strokeStyle='rgba(80,64,50,.45)';x.lineWidth=1.2;[[0,-15,4,2],[22,-13,18,2]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+c)/2+3,(b+d)/2,c,d);x.stroke()});
+    /* a shroud is tied: at the neck, the middle, the feet */x.strokeStyle='#5a3e26';x.lineWidth=2.2;[[-25,-17,-23,4],[6,-17,8,4],[36,-10,37,4]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo(a+3,(b+d)/2,c,d);x.stroke()});
+    if(done){x.save();x.translate(-38,-10);x.rotate(-.5);hvPath(x,[0,0,10,-4,14,4,4,8]);hvInk(x,'#b8ae98',1.6);x.restore()}
+    /* a few wildflowers someone left */hvEll(x,-50,-2,2.2,2.2);x.fillStyle='#d8c060';x.fill();hvEll(x,-46,1,2,2);x.fillStyle='#c8a0c0';x.fill()}
+  x.restore()}
+/* a cat lying still beside a dead rat: even the hunters are dying. Eyes closed, nothing more */
+function hvDeadCat(x,X,Y,col,t){const c=col||'#5a5660';x.save();x.translate(X,Y);hvEll(x,4,3,30,4);x.fillStyle='rgba(30,20,14,.28)';x.fill();
+  x.beginPath();x.moveTo(-13,-2);x.quadraticCurveTo(-25,0,-33,-1);x.lineWidth=4.6;x.strokeStyle=HV.INK;x.lineCap='round';x.stroke();x.lineWidth=2.2;x.strokeStyle=c;x.stroke();
+  [[-6,-8],[6,-8]].forEach(([a,b])=>{x.beginPath();x.moveTo(a,b+3);x.lineTo(a+4,b-6);x.lineWidth=4.4;x.strokeStyle=HV.INK;x.stroke();x.lineWidth=2;x.strokeStyle=c;x.stroke()});
+  hvEll(x,0,-4,15,6.5);hvInk(x,c,2);x.save();x.translate(17,-6);hvEll(x,0,0,7,6);hvInk(x,c,2);hvPath(x,[1,-5,6,-10,6,-2]);hvInk(x,c,1.4);x.beginPath();x.moveTo(-1,-1);x.quadraticCurveTo(1,1,3,-1);x.lineWidth=1.1;x.strokeStyle='#1a1410';x.stroke();x.restore();
+  x.save();x.translate(38,-1);hvEll(x,0,0,6,3.2);hvInk(x,'#6a5e58',1.4);x.strokeStyle=HV.INK;x.lineWidth=1;[-3,0,3].forEach(a=>{x.beginPath();x.moveTo(a,-2.5);x.lineTo(a,-6);x.stroke()});x.beginPath();x.moveTo(6,0);x.quadraticCurveTo(11,2,15,0);x.stroke();x.restore();
+  for(let i=0;i<2;i++){const a=t*(3+i)+i*3;hvEll(x,10+Math.cos(a)*12,-18+Math.sin(a*1.4)*5,1,1);x.fillStyle='#1a1410';x.fill()}x.restore()}
+/* what the days leave on the street: more of the dead as the weeks go by, and the cat by the rat */
+function hvDrawDeco(x,S,t,rg){for(const d of S.deco||[]){if(d.x<rg.x0-160||d.x>rg.x1+160)continue;const G=HV.GY+4;
+  if(d.k==='pile'){/* the dead laid out by a door for the cart: one tied in a shroud, one under rags */hvBody(x,d.x-30,G+2,'cloth',0,.85);hvBody(x,d.x+40,G+4,d.look==='cloth'?'rags':d.look==='wall'?'rags':d.look,0,.8)}
+  else if(d.k==='deadcat')hvDeadCat(x,d.x,G+16,d.col,t)}}
 /* what keeps its colour after the plague fades it: the warm light in the window that was helped, the balloon of what is asked */
 function hvSpotsLoved(x,S,t){const sp=S.spots.find(s=>s.k==='window');if(!sp)return;const X=sp.x,G=HV.GY+4,wx=X-34,wy=G-196+34;
   if(sp.state==='given'){const g=x.createRadialGradient(wx,wy+20,2,wx,wy+20,60);g.addColorStop(0,'rgba(255,200,110,.75)');g.addColorStop(1,'rgba(255,170,80,0)');x.fillStyle=g;x.fillRect(wx-60,wy-40,120,120);x.globalAlpha=.55;hvRRect(x,wx-24,wy,48,42,3);x.fillStyle='#ffd890';x.fill();x.globalAlpha=1}
@@ -93,10 +120,20 @@ const hvSnd=(()=>{let ac=null;return k=>{try{if(+store.get('sit.snd',2)===0)retu
   else{o.type='sine';o.frequency.setValueAtTime(660,n);o.frequency.setValueAtTime(880,n+.08);g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.0001,n+.3);o.start(n);o.stop(n+.32)}}catch(e){}}})();
 /* ---------- the rules ---------- */
 /* each walk is a different day: sometimes the street is closed, sometimes the town has been picked clean */
-function hvRunPick(o){o=o||{};const r=hvRng(o.seed!=null?o.seed:(Math.random()*1e9|0));const run={deadend:o.run==='deadend'?true:o.run?false:r()<.3,empty:o.run==='empty'?true:o.run?false:r()<.15};run.r=r;return run}
+/* the later the day, the more likely the dead block the street (day 1 → 7%, day 38 → 66%) */
+const hvDeadendP=day=>day==null?.3:Math.min(.7,.06+day/38*.6);
+function hvRunPick(o){o=o||{};const day=o.day!=null?o.day:o.life?o.life.n:null;const r=hvRng(o.seed!=null?o.seed:(Math.random()*1e9|0));const run={deadend:o.run==='deadend'?true:o.run?false:r()<hvDeadendP(day),empty:o.run==='empty'?true:o.run?false:r()<.15,day};run.r=r;return run}
 function hvPlayInit(S,o){const run=S.run=hvRunPick(o);S.spots=HVSPOT.filter(s=>!s.only||(s.only==='deadend'&&run.deadend)).filter(s=>!(run.deadend&&s.x>1880&&s.kind!=='barrier')).map(s=>{const z=Object.assign({},s,{done:false,state:s.kind==='moral'?'ask':null,flee:[]});
-    if((s.kind==='search'||s.kind==='dog'))z.empty=run.empty||run.r()<(o&&o.emptyChance!=null?o.emptyChance:.35);if(s.kind==='corpse')z.loot=s.loots[run.r()*s.loots.length|0];return z});
-  if(run.deadend){S.scene.mask=[[70,1850]]}S.petN=0;S.boost=0;S.plagueBase=S.plague||0;S.inv={};S.full=78;S.tired=10;S.mind=70;S.exp=0;S.fx=[];S.happyT=0;S.flags={};S.busy=null;S.lock=0}
+    if((s.kind==='search'||s.kind==='dog'))z.empty=run.empty||run.r()<(o&&o.emptyChance!=null?o.emptyChance:.35);if(s.kind==='corpse'){z.loot=s.loots[run.r()*s.loots.length|0];const lk=HVCORPSE[run.r()*HVCORPSE.length|0];z.look=lk.k;z.n=lk.n;z.say=lk.say}return z});
+  hvDecoInit(S,run);
+  if(run.deadend){S.scene.mask=[[70,1850]]}S.petN=0;S.boost=0;S.plagueBase=S.plague||0;S.inv={};S.full=78;S.tired=10;S.mind=70;S.exp=0;S.infectionRisk=0;S.fx=[];S.happyT=0;S.flags={};S.busy=null;S.lock=0}
+function hvDecoInit(S,run){const day=run.day,D=S.deco=[],end=run.deadend?1820:2240;
+  const nPile=day==null?1:(run.r()<Math.min(.9,day/30)?1:0)+(day>=24&&run.r()<.5?1:0),nCat=day==null?1:(run.r()<Math.min(.8,.15+day/38*.6)?1:0);
+  const ok=(X,gap)=>X>260&&X<end&&S.spots.every(s=>Math.abs(s.x-X)>gap)&&D.every(d=>Math.abs(d.x-X)>140);
+  for(let i=0;i<nPile;i++)for(let j=0;j<30;j++){const X=300+run.r()*1950;if(ok(X,110)){D.push({k:'pile',x:X,look:HVCORPSE[run.r()*3|0].k});break}}
+  /* the cat lies by a place Peter searches, or in a gap between houses */
+  const near=S.spots.filter(s=>s.kind==='search');for(let i=0;i<nCat;i++)for(let j=0;j<30;j++){const sp=near[run.r()*near.length|0],X=sp&&run.r()<.6?sp.x+(run.r()<.5?-1:1)*(72+run.r()*24):300+run.r()*1950;if(ok(X,60)){D.push({k:'deadcat',x:X,col:['#5a5660','#7a6a58','#3a3438'][run.r()*3|0]});break}}
+  S.deadFront=day!=null&&day>=20&&run.r()<.35}
 const hvBagN=S=>Object.values(S.inv).reduce((a,b)=>a+b,0);
 function hvAdd(S,k,n,X){const room=HVBAG-hvBagN(S),m=Math.min(room,n);if(m>0){S.inv[k]=(S.inv[k]||0)+m;hvFloat(S,'+ '+HVITEM[k].n,X)}if(m<n)hvFloat(S,'กระเป๋าเต็ม',X,1);return m}
 function hvFloat(S,txt,X,warn){S.fx.push({txt,x:X==null?S.p.x:X,y:HV.GY-62-S.fx.filter(f=>f.t<.6).length*20,t:0,warn})}
@@ -129,12 +166,13 @@ function hvPlayTick(S,dt,t,api){const P=S.p,D=S.dog;S.lock=Math.max(0,S.lock-dt)
   if(S.auto&&!S.busy){const a=S.auto,d=a.x-P.x;if(Math.abs(d)<3){P.x=a.x;P.moving=false;if(a.face)P.dir=a.face;S.auto=null;a.then&&a.then()}else{P.dir=Math.sign(d);P.x+=Math.sign(d)*Math.min(Math.abs(d),(a.slow?70:130)*dt);P.walk+=dt*(a.slow?6:9);P.moving=true}}
   S.full=Math.max(0,S.full-dt*(P.moving?.2:.12));S.tired=Math.max(0,Math.min(100,S.tired+(S.busy&&S.busy.k==='search'?dt*3:P.moving&&api.running()?dt*6:P.moving?dt*1.6:-dt*1.5)));if(S.full<25)S.mind=Math.max(0,S.mind-dt*.4);
   /* rats near Peter: the hidden risk goes up */
-  const rs=S.spots.find(s=>s.k==='rats');if(rs&&!rs.cleared&&Math.abs(rs.x-P.x)<80)S.exp+=dt*6;for(const r of S.rats)if(Math.abs(r.x-P.x)<40)S.exp+=dt*3;
+  const rs=S.spots.find(s=>s.k==='rats');if(rs&&!rs.cleared&&Math.abs(rs.x-P.x)<80)S.exp+=dt*6;for(const r of S.rats)if(Math.abs(r.x-P.x)<40){S.exp+=dt*3;S.infectionRisk+=dt*5}
+  /* walking through the rats without the dog chasing them off: fleas on Peter's legs, carried home */if(rs&&!rs.cleared&&!rs.passed&&Math.abs(rs.x-P.x)<24){rs.passed=1;S.exp+=6;S.infectionRisk+=20}
   /* a search takes time; Peter crouches and works */
   if(S.busy){const b=S.busy;b.t+=dt;if(b.t>=b.dur){if(b.k==='search'){const sp=b.sp;sp.done=true;if(sp.empty){const m=HVEMPTY[(sp.x/7|0)%HVEMPTY.length];hvFloat(S,m,sp.x,1);api.say(m);S.mind=Math.max(0,S.mind-3)}else{let got=0;for(const [k,n] of sp.loot)got+=hvAdd(S,k,n,sp.x);if(got)hvSnd('get');S.mind=Math.min(100,S.mind+2)}}
-      else if(b.k==='corpse'){/* the dead keep good things; taking them costs Peter dearly */const sp=b.sp;sp.done=true;for(const [k,n] of sp.loot)hvAdd(S,k,n,sp.x);S.mind=Math.max(0,S.mind-30);S.exp+=25;S.boost=Math.min(.6,(S.boost||0)+.45);S.flags.corpse=1;hvSnd('thud');api.say('ปีเตอร์ได้ของไป แต่มือของเขาสั่นไม่หยุด เขาไม่กล้ามองใต้ผ้าอีก')}
+      else if(b.k==='corpse'){/* the dead keep good things; taking them costs Peter dearly */const sp=b.sp;sp.done=true;for(const [k,n] of sp.loot)hvAdd(S,k,n,sp.x);S.mind=Math.max(0,S.mind-30);S.exp+=25;S.infectionRisk+=30;S.boost=Math.min(.6,(S.boost||0)+.45);S.flags.corpse=1;hvSnd('thud');api.say('ปีเตอร์ได้ของไป แต่มือของเขาสั่นไม่หยุด เขาไม่กล้ามองใต้ผ้าอีก')}
       else if(b.k==='pet'){const g=[14,10,7,5,3,2][S.petN]||1;S.petN++;S.mind=Math.min(100,S.mind+g);S.full=Math.max(0,S.full-2);S.tired=Math.min(100,S.tired+1);S.dog.happyT=8;S.dog.heart=2;S.flags.pet=1;hvFloat(S,'+ ใจ',S.dog.x);api.say(g>5?'ปีเตอร์ลูบหัวหมาช้าๆ หมาเอาหัวดันมือเขา':'ปีเตอร์ลูบหัวหมาอีกครั้ง')}
-      else if(b.k==='give'){const sp=b.sp;S.inv[b.item]--;if(!S.inv[b.item])delete S.inv[b.item];sp.state='given';S.mind=Math.min(100,S.mind+20);S.happyT=4;S.flags.gave_window=1;hvSnd('get');api.say('ปีเตอร์ยื่น'+HVITEM[b.item].n+'ผ่านช่องหน้าต่าง หญิงคนนั้นแนบมือกับกระจก แล้วตะเกียงในบ้านก็ถูกจุดขึ้น')}
+      else if(b.k==='give'){const sp=b.sp;S.inv[b.item]--;if(!S.inv[b.item])delete S.inv[b.item];sp.state='given';S.mind=Math.min(100,S.mind+20);/* the house behind the window has the sick in it */S.exp+=4;S.infectionRisk+=12;S.happyT=4;S.flags.gave_window=1;hvSnd('get');api.say('ปีเตอร์ยื่น'+HVITEM[b.item].n+'ผ่านช่องหน้าต่าง หญิงคนนั้นแนบมือกับกระจก แล้วตะเกียงในบ้านก็ถูกจุดขึ้น')}
       S.busy=null;S.lock=.25;api.mood()}}
   /* the window: knocking when Peter is close; walking away with something to give counts as a choice */
   const w=S.spots.find(s=>s.k==='window');if(w&&w.state==='ask'){const d=Math.abs(w.x-P.x);if(d<300){w.seen=1;w.kt=(w.kt||0)+dt;if(w.kt>1.3){w.kt=0;hvSnd('knock');setTimeout(()=>hvSnd('knock'),160)}}if(w.seen&&d>420&&(S.inv.bread||S.inv.herb)&&w.near)hvLeave(S,api);if(d<90)w.near=1}
@@ -145,7 +183,7 @@ function hvPlayTick(S,dt,t,api){const P=S.p,D=S.dog;S.lock=Math.max(0,S.lock-dt)
         if(T.sp&&!T.sp.cleared&&T.t>.4){T.sp.cleared=true;for(let i=0;i<7;i++)T.sp.flee.push({x:T.sp.x+(i-3)*10,y:HV.GY+24+(i%3)*4,d:i%2?1:-1,v:220+i*30})}S.rats.forEach(r=>{r.d=Math.sign(r.x-D.x)||1;r.v=420});S.ratCalm=45;if(T.t>1.2){D.bark=0;T.ph='back'}}
       else if(goTo(P.x-P.dir*40,200)){D.task=null;api.say('หนูวิ่งหนีไปจนหมด หมาเดินกลับมาอย่างภูมิใจ')}}
     else if(T.k==='sit'){D.sit=1;if(T.t>1.5){D.sit=0;D.task=null}}}
-  {const f=S.spots.filter(s=>(s.kind==='corpse'||s.kind==='barrier')&&Math.abs(s.x-D.x)<170).length||S.spots.some(s=>s.kind==='rats'&&!s.cleared&&Math.abs(s.x-D.x)<110)||S.sad>.75;D.happyT=Math.max(0,(D.happyT||0)-dt);D.heart=Math.max(0,(D.heart||0)-dt);
+  {const f=S.spots.filter(s=>(s.kind==='corpse'||s.kind==='barrier')&&Math.abs(s.x-D.x)<170).length||(S.deco||[]).some(d=>Math.abs(d.x-D.x)<130)||S.spots.some(s=>s.kind==='rats'&&!s.cleared&&Math.abs(s.x-D.x)<110)||S.sad>.75;D.happyT=Math.max(0,(D.happyT||0)-dt);D.heart=Math.max(0,(D.heart||0)-dt);
     D.emo=D.happyT>0&&!(S.spots.some(s=>s.kind==='corpse'&&Math.abs(s.x-D.x)<120))?'happy':f?'scared':'normal';if(D.emo==='scared'){D.wt=(D.wt||0)+dt;if(D.wt>3.2){D.wt=0;hvSnd('whine')}}else D.wt=2.5}
   for(const s of S.spots)if(s.flee){s.flee.forEach(r=>r.x+=r.d*r.v*dt);s.flee=s.flee.filter(r=>Math.abs(r.x-s.x)<500)}S.ratCalm=Math.max(0,(S.ratCalm||0)-dt);
   S.fx.forEach(f=>f.t+=dt);S.fx=S.fx.filter(f=>f.t<2.2)}

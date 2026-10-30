@@ -1,7 +1,8 @@
-/* ===================== The Last Harvest · a life in the house: the calendar, the family, the sickness, the nights (v0.54, Thai only) =====================
+/* ===================== The Last Harvest · a life in the house: the calendar, the family, the sickness, the nights (v0.55, Thai only) =====================
    History is fixed; the family's fate is not. Every run: 1 June to 8 July 1349, a fictional Rhine town near Strasbourg (✦).
    (เกิดขึ้นจริง) The plague reached Strasbourg on 8 July 1349, moving north from Basel that summer. (Wikipedia: Black Death in the Holy Roman Empire)
-   The dog never dies. Death always happens off the page. */
+   The dog never dies. Death always happens off the page.
+   v0.55: Peter can carry the sickness home (R.carry, from the street's hidden infectionRisk); a fever must have a herbal brew the next night or that person dies. */
 const HVCAL=[1,4,7,10,12,14,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,34,36,38];
 const hvDate=n=>n<=30?n+' มิถุนายน 1349':(n-30)+' กรกฎาคม 1349';
 const HVFAM={thomas:{n:'โทมัส',role:'พ่อ ช่างไม้'},anna:{n:'แอนนา',role:'แม่'},peter:{n:'ปีเตอร์',role:'ลูกชาย อายุ 12'}};
@@ -16,7 +17,7 @@ const HVTRAIT=[
 function hvTown(R,n){if(n<R.arrive)return Math.max(0,(n-6)*.008);return Math.min(.95,.18+(n-R.arrive)*.045)}
 function hvNewRun(seed){seed=seed==null?(Math.random()*1e9|0):seed;const r=hvRng(seed);const tr=HVTRAIT[r()*HVTRAIT.length|0];
   const P=()=>({full:80,tired:10,mind:70,exp:0,inf:0,infT:0,dead:false,task:'rest',place:'bed',ate:false});
-  const R={v:1,seed,di:0,phase:'morning',fam:{thomas:P(),anna:P(),peter:P()},dog:{name:'',trust:30},store:{food:6,water:5,wood:4,herb:1,plank:2},home:{fire:1,boarded:0,trap:0,hens:tr.k==='hens'?2:0,bedBurnt:0,dirty:0},trait:tr.k,flags:{},used:{},pending:[],log:[],arrive:15+(r()*5|0),deaths:0,day:1,over:false};
+  const R={v:1,seed,di:0,phase:'morning',fam:{thomas:P(),anna:P(),peter:P()},dog:{name:'',trust:30},store:{food:6,water:5,wood:4,herb:1,plank:2},home:{fire:1,boarded:0,trap:0,hens:tr.k==='hens'?2:0,bedBurnt:0,dirty:0},trait:tr.k,flags:{},used:{},pending:[],log:[],arrive:15+(r()*5|0),deaths:0,day:1,over:false,carry:0,griefT:0};
   if(tr.k==='exposed')R.fam.thomas.exp=35;R.rs=r()*1e9|0;return R}
 const hvRR=R=>{R.rs=(R.rs*1664525+1013904223)>>>0;return R.rs/4294967296};
 const hvAlive=R=>Object.keys(R.fam).filter(k=>!R.fam[k].dead);
@@ -52,7 +53,7 @@ const HVEV=[
     ch:[{t:'พ่อขึ้นไปตีระฆังให้คนตาย',need:R=>!R.fam.thomas.dead&&R.fam.thomas.inf<2,fx:R=>{R.fam.thomas.exp+=12;hvMind(R,10);R.flags.rang=1;return 'เสียงระฆังดังไปทั่วเมือง หลายบ้านจุดเทียนที่หน้าต่าง'}},{t:'ไม่มีใครในบ้านนี้ขึ้นไป',fx:R=>{hvMind(R,-4);return 'เมืองเงียบจนได้ยินเสียงแม่น้ำ'}}]},
   /* small things that can come any night */
   {id:'thief',win:[8,37],w:3,rep:1,cond:R=>R.store.food>0,title:'เสียงที่ประตูหลัง',art:'door',text:R=>'กลางดึก มีเสียงคนงัดประตูหลังบ้าน',auto:R=>{if(R.home.boarded){return 'ไม้ที่พ่อตอกไว้กันประตูไว้ได้ เสียงนั้นหายไป'}if(R.dog.trust>=55){R.dog.trust=Math.min(100,R.dog.trust+5);return hvDogN(R)+'เห่าลั่นบ้าน คนข้างนอกวิ่งหนีไป'}const n=Math.min(R.store.food,2);R.store.food-=n;hvMind(R,-6);return 'เช้ามา ขนมปังหายไป '+n+' ก้อน'}},
-  {id:'rats',win:[8,37],w:3,rep:1,cond:R=>!R.home.trap,title:'หนูในห้องเก็บของ',art:'store',text:R=>'ได้ยินเสียงกุกกักในห้องเก็บของทั้งคืน',auto:R=>{if(R.store.food>0)R.store.food--;hvAlive(R).forEach(k=>R.fam[k].exp+=5);return 'ถุงแป้งมีรอยกัด ขนมปังหายไปหนึ่งก้อน'}},
+  {id:'rats',win:[8,37],w:3,rep:1,cond:R=>!R.home.trap,title:'หนูในห้องเก็บของ',art:'store',text:R=>'ได้ยินเสียงกุกกักในห้องเก็บของทั้งคืน',auto:R=>{if(R.flags.cat&&hvRR(R)<.5)return 'กลางดึก แมวดำตัวที่ชอบมานั่งขอบหน้าต่างกระโดดเข้ามาในห้องเก็บของ เสียงกุกกักเงียบไปจนเช้า';if(R.store.food>0)R.store.food--;hvAlive(R).forEach(k=>R.fam[k].exp+=5);return 'ถุงแป้งมีรอยกัด ขนมปังหายไปหนึ่งก้อน'}},
   {id:'soup',win:[4,30],w:2,rep:1,title:'ซุปจากบ้านตรงข้าม',art:'door',text:R=>'หญิงม่ายบ้านตรงข้ามยกหม้อซุปมาวางหน้าประตู เธอบอกว่าทำเกิน',auto:R=>{R.store.food++;hvMind(R,4);return 'ซุปยังอุ่นอยู่'}},
   {id:'cat',win:[1,37],w:2,rep:1,title:'แมวบนขอบหน้าต่าง',art:'window',text:R=>'แมวดำตัวหนึ่งมานั่งที่ขอบหน้าต่างห้องนอน '+hvDogN(R)+'มองมันแต่ไม่เห่า',auto:R=>{R.fam.peter.mind=Math.min(100,R.fam.peter.mind+5);R.flags.cat=1;return 'ปีเตอร์ยื่นนิ้วไปให้มันดม มันกะพริบตาช้าๆ แล้วนอนลง'}},
   {id:'cough',win:[15,37],w:2,rep:1,title:'เสียงไอข้างบ้าน',art:'window',text:R=>'ทั้งคืนได้ยินเสียงไอผ่านผนังบ้านข้างๆ',auto:R=>{hvMind(R,-4);return 'เช้ามาไม่มีเสียงไอแล้ว'}},
@@ -74,16 +75,24 @@ const hvDogN=R=>R.dog.name||'หมา';
 function hvPickEvent(R){const n=HVCAL[R.di];const fx=HVEV.filter(e=>e.fixed&&!R.used[e.id]&&(e.at?e.at(R)<=n:n>=e.win[0])&&(e.at?true:n<=e.win[1]+3)&&(!e.cond||e.cond(R)));if(fx.length)return fx[0];
   const pool=HVEV.filter(e=>!e.fixed&&n>=e.win[0]&&n<=e.win[1]&&(e.rep||!R.used[e.id])&&(!e.cond||e.cond(R))&&R.lastEv!==e.id);let tot=pool.reduce((a,e)=>a+(e.w||1),0),r=hvRR(R)*tot;for(const e of pool){r-=(e.w||1);if(r<=0)return e}return pool[0]||null}
 /* ---------- the sickness: what happens in the night, for each person ---------- */
+/* someone the family loses: gone from the house for good, and Peter's heart falls to the bottom */
+function hvLose(R,k,n){const P=R.fam[k];P.dead=true;P.diedOn=n;R.home.dirty=1;R.deaths++;if(k!=='peter'&&!R.fam.peter.dead){R.fam.peter.mind=0;R.griefT=3;R.lastLost=k}}
+/* the herbal brew on the night after a fever shows: the store first, then Margarethe once if she owes the family */
+function hvBrew(R,k){const ok=c=>c!==k&&!R.fam[c].dead&&!(R.fam[c].inf>=2&&R.fam[c].inf<4),by=ok('anna')?'แม่':ok('thomas')?'พ่อ':'ปีเตอร์';if(R.store.herb>0){R.store.herb--;if(k==='peter'&&by==='ปีเตอร์')return 'ปีเตอร์ต้มยาสมุนไพรดื่มเองทั้งที่ตัวสั่น';return by+'ต้มยาสมุนไพรให้'+(k==='anna'?'แม่':k==='thomas'?'พ่อ':'ปีเตอร์')+'ดื่มทั้งคืน'}if(R.flags.healer&&!R.flags.healerMed){R.flags.healerMed=1;return 'มาร์กาเรเธมาเคาะประตูกลางดึก เอายาต้มมาให้'+HVFAM[k].n}return null}
 function hvSleep(R,days){const n=HVCAL[R.di],tp=hvTown(R,n),out=[];const fam=R.fam;const sickHome=hvAlive(R).filter(k=>fam[k].inf>=2&&fam[k].inf<4);
+  /* what Peter brought home from the street on his clothes, his hands, the dog's fur: the hidden carrier risk for his father and mother */
+  const carry=R.carry||0;if(carry>0&&tp>0){for(const k of ['thomas','anna']){const P=fam[k];if(P.dead||P.inf!==0)continue;const p=Math.min(.55,carry/100*(.35+tp*.65)*.6);if(hvRR(R)<p){P.inf=1;P.infT=0;P.fromPeter=1}}}R.carry=0;
   for(let d=0;d<days;d++){
-    for(const k of hvAlive(R)){const P=fam[k];
+    /* the night after a fever shows: without a brew, that person does not see the morning */
+    for(const k of hvAlive(R)){const P=fam[k];if(!P.medDue||P.inf<2||P.inf>=4){P.medDue=0;continue}P.medDue=0;const b=hvBrew(R,k);if(b){P.med=1;out.push(b)}else{hvLose(R,k,n);out.push((k==='peter'?'ปีเตอร์':HVFAM[k].n)+'จากไปตอนรุ่งสาง · บ้านไม่มีสมุนไพรเหลือให้ต้มยา')}}
+    for(const k of hvAlive(R)){const P=fam[k];if(P.dead)continue;
       /* the hidden risk: from the street, from the sick in the house, from rats, from a dirty bed */
       for(const s of sickHome)if(s!==k)P.exp+=fam[s].place==='attic'?9:24;if(!R.home.trap&&tp>.1)P.exp+=3;if(R.home.dirty)P.exp+=6;
       if(P.inf===0&&tp>0){const p=Math.min(.42,(P.exp/100)*(.25+tp*.75)*.30);if(hvRR(R)<p){P.inf=1;P.infT=0}}
       else if(P.inf>=1&&P.inf<4){P.infT++;const nx=P.inf===1?2+(hvRR(R)*2|0):P.inf===2?1+(hvRR(R)*2|0):2;if(P.infT>=nx){P.infT=0;
-        if(P.inf<3){P.inf++;if(P.inf===2)out.push(HVFAM[k].n+'ตัวร้อน ไอไม่หยุด')}
-        else{/* the crisis ends: care, food and rest give a chance */const care=hvAlive(R).some(c=>c!==k&&fam[c].task==='care'&&fam[c].inf<2)||R.flags.healer;const ch=.2+(care?.2:0)+(P.full>50?.1:0)+(k==='peter'&&R.dog.trust>=60?.1:0);
-          if(hvRR(R)<ch){P.inf=4;out.push(HVFAM[k].n+'ไข้ลดลงแล้ว เขาลืมตาขึ้นมาขอน้ำ');R.home.dirty=1}else{P.dead=true;P.diedOn=n;R.home.dirty=1;out.push(k==='peter'?'ปีเตอร์จากไปตอนรุ่งสาง':HVFAM[k].n+'จากไปตอนรุ่งสาง');R.deaths++}}}}
+        if(P.inf<3){P.inf++;if(P.inf===2){P.medDue=1;out.push(HVFAM[k].n+'ตัวร้อน ไอไม่หยุด · คืนพรุ่งนี้ต้องมียาต้มสมุนไพร')}}
+        else{/* the crisis ends: care, food and rest give a chance */const care=hvAlive(R).some(c=>c!==k&&fam[c].task==='care'&&fam[c].inf<2)||R.flags.healer;const ch=.2+(care?.2:0)+(P.med?.15:0)+(P.full>50?.1:0)+(k==='peter'&&R.dog.trust>=60?.1:0);
+          if(hvRR(R)<ch){P.inf=4;out.push(HVFAM[k].n+'ไข้ลดลงแล้ว เขาลืมตาขึ้นมาขอน้ำ');R.home.dirty=1}else{hvLose(R,k,n);out.push(k==='peter'?'ปีเตอร์จากไปตอนรุ่งสาง':HVFAM[k].n+'จากไปตอนรุ่งสาง')}}}}
       P.exp*=.6}}
   return out}
 /* leaving town is no sure escape: those already sick may not make it, and the plague reached the villages too */

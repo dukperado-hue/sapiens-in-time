@@ -14,7 +14,7 @@ ok((await cardT()).includes('หมาตัวนี้ชื่ออะไร
 const t1=await cardT();ok(t1.includes('เรื่องของบ้านนี้ในรอบนี้'),'each run tells the house\'s own secret');await p.screenshot({path:OUT+'/hvd_trait.png'});await btn('ต่อไป');
 // 2. the morning plan: meals, tasks, Peter
 const pl=await cardT();ok(pl.includes('มื้อเช้า')&&pl.includes('งานวันนี้')&&pl.includes('ถ่าน'),'the morning plan has meals (the dog too, by name) and the day\'s work');await p.screenshot({path:OUT+'/hvd_plan.png'});
-const r0=await R();await btn('ทำกับดักหนู');await btn('อยู่บ้านช่วยแม่');await btn('เริ่มวัน');await p.waitForTimeout(600);
+const r0=await R();await btn('ทำกับดักหนู');await btn('อยู่บ้านช่วยแม่');await btn('เริ่มวัน');await p.waitForTimeout(600);{const j=await cardT();ok(j.includes('สมุดของปีเตอร์'),'Peter\'s notebook opens before the day ("'+j.split('\n').slice(1,2).join('')+'")');await p.screenshot({path:OUT+'/hvd_journal.png'});await btn('ต่อไป');await p.waitForTimeout(300)}
 const ev=await cardT();ok(ev.includes('เย็นวันที่ 1')&&ev.includes('กับดักหนู'),'evening: what each did ("'+ev.split('\n').slice(2,4).join(' / ')+'")');await btn('ต่อไป');
 // 3. the night: an event of history with a choice
 await p.waitForTimeout(400);const nt=await cardT();await p.screenshot({path:OUT+'/hvd_night.png'});ok(nt.includes('คืนวันที่ 1')&&nt.includes('(เกิดขึ้นจริง)'),'the first night is a real-history beat with its label');
@@ -25,7 +25,7 @@ const m2=await cardT();const r1=await R();ok(r1.di===1&&m2.includes('เช้�
 await home();const goT=await p.$eval('#hv [data-a=go]',e=>e.textContent);ok(goT.includes('เล่นต่อ')&&goT.includes('4'),'the door offers to continue: "'+goT+'"');await p.click('#hv [data-a=go]');await p.waitForTimeout(1200);if((await cardT()).includes('เช้าวันที่ 4')&&!(await cardT()).includes('มื้อเช้า'))await btn('ต่อไป');
 ok((await cardT()).includes('มื้อเช้า'),'continuing opens the morning of day 4');
 // 5. Peter goes out, the street carries the date and the dog's name, and he comes home
-await btn('ออกไปหาของกับ');await btn('เริ่มวัน');await p.waitForTimeout(1500);const st=await p.evaluate(()=>({cap:document.querySelector('#hv .cap').innerText,dog:document.querySelector('#hv .nb .dg').innerText,pig:window.__hvS.amb.pigeons.length}));
+await btn('ออกไปหาของกับ');await btn('เริ่มวัน');await p.waitForTimeout(600);ok((await cardT()).includes('สมุดของปีเตอร์'),'the notebook comes before the street too');await btn('ออกจากบ้าน');await p.waitForTimeout(1500);const st=await p.evaluate(()=>({cap:document.querySelector('#hv .cap').innerText,dog:document.querySelector('#hv .nb .dg').innerText,pig:window.__hvS.amb.pigeons.length}));
 ok(st.cap.includes('4 มิถุนายน 1349')&&st.dog.includes('ถ่าน'),'the street knows the date and the dog\'s name');ok(st.pig>0,'pigeons peck on the street');
 await p.evaluate(()=>{const S=window.__hvS;const b=S.amb.pigeons[0];S.p.x=b.x-30;S.cam=null;S.amb.walker={x:S.p.x+200,d:-1,col:'#2e2a30'}});await p.waitForTimeout(700);await p.screenshot({path:OUT+'/hvd_street_birds.png'});ok(await p.evaluate(()=>window.__hvS.amb.pigeons.some(b=>b.fly)),'pigeons fly off when Peter comes near');
 await p.evaluate(()=>{const S=window.__hvS;S.p.x=S.scene.mask[0][1]-5;S.cam=null});await p.waitForTimeout(400);await p.keyboard.press('Enter');await p.waitForTimeout(1500);ok((await cardT()).includes('ปีเตอร์'),'coming home: the evening says what Peter brought');await p.screenshot({path:OUT+'/hvd_evening.png'});
