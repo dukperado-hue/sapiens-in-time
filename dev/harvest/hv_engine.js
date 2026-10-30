@@ -30,27 +30,32 @@ function hvRender(cv,S,t,dt){const x=cv.getContext('2d'),W=cv.width,H=cv.height,
       hvLight(x,S,t,cam,sc,W,H)}}
   /* the front layer: dark shapes that pass in front of the camera, a little blurred */
   x.setTransform(1,0,0,1,0,0);const fr=sn.front||[];S.stats.front=[];
-  const pb=S.pbox&&{x0:(S.pbox.x0-cam)*sc,x1:(S.pbox.x1-cam)*sc,y0:(S.pbox.y0+S.camY)*sc,y1:(S.pbox.y1+S.camY)*sc};let hit=[];
+  const bx=b=>b&&{x0:(b.x0-cam)*sc,x1:(b.x1-cam)*sc},pb=bx(S.pbox),db=bx(S.dbox);let hit=[];const fdt=Math.min(.1,dt||.016);
   for(const o of fr){const ox=(o.x-cam*o.p)*sc,ow=(o.w||60)*sc;if(ox+ow<-40||ox-ow>W+40)continue;
     /* each front thing is drawn (blurred) onto its own small canvas, and redrawn only a few times a second when it moves: blur is costly on phones */
     const pad=30,bw=(o.w||60)+pad*2,key=sc+'|'+(S.lowfx?1:0);S._fn=(S._fn||0);if(!o._c||o._k!==key||(o.anim&&(S._fn+o.x)%5===0)){const c=o._c||(o._c=document.createElement('canvas'));c.width=Math.ceil(bw*sc);c.height=Math.ceil(400*sc);const y=c.getContext('2d');y.setTransform(sc,0,0,sc,(bw/2)*sc,20*sc);if(HVCAN.filter&&!S.lowfx)y.filter='blur('+Math.max(1,sc*.9).toFixed(1)+'px)';y.fillStyle=o.col||'#1d1611';y.strokeStyle=o.col||'#1d1611';o.draw(y,t,S);o._k=key}
-    x.globalAlpha=o.a||.94;x.drawImage(o._c,Math.round(ox-bw/2*sc),Math.round(S.camY*sc*o.p-20*sc));x.globalAlpha=1;
-    S.stats.front.push(o.kind);if(pb&&ox-ow*.5<pb.x1&&ox+ow*.5>pb.x0)hit.push(o)}
+    /* when it stands in front of Peter or the dog it fades smoothly to 0.35, then comes back */
+    const ov=b=>b&&ox-ow*.5<b.x1&&ox+ow*.5>b.x0,full=o.a||.94,cover=ov(pb)||ov(db);if(o._a==null)o._a=full;o._a+=((cover?.35:full)-o._a)*Math.min(1,fdt*6);
+    x.globalAlpha=o._a;x.drawImage(o._c,Math.round(ox-bw/2*sc),Math.round(S.camY*sc*o.p-20*sc));x.globalAlpha=1;
+    S.stats.front.push(o.kind);if(ov(pb)){hit.push(o);S.stats.fade=Math.min(S.stats.fade==null?1:S.stats.fade,o._a)}}
   /* when something in front hides the walker, show the walker's outline through it */
   S.stats.through=0;if(hit.length&&S.silo){const m=S._mask||(S._mask=document.createElement('canvas'));if(m.width!==W||m.height!==H){m.width=W;m.height=H}const y=m.getContext('2d');y.setTransform(1,0,0,1,0,0);y.globalCompositeOperation='source-over';y.clearRect(0,0,W,H);
     for(const o of hit){y.save();y.setTransform(sc,0,0,sc,(o.x-cam*o.p)*sc,S.camY*sc*o.p);y.fillStyle='#fff';y.strokeStyle='#fff';y.globalAlpha=1;o.draw(y,t,S);y.restore()}
     const c2=S._mask2||(S._mask2=document.createElement('canvas'));if(c2.width!==W||c2.height!==H){c2.width=W;c2.height=H}const z=c2.getContext('2d');z.setTransform(1,0,0,1,0,0);z.globalCompositeOperation='source-over';z.clearRect(0,0,W,H);z.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);S.silo(z);z.setTransform(1,0,0,1,0,0);z.globalCompositeOperation='source-in';z.fillStyle='#ffe9c4';z.fillRect(0,0,W,H);
-    y.globalCompositeOperation='source-in';y.setTransform(1,0,0,1,0,0);y.drawImage(c2,0,0);x.globalAlpha=.55;x.drawImage(m,0,0);x.globalAlpha=1;S.stats.through=hit.length}
+    y.globalCompositeOperation='source-in';y.setTransform(1,0,0,1,0,0);y.drawImage(c2,0,0);const k=Math.max(...hit.map(o=>((o._a||.94)-.35)/.59));x.globalAlpha=.55*Math.max(.25,k);x.drawImage(m,0,0);x.globalAlpha=1;S.stats.through=hit.length}
   S._fn=(S._fn||0)+1;
   if(sn.over){x.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);sn.over(x,S,t,{x0:cam,x1:cam+vw})}
+  if(S.overFx){x.setTransform(sc,0,0,sc,-cam*sc,S.camY*sc);S.overFx(x,t)}
   /* paper and vignette: the page of a picture book */
-  x.setTransform(1,0,0,1,0,0);const g=x.createRadialGradient(W/2,H*.55,H*.35,W/2,H*.55,Math.max(W,H)*.75);g.addColorStop(0,'rgba(40,24,16,0)');g.addColorStop(1,'rgba(40,24,16,'+(.38+pl*.25)+')');x.fillStyle=g;x.fillRect(0,0,W,H);
+  /* the vignette closes in as Peter grows sadder and the plague grows */
+  const sad=Math.max(0,Math.min(1,S.sad||0)),vin=Math.max(.08,.35-sad*.2-pl*.08);S.stats.vignette={inner:+vin.toFixed(3),a:+(.38+pl*.25+sad*.3).toFixed(3)};
+  x.setTransform(1,0,0,1,0,0);const g=x.createRadialGradient(W/2,H*.55,H*vin,W/2,H*.55,Math.max(W,H)*(.75-sad*.12));g.addColorStop(0,'rgba(30,18,12,0)');g.addColorStop(1,'rgba(30,18,12,'+Math.min(.9,.38+pl*.25+sad*.3)+')');x.fillStyle=g;x.fillRect(0,0,W,H);
   if(!S._paper){const p=document.createElement('canvas');p.width=p.height=128;const y=p.getContext('2d'),r=hvRng(5);for(let i=0;i<1400;i++){y.fillStyle='rgba('+(r()>.5?'255,240,210':'60,40,20')+','+(r()*.06).toFixed(3)+')';y.fillRect(r()*128|0,r()*128|0,1+(r()*2|0),1)}S._paper=x.createPattern(p,'repeat')}x.fillStyle=S._paper;x.fillRect(0,0,W,H);
   if(S.iris!=null&&S.iris<1){const r=Math.hypot(W,H)*.6*S.iris;x.save();x.fillStyle='#120c08';x.beginPath();x.rect(0,0,W,H);x.arc(W/2,H*.62,Math.max(0,r),0,Math.PI*2,true);x.fill('evenodd');x.restore()}}
 /* light by the time of day: morning cool, noon clear, evening gold, night by candle; multiply darkens, screen adds glow */
 const HVTOD=[{n:'เช้า',mul:'#e6ecf6',a:.35,glow:'#fff4e0',ga:.08},{n:'กลางวัน',mul:'#fff8ee',a:.12,glow:'#fff',ga:0},{n:'เย็น',mul:'#f6b878',a:.42,glow:'#ffc070',ga:.16},{n:'กลางคืน',mul:'#232a58',a:.8,glow:'#ffa850',ga:0}];
 function hvLight(x,S,t,cam,sc,W,H){const T=HVTOD[S.tod||0];x.save();x.setTransform(1,0,0,1,0,0);x.globalCompositeOperation='multiply';x.globalAlpha=T.a;x.fillStyle=T.mul;x.fillRect(0,0,W,H);x.globalAlpha=1;
   if(T.ga){x.globalCompositeOperation='screen';const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,T.glow);g.addColorStop(.6,'rgba(0,0,0,0)');x.globalAlpha=T.ga*3;x.fillStyle=g;x.fillRect(0,0,W,H);x.globalAlpha=1}
-  if(S.tod===3){x.globalCompositeOperation='screen';for(const L of (S.lights||[])){const X=(L.x-cam*L.p)*sc,Y=(L.y+S.camY*L.p)*sc,R=L.r*sc;if(X<-R||X>W+R)continue;const fl=1+Math.sin(t*9+L.x)*.05;const g=x.createRadialGradient(X,Y,0,X,Y,R*fl);g.addColorStop(0,'rgba(255,170,80,'+(L.i||.7)+')');g.addColorStop(1,'rgba(255,120,40,0)');x.fillStyle=g;x.fillRect(X-R*1.1,Y-R*1.1,R*2.2,R*2.2)}}
+  if(S.tod>=2){const k=S.tod===3?1:.45;x.globalCompositeOperation='screen';for(const L of (S.lights||[])){if(S.tod===2&&!L.lamp)continue;const X=(L.x-cam*L.p)*sc,Y=(L.y+S.camY*L.p)*sc,R=L.r*sc;if(X<-R||X>W+R)continue;const fl=1+Math.sin(t*9+L.x)*.05;const g=x.createRadialGradient(X,Y,0,X,Y,R*fl);g.addColorStop(0,'rgba(255,170,80,'+((L.i||.7)*k)+')');g.addColorStop(1,'rgba(255,120,40,0)');x.fillStyle=g;x.fillRect(X-R*1.1,Y-R*1.1,R*2.2,R*2.2)}}
   x.restore()}
 if(typeof window!=='undefined')window.__hv={HV,hvRender,hvFitCanvas,HVCAN,HVTOD};

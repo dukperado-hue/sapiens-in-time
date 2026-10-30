@@ -21,14 +21,14 @@ await p.evaluate(()=>{const S=window.__hvS;S.p.x=420;S.cam=null;S.tod=1;S.plague
 ok(s1.bg<s0.bg*.4,'plague 0→1 fades the town: saturation '+s0.bg+' → '+s1.bg);ok(s1.hat>s0.hat*.7,'Peter\'s hat keeps its colour: '+s0.hat+' → '+s1.hat);
 for(const [i,n] of [[0,'morning'],[2,'evening'],[3,'night']]){await p.evaluate(i=>{window.__hvS.tod=i;window.__hvS.plague=.3},i);await p.waitForTimeout(300);await p.screenshot({path:OUT+'/hva_'+n+'.png'})}
 // click on the street to walk there
-const x0=(await st()).x;await p.mouse.click(1100,600);await p.waitForTimeout(2200);ok((await st()).x>x0+80,'clicking the street walks there');
+const x0=(await st()).x;await p.mouse.click(1100,400);await p.waitForTimeout(2200);ok((await st()).x>x0+80,'clicking the street walks there');
 const perf=await p.evaluate(()=>{const f=window.__hvS.perf;return f.reduce((a,b)=>a+b,0)/f.length});console.log('     average draw time per frame (headless, no GPU): '+perf.toFixed(1)+' ms');
 await p.click('#hv [data-a=exit]');ok(!!await p.$('#hv canvas'),'one tap on exit stays');await p.click('#hv [data-a=exit]');await p.waitForTimeout(200);ok(!await p.$('#hv'),'second tap leaves');
 ok(await p.evaluate(()=>localStorage.getItem('sit.book'))===book0,'sit.book unchanged');await p.close();
 // phones: touch-hold walks; HUD buttons do not overlap and stay on screen
 for(const [w,h] of [[360,640],[390,844],[1280,720],[844,390]]){const q=await open(w,h,w<500);await q.evaluate(()=>{document.getElementById('pl45go').click()});await q.waitForTimeout(200);await q.evaluate(()=>window.__v50.hvStart());await q.waitForTimeout(1200);
-  const ov=await q.evaluate(()=>{const bs=[...document.querySelectorAll('#hv button,#hv .cap,#hv .hint')].filter(e=>e.offsetParent&&getComputedStyle(e).opacity!=='0').map(e=>{const r=e.getBoundingClientRect();return{t:(e.textContent||'').slice(0,10),r}});const out=[];const vw=innerWidth,vh=innerHeight;
+  const ov=await q.evaluate(()=>{const bs=[...document.querySelectorAll('#hv .top button,#hv .pad .ctl>button,#hv .pad>button,#hv .nb,#hv .cap')].filter(e=>e.offsetParent&&getComputedStyle(e).opacity!=='0').map(e=>{const r=e.getBoundingClientRect();return{t:(e.textContent||'').slice(0,10),r}});const out=[];const vw=innerWidth,vh=innerHeight;
     bs.forEach(a=>{if(a.r.left<0||a.r.top<0||a.r.right>vw+.5||a.r.bottom>vh+.5)out.push('off screen: '+a.t)});for(let i=0;i<bs.length;i++)for(let j=i+1;j<bs.length;j++){const A=bs[i].r,B=bs[j].r;if(A.left<B.right-1&&B.left<A.right-1&&A.top<B.bottom-1&&B.top<A.bottom-1)out.push('overlap: '+bs[i].t+' / '+bs[j].t)}return out});
-  const x1=await q.evaluate(()=>window.__hvS.p.x);const br=await q.$$('#hv .pad button');const bb=await br[1].boundingBox();await q.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2);await q.mouse.down();await q.waitForTimeout(1200);await q.mouse.up();const x2=await q.evaluate(()=>window.__hvS.p.x);
+  const x1=await q.evaluate(()=>window.__hvS.p.x);const br=await q.$$('#hv .pad .ctl button');const bb=await br[1].boundingBox();await q.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2);await q.mouse.down();await q.waitForTimeout(1200);await q.mouse.up();const x2=await q.evaluate(()=>window.__hvS.p.x);
   await q.screenshot({path:OUT+`/hva_${w}x${h}.png`});ok(!ov.length&&x2>x1+60,`${w}x${h}: HUD fits, holding ▶ walks (${Math.round(x1)}→${Math.round(x2)})`+(ov.length?' '+ov.join(' | '):''));await q.close()}
 console.log('errors:',errs.length?errs.join('\n'):'none');console.log(bad?bad+' FAILED':'hv_a: all ok');await b.close();process.exit(bad?1:0)})();

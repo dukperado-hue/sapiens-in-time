@@ -1,0 +1,47 @@
+// The Last Harvest v0.51: a tap takes a step, the right edge keeps the hat on screen, things in front fade to 0.35,
+// search three places, send the dog under the cart and at the rats, the window choice both ways, the notebook fits at every size
+// needs: python3 -m http.server 8765 from the repo root · OUT=dir for screenshots
+const {chromium}=require('playwright');const OUT=process.env.OUT||'/tmp';
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'ok   ':'FAIL ')+m);if(!c)bad++};const errs=[];
+const open=async(w,h,touch)=>{const p=await b.newPage({viewport:{width:w,height:h},hasTouch:!!touch,isMobile:!!touch,deviceScaleFactor:touch?2:1});p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
+  await p.addInitScript(()=>{localStorage.setItem('sit.seen','true');localStorage.setItem('sit.lang',JSON.stringify('th'))});await p.goto('http://localhost:8765/index.html?lang=th');await p.waitForTimeout(700);return p};
+const start=async p=>{await p.evaluate(()=>{document.getElementById('pl45go').click()});await p.waitForTimeout(200);await p.click('#hv50door');await p.waitForTimeout(150);await p.click('#hv [data-a=go]');await p.waitForTimeout(1300)};
+const S=(p,f)=>p.evaluate(f);const tp=(p,x)=>p.evaluate(x=>{const S=window.__hvS;S.p.x=x;S.dog.x=x-50;S.cam=null},x);
+const p=await open(1280,720);const book0=await p.evaluate(()=>localStorage.getItem('sit.book'));await start(p);
+// 1. one short tap = one visible step; holding keeps walking
+let x0=await S(p,()=>window.__hvS.p.x);const pad=await p.$$('#hv .pad .ctl button');const rb=await pad[1].boundingBox();await p.mouse.click(rb.x+rb.width/2,rb.y+rb.height/2);await p.waitForTimeout(700);let x1=await S(p,()=>window.__hvS.p.x);ok(x1-x0>=30,'one tap on ▶ takes a step: '+Math.round(x1-x0)+' units');
+x0=x1;await p.keyboard.press('ArrowRight');await p.waitForTimeout(700);x1=await S(p,()=>window.__hvS.p.x);ok(x1-x0>=30,'one tap on → takes a step: '+Math.round(x1-x0)+' units');
+x0=x1;await p.keyboard.down('ArrowRight');await p.waitForTimeout(1500);await p.keyboard.up('ArrowRight');x1=await S(p,()=>window.__hvS.p.x);ok(x1-x0>120,'holding → keeps walking: '+Math.round(x1-x0)+' units');
+// 2. the right end of the street: the hat stays inside the picture
+await tp(p,2300);await p.keyboard.down('ArrowRight');await p.waitForTimeout(1500);await p.keyboard.up('ArrowRight');await p.waitForTimeout(900);const edge=await S(p,()=>{const S=window.__hvS;return{right:(S.p.x+34-S.cam)/S.vw,x:S.p.x}});await p.screenshot({path:OUT+'/hvb_edge.png'});ok(edge.right<.99,'at the right end the hat is inside the picture (hat edge at '+(edge.right*100).toFixed(1)+'% of the width)');
+// 3. things in front fade to 0.35 over Peter
+await tp(p,905);let fade=1;for(let k=0;k<25;k++){await p.evaluate(()=>{const S=window.__hvS;const sx=905-1.3*S.cam,px=S.p.x-S.cam;S.p.x+= (sx-px)*.6});await p.waitForTimeout(120);const f=await S(p,()=>window.__hvS.stats.fade);if(f!=null)fade=f;if(fade<.4)break}await p.waitForTimeout(600);fade=await S(p,()=>window.__hvS.stats.fade);await p.screenshot({path:OUT+'/hvb_fade.png'});ok(fade!=null&&fade<.42,'the washing line fades to '+(fade==null?'-':fade.toFixed(2))+' while it covers Peter');
+// 4. search three places
+for(const [k,x] of [['crates',560],['stall',1000],['door',1400]]){await tp(p,x-20);await p.waitForTimeout(300);await p.keyboard.press('Enter');await p.waitForTimeout(400);if(k==='crates')await p.screenshot({path:OUT+'/hvb_search.png'});await p.waitForTimeout(1800)}
+let inv=await S(p,()=>window.__hvS.inv);ok(inv.plank===2&&inv.wood===1&&inv.bread===1&&inv.herb===1,'searched three places: '+JSON.stringify(inv));
+await tp(p,560);await p.waitForTimeout(250);await p.keyboard.press('Enter');await p.waitForTimeout(400);ok(JSON.stringify(await S(p,()=>window.__hvS.inv))===JSON.stringify(inv),'searching the same place again gives nothing');
+// 5. the dog under the cart
+await tp(p,1745);await p.waitForTimeout(300);await p.keyboard.press('q');let hid=0;for(let k=0;k<40&&!hid;k++){await p.waitForTimeout(100);hid=await S(p,()=>window.__hvS.dog.hide)}await p.screenshot({path:OUT+'/hvb_dog_in.png'});await p.waitForTimeout(4000);inv=await S(p,()=>window.__hvS.inv);ok(hid&&inv.bread===2,'the dog went under the cart and came back with bread (bread '+inv.bread+')');
+// 6. rats: being near raises the hidden risk; the dog barks them away
+await tp(p,1960);const e0=await S(p,()=>window.__hvS.exp);await p.waitForTimeout(1200);const e1=await S(p,()=>window.__hvS.exp);ok(e1>e0+3,'standing by the rats raises the hidden risk: '+e0.toFixed(1)+' → '+e1.toFixed(1));
+await p.keyboard.press('q');await p.waitForTimeout(800);await p.screenshot({path:OUT+'/hvb_bark.png'});await p.waitForTimeout(1600);ok(await S(p,()=>window.__hvS.spots.find(s=>s.k==='rats').cleared),'the dog barked the rats away');
+// 7. the window: give
+await tp(p,2150);await p.waitForTimeout(1200);await p.screenshot({path:OUT+'/hvb_window_ask.png'});const m0=await S(p,()=>window.__hvS.mind);const giveB=await p.$('#hv .nb .ac button');ok((await giveB.textContent()).includes('แบ่งให้'),'the notebook offers แบ่งให้ / เดินจากไป');await giveB.click();await p.waitForTimeout(1600);
+const g=await S(p,()=>({st:window.__hvS.spots.find(s=>s.k==='window').state,m:window.__hvS.mind,inv:window.__hvS.inv}));ok(g.st==='given'&&g.m>m0&&g.inv.bread===1,'giving: the window lights up, Peter\'s heart rises '+Math.round(m0)+' → '+Math.round(g.m)+', one bread less');
+await p.evaluate(()=>{window.__hvS.tod=3});await p.waitForTimeout(500);await p.screenshot({path:OUT+'/hvb_window_given_night.png'});
+// 8. eat bread from the bag
+await p.evaluate(()=>{window.__hvS.tod=1});const f0=await S(p,()=>window.__hvS.full);const slot=await p.$('#hv .nb .bag button:not(.emp)');const names=await p.$$eval('#hv .nb .bag button:not(.emp)',bs=>bs.map(b=>b.title));const bi=names.indexOf('เศษขนมปัง');const sl=(await p.$$('#hv .nb .bag button:not(.emp)'))[bi];await sl.click();await p.waitForTimeout(200);await p.click('text=🍞 ปีเตอร์กิน');await p.waitForTimeout(200);ok((await S(p,()=>window.__hvS.full))>f0+20,'tapping bread in the bag lets Peter eat');
+ok(await p.evaluate(()=>localStorage.getItem('sit.book'))===book0,'sit.book unchanged');
+// 9. the other way: walk away from the window with something in the bag
+const q=await open(1280,720);await start(q);await q.evaluate(()=>{const S=window.__hvS;S.inv={bread:1};S.p.x=2170;S.cam=null});await q.waitForTimeout(1200);const before=await S(q,()=>({m:window.__hvS.mind,pl:window.__hvS.plague,v:window.__hvS.stats.vignette.inner}));
+await q.evaluate(()=>{const S=window.__hvS;S.p.x=1650;S.cam=null});await q.waitForTimeout(1500);const after=await S(q,()=>({m:window.__hvS.mind,pl:window.__hvS.plague,st:window.__hvS.spots.find(s=>s.k==='window').state,v:window.__hvS.stats.vignette.inner,inv:window.__hvS.inv}));
+ok(after.st==='left'&&after.m<before.m&&after.pl>before.pl&&after.inv.bread===1,'walking away: kept the bread, heart '+Math.round(before.m)+' → '+Math.round(after.m)+', plague '+before.pl.toFixed(2)+' → '+after.pl.toFixed(2));ok(after.v<before.v,'the dark edge closes in as Peter grows sadder ('+before.v+' → '+after.v+')');
+await q.evaluate(()=>{const S=window.__hvS;S.p.x=2150;S.cam=null});await q.waitForTimeout(900);await q.screenshot({path:OUT+'/hvb_window_left.png'});
+await q.evaluate(()=>{window.__hvS.tod=3;window.__hvS.plague=.8});await q.waitForTimeout(700);await q.screenshot({path:OUT+'/hvb_night_fog.png'});await q.close();
+// 10. the notebook fits and nothing overlaps
+for(const [w,h] of [[360,640],[390,844],[414,896],[1280,720],[1024,600],[1366,768],[844,390]]){const r=await open(w,h,w<500);await start(r);await r.evaluate(()=>{const S=window.__hvS;S.inv={bread:2,wood:1,herb:1,plank:2};S.p.x=560;S.cam=null});await r.waitForTimeout(600);
+  const ov=await r.evaluate(()=>{const vw=innerWidth,vh=innerHeight,out=[];const els=[...document.querySelectorAll('#hv .top button,#hv .pad .ctl>button,#hv .pad>button,#hv .nb,#hv .nb .bag button,#hv .nb .ac button')].filter(e=>e.offsetParent).map(e=>({t:(e.title||e.textContent||e.className).slice(0,14),r:e.getBoundingClientRect(),nb:e.classList.contains('nb'),in:!!e.closest('.nb')}));
+    els.forEach(a=>{if(a.r.left<-.5||a.r.top<-.5||a.r.right>vw+.5||a.r.bottom>vh+.5)out.push('off: '+a.t)});for(let i=0;i<els.length;i++)for(let j=i+1;j<els.length;j++){const A=els[i],B=els[j];if((A.nb&&B.in)||(B.nb&&A.in))continue;if(A.r.left<B.r.right-1&&B.r.left<A.r.right-1&&A.r.top<B.r.bottom-1&&B.r.top<A.r.bottom-1)out.push('overlap: '+A.t+' / '+B.t)}
+    const nb=document.querySelector('#hv .nb');if(nb.scrollHeight>nb.clientHeight+2)out.push('notebook cut: '+nb.scrollHeight+'>'+nb.clientHeight);return out});
+  await r.screenshot({path:OUT+`/hvb_${w}x${h}.png`});ok(!ov.length,`${w}x${h}: notebook and buttons fit, nothing overlaps`+(ov.length?' · '+ov.slice(0,4).join(' | '):''));await r.close()}
+console.log('errors:',errs.length?errs.join('\n'):'none');console.log(bad?bad+' FAILED':'hv_b: all ok');await b.close();process.exit(bad?1:0)})();
